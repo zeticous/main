@@ -1,6 +1,6 @@
 # AddressBook Level 4 - Developer Guide
 
-By : `Team SE-EDU`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Jun 2016`  &nbsp;&nbsp;&nbsp;&nbsp; Licence: `MIT`
+By : `CS2103JAN2017-T15-B3`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Feb 2017`  &nbsp;&nbsp;&nbsp;&nbsp; Licence: `MIT`
 
 ---
 
@@ -346,60 +346,231 @@ Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (un
 
 Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
-`* * *` | new user | see usage instructions | refer to instructions when I forget how to use the App
-`* * *` | user | add a new person |
-`* * *` | user | delete a person | remove entries that I no longer need
-`* * *` | user | find a person by name | locate details of persons without having to go through the entire list
-`* *` | user | hide [private contact details](#private-contact-detail) by default | minimize chance of someone else seeing them by accident
-`*` | user with many persons in the address book | sort persons by name | locate a person easily
-
-{More to be added}
+`* * *` | new user | have a help function | know how to use the program
+`* * *` | user | create deadlines | remind myself when this task have to be done
+`* * *` | user | create events | know of upcoming events
+`* * *` | user | create floating tasks | constantly remind myself to do things
+`* * *` | user | list all tasks | know what is happening
+`* * *` | user | list all deadlines | know which tasks are up on particular dates
+`* * *` | user | list all events | know what events are happening
+`* * *` | user | list all floating events | know what floating events are happening
+`* * *` | user | delete a task | strike off a task that is over or cancelled
+`* * *` | user | clear all tasks | remove all tasks in one go
+`* * *` | user | update an existing task | change a task
+`* * *` | user | update date of an existing task | change the the date in case of a change
+`* * *` | user | update task types | accurately reflect changes in the task
+`* * *` | user | exit the program | quit
+`* *` | user | undo a latest command | make amendments to my latest command
+`* *` | user | re-do the last undone command | undo my undo command
+`* *` | user | search a task by name | find a particular task
+`* *` | user | search a task by date | find the corresponding tasks
+`* *` | user | search a task by event name | find corresponding tasks
+`* *` | user | set a reminder for an existing task | be aware of deadlines
+`* *` | user | add a recurring event | avoid having to add the same task repetitively
+`* *` | user | view all tasks today in a summarized format | quickly know my agenda
+`*` | user | switch between year/month/day view | navigate and plan my agendas
+`*` | user | export a PDF file of the task manager | have a copy of my tasks
+`*` | user | change the save file directory | save in different files
+`*` | user | tag a location to an existing task | know where the task is at
+`*` | user | create a task with a location | know where the task is at
+`*` | user | search by location | know which tasks is held at this location
+`*` | user | update the location of a task | change the place in case the location changes
+`*` | user | write in a natural speech | use the program without any prior knowledge
+`*` | user | sync to Google calendar | use the program any time at any location 
 
 ## Appendix B : Use Cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TaskManager` and the **Actor** is the `user`, unless specified otherwise)
 
-#### Use case: Delete person
+#### Use case: Create event
 
 **MSS**
 
-1. User requests to list persons
-2. AddressBook shows a list of persons
-3. User requests to delete a specific person in the list
-4. AddressBook deletes the person <br>
-Use case ends.
+1. User input command to create a task
+2. System detects task name and 2 timings in the command
+3. System creates event
+Use case ends
 
 **Extensions**
+	
+1a. User input invalid command prefix
+1ai. System notify user that command prefix is incorrect
+1aii. System display help command
+1aiii. Use case ends
 
-2a. The list is empty
+1b. User input timing in invalid format (24 hour format)
+1bi. System notify user that time format is in the wrong format
+1bii. Use case ends
 
-> Use case ends
+1c. User input end time is before start time
+1ci. System notify user that end time is before start time
+1cii. Use case ends
 
-3a. The given index is invalid
+1d. User input start time is before current time
+1di. System notify user that start time is before end time
+1dii. Use case ends
 
-> 3a1. AddressBook shows an error message <br>
-  Use case resumes at step 2
+#### Use case: Create deadline
 
-{More to be added}
+**MSS**
+
+1. User input command to create a task
+2. System detects task name and 1 timing in the command
+3. System creates deadline
+Use case ends
+
+**Extensions**
+	
+1a. User input invalid command prefix
+1ai. System notify user that command prefix is incorrect
+1aii. System display help command
+1aiii. Use case ends
+
+1b. User input timing in invalid format (24 hour format)
+1bi. System notify user that time format is in the wrong format
+1bii. Use case ends
+
+#### Use case: Create floating task
+
+**MSS**
+
+1. User input command to create a task
+2. System detects only task name
+3. System creates floating task
+Use case ends
+
+**Extensions**
+	
+1a. User input invalid command prefix
+1ai. System notify user that command prefix is incorrect
+1aii. System display help command
+1aiii. Use case ends
+
+#### Use case: List all tasks
+
+**MSS**
+
+1. User input command to list all tasks, including all events, deadlines and floating tasks
+2. System reads all existing tasks
+3. System displays all tasks in a list
+Use case ends
+
+#### Use case: List all events
+
+**MSS**
+
+1. User input command to list all events
+2. System reads all existing tasks
+3. System displays all events in a list
+Use case ends
+
+#### Use case: List all deadlines
+
+**MSS**
+
+1. User input command to list all deadlines
+2. System reads all existing tasks
+3. System displays all deadlines in a list
+Use case ends
+
+#### Use case: List all floating tasks
+
+**MSS**
+
+1. User input command to list all floating tasks
+2. System reads all existing tasks
+3. System displays all floating tasks in a list
+Use case ends
+
+#### Use case: Delete a task
+
+**MSS**
+
+1. User input command to delete a task
+2. System checks if the task exists
+3. System deletes the task
+4. System informs user that the task is deleted
+Use case ends
+
+**Extensions**
+	
+2a. Task does not exist
+2ai. System displays warning to user that task does not exist
+Use case ends
+
+#### Use case: Clear all tasks
+
+**MSS**
+
+1. User input command to clear all tasks
+2. System deletes all tasks
+3. System informs user that all tasks are deleted
+Use case ends
+
+#### Use case: Update an existing task
+
+**MSS**
+
+1. User input command to update task, task to update, detail to update
+2. System checks if the task exists
+3. System updates the task
+4. System informs user that the task is updated and shows the updated task details
+Use case ends
+
+**Extensions**
+	
+2a. Task does not exist
+2ai. System displays warning to user that task does not exist
+Use case ends
+
+
+
+
+
+#### Use case: Help function
+#### Use case: Exit function
+
+**MSS**
+
+1. User input exit command
+2. System shuts down
+Use case ends
+
+**MSS**
+
+1. User input help command
+2. System display help page
+Use case ends
 
 ## Appendix C : Non Functional Requirements
 
-1. Should work on any [mainstream OS](#mainstream-os) as long as it has Java `1.8.0_60` or higher installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
-   should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. It has to work in a Windows environment desktop (7 or later)
+2. Application should be command line style as a stand-alone software
+3. Computational speed must be done in less than one second
+4. Language is in English
 
-{More to be added}
 
 ## Appendix D : Glossary
 
-##### Mainstream OS
+##### Deadline
 
-> Windows, Linux, Unix, OS-X
+> A type of task. It has only an end time.
 
-##### Private contact detail
+##### Event
 
-> A contact detail that is not meant to be shared with others
+> A type of task. It has a start time and end time.
+
+##### Floating Task
+
+> A type of task. It requires no start or end time.
+
+##### Task
+
+> A broad subject that encompasses everything, i.e. each item in TaskManager is a task.
+
+##### Task Manager
+
+> The product you are using now.
 
 ## Appendix E : Product Survey
 
