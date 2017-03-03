@@ -1,4 +1,4 @@
-# TASK MANAGER - Developer Guide
+# Pota-Todo (Task Manager) - Developer Guide
 
 By : `CS2103JAN2017-T15-B3`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Feb 2017`  &nbsp;&nbsp;&nbsp;&nbsp; Licence: `MIT`
 
@@ -603,15 +603,17 @@ Use case ends
 
 **Product Name**
 
-Author: ...
+**Google Calendar**
+
+Author: Google
 
 Pros:
 
-* ...
-* ...
+* Cloud sync, compatible with many devices (phone, PC, etc)
+* Reminds user for events and deadlines automatically.
 
 Cons:
 
-* ...
-* ...
-
+* A lot of buttons, slightly complex.
+* Has a learning curve.
+* Does not have a priority task marker.
