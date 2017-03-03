@@ -351,7 +351,8 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | create events | know of upcoming events
 `* * *` | user | create floating tasks | constantly remind myself to do things
 `* * *` | user | list all tasks | know what is happening
-`* * *` | user | list all deadlines | know which tasks are up on particular dates`* * *` | user | list all events | know what events are happening
+`* * *` | user | list all deadlines | know which tasks are up on particular dates
+`* * *` | user | list all events | know what events are happening
 `* * *` | user | list all floating events | know what floating events are happening
 `* * *` | user | delete a task | strike off a task that is over or cancelled
 `* * *` | user | clear all tasks | remove all tasks in one go
@@ -388,28 +389,35 @@ Priority | As a ... | I want to ... | So that I can...
 1. User input command to create a task
 2. System detects task name and 2 timings in the command
 3. System creates event
+
 Use case ends
 
 **Extensions**
 	
 1a. User input invalid command prefix
 
-i. System notify user that command prefix is incorrect
-ii. System display help command
-iii. Use case ends
+1. System notify user that command prefix is incorrect
+2. System display help command
+
+Use case ends
 
 1b. User input timing in invalid format (24 hour format)
 
-i. System notify user that time format is in the wrong format
-ii. Use case ends
+1. System notify user that time format is in the wrong format
+
+Use case ends
 
 1c. User input end time is before start time
-i. System notify user that end time is before start time
-ii. Use case ends
+
+1. System notify user that end time is before start time
+
+Use case ends
 
 1d. User input start time is before current time
-1di. System notify user that start time is before end time
-1dii. Use case ends
+
+1. System notify user that start time is before end time
+
+Use case ends
 
 #### Use case: Create deadline
 
@@ -418,18 +426,23 @@ ii. Use case ends
 1. User input command to create a task
 2. System detects task name and 1 timing in the command
 3. System creates deadline
+
 Use case ends
 
 **Extensions**
 	
 1a. User input invalid command prefix
-1ai. System notify user that command prefix is incorrect
-1aii. System display help command
-1aiii. Use case ends
+
+1. System notify user that command prefix is incorrect
+2. System display help command
+
+Use case ends
 
 1b. User input timing in invalid format (24 hour format)
-1bi. System notify user that time format is in the wrong format
-1bii. Use case ends
+
+1. System notify user that time format is in the wrong format
+
+Use case ends
 
 #### Use case: Create floating task
 
@@ -438,14 +451,17 @@ Use case ends
 1. User input command to create a task
 2. System detects only task name
 3. System creates floating task
+
 Use case ends
 
 **Extensions**
 	
 1a. User input invalid command prefix
-1ai. System notify user that command prefix is incorrect
-1aii. System display help command
-1aiii. Use case ends
+
+1. System notify user that command prefix is incorrect
+2. System display help command
+
+Use case ends
 
 #### Use case: List all tasks
 
@@ -454,6 +470,7 @@ Use case ends
 1. User input command to list all tasks, including all events, deadlines and floating tasks
 2. System reads all existing tasks
 3. System displays all tasks in a list
+
 Use case ends
 
 #### Use case: List all events
@@ -463,6 +480,7 @@ Use case ends
 1. User input command to list all events
 2. System reads all existing tasks
 3. System displays all events in a list
+
 Use case ends
 
 #### Use case: List all deadlines
@@ -472,6 +490,7 @@ Use case ends
 1. User input command to list all deadlines
 2. System reads all existing tasks
 3. System displays all deadlines in a list
+
 Use case ends
 
 #### Use case: List all floating tasks
@@ -481,6 +500,7 @@ Use case ends
 1. User input command to list all floating tasks
 2. System reads all existing tasks
 3. System displays all floating tasks in a list
+
 Use case ends
 
 #### Use case: Delete a task
@@ -491,12 +511,15 @@ Use case ends
 2. System checks if the task exists
 3. System deletes the task
 4. System informs user that the task is deleted
+
 Use case ends
 
 **Extensions**
 	
 2a. Task does not exist
-2ai. System displays warning to user that task does not exist
+
+1. System displays warning to user that task does not exist
+
 Use case ends
 
 #### Use case: Clear all tasks
@@ -506,6 +529,7 @@ Use case ends
 1. User input command to clear all tasks
 2. System deletes all tasks
 3. System informs user that all tasks are deleted
+
 Use case ends
 
 #### Use case: Update an existing task
@@ -516,31 +540,33 @@ Use case ends
 2. System checks if the task exists
 3. System updates the task
 4. System informs user that the task is updated and shows the updated task details
+
 Use case ends
 
 **Extensions**
 	
 2a. Task does not exist
-2ai. System displays warning to user that task does not exist
+
+1. System displays warning to user that task does not exist
+
 Use case ends
 
-
-
-
-
 #### Use case: Help function
-#### Use case: Exit function
 
 **MSS**
 
 1. User input exit command
 2. System shuts down
+
 Use case ends
+
+#### Use case: Exit function
 
 **MSS**
 
 1. User input help command
 2. System display help page
+
 Use case ends
 
 ## Appendix C : Non Functional Requirements
