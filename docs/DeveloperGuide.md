@@ -1,4 +1,4 @@
-# AddressBook Level 4 - Developer Guide
+# TASK MANAGER - Developer Guide
 
 By : `CS2103JAN2017-T15-B3`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Feb 2017`  &nbsp;&nbsp;&nbsp;&nbsp; Licence: `MIT`
 
@@ -351,8 +351,7 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | create events | know of upcoming events
 `* * *` | user | create floating tasks | constantly remind myself to do things
 `* * *` | user | list all tasks | know what is happening
-`* * *` | user | list all deadlines | know which tasks are up on particular dates
-`* * *` | user | list all events | know what events are happening
+`* * *` | user | list all deadlines | know which tasks are up on particular dates`* * *` | user | list all events | know what events are happening
 `* * *` | user | list all floating events | know what floating events are happening
 `* * *` | user | delete a task | strike off a task that is over or cancelled
 `* * *` | user | clear all tasks | remove all tasks in one go
@@ -394,9 +393,9 @@ Use case ends
 **Extensions**
 	
 1a. User input invalid command prefix
-1ai. System notify user that command prefix is incorrect
-1aii. System display help command
-1aiii. Use case ends
+i. System notify user that command prefix is incorrect
+ii. System display help command
+iii. Use case ends
 
 1b. User input timing in invalid format (24 hour format)
 1bi. System notify user that time format is in the wrong format
