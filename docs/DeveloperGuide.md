@@ -393,17 +393,19 @@ Use case ends
 **Extensions**
 	
 1a. User input invalid command prefix
+
 i. System notify user that command prefix is incorrect
 ii. System display help command
 iii. Use case ends
 
 1b. User input timing in invalid format (24 hour format)
-1bi. System notify user that time format is in the wrong format
-1bii. Use case ends
+
+i. System notify user that time format is in the wrong format
+ii. Use case ends
 
 1c. User input end time is before start time
-1ci. System notify user that end time is before start time
-1cii. Use case ends
+i. System notify user that end time is before start time
+ii. Use case ends
 
 1d. User input start time is before current time
 1di. System notify user that start time is before end time
