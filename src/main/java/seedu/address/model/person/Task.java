@@ -1,15 +1,20 @@
 package seedu.address.model.person;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
 public class Task implements ReadOnlyTask{
-    public String taskName;
-    public Date startDate, endDate;
+    private String taskName;
+    private Date startDate, endDate;
     
+    private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY hh:mm");
     private UniqueTagList tags;
     
     /**
@@ -23,6 +28,32 @@ public class Task implements ReadOnlyTask{
         this.tags = tags;
     }
     
+    /**
+     * Parse dateStrings into startDate and endDate.
+     * @param taskName
+     * @param startDateString, format follows dateFormat above.
+     * @param endDateString, format follows dateFormat above.
+     * @param tags
+     * @throws ParseException
+     * @TODO create a separate parser for dates by reading a config file.
+     */
+    public Task(String taskName, String startDateString, String endDateString, Set<Tag> tags) throws ParseException{
+        this(taskName, dateFormat.parse(startDateString),dateFormat.parse(endDateString),new UniqueTagList(tags));
+    }
+    
+    public Task(String taskName, String startDateString, String endDateString, UniqueTagList tags) throws ParseException{
+        this(taskName, parseDate(startDateString),parseDate(endDateString), tags);
+    }
+    
+    
+    /**
+     * TODO: Create a date parser class.
+     * Temporary hot-fix to parse date to appropriate format
+     * @throws ParseException 
+     */
+    public static Date parseDate(String dateString) throws ParseException{
+        return dateFormat.parse(dateString);
+    }
     /**
      * Creates a copy of the given ReadOnlyTask.
      */
@@ -52,21 +83,6 @@ public class Task implements ReadOnlyTask{
         return endDate;
     }
     
-    public void setStartDate(Date startDate){
-        this.startDate = startDate;
-    }
-    
-    public void setEndDate(Date endDate){
-        this.endDate = endDate;
-    }
-    
-    /**
-     * Replaces this person's tags with the tags in the argument tag list.
-     */
-    public void setTags(UniqueTagList replacement) {
-        tags.setTags(replacement);
-    }
-
     @Override
     public String getTaskName() {
         return taskName;
@@ -76,6 +92,26 @@ public class Task implements ReadOnlyTask{
     public UniqueTagList getTags() {
         return tags;
     }
+    
+    public void setStartDate(Date startDate){
+        this.startDate = startDate;
+    }
+    
+    public void setEndDate(Date endDate){
+        this.endDate = endDate;
+    }
+    
+    public void setTaskName(String name){
+        this.taskName = name;
+    }
+    
+    /**
+     * Replaces this person's tags with the tags in the argument tag list.
+     */
+    public void setTags(UniqueTagList replacement) {
+        tags.setTags(replacement);
+    }
+
     
     @Override
     public boolean equals(Object other) {

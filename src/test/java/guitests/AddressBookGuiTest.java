@@ -16,8 +16,8 @@ import guitests.guihandles.BrowserPanelHandle;
 import guitests.guihandles.CommandBoxHandle;
 import guitests.guihandles.MainGuiHandle;
 import guitests.guihandles.MainMenuHandle;
-import guitests.guihandles.PersonCardHandle;
-import guitests.guihandles.PersonListPanelHandle;
+import guitests.guihandles.TaskCardHandle;
+import guitests.guihandles.TaskListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -25,9 +25,9 @@ import seedu.address.TestApp;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.events.BaseEvent;
 import seedu.address.model.AddressBook;
-import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.person.ReadOnlyTask;
 import seedu.address.testutil.TestUtil;
-import seedu.address.testutil.TypicalTestPersons;
+import seedu.address.testutil.TypicalTestTasks;
 
 /**
  * A GUI Test class for AddressBook.
@@ -40,7 +40,7 @@ public abstract class AddressBookGuiTest {
 
     TestApp testApp;
 
-    protected TypicalTestPersons td = new TypicalTestPersons();
+    protected TypicalTestTasks td = new TypicalTestTasks();
 
     /*
      *   Handles to GUI elements present at the start up are created in advance
@@ -48,7 +48,7 @@ public abstract class AddressBookGuiTest {
      */
     protected MainGuiHandle mainGui;
     protected MainMenuHandle mainMenu;
-    protected PersonListPanelHandle personListPanel;
+    protected TaskListPanelHandle personListPanel;
     protected ResultDisplayHandle resultDisplay;
     protected CommandBoxHandle commandBox;
     protected BrowserPanelHandle browserPanel;
@@ -69,7 +69,7 @@ public abstract class AddressBookGuiTest {
         FxToolkit.setupStage((stage) -> {
             mainGui = new MainGuiHandle(new GuiRobot(), stage);
             mainMenu = mainGui.getMainMenu();
-            personListPanel = mainGui.getPersonListPanel();
+            personListPanel = mainGui.getTaskListPanel();
             resultDisplay = mainGui.getResultDisplay();
             commandBox = mainGui.getCommandBox();
             browserPanel = mainGui.getBrowserPanel();
@@ -88,7 +88,7 @@ public abstract class AddressBookGuiTest {
      */
     protected AddressBook getInitialData() {
         AddressBook ab = new AddressBook();
-        TypicalTestPersons.loadAddressBookWithSampleData(ab);
+        TypicalTestTasks.loadAddressBookWithSampleData(ab);
         return ab;
     }
 
@@ -107,8 +107,8 @@ public abstract class AddressBookGuiTest {
     /**
      * Asserts the person shown in the card is same as the given person
      */
-    public void assertMatching(ReadOnlyPerson person, PersonCardHandle card) {
-        assertTrue(TestUtil.compareCardAndPerson(card, person));
+    public void assertMatching(ReadOnlyTask person, TaskCardHandle card) {
+        assertTrue(TestUtil.compareCardAndTask(card, person));
     }
 
     /**
