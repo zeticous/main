@@ -11,7 +11,7 @@ Responsibilities: UI
 -----
 
 #### [LIU PENG](http://github.com/lproperty)
-<img src="images/JoshuaLee.jpg" width="150"><br>
+<img src="images/lproperty.jpg" width="150"><br>
 Role: Developer <br>
 Responsibilities: Testing
 
