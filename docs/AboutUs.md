@@ -8,6 +8,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/zeticious.jpg" width="150"><br>
 Role: Project Leader <br>
 Responsibilities: UI 
+
 -----
 
 #### [LIU PENG](http://github.com/lproperty)
