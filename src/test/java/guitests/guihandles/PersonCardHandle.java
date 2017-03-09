@@ -8,13 +8,13 @@ import javafx.scene.Node;
 import javafx.scene.control.Labeled;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import seedu.address.model.person.ReadOnlyTask;
+import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
  * Provides a handle to a person card in the person list panel.
  */
-public class TaskCardHandle extends GuiHandle {
+public class PersonCardHandle extends GuiHandle {
     private static final String NAME_FIELD_ID = "#name";
     private static final String ADDRESS_FIELD_ID = "#address";
     private static final String PHONE_FIELD_ID = "#phone";
@@ -23,7 +23,7 @@ public class TaskCardHandle extends GuiHandle {
 
     private Node node;
 
-    public TaskCardHandle(GuiRobot guiRobot, Stage primaryStage, Node node) {
+    public PersonCardHandle(GuiRobot guiRobot, Stage primaryStage, Node node) {
         super(guiRobot, primaryStage, null);
         this.node = node;
     }
@@ -40,11 +40,11 @@ public class TaskCardHandle extends GuiHandle {
         return getTextFromLabel(ADDRESS_FIELD_ID);
     }
 
-    public String getStartDate() {
+    public String getPhone() {
         return getTextFromLabel(PHONE_FIELD_ID);
     }
 
-    public String getEndDate() {
+    public String getEmail() {
         return getTextFromLabel(EMAIL_FIELD_ID);
     }
 
@@ -72,20 +72,22 @@ public class TaskCardHandle extends GuiHandle {
         return guiRobot.from(node).lookup(TAGS_FIELD_ID).query();
     }
 
-    public boolean isSameTask(ReadOnlyTask person) {
-        return getFullName().equals(person.getTaskName())
-                && getStartDate().equals(person.getStartDate())
-                && getEndDate().equals(person.getEndDate())
+    public boolean isSamePerson(ReadOnlyPerson person) {
+        return getFullName().equals(person.getName().fullName)
+                && getPhone().equals(person.getPhone().value)
+                && getEmail().equals(person.getEmail().value)
+                && getAddress().equals(person.getAddress().value)
                 && getTags().equals(getTags(person.getTags()));
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof TaskCardHandle) {
-            TaskCardHandle handle = (TaskCardHandle) obj;
+        if (obj instanceof PersonCardHandle) {
+            PersonCardHandle handle = (PersonCardHandle) obj;
             return getFullName().equals(handle.getFullName())
-                    && getStartDate().equals(handle.getStartDate())
-                    && getEndDate().equals(handle.getEndDate())
+                    && getPhone().equals(handle.getPhone())
+                    && getEmail().equals(handle.getEmail())
+                    && getAddress().equals(handle.getAddress())
                     && getTags().equals(handle.getTags());
         }
         return super.equals(obj);

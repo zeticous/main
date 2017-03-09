@@ -1,11 +1,8 @@
 package seedu.address.logic.parser;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -29,8 +26,6 @@ import seedu.address.model.tag.UniqueTagList;
 public class ParserUtil {
 
     private static final Pattern INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
-   
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY hh:mm");
 
     /**
      * Returns the specified index in the {@code command} if it is a positive unsigned integer
@@ -74,9 +69,9 @@ public class ParserUtil {
     /**
      * Parses a {@code Optional<String> name} into an {@code Optional<Name>} if {@code name} is present.
      */
-    public static Optional<String> parseName(Optional<String> name) throws IllegalValueException {
+    public static Optional<Name> parseName(Optional<String> name) throws IllegalValueException {
         assert name != null;
-        return name.isPresent() ? Optional.of(name.get()) : Optional.empty();
+        return name.isPresent() ? Optional.of(new Name(name.get())) : Optional.empty();
     }
 
     /**
@@ -101,17 +96,6 @@ public class ParserUtil {
     public static Optional<Email> parseEmail(Optional<String> email) throws IllegalValueException {
         assert email != null;
         return email.isPresent() ? Optional.of(new Email(email.get())) : Optional.empty();
-    }
-    
-    
-    /**
-     * Parses dateString into a Date objectr
-     * @param dateString
-     * @return Date object with details in dateString
-     * @throws ParseException
-     */
-    public static Date parseDate(Optional<String> dateString) throws ParseException{
-        return dateFormat.parse(dateString.get());
     }
 
     /**

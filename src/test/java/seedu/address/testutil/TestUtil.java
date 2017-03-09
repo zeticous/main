@@ -5,11 +5,9 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 
@@ -18,7 +16,7 @@ import org.testfx.api.FxToolkit;
 
 import com.google.common.io.Files;
 
-import guitests.guihandles.TaskCardHandle;
+import guitests.guihandles.PersonCardHandle;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
@@ -35,9 +33,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Task;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.ReadOnlyTask;
+import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 import seedu.address.storage.XmlSerializableAddressBook;
@@ -54,7 +52,7 @@ public class TestUtil {
      */
     public static final String SANDBOX_FOLDER = FileUtil.getPath("./src/test/data/sandbox/");
 
-    public static final Task[] SAMPLE_PERSON_DATA = getSampleTaskData();
+    public static final Person[] SAMPLE_PERSON_DATA = getSamplePersonData();
 
     public static final Tag[] SAMPLE_TAG_DATA = getSampleTagData();
 
@@ -73,15 +71,24 @@ public class TestUtil {
                 String.format("Expected %s to be thrown, but nothing was thrown.", expected.getName()));
     }
 
-    private static Task[] getSampleTaskData() {
+    private static Person[] getSamplePersonData() {
         try {
             //CHECKSTYLE.OFF: LineLength
-            return new Task[]{
-                new Task("FIX THIS SHIT", "08/03/2016 11:11", "09/03/2017 11:11", new UniqueTagList()),
+            return new Person[]{
+                new Person(new Name("Ali Muster"), new Phone("9482424"), new Email("hans@google.com"), new Address("4th street"), new UniqueTagList()),
+                new Person(new Name("Boris Mueller"), new Phone("87249245"), new Email("ruth@google.com"), new Address("81th street"), new UniqueTagList()),
+                new Person(new Name("Carl Kurz"), new Phone("95352563"), new Email("heinz@yahoo.com"), new Address("wall street"), new UniqueTagList()),
+                new Person(new Name("Daniel Meier"), new Phone("87652533"), new Email("cornelia@google.com"), new Address("10th street"), new UniqueTagList()),
+                new Person(new Name("Elle Meyer"), new Phone("9482224"), new Email("werner@gmail.com"), new Address("michegan ave"), new UniqueTagList()),
+                new Person(new Name("Fiona Kunz"), new Phone("9482427"), new Email("lydia@gmail.com"), new Address("little tokyo"), new UniqueTagList()),
+                new Person(new Name("George Best"), new Phone("9482442"), new Email("anna@google.com"), new Address("4th street"), new UniqueTagList()),
+                new Person(new Name("Hoon Meier"), new Phone("8482424"), new Email("stefan@mail.com"), new Address("little india"), new UniqueTagList()),
+                new Person(new Name("Ida Mueller"), new Phone("8482131"), new Email("hans@google.com"), new Address("chicago ave"), new UniqueTagList())
             };
             //CHECKSTYLE.ON: LineLength
-        } catch (ParseException e) {
-            assert false; //NOT POSSIBLE
+        } catch (IllegalValueException e) {
+            assert false;
+            // not possible
             return null;
         }
     }
@@ -100,7 +107,7 @@ public class TestUtil {
         }
     }
 
-    public static List<Task> generateSampleTaskData() {
+    public static List<Person> generateSamplePersonData() {
         return Arrays.asList(SAMPLE_PERSON_DATA);
     }
 
@@ -278,10 +285,10 @@ public class TestUtil {
      * @param personsToRemove The subset of persons.
      * @return The modified persons after removal of the subset from persons.
      */
-    public static TestTask[] removeTasksFromList(final TestTask[] persons, TestTask... personsToRemove) {
-        List<TestTask> listOfTasks = asList(persons);
-        listOfTasks.removeAll(asList(personsToRemove));
-        return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
+    public static TestPerson[] removePersonsFromList(final TestPerson[] persons, TestPerson... personsToRemove) {
+        List<TestPerson> listOfPersons = asList(persons);
+        listOfPersons.removeAll(asList(personsToRemove));
+        return listOfPersons.toArray(new TestPerson[listOfPersons.size()]);
     }
 
 
@@ -290,8 +297,8 @@ public class TestUtil {
      * @param list original list to copy from
      * @param targetIndexInOneIndexedFormat e.g. index 1 if the first element is to be removed
      */
-    public static TestTask[] removeTaskFromList(final TestTask[] list, int targetIndexInOneIndexedFormat) {
-        return removeTasksFromList(list, list[targetIndexInOneIndexedFormat - 1]);
+    public static TestPerson[] removePersonFromList(final TestPerson[] list, int targetIndexInOneIndexedFormat) {
+        return removePersonsFromList(list, list[targetIndexInOneIndexedFormat - 1]);
     }
 
     /**
@@ -301,7 +308,7 @@ public class TestUtil {
      * @param index The index of the person to be replaced.
      * @return
      */
-    public static TestTask[] replaceTaskFromList(TestTask[] persons, TestTask person, int index) {
+    public static TestPerson[] replacePersonFromList(TestPerson[] persons, TestPerson person, int index) {
         persons[index] = person;
         return persons;
     }
@@ -312,10 +319,10 @@ public class TestUtil {
      * @param personsToAdd The persons that are to be appended behind the original array.
      * @return The modified array of persons.
      */
-    public static TestTask[] addTasksToList(final TestTask[] persons, TestTask... personsToAdd) {
-        List<TestTask> listOfTasks = asList(persons);
-        listOfTasks.addAll(asList(personsToAdd));
-        return listOfTasks.toArray(new TestTask[listOfTasks.size()]);
+    public static TestPerson[] addPersonsToList(final TestPerson[] persons, TestPerson... personsToAdd) {
+        List<TestPerson> listOfPersons = asList(persons);
+        listOfPersons.addAll(asList(personsToAdd));
+        return listOfPersons.toArray(new TestPerson[listOfPersons.size()]);
     }
 
     private static <T> List<T> asList(T[] objs) {
@@ -326,8 +333,8 @@ public class TestUtil {
         return list;
     }
 
-    public static boolean compareCardAndTask(TaskCardHandle card, ReadOnlyTask person) {
-        return card.isSameTask(person);
+    public static boolean compareCardAndPerson(PersonCardHandle card, ReadOnlyPerson person) {
+        return card.isSamePerson(person);
     }
 
     public static Tag[] getTagList(String tags) {
