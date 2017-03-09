@@ -25,7 +25,7 @@ By : `Team POTATO`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbs
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.
 5. Some example commands you can try:
    * **`list all`** : lists all tasks
-   * **`create`**`create meeting 1/1/2088 1200 1230`
+   * **`add`**`add meeting 1/1/2088 1200 1/1/2088 1230`
      creates an event named `meeting` to the task manager.
    * **`delete`**` 3` : deletes the 3rd task shown in the current list
    * **`exit`** : exits the app
@@ -38,7 +38,6 @@ By : `Team POTATO`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbs
 >
 > * Words in `UPPER_CASE` are the parameters.
 > * Items in `SQUARE_BRACKETS` are optional.
-> * Items with `...` after them can have multiple instances.
 
 ### 2.1. Viewing help : `help`
 
@@ -46,15 +45,14 @@ Format: `help`
 
 > Help is also shown if you enter an incorrect command e.g. `abcd`
 
-### 2.2. Creating a task: `create`
+### 2.2. Creating a task: `add`
 
-Create a task which can be an event, a deadline or a floating task<br>
-Event format: `create TASK_NAME DATE START_TIME END_TIME`<br>
-Deadline format: `create TASK_NAME DATE DUE_TIME`<br>
-Floating task format: `create TASK_NAME`
+Add a task which can be an event, a deadline or a floating task<br>
+Event format: `add <TASK_NAME> DATE START_TIME DATE END_TIME`<br>
+Deadline format: `add <TASK_NAME> DATE DUE_TIME`<br>
+Floating task format: `add <TASK_NAME>`
 
 ### 2.3. Listing tasks : `list`
-Create a task which can be an event, a deadline or a floating task<br>
 
 Shows a list of tasks which can include all tasks or only events or only deadlines or only floating tasks.<br>
 All tasks format: `list all`<br>
@@ -62,17 +60,17 @@ Event format: `list events`<br>
 Deadline format: `list deadlines`<br>
 Floating task format: `list floating tasks`<br>
 
-### 2.4. Updating a task : `update`
+### 2.4. Updating a task : `edit`
 
 Updates an existing task in the task manager.<br>
-Event format: `update TASK_NAME NEW_NAME NEW_DATE NEW_START_TIME NEW_END_TIME`
-Deadline format: `update TASK_NAME NEW_DATE NEW_NAME NEW_DUE_TIME`
-Floating task format: `update TASK_NAME NEW_NAME`
+Event format: `edit  <index> NEW_TASK_NAME NEW_DATE NEW_START_TIME NEW_DATE NEW_END_TIME`
+Deadline format: `edit <index> NEW_TASK_NAME NEW_DATE NEW_DUE_TIME`
+Floating task format: `edit <index> NEW_TASK_NAME`
 
-### 2.5. Searching for all tasks containing any keyword/date or by location: `search`
+### 2.5. Searching for all tasks containing any keyword/date : `search`
 
-Searches for the tasks containing the input keyword/date/location.<br>
-Format: `search KEYWORD/DATE/LOCATION`
+Searches for the tasks containing the input keyword/date.<br>
+Format: `search <TASK_NAME / DATE TIME>`
 
 > * The search is case sensitive. e.g `meeting` will not match `Meeting`
 > * The order of the keywords does not matter. e.g. `team meeting` will match `meeting team`
@@ -88,19 +86,15 @@ Examples:
 ### 2.6. Deleting a task : `delete`
 
 Deletes a specified task.<br>
-Format: `delete INDEX`
+Format: `delete <INDEX>`
 
-### 2.7. Clearing all tasks : `clear`
 
-Clears all tasks entered.<br>
-Format: `clear`
-
-### 2.8. Exiting the program : `exit`
+### 2.7. Exiting the program : `exit`
 
 Exits the program.<br>
 Format: `exit`
 
-### 2.9. Saving the data
+### 2.8. Saving the data
 
 Task manager data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.
@@ -113,22 +107,20 @@ There is no need to save manually.
 
 ## 4. Command Summary
 
-* **Create an event** : `create TASK_NAME DATE START_TIME END_TIME` <br>
-  e.g. `create meeting 1/1/2088 1200 1230`
+* **Create an event** : `add <TASK_NAME> DATE START_TIME DATE END_TIME` <br>
+  e.g. `add meeting 1/1/2088 1200 1/1/2088 1230`
   
-* **Create a deadline** : `create TASK_NAME DATE DUE_TIME` <br>
-  e.g. `create homework 1/1/2088 1200`
+* **Create a deadline** : `add <TASK_NAME> DATE DUE_TIME` <br>
+  e.g. `add homework 1/1/2088 1200`
   
-* **Create a floating task** : `create TASK_NAME` <br>
-  e.g. `create stay healthy`
-  
-* **Clear** : `clear`
+* **Create a floating task** : `add <TASK_NAME>` <br>
+  e.g. `create stay_healthy`
 
-* **Delete** : `delete INDEX` <br>
+* **Delete** : `delete <INDEX>` <br>
    e.g. `delete 1`
 
-* **Search** : `search KEYWORD/DATE/LOCATION ` <br>
-  e.g. `find meeting` `find NUS` `find 1/1/2088`  
+* **Search** : `search <TASK_NAME / DATE TIME> ` <br>
+  e.g. `search meeting` `search NUS` `search 1/1/2088`  
 
 * **List** : `list` <br>
   e.g.
