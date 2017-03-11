@@ -115,20 +115,20 @@ There is no need to save manually.
 
 * **Create an event** : `create TASK_NAME DATE START_TIME END_TIME` <br>
   e.g. `create meeting 1/1/2088 1200 1230`
-  
+
 * **Create a deadline** : `create TASK_NAME DATE DUE_TIME` <br>
   e.g. `create homework 1/1/2088 1200`
-  
+
 * **Create a floating task** : `create TASK_NAME` <br>
   e.g. `create stay healthy`
-  
+
 * **Clear** : `clear`
 
 * **Delete** : `delete INDEX` <br>
    e.g. `delete 1`
 
 * **Search** : `search KEYWORD/DATE/LOCATION ` <br>
-  e.g. `find meeting` `find NUS` `find 1/1/2088`  
+  e.g. `find meeting` `find NUS` `find 1/1/2088`
 
 * **List** : `list` <br>
   e.g.

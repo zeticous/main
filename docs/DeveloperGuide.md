@@ -377,7 +377,7 @@ Priority | As a ... | I want to ... | So that I can...
 `*` | user | search by location | know which tasks is held at this location
 `*` | user | update the location of a task | change the place in case the location changes
 `*` | user | write in a natural speech | use the program without any prior knowledge
-`*` | user | sync to Google calendar | use the program any time at any location 
+`*` | user | sync to Google calendar | use the program any time at any location
 
 ## Appendix B : Use Cases
 
@@ -394,7 +394,7 @@ Priority | As a ... | I want to ... | So that I can...
 Use case ends
 
 **Extensions**
-	
+
 1a. User input invalid command prefix
 
 1. System notify user that command prefix is incorrect
@@ -431,7 +431,7 @@ Use case ends
 Use case ends
 
 **Extensions**
-	
+
 1a. User input invalid command prefix
 
 1. System notify user that command prefix is incorrect
@@ -456,7 +456,7 @@ Use case ends
 Use case ends
 
 **Extensions**
-	
+
 1a. User input invalid command prefix
 
 1. System notify user that command prefix is incorrect
@@ -504,8 +504,6 @@ Use case ends
 
 Use case ends
 
-
-
 #### Use case: Update an existing task
 
 **MSS**
@@ -537,8 +535,8 @@ Use case ends
 Use case ends
 
 **Extensions**
-	
-2a. Index does not exist
+
+2a. Task does not exist
 
 1. System displays warning to user that the index is invalid
 
@@ -589,7 +587,7 @@ Use case ends
 Use case ends
 
 **Extensions**
-	
+
 2a. Task does not exist
 
 1. System displays warning to user that there are no such tasks
