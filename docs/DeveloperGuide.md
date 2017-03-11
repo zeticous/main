@@ -354,23 +354,24 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | list all deadlines | know which tasks are up on particular dates
 `* * *` | user | list all events | know what events are happening
 `* * *` | user | list all floating events | know what floating events are happening
-`* * *` | user | delete a task | strike off a task that is over or cancelled
-`* * *` | user | clear all tasks | remove all tasks in one go
 `* * *` | user | update an existing task | change a task
 `* * *` | user | update date of an existing task | change the the date in case of a change
 `* * *` | user | update task types | accurately reflect changes in the task
-`* * *` | user | exit the program | quit
-`* *` | user | undo a latest command | make amendments to my latest command
+`* * *` | user | delete a task | strike off a task that is over or cancelled
+`* * *` | user | undo a latest command | make amendments to my latest command
+`* * *` | user | search a task by date | find the corresponding tasks
+`* * *` | user | search a task by name | find the corresponding tasks
+`* * *` | user | change the save file directory | save in different files
+`* *` | user | exit the program | quit
+`* *` | user | clear all tasks | remove all tasks in one go
 `* *` | user | re-do the last undone command | undo my undo command
-`* *` | user | search a task by name | find a particular task
-`* *` | user | search a task by date | find the corresponding tasks
-`* *` | user | search a task by event name | find corresponding tasks
+`* *` | user | search a task by event name | find a particular event
+`* *` | user | search a floating task by name | find a particular floating task
 `* *` | user | set a reminder for an existing task | be aware of deadlines
 `* *` | user | add a recurring event | avoid having to add the same task repetitively
 `* *` | user | view all tasks today in a summarized format | quickly know my agenda
 `*` | user | switch between year/month/day view | navigate and plan my agendas
 `*` | user | export a PDF file of the task manager | have a copy of my tasks
-`*` | user | change the save file directory | save in different files
 `*` | user | tag a location to an existing task | know where the task is at
 `*` | user | create a task with a location | know where the task is at
 `*` | user | search by location | know which tasks is held at this location
@@ -386,7 +387,7 @@ Priority | As a ... | I want to ... | So that I can...
 
 **MSS**
 
-1. User input command to create a task
+1. User inputs command to create a task
 2. System detects task name and 2 timings in the command
 3. System creates event
 
@@ -423,7 +424,7 @@ Use case ends
 
 **MSS**
 
-1. User input command to create a task
+1. User inputs command to create a task
 2. System detects task name and 1 timing in the command
 3. System creates deadline
 
@@ -448,7 +449,7 @@ Use case ends
 
 **MSS**
 
-1. User input command to create a task
+1. User inputs command to create a task
 2. System detects only task name
 3. System creates floating task
 
@@ -467,9 +468,9 @@ Use case ends
 
 **MSS**
 
-1. User input command to list all tasks, including all events, deadlines and floating tasks
+1. User inputs command to list all tasks, including all events, deadlines and floating tasks
 2. System reads all existing tasks
-3. System displays all tasks in a list
+3. System displays all tasks in an indexed list
 
 Use case ends
 
@@ -477,9 +478,9 @@ Use case ends
 
 **MSS**
 
-1. User input command to list all events
+1. User inputs command to list all events
 2. System reads all existing tasks
-3. System displays all events in a list
+3. System displays all events in an indexed list
 
 Use case ends
 
@@ -487,9 +488,9 @@ Use case ends
 
 **MSS**
 
-1. User input command to list all deadlines
+1. User inputs command to list all deadlines
 2. System reads all existing tasks
-3. System displays all deadlines in a list
+3. System displays all deadlines in an indexed list
 
 Use case ends
 
@@ -497,9 +498,28 @@ Use case ends
 
 **MSS**
 
-1. User input command to list all floating tasks
+1. User inputs command to list all floating tasks
 2. System reads all existing tasks
-3. System displays all floating tasks in a list
+3. System displays all floating tasks in an indexed list
+
+Use case ends
+
+#### Use case: Update an existing task
+
+**MSS**
+
+1. User inputs command to update task
+2. System checks if the index exists
+3. System updates the task
+4. System informs user that the task is updated and shows the updated task details
+
+Use case ends
+
+**Extensions**
+	
+2a. Task does not exist
+
+1. System displays warning to user that the index is invalid
 
 Use case ends
 
@@ -507,8 +527,8 @@ Use case ends
 
 **MSS**
 
-1. User input command to delete a task
-2. System checks if the task exists
+1. User inputs command to delete a task
+2. System detects the index and checks if the index exists
 3. System deletes the task
 4. System informs user that the task is deleted
 
@@ -518,28 +538,51 @@ Use case ends
 
 2a. Task does not exist
 
-1. System displays warning to user that task does not exist
+1. System displays warning to user that the index is invalid
 
 Use case ends
 
-#### Use case: Clear all tasks
+#### Use case: Undo function
 
 **MSS**
 
-1. User input command to clear all tasks
-2. System deletes all tasks
-3. System informs user that all tasks are deleted
+1. User inputs undo command
+2. System retrieves the most recent command
+3. System does an opposite of the command to revert the changes
 
 Use case ends
 
-#### Use case: Update an existing task
+1a. Command is the most recent command
+
+1. System displays warning to user that there is nothing to undo
+
+Use case ends
+
+#### Use case: Search a task by name
 
 **MSS**
 
-1. User input command to update task, task to update, detail to update
-2. System checks if the task exists
-3. System updates the task
-4. System informs user that the task is updated and shows the updated task details
+1. User inputs command to search task
+2. System checks if the name exists
+3. System displays all corresponding tasks and their details
+
+Use case ends
+
+**Extensions**
+	
+2a. Task does not exist
+
+1. System displays warning to user that there are no such tasks
+
+Use case ends
+
+#### Use case: Search a task by date
+
+**MSS**
+
+1. User inputs command to search task
+2. System checks if the date exists
+3. System displays all corresponding tasks and their details
 
 Use case ends
 
@@ -547,7 +590,25 @@ Use case ends
 
 2a. Task does not exist
 
-1. System displays warning to user that task does not exist
+1. System displays warning to user that there are no such tasks
+
+Use case ends
+
+#### Use case: Change the save file directory
+
+**MSS**
+
+1. User inputs command to change the save file directory
+2. System checks if it is a valid path
+3. System updates saved file to the new directory
+
+Use case ends
+
+**Extensions**
+
+2a. Path is invalid
+
+1. System displays warning to user that the path is invalid
 
 Use case ends
 
@@ -555,8 +616,8 @@ Use case ends
 
 **MSS**
 
-1. User input exit command
-2. System shuts down
+1. User inputs help command
+2. System display help page
 
 Use case ends
 
@@ -564,8 +625,8 @@ Use case ends
 
 **MSS**
 
-1. User input help command
-2. System display help page
+1. User inputs exit command
+2. System shuts down
 
 Use case ends
 
@@ -575,7 +636,6 @@ Use case ends
 2. Application should be command line style as a stand-alone software
 3. Computational speed must be done in less than one second
 4. Language is in English
-
 
 ## Appendix D : Glossary
 

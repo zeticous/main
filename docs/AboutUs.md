@@ -7,28 +7,28 @@ We are a team based in the [School of Computing, National University of Singapor
 #### [NEO WEI JIE ESMOND](http://github.com/zeticious) <br>
 <img src="images/zeticious.jpg" width="150"><br>
 Role: Project Leader <br>
-Responsibilities: UI
+Responsibilities: In charge of UI 
 
 -----
 
 #### [LIU PENG](http://github.com/lproperty)
 <img src="images/lproperty.jpg" width="150"><br>
 Role: Developer <br>
-Responsibilities: Testing
+Responsibilities: In charge of Testing
 
 -----
 
 #### [KENNY NG JIAN LIANG](http://github.com/kennyngdsc)
 <img src="images/kennyngdsc.jpg" width="150"><br>
 Role: Developer <br>
-Responsibilities: Code Quality
+Responsibilities: In charge of Code Quality
 
 -----
 
 #### [MANISH DAHIYA](http://github.com/Manish1Dahiya)
 <img src="images/manish1dahiya.jpg" width="150"><br>
 Role: Developer <br>
-Responsibilities: Documentation
+Responsibilities: In charge of Documentation
 
 -----
 
