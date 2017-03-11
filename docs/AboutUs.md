@@ -7,7 +7,7 @@ We are a team based in the [School of Computing, National University of Singapor
 #### [NEO WEI JIE ESMOND](http://github.com/zeticious) <br>
 <img src="images/zeticious.jpg" width="150"><br>
 Role: Project Leader <br>
-Responsibilities: UI 
+Responsibilities: UI
 
 -----
 
