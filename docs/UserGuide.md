@@ -49,22 +49,24 @@ Format: `help`
 
 Add a task which can be an event, a deadline or a floating task<br>
 
+
 Event format: `add <TASK_NAME> [DATE_START_TIME] [DATE_END_TIME]`<br>
 Example: <br>
   ->  add event 01/01/2088 1200 01/01/2088 1230   <br> 
     This will add an event named 'event' <br>
               
+              
 Deadline format: `add <TASK_NAME> [DATE_DUE_TIME]`<br>
 Example: <br>
-    ->  add deadline 01/01/2088 1200  
-    <br>
+    ->  add deadline 01/01/2088 1200  <br>
     This will add a deadline named 'deadline' <br>
+               
                
 Floating task format: `add <TASK_NAME>` <br>
 Example: <br>
-     -> add floating_task 
-     <br>
+     -> add floating_task <br>
      This command will simply add a floating task named 'floating_task' <br>
+     
 
 ### 2.3. Listing tasks : `list`
 
@@ -104,12 +106,14 @@ Example: <br>
      -> search event 
      <br>
      This command will simply return the tasks with the keyword 'event' in them.
+     
 
 > * The search is case sensitive. e.g `meeting` will not match `Meeting`
 > * The order of the keywords does not matter. e.g. `team meeting` will match `meeting team`
 > * Only full words will be matched e.g. `meeting` will not match `meetings`
 > * Tasks matching at least one keyword will be returned (i.e. `OR` search).
     e.g. `Meeting` will match `Company Meeting`
+
 
 Examples: <br>
        -> search meeting
@@ -121,8 +125,7 @@ Examples: <br>
 Deletes a specified task.<br>
 Format: `delete <INDEX>` <br>
 Example: <br>
-       -> delete 2  
-       <br>
+       -> delete 2   <br>
        This command will simply delete the task at index number 2.
 
 
