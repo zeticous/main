@@ -83,7 +83,7 @@ Event format: `edit  <index> [NEW_TASK_NAME] [NEW_DATE_NEW_START_TIME] [NEW_DATE
 Example: <br>
     -> edit 3 new_event 01/01/2088 1200 01/01/2088 1230
     <br>
-    This command will edit the task at index number 3 with new name, start date and time, end date and time. <br>
+    This command will edit the task at index number 3 with new name, new start date and time, new end date and time. <br>
     
             
 Deadline format: `edit <index> [NEW_TASK_NAME] [NEW_DATE_NEW_DUE_TIME]` <br>
@@ -115,10 +115,10 @@ Example: <br>
     e.g. `Meeting` will match `Company Meeting`
 
 
-Examples: <br>
+Example: <br>
        -> search meeting
        <br>
-       Returns `company meeting` but not `date with girlfriend` <br>
+       This command will return `company meeting` but not `date with girlfriend` <br>
 
 ### 2.6. Deleting a task : `delete`
 
