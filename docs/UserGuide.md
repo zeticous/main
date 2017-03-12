@@ -50,37 +50,60 @@ Format: `help`
 Add a task which can be an event, a deadline or a floating task<br>
 
 Event format: `add <TASK_NAME> [DATE_START_TIME] [DATE_END_TIME]`<br>
-              e.g. add event 01/01/2088 1200 01/01/2088 1230
+Example: <br>
+  ->  add event 01/01/2088 1200 01/01/2088 1230   <br> 
+    This will add an event named 'event' <br>
               
 Deadline format: `add <TASK_NAME> [DATE_DUE_TIME]`<br>
-               e.g. add deadline 01/01/2088 1200
+Example: <br>
+    ->  add deadline 01/01/2088 1200  
+    <br>
+    This will add a deadline named 'deadline' <br>
                
-Floating task format: `add <TASK_NAME>`
-                    e.g. add floating_task
+Floating task format: `add <TASK_NAME>` <br>
+Example: <br>
+     -> add floating_task 
+     <br>
+     This command will simply add a floating task named 'floating_task' <br>
 
 ### 2.3. Listing tasks : `list`
 
 Shows a list of tasks which can include all tasks or only events or only deadlines or only floating tasks.<br>
 Format: 'list < all / floating / events / deadline >'  <br>
-      e.g. list all
+Example: <br>
+   -> list all  <br>
+   This command will simply list all the tasks. <br>
 
 ### 2.4. Updating a task : `edit`
 
 Updates an existing task in the task manager.<br>
-Event format: `edit  <index> [NEW_TASK_NAME] [NEW_DATE_NEW_START_TIME] [NEW_DATE_NEW_END_TIME]`
-            e.g. edit 3 new_event 01/01/2088 1200 01/01/2088 1230
+Event format: `edit  <index> [NEW_TASK_NAME] [NEW_DATE_NEW_START_TIME] [NEW_DATE_NEW_END_TIME]` <br>
+Example: <br>
+    -> edit 3 new_event 01/01/2088 1200 01/01/2088 1230
+    <br>
+    This command will edit the task at index number 3 with new name, start date and time, end date and time. <br>
+    
             
-Deadline format: `edit <index> [NEW_TASK_NAME] [NEW_DATE_NEW_DUE_TIME]`
-               e.g. edit 4 new_deadline 01/01/2088 1200
+Deadline format: `edit <index> [NEW_TASK_NAME] [NEW_DATE_NEW_DUE_TIME]` <br>
+Example: <br>
+      -> edit 4 new_deadline 01/01/2088 1200
+      <br>
+      This command will edit the task at index number 4 with new name, new deadline date and time. <br>
                
-Floating task format: `edit <index> [NEW_TASK_NAME]`
-                   e.g. edit 5 new_floating_task
+Floating task format: `edit <index> [NEW_TASK_NAME]` <br>
+Example: <br>
+       -> edit 5 new_floating_task 
+       <br>
+       This command will simply edit the task at index number 5 with new name. <br>
 
 ### 2.5. Searching for all tasks containing any keyword/date : `search`
 
 Searches for the tasks containing the input keyword/date.<br>
-Format: `search <TASK_NAME / DATE TIME>`
-      e.g. search event
+Format: `search <TASK_NAME / DATE TIME>` <br>
+Example: <br>
+     -> search event 
+     <br>
+     This command will simply return the tasks with the keyword 'event' in them.
 
 > * The search is case sensitive. e.g `meeting` will not match `Meeting`
 > * The order of the keywords does not matter. e.g. `team meeting` will match `meeting team`
@@ -88,22 +111,25 @@ Format: `search <TASK_NAME / DATE TIME>`
 > * Tasks matching at least one keyword will be returned (i.e. `OR` search).
     e.g. `Meeting` will match `Company Meeting`
 
-Examples:
-
-* `search meeting`<br>
-  Returns `company meeting` but not `date with girlfriend`
+Examples: <br>
+       -> search meeting
+       <br>
+       Returns `company meeting` but not `date with girlfriend` <br>
 
 ### 2.6. Deleting a task : `delete`
 
 Deletes a specified task.<br>
-Format: `delete <INDEX>`
-      e.g. delete 2
+Format: `delete <INDEX>` <br>
+Example: <br>
+       -> delete 2  
+       <br>
+       This command will simply delete the task at index number 2.
 
 
 ### 2.7. Exiting the program : `exit`
 
 Exits the program.<br>
-Format: `exit`
+Format: `exit` <br>
 
 ### 2.8. Saving the data
 
