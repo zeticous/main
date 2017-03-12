@@ -53,19 +53,19 @@ Add a task which can be an event, a deadline or a floating task<br>
 Event format: `add <TASK_NAME> [DATE_START_TIME] [DATE_END_TIME]`<br>
 Example: <br>
   ->  add event 01/01/2088 1200 01/01/2088 1230   <br> 
-    This will add an event named 'event' <br>
+    This will add an event named 'event' with [start date and time] in format dd/mm/yyyy 2400  and [end date and time] in format dd/mm/yyyy 2400. <br>
               
               
 Deadline format: `add <TASK_NAME> [DATE_DUE_TIME]`<br>
 Example: <br>
     ->  add deadline 01/01/2088 1200  <br>
-    This will add a deadline named 'deadline' <br>
+    This will add a deadline named 'deadline' with [date due and time] in format dd/mm/yyyy 2400. <br>
                
                
 Floating task format: `add <TASK_NAME>` <br>
 Example: <br>
      -> add floating_task <br>
-     This command will simply add a floating task named 'floating_task' <br>
+     This command will simply add a floating task named 'floating_task'. <br>
      
 
 ### 2.3. Listing tasks : `list`
