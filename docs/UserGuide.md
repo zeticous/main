@@ -102,8 +102,7 @@ Example: <br>
 
 Searches for the tasks containing the input keyword/date.<br>
 Format: `search <TASK_NAME / DATE TIME>` <br>
-Example: <br>
-     -> search event 
+Example: <br>     -> search event 
      <br>
      This command will simply return the tasks with the keyword 'event' in them.
      
@@ -113,7 +112,6 @@ Example: <br>
 > * Only full words will be matched e.g. `meeting` will not match `meetings`
 > * Tasks matching at least one keyword will be returned (i.e. `OR` search).
     e.g. `Meeting` will match `Company Meeting`
-
 
 Example: <br>
        -> search meeting
@@ -135,7 +133,6 @@ Exits the program.<br>
 Format: `exit` <br>
 
 ### 2.8. Saving the data
-
 Task manager data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.
 

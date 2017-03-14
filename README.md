@@ -1,6 +1,7 @@
-# Pota-Todo
-
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7994094a9dd944f69fdfbf881c7bff0d)](https://www.codacy.com/app/zeticous/main_2?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CS2103JAN2017-T15-B3/main&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.org/CS2103JAN2017-T15-B3/main.svg?branch=master)](https://travis-ci.org/CS2103JAN2017-T15-B3/main)
+
+# Pota-Todo
 
 <img src="docs/images/newUi.png" width="600"><br>
 
@@ -13,7 +14,6 @@
 #### Site Map
 * [User Guide](docs/UserGuide.md)
 * [Developer Guide](docs/DeveloperGuide.md)
-* [Learning Outcomes](docs/LearningOutcomes.md)
 * [About Us](docs/AboutUs.md)
 * [Contact Us](docs/ContactUs.md)
 
@@ -22,6 +22,6 @@
 
 * Some parts of this sample application were inspired by the excellent
   [Java FX tutorial](http://code.makery.ch/library/javafx-8-tutorial/) by *Marco Jakob*.
-* This code is based on [addressbook-level4](https://github.com/nus-cs2103-AY1617S2/addressbook-level4) 
+* This code is based on [addressbook-level4](https://github.com/nus-cs2103-AY1617S2/addressbook-level4)
 
 #### Licence : [MIT](LICENSE)

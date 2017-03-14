@@ -6,11 +6,8 @@ import java.util.Optional;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.UniqueTagList;
@@ -25,8 +22,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the last person listing. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) [NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS ] [t/TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 p/91234567 e/johndoe@yahoo.com";
+            + "Parameters: INDEX (must be a positive integer) [NAME] [t/TAG]...\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -78,12 +75,9 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElseGet(personToEdit::getName);
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElseGet(personToEdit::getPhone);
-        Email updatedEmail = editPersonDescriptor.getEmail().orElseGet(personToEdit::getEmail);
-        Address updatedAddress = editPersonDescriptor.getAddress().orElseGet(personToEdit::getAddress);
         UniqueTagList updatedTags = editPersonDescriptor.getTags().orElseGet(personToEdit::getTags);
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedTags);
     }
 
     /**
@@ -92,18 +86,12 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Optional<Name> name = Optional.empty();
-        private Optional<Phone> phone = Optional.empty();
-        private Optional<Email> email = Optional.empty();
-        private Optional<Address> address = Optional.empty();
         private Optional<UniqueTagList> tags = Optional.empty();
 
         public EditPersonDescriptor() {}
 
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             this.name = toCopy.getName();
-            this.phone = toCopy.getPhone();
-            this.email = toCopy.getEmail();
-            this.address = toCopy.getAddress();
             this.tags = toCopy.getTags();
         }
 
@@ -111,7 +99,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyPresent(this.name, this.phone, this.email, this.address, this.tags);
+            return CollectionUtil.isAnyPresent(this.name, this.tags);
         }
 
         public void setName(Optional<Name> name) {
@@ -121,33 +109,6 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return name;
-        }
-
-        public void setPhone(Optional<Phone> phone) {
-            assert phone != null;
-            this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return phone;
-        }
-
-        public void setEmail(Optional<Email> email) {
-            assert email != null;
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return email;
-        }
-
-        public void setAddress(Optional<Address> address) {
-            assert address != null;
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return address;
         }
 
         public void setTags(Optional<UniqueTagList> tags) {

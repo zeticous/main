@@ -8,10 +8,7 @@ import org.junit.Test;
 import guitests.guihandles.PersonCardHandle;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TestPerson;
@@ -25,11 +22,10 @@ public class EditCommandTest extends AddressBookGuiTest {
 
     @Test
     public void edit_allFieldsSpecified_success() throws Exception {
-        String detailsToEdit = "Bobby p/91234567 e/bobby@gmail.com a/Block 123, Bobby Street 3 t/husband";
-        int addressBookIndex = 1;
+        String detailsToEdit = "Bobby t/husband";
 
-        TestPerson editedPerson = new PersonBuilder().withName("Bobby").withPhone("91234567")
-                .withEmail("bobby@gmail.com").withAddress("Block 123, Bobby Street 3").withTags("husband").build();
+        int addressBookIndex = 1;
+        TestPerson editedPerson = new PersonBuilder().withName("Bobby").withTags("husband").build();
 
         assertEditSuccess(addressBookIndex, addressBookIndex, detailsToEdit, editedPerson);
     }
@@ -93,23 +89,13 @@ public class EditCommandTest extends AddressBookGuiTest {
         commandBox.runCommand("edit 1 *&");
         assertResultMessage(Name.MESSAGE_NAME_CONSTRAINTS);
 
-        commandBox.runCommand("edit 1 p/abcd");
-        assertResultMessage(Phone.MESSAGE_PHONE_CONSTRAINTS);
-
-        commandBox.runCommand("edit 1 e/yahoo!!!");
-        assertResultMessage(Email.MESSAGE_EMAIL_CONSTRAINTS);
-
-        commandBox.runCommand("edit 1 a/");
-        assertResultMessage(Address.MESSAGE_ADDRESS_CONSTRAINTS);
-
         commandBox.runCommand("edit 1 t/*&");
         assertResultMessage(Tag.MESSAGE_TAG_CONSTRAINTS);
     }
 
     @Test
     public void edit_duplicatePerson_failure() {
-        commandBox.runCommand("edit 3 Alice Pauline p/85355255 e/alice@gmail.com "
-                                + "a/123, Jurong West Ave 6, #08-111 t/friends");
+        commandBox.runCommand("edit 3 Alice Pauline t/friends");
         assertResultMessage(EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
@@ -123,7 +109,7 @@ public class EditCommandTest extends AddressBookGuiTest {
      * @param editedPerson the expected person after editing the person's details
      */
     private void assertEditSuccess(int filteredPersonListIndex, int addressBookIndex,
-                                    String detailsToEdit, TestPerson editedPerson) {
+            String detailsToEdit, TestPerson editedPerson) {
         commandBox.runCommand("edit " + filteredPersonListIndex + " " + detailsToEdit);
 
         // confirm the new card contains the right data
