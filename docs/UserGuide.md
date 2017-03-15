@@ -49,6 +49,7 @@ Format: `help`
 
 Add a task which can be an event, a deadline or a floating task<br>
 
+The date expression can be in standard language. For example, formal dates -> 02/28/1979, relaxed dates -> oct 1st, relative dates -> the day before next thursday, and even date alternatives -> next wed or thurs.
 
 Event format: `add <TASK_NAME> [DATE_START_TIME] [DATE_END_TIME]`<br>
 Example: <br>
@@ -70,11 +71,15 @@ Example: <br>
 
 ### 2.3. Listing tasks : `list`
 
-Shows a list of tasks which can include all tasks or only events or only deadlines or only floating tasks.<br>
-Format: 'list < all / floating / events / deadline >'  <br>
+Shows a list of tasks which can include all tasks or only events or only deadlines or only floating tasks. The tasks can be further shortlisted based on the date of the tasks. An example is given below for further clarification. <br>
+Format: 'list < all / floating / events / deadline > [DATE]'  <br>
 Example: <br>
    -> list all  <br>
    This command will simply list all the tasks. <br>
+   -> list deadline Feb 28 <br>
+   This command will list the deadline tasks which have the deadline as 28th February. <br>
+   -> list event
+   This command will list all the event tasks (with no restriction on the dates of the tasks). <br>
 
 ### 2.4. Updating a task : `edit`
 
@@ -98,13 +103,13 @@ Example: <br>
        <br>
        This command will simply edit the task at index number 5 with new name. <br>
 
-### 2.5. Searching for all tasks containing any keyword/date : `search`
+### 2.5. Searching for all tasks containing a name : `find`
 
-Searches for the tasks containing the input keyword/date.<br>
-Format: `search <TASK_NAME / DATE TIME>` <br>
-Example: <br>     -> search event 
+Searches for the tasks containing the input name. An example ha been given below for further clarification. <br>
+Format: `find <NAME>` <br>
+Example: <br>     -> find event 
      <br>
-     This command will simply return the tasks with the keyword 'event' in them.
+     This command will simply return the tasks with the name 'event' in them.
      
 
 > * The search is case sensitive. e.g `meeting` will not match `Meeting`
@@ -114,7 +119,7 @@ Example: <br>     -> search event
     e.g. `Meeting` will match `Company Meeting`
 
 Example: <br>
-       -> search meeting
+       -> find meeting
        <br>
        This command will return `company meeting` but not `date with girlfriend` <br>
 
@@ -159,14 +164,14 @@ There is no need to save manually.
 * **Edit Deadline format** : `edit <index> [NEW_TASK_NAME] [NEW_DATE_NEW_DUE_TIME]` <br>
                e.g. edit 4 new_deadline 01/01/2088 1200
                
-* **Floating task format** : `edit <index> [NEW_TASK_NAME]` <br>
+* **Edit Floating task format** : `edit <index> [NEW_TASK_NAME]` <br>
                    e.g. edit 5 new_floating_task
                    
 * **Delete** : `delete <INDEX>` <br>
    e.g. `delete 1`
 
-* **Search** : `search <TASK_NAME / DATE TIME> ` <br>
-  e.g. `search meeting` `search NUS` `search 1/1/2088`  
+* **Search** : `find <NAME> ` <br>
+  e.g. `find meeting` `find NUS` 
 
 * **List** : `list` <br>
   e.g. list all
