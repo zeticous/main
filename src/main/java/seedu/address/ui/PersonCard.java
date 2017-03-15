@@ -17,7 +17,11 @@ public class PersonCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
-
+    @FXML
+    private Label startDate;
+    @FXML
+    private Label endDate;
+    
     @FXML
     private FlowPane tags;
 
@@ -25,6 +29,8 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         name.setText(person.getName().fullName);
         id.setText(displayedIndex + ". ");
+        startDate.setText("30th February 2088");
+        endDate.setText("31st April 2199");
         initTags(person);
     }
 

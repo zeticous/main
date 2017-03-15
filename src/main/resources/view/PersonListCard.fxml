@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -27,18 +33,29 @@
                     </padding>
 
                     <children>
-                        <HBox spacing="5" alignment="CENTER_LEFT">
-                            <children>
-                                <HBox>
-                                    <Label fx:id="id" styleClass="cell_big_label"></Label>
-                                    <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
-                                </HBox>
-                            </children>
+                          <HBox>
+                             <children>
+                                 <Label fx:id="id" styleClass="cell_big_label" />
+                                 <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                             </children>
+                          </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="5">
+                     <children>
+                        <Label fx:id="startDate" styleClass="cell_small_label" text="\$startDate" />
+                     </children>
                         </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="5">
+                     <children>
+                        <Label fx:id="endDate" styleClass="cell_small_label" text="\$endDate" />
+                     </children>
+                  </HBox>
                         <FlowPane fx:id="tags" />
                     </children>
                 </VBox>
             </children>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
         </GridPane>
     </children>
 </HBox>
