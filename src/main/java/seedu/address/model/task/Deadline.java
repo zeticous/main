@@ -13,15 +13,16 @@ import seedu.address.model.task.Task;
 public class Deadline extends Task implements ReadOnlyDeadline {
 
 	private Name name;
-
+	private TaskDate endDate;
     private UniqueTagList tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Deadline(Name name, UniqueTagList tags) {
+    public Deadline(Name name, TaskDate endDate, UniqueTagList tags) {
         assert !CollectionUtil.isAnyNull(name, tags);
         this.name = name;
+        this.endDate = endDate;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
@@ -29,7 +30,7 @@ public class Deadline extends Task implements ReadOnlyDeadline {
      * Creates a copy of the given ReadOnlyDeadline.
      */
     public Deadline(ReadOnlyDeadline source) {
-        this(source.getName(), source.getTags());
+        this(source.getName(), source.getEndDate(), source.getTags());
     }
 
     @Override
@@ -43,6 +44,11 @@ public class Deadline extends Task implements ReadOnlyDeadline {
         this.name = name;
     }
 
+    @Override
+    public TaskDate getEndDate() {
+    	return endDate;
+    }
+    
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

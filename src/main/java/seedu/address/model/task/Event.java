@@ -13,15 +13,19 @@ import seedu.address.model.task.Task;
 public class Event extends Task implements ReadOnlyEvent {
 
 	private Name name;
+	private TaskDate startDate;
+	private TaskDate endDate;
 
     private UniqueTagList tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Event(Name name, UniqueTagList tags) {
+    public Event(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags) {
         assert !CollectionUtil.isAnyNull(name, tags);
         this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
@@ -29,7 +33,7 @@ public class Event extends Task implements ReadOnlyEvent {
      * Creates a copy of the given ReadOnlyEvent.
      */
     public Event(ReadOnlyEvent source) {
-        this(source.getName(), source.getTags());
+        this(source.getName(), source.getStartDate(), source.getEndDate(), source.getTags());
     }
 
     @Override
@@ -41,6 +45,16 @@ public class Event extends Task implements ReadOnlyEvent {
     public void setName(Name name) {
         assert name != null;
         this.name = name;
+    }
+    
+    @Override
+    public TaskDate getStartDate() {
+    	return startDate;
+    }
+    
+    @Override
+    public TaskDate getEndDate() {
+    	return endDate;
     }
 
     @Override
