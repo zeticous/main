@@ -7,6 +7,8 @@ package seedu.address.model.task;
 public abstract class Task {
 	
 	protected Name name;
+	protected TaskDate startDate;
+	protected TaskDate endDate;
 	
 	public Name getName() {
 		return name;
@@ -15,6 +17,14 @@ public abstract class Task {
 	public void setName(Name name) {
 		assert name != null;
 		this.name= name;
+	}
+	
+	public TaskDate getStartDate() {
+		return startDate;
+	}
+	
+	public TaskDate getEndDate() {
+		return endDate;
 	}
 	
 	public boolean equals(Object other) {
