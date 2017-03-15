@@ -677,3 +677,61 @@ Cons:
 * A lot of buttons, slightly complex.
 * Has a learning curve.
 * Does not have a priority task marker.
+
+**Product Name**
+
+**Wunderlist**
+
+Pros: 
+
+* Can interface with apps like Dropbox adding more potential features
+* Can be personalized with configurable backgrounds
+* Can search for tasks, migrate tasks, mark tasks easily
+* Can be synced across OS
+
+Cons:
+
+* Cannot add a subtask in the same UI
+* Cannot be integrated with IFTTT
+* Need to pay for the premium version which removes the limitations of free version
+* Cannot interpret natural language date and time
+* Cannot support recurring tasks functionality
+
+**Product Name**
+
+**Todoist**
+
+Pros:
+
+* Can be integrated with IFTTT
+* Can be synced across OS and interfaced with other apps
+* Easy to use UI
+* Can add subtasks easily and supports recurring task functionality
+* Powerful features of search, nested lists, natural language 
+* Easy to add subtasks, priorities, notes and share tasks
+
+Cons:
+
+* UI is not customizable
+* Cannot sort the lists manually
+* Need to pay for the premium version that can remove the limitations of free version
+
+
+**Product Name**
+
+**Any.do**
+
+Pros:
+
+* Can sync across devices
+* Can customize the recurring tasks 
+* Can view the tasks in different ways. For example standard view, time view, priority list view, calendar view
+* Can separate tasks based on lists. For example work, personal, miscellaneous.
+* Can add subtasks, priority, attachments etc. for all tasks
+
+Cons:
+
+* Cannot be integrated with other apps so no task automation
+* Cannot interpret natural language date and time
+* Need to pay for the premium version that overcomes the limitations of free version
+
