@@ -22,9 +22,9 @@ public class XmlAdaptedPerson {
     @XmlElement(required = true)
     private String name;
     @XmlElement
-    private String startDate;
+    private TaskDate startDate;
     @XmlElement
-    private String endDate;
+    private TaskDate endDate;
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
 
@@ -42,9 +42,9 @@ public class XmlAdaptedPerson {
      */
     public XmlAdaptedPerson(ReadOnlyPerson source) {
         name = source.getName().fullName;
-        startDate = source.getStartDate().toString();
-        endDate = source.getEndDate().toString();
-        
+        startDate = source.getStartDate();
+        endDate = source.getEndDate();
+
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -62,8 +62,9 @@ public class XmlAdaptedPerson {
             personTags.add(tag.toModelType());
         }
         final Name name = new Name(this.name);
-        final TaskDate startDate = new TaskDate(DateTimeParser.parseDateTime(this.startDate));
-        final TaskDate endDate = new TaskDate(DateTimeParser.parseDateTime(this.endDate));
+        
+        final TaskDate startDate = this.startDate;
+        final TaskDate endDate = this.endDate;
         final UniqueTagList tags = new UniqueTagList(personTags);
         return new Person(name, startDate, endDate, tags);
     }
