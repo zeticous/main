@@ -1,12 +1,16 @@
 package seedu.address.logic.commands;
 
+import java.util.Date;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TaskDate;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
@@ -33,14 +37,21 @@ public class AddCommand extends Command {
      *
      * @throws IllegalValueException if any of the raw values are invalid
      */
-    public AddCommand(String name, Set<String> tags)
+    public AddCommand(String name, String startDate, String endDate, Set<String> tags)
             throws IllegalValueException {
+        
         final Set<Tag> tagSet = new HashSet<>();
+        
+        Date start = DateTimeParser.parseDateTime(startDate);
+        Date end = DateTimeParser.parseDateTime(endDate);
+        
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
         this.toAdd = new Person(
                 new Name(name),
+                new TaskDate(start),
+                new TaskDate(end),
                 new UniqueTagList(tagSet)
         );
     }

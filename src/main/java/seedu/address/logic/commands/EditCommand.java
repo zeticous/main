@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.person.TaskDate;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -75,9 +76,11 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElseGet(personToEdit::getName);
+        TaskDate updatedStartDate = editPersonDescriptor.getStartDate().orElseGet(personToEdit::getStartDate);
+        TaskDate updatedEndDate = editPersonDescriptor.getEndDate().orElseGet(personToEdit::getEndDate);
         UniqueTagList updatedTags = editPersonDescriptor.getTags().orElseGet(personToEdit::getTags);
 
-        return new Person(updatedName, updatedTags);
+        return new Person(updatedName, updatedStartDate, updatedEndDate, updatedTags);
     }
 
     /**
@@ -85,32 +88,53 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
+        
         private Optional<Name> name = Optional.empty();
         private Optional<UniqueTagList> tags = Optional.empty();
-
+        private Optional<TaskDate> startDate = Optional.empty();
+        private Optional<TaskDate> endDate = Optional.empty();
+        
         public EditPersonDescriptor() {}
 
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             this.name = toCopy.getName();
             this.tags = toCopy.getTags();
+            this.startDate = toCopy.getStartDate();
+            this.endDate = toCopy.getEndDate();
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyPresent(this.name, this.tags);
+            return CollectionUtil.isAnyPresent(this.name, this.startDate, this.endDate, this.tags);
         }
 
         public void setName(Optional<Name> name) {
             assert name != null;
             this.name = name;
         }
+        
+        public void setStartDate(Optional<TaskDate> taskDate){
+            this.startDate = taskDate;
+        }
+        
+        public void setEndDate(Optional<TaskDate> taskDate){
+            this.endDate = taskDate;
+        }
 
         public Optional<Name> getName() {
             return name;
         }
 
+        public Optional<TaskDate> getStartDate(){
+            return startDate;
+        }
+        
+        public Optional<TaskDate> getEndDate(){
+            return endDate;
+        }
+        
         public void setTags(Optional<UniqueTagList> tags) {
             assert tags != null;
             this.tags = tags;
