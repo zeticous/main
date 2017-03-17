@@ -45,11 +45,11 @@ public class PersonCard extends UiPart<Region> {
             
         } else if (TaskUtil.isDeadline(person)){
             startDate.setVisible(false);
-            endDate.setText("Due: "+person.getEndDate().toString());
+            endDate.setText("Due: "+ person.getEndDate().toString());
         
         } else if (TaskUtil.isEvent(person)){
             startDate.setText("Start: "+ person.getStartDate().toString());
-            endDate.setText("End: "+person.getEndDate().toString());
+            endDate.setText("End: "+ person.getEndDate().toString());
         }
     }
 

@@ -11,6 +11,7 @@ import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TaskDate;
+import seedu.address.model.person.TaskUtil;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
@@ -31,6 +32,8 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Person toAdd;
+    
+    public static final String EMPTY_STRING = "";
 
     /**
      * Creates an AddCommand using raw values.
@@ -41,6 +44,14 @@ public class AddCommand extends Command {
             throws IllegalValueException {
         
         final Set<Tag> tagSet = new HashSet<>();
+        
+        if (startDate == EMPTY_STRING) {
+        	startDate = TaskUtil.DUMMY_START_DATE;
+        }
+        
+        if (endDate == EMPTY_STRING) {
+        	endDate = TaskUtil.DUMMY_END_DATE;
+        }
         
         Date start = DateTimeParser.parseDateTime(startDate);
         Date end = DateTimeParser.parseDateTime(endDate);
