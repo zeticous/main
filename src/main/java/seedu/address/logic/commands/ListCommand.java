@@ -29,7 +29,7 @@ public class ListCommand extends Command {
     		model.updateFilteredListToShowAll();
     		return new CommandResult(MESSAGE_SUCCESS);
     	}
-    	model.updateFilteredPersonListTwo(taskType);
+    	model.updateFilteredTaskListByTaskType(taskType);
     	return new CommandResult(MESSAGE_SUCCESS + " (" + taskType + ")");
     }
 }

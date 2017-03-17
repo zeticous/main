@@ -17,7 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.UniquePersonList.PersonNotFoundException;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the task manager data.
  * All changes to any model should be synchronized.
  */
 public class ModelManager extends ComponentManager implements Model {
@@ -95,11 +95,11 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Set<String> keywords) {
+    public void updateFilteredTaskListByTaskName(Set<String> keywords) {
         updateFilteredPersonList(new PredicateExpression(new NameQualifier(keywords)));
     }
 
-    public void updateFilteredPersonListTwo(String taskType) {
+    public void updateFilteredTaskListByTaskType(String taskType) {
     	updateFilteredPersonList(new PredicateExpression(new TypeQualifier(taskType)));
     }
     
