@@ -7,7 +7,9 @@ import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.DateTimeParser;
+import seedu.address.logic.parser.DateTimeUtil;
+import seedu.address.model.person.DummyEndTaskDate;
+import seedu.address.model.person.DummyStartTaskDate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TaskDate;
@@ -40,29 +42,34 @@ public class AddCommand extends Command {
      *
      * @throws IllegalValueException if any of the raw values are invalid
      */
-    public AddCommand(String name, String startDate, String endDate, Set<String> tags)
+    public AddCommand(String name, String startDateString, String endDateString, Set<String> tags)
             throws IllegalValueException {
         
         final Set<Tag> tagSet = new HashSet<>();
+        TaskDate startDate, endDate;
         
-        if (startDate == EMPTY_STRING) {
-        	startDate = TaskUtil.DUMMY_START_DATE;
+        if (startDateString == EMPTY_STRING) {
+        	startDate = new DummyStartTaskDate();
+        
+        } else {
+            startDate = new TaskDate(DateTimeUtil.parseDateTime(startDateString));
+        
         }
         
-        if (endDate == EMPTY_STRING) {
-        	endDate = TaskUtil.DUMMY_END_DATE;
-        }
+        if (endDateString == EMPTY_STRING) {
+        	endDate = new DummyEndTaskDate();
         
-        Date start = DateTimeParser.parseDateTime(startDate);
-        Date end = DateTimeParser.parseDateTime(endDate);
+        } else {
+            endDate = new TaskDate(DateTimeUtil.parseDateTime(endDateString));
+        }
         
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
         this.toAdd = new Person(
                 new Name(name),
-                new TaskDate(start),
-                new TaskDate(end),
+                startDate,
+                endDate,
                 new UniqueTagList(tagSet)
         );
     }

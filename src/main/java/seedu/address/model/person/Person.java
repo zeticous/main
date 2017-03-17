@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import java.util.Objects;
 import java.util.Optional;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -31,10 +32,10 @@ public class Person implements ReadOnlyPerson {
     }
     
     
-    public Person(Name name, UniqueTagList tags){
+    public Person(Name name, UniqueTagList tags) throws IllegalValueException{
         this.name = name;
-        this.startDate = null;
-        this.endDate = null;
+        this.startDate = new DummyStartTaskDate();
+        this.endDate = new DummyEndTaskDate();
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
     /**
