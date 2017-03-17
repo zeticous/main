@@ -13,15 +13,17 @@ import com.joestelmach.natty.Parser;
 
 public class DateTimeParser {
 
-    private static Parser dateParser = new Parser(TimeZone.getDefault());
-
-    public DateTimeParser() {}
-
-    public static Date parseDateTime(String date) {
-        
-    List<DateGroup> parsedDates = dateParser.parse(date);
+    public static final String INVALID_DATE_FORMAT = "Date format is not accepted by PotaTodo";
+    public static final String EMPTY_STRING = "";
     
-    if (parsedDates != null && !parsedDates.isEmpty()) {
+    public DateTimeParser(){};
+    
+    private static Parser dateTimeParser = new Parser(TimeZone.getDefault());
+    
+    public static Date parseDateTime(String date) throws IllegalValueException{        
+        List<DateGroup> dateTimeList = dateTimeParser.parse(date);
+
+      if (parsedDates != null && !parsedDates.isEmpty()) {
         return parsedDates.get(0).getDates().get(0);    
     } else {
         return null;    
