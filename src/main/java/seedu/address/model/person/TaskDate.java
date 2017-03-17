@@ -2,7 +2,7 @@ package seedu.address.model.person;
 
 import java.util.Date;
 
-import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.DateTimeUtil;
 
 /**
  * Represents a Person's name in the address book.
@@ -11,18 +11,13 @@ import seedu.address.commons.exceptions.IllegalValueException;
 public class TaskDate {
     public final Date taskDate;
     
-    public TaskDate(Date date) throws IllegalValueException {
+    public TaskDate(Date date){
         this.taskDate = date;
     }
 
     @Override
     public String toString() {
-        if (taskDate == null) {
-            return "";
-        
-        } else {
-            return taskDate.toString();
-        }
+        return DateTimeUtil.getStringFromDate(taskDate);
     }
 
     @Override

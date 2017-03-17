@@ -6,7 +6,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.parser.DateTimeParser;
+import seedu.address.logic.parser.DateTimeUtil;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -22,9 +22,9 @@ public class XmlAdaptedPerson {
     @XmlElement(required = true)
     private String name;
     @XmlElement
-    private TaskDate startDate;
+    private String startDate;
     @XmlElement
-    private TaskDate endDate;
+    private String endDate;
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
 
@@ -42,8 +42,8 @@ public class XmlAdaptedPerson {
      */
     public XmlAdaptedPerson(ReadOnlyPerson source) {
         name = source.getName().fullName;
-        startDate = source.getStartDate();
-        endDate = source.getEndDate();
+        startDate = source.getStartDate().toString();
+        endDate = source.getEndDate().toString();
 
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
@@ -62,9 +62,8 @@ public class XmlAdaptedPerson {
             personTags.add(tag.toModelType());
         }
         final Name name = new Name(this.name);
-        
-        final TaskDate startDate = this.startDate;
-        final TaskDate endDate = this.endDate;
+        final TaskDate startDate = new TaskDate(DateTimeUtil.parseDateTime(this.startDate));
+        final TaskDate endDate = new TaskDate(DateTimeUtil.parseDateTime(this.endDate));
         final UniqueTagList tags = new UniqueTagList(personTags);
         return new Person(name, startDate, endDate, tags);
     }
