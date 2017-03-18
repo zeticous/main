@@ -10,9 +10,11 @@ import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.events.model.AddressBookChangedEvent;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.DateTimeUtil;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.TaskUtil;
+import seedu.address.model.person.TaskDate;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.UniquePersonList.PersonNotFoundException;
 
@@ -177,7 +179,8 @@ public class ModelManager extends ComponentManager implements Model {
     				return TaskUtil.isEvent(task);
     			// for parsing date
     			default:
-    				return false;
+    				TaskDate date = new TaskDate(DateTimeUtil.parseDateTime(taskType));
+    				return task.getStartDate().equals(date) || task.getEndDate().equals(date);
     		}
     	}
     }
