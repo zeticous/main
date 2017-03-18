@@ -124,7 +124,7 @@ public class EditCommand extends Command {
             this.startDate = taskDate;
         }
         
-        public Optional<TaskDate> getStartDate(){
+        public Optional<TaskDate> getStartDate() {
             return startDate;
         }
         
@@ -133,7 +133,7 @@ public class EditCommand extends Command {
         	this.endDate = taskDate;
         }
 
-        public Optional<TaskDate> getEndDate(){
+        public Optional<TaskDate> getEndDate() {
             return endDate;
         }
         
