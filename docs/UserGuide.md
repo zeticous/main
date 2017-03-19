@@ -34,7 +34,7 @@ By : `Team POTATO`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbs
 
 ## 2. Features
 
-> **Command Format**
+**Command Format**
 >
 > * Words in `UPPER_CASE` are the parameters.
 > * Items in `SQUARE_BRACKETS` are optional.
@@ -47,25 +47,26 @@ By : `Team POTATO`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbs
 
 ### 2.2. Creating a task: `add`
 
-Add a task which can be an event, a deadline or a floating task<br>
+Add a task which can be an event, a deadline or a floating task. <br>
 
 The date expression can be in standard language. <br>
-**For example**
-formal dates: 02/28/1979
-relaxed dates: oct 1st
-relative dates: the day before next thursday
-date alternatives: next wed or thurs
+**For example:** <br>
+formal dates: 02/28/1979 <br>
+relaxed dates: oct 1st <br>
+relative dates: the day before next thursday <br>
+date alternatives: next wed or thurs <br>
 
 **Event format:** `add <TASK_NAME> [DATE_START_TIME] [DATE_END_TIME]`<br>
 **Example:** <br>
 > add event 01/01/2088 1200 01/01/2088 1230   <br> 
-  This will add an event named 'event' with [start date and time] in format dd/mm/yyyy hhmm  and [end date and time] in format dd/mm/yyyy hhmm. <br>
+
+This will add an event named 'event' with [start date and time] in format dd/mm/yyyy hhmm  and [end date and time] in format dd/mm/yyyy hhmm. <br>
               
               
 **Deadline format:** `add <TASK_NAME> [DATE_DUE_TIME]`<br>
 **Example:** <br>
 > add deadline 01/01/2088 1200  <br>
-  This will add a deadline named 'deadline' with [date due and time] in format dd/mm/yyyy hhmm. <br>
+This will add a deadline named 'deadline' with [date due and time] in format dd/mm/yyyy hhmm. <br>
                
                
 **Floating task format:** `add <TASK_NAME>` <br>
