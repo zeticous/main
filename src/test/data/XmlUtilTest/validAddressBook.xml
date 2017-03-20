@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addressbook>
     <persons>
-        <name>Hans Muster</name>
+        <name>Meeting</name>
     </persons>
     <persons>
-        <name>Ruth Mueller</name>
+        <name>Dinner</name>
     </persons>
     <persons>
-        <name>Heinz Kurz</name>
+        <name>Concert</name>
     </persons>
     <persons>
-        <name>Cornelia Meier</name>
+        <name>Movie</name>
     </persons>
     <persons>
-        <name>Werner Meyer</name>
+        <name>CS homework</name>
     </persons>
     <persons>
-        <name>Lydia Kunz</name>
+        <name>Save the world</name>
     </persons>
     <persons>
-        <name>Anna Best</name>
+        <name>Stay healthy</name>
     </persons>
     <persons>
-        <name>Stefan Meier</name>
+        <name>Defeat terrorism</name>
     </persons>
     <persons>
-        <name>Martin Mueller</name>
+        <name>Achieve world peace</name>
     </persons>
 </addressbook>

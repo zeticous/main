@@ -11,6 +11,8 @@ import seedu.address.model.tag.UniqueTagList;
 public class TestPerson implements ReadOnlyPerson {
 
     private Name name;
+    private TaskDate startDate;
+    private TaskDate endDate;
     private UniqueTagList tags;
 
     public TestPerson() {
@@ -32,11 +34,30 @@ public class TestPerson implements ReadOnlyPerson {
     public void setTags(UniqueTagList tags) {
         this.tags = tags;
     }
+    
+    public void setStartDate(TaskDate startDate) {
+        this.startDate = startDate;
+    }
+    
+    public void setEndDate(TaskDate endDate) {
+        this.endDate = endDate;
+    }
 
     @Override
     public Name getName() {
         return name;
     }
+    
+    @Override
+    public TaskDate getStartDate() {
+        return startDate;
+    }
+    
+    @Override
+    public TaskDate getEndDate() {
+        return endDate;
+    }
+
 
     @Override
     public UniqueTagList getTags() {
@@ -54,16 +75,5 @@ public class TestPerson implements ReadOnlyPerson {
         this.getTags().asObservableList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }
-
-    @Override
-    public TaskDate getStartDate() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public TaskDate getEndDate() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    
 }
