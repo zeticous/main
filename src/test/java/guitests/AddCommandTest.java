@@ -16,26 +16,26 @@ public class AddCommandTest extends AddressBookGuiTest {
     public void add() {
         //add one person
         TestPerson[] currentList = td.getTypicalPersons();
-        TestPerson personToAdd = td.hoon;
+        TestPerson personToAdd = td.event3;
         assertAddSuccess(personToAdd, currentList);
         currentList = TestUtil.addPersonsToList(currentList, personToAdd);
 
         //add another person
-        personToAdd = td.ida;
+        personToAdd = td.ddl3;
         assertAddSuccess(personToAdd, currentList);
         currentList = TestUtil.addPersonsToList(currentList, personToAdd);
 
         //add duplicate person
-        commandBox.runCommand(td.hoon.getAddCommand());
+        commandBox.runCommand(td.event3.getAddCommand());
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_PERSON);
         assertTrue(personListPanel.isListMatching(currentList));
 
         //add to empty list
         commandBox.runCommand("clear");
-        assertAddSuccess(td.alice);
+        assertAddSuccess(td.event1);
 
         //invalid command
-        commandBox.runCommand("adds Johnny");
+        commandBox.runCommand("adds meeting");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
     }
 
