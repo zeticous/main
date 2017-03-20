@@ -51,7 +51,7 @@ By : `CS2103JAN2017-T15-B3`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Feb 2017`  &nbsp;&
 ### 1.3. Configuring Checkstyle
 1. Click `Project` -> `Properties` -> `Checkstyle` -> `Local Check Configurations` -> `New...`
 2. Choose `External Configuration File` under `Type`
-3. Enter an arbitrary configuration name e.g. addressbook
+3. Enter an arbitrary configuration name e.g. taskmanager
 4. Import checkstyle configuration file found at `config/checkstyle/checkstyle.xml`
 5. Click OK once, go to the `Main` tab, use the newly imported check configuration.
 6. Tick and select `files from packages`, click `Change...`, and select the `resources` package
@@ -123,7 +123,7 @@ command `delete 1`.
 <img src="images\SDforDeletePerson.png" width="800"><br>
 _Figure 2.1.3a : Component interactions for `delete 1` command (part 1)_
 
->Note how the `Model` simply raises a `AddressBookChangedEvent` when the Address Book data are changed,
+>Note how the `Model` simply raises a `TaskManagerChangedEvent` when the Task Manager data are changed,
  instead of asking the `Storage` to save the updates to the hard disk.
 
 The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates
@@ -191,7 +191,7 @@ _Figure 2.4.1 : Structure of the Model Component_
 The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
-* stores the Address Book data.
+* stores the Task Manager data.
 * exposes a `UnmodifiableObservableList<ReadOnlyPerson>` that can be 'observed' e.g. the UI can be bound to this list
   so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
@@ -208,11 +208,11 @@ _Figure 2.5.1 : Structure of the Storage Component_
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the Address Book data in xml format and read it back.
+* can save the Task Manager data in xml format and read it back.
 
 ### 2.6. Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.taskmanager.commons` package.
 
 ## 3. Implementation
 
@@ -323,7 +323,7 @@ Here are the steps to convert the project documentation files to PDF format.
  1. Make sure you have set up GitHub Pages as described in [UsingGithubPages.md](UsingGithubPages.md#setting-up).
  1. Using Chrome, go to the [GitHub Pages version](UsingGithubPages.md#viewing-the-project-site) of the
     documentation file. <br>
-    e.g. For [UserGuide.md](UserGuide.md), the URL will be `https://<your-username-or-organization-name>.github.io/addressbook-level4/docs/UserGuide.html`.
+    e.g. For [UserGuide.md](UserGuide.md), the URL will be `https://<your-username-or-organization-name>.github.io/taskmanager-level4/docs/UserGuide.html`.
  1. Click on the `Print` option in Chrome's menu.
  1. Set the destination to `Save as PDF`, then click `Save` to save a copy of the file in PDF format. <br>
     For best results, use the settings indicated in the screenshot below. <br>
@@ -332,7 +332,7 @@ Here are the steps to convert the project documentation files to PDF format.
 
 ### 5.6. Managing Dependencies
 
-A project often depends on third-party libraries. For example, Address Book depends on the
+A project often depends on third-party libraries. For example, Task Manager depends on the
 [Jackson library](http://wiki.fasterxml.com/JacksonHome) for XML parsing. Managing these _dependencies_
 can be automated using Gradle. For example, Gradle can download the dependencies automatically, which
 is better than these alternatives.<br>
@@ -661,19 +661,67 @@ Use case ends
 
 ## Appendix E : Product Survey
 
-**Product Name**
+`**Product Name: Google Calendar**`
 
-**Google Calendar**
+**Pros:**
 
-Author: Google
+> * Cloud sync, compatible with many devices (phone, PC, etc)
+> * Reminds user for events and deadlines automatically.
 
-Pros:
+**Cons:**
 
-* Cloud sync, compatible with many devices (phone, PC, etc)
-* Reminds user for events and deadlines automatically.
+> * A lot of buttons, slightly complex.
+> * Has a learning curve.
+> * Does not have a priority task marker. <br>
 
-Cons:
+`**Product Name: Wunderlist**`
 
-* A lot of buttons, slightly complex.
-* Has a learning curve.
-* Does not have a priority task marker.
+**Pros:**
+
+> * Can interface with apps like Dropbox adding more potential features
+> * Can be personalized with configurable backgrounds
+> * Can search for tasks, migrate tasks, mark tasks easily
+> * Can be synced across OS
+
+**Cons:**
+
+> * Cannot add a subtask in the same UI
+> * Cannot be integrated with IFTTT
+> * Need to pay for the premium version which removes the limitations of free version
+> * Cannot interpret natural language date and time
+> * Cannot support recurring tasks functionality <br>
+
+`**Product Name: Todoist**`
+
+**Pros:**
+
+> * Can be integrated with IFTTT
+> * Can be synced across OS and interfaced with other apps
+> * Easy to use UI
+> * Can add subtasks easily and supports recurring task functionality
+> * Powerful features of search, nested lists, natural language 
+> * Easy to add subtasks, priorities, notes and share tasks
+
+**Cons:**
+
+> * UI is not customizable
+> * Cannot sort the lists manually
+> * Need to pay for the premium version that can remove the limitations of free version <br>
+
+
+`**Product Name: Any.do**`
+
+**Pros:**
+
+> * Can sync across devices
+> * Can customize the recurring tasks 
+> * Can view the tasks in different ways. For example standard view, time view, priority list view, calendar view
+> * Can separate tasks based on lists. For example work, personal, miscellaneous.
+> * Can add subtasks, priority, attachments etc. for all tasks
+
+**Cons:**
+
+> * Cannot be integrated with other apps so no task automation
+> * Cannot interpret natural language date and time
+> * Need to pay for the premium version that overcomes the limitations of free version
+
