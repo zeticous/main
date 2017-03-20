@@ -4,8 +4,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
+import java.util.Set;
+
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddCommand;
@@ -24,8 +28,8 @@ public class AddCommandParser {
      * and returns an AddCommand object for execution.
      */
     public Command parse(String args) {
-        ArgumentTokenizer argsTokenizer =
-                new ArgumentTokenizer(PREFIX_STARTDATE, PREFIX_ENDDATE, PREFIX_TAG);
+        ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_STARTDATE,PREFIX_ENDDATE,PREFIX_DEADLINE,PREFIX_TAG);
+
         argsTokenizer.tokenize(args);
 
         String name = argsTokenizer.getPreamble().get();
@@ -35,10 +39,10 @@ public class AddCommandParser {
         
         try {
             return new AddCommand(
-                    argsTokenizer.getPreamble().get(),
-                    argsTokenizer.getValue(PREFIX_STARTDATE).orElse(EMPTY_STRING),
-                    argsTokenizer.getValue(PREFIX_ENDDATE).orElse(EMPTY_STRING),
-                    ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
+                    getNameFromArgsTokenizer(argsTokenizer),
+                    getStartDateFromArgsTokenizer(argsTokenizer),
+                    getEndDateFromArgsTokenizer(argsTokenizer),
+                    getTagsFromArgsTokenizer(argsTokenizer)
             );
         } catch (NoSuchElementException nsee) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -46,5 +50,26 @@ public class AddCommandParser {
             return new IncorrectCommand(ive.getMessage());
         }
     }
-
+    
+    private String getNameFromArgsTokenizer(ArgumentTokenizer argsTokenizer){
+        return argsTokenizer.getPreamble().get();
+    }
+    
+    private String getStartDateFromArgsTokenizer(ArgumentTokenizer argsTokenizer){
+        return argsTokenizer.getValue(PREFIX_STARTDATE).orElse(EMPTY_STRING);
+    }
+    
+    private String getEndDateFromArgsTokenizer(ArgumentTokenizer argsTokenizer){
+        return argsTokenizer
+                .getValue(PREFIX_ENDDATE)
+                .orElse(
+                        argsTokenizer
+                        .getValue(PREFIX_DEADLINE)
+                        .orElse(EMPTY_STRING)
+                        );
+    }
+    
+    private Set<String> getTagsFromArgsTokenizer(ArgumentTokenizer argsTokenizer){
+        return ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG));
+    }
 }
