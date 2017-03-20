@@ -1,30 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addressbook>
-    <persons>
-        <name>Hans Muster</name>
-    </persons>
-    <persons>
-        <name>Ruth Mueller</name>
-    </persons>
-    <persons>
-        <name>Heinz Kurz</name>
-    </persons>
-    <persons>
-        <name>Cornelia Meier</name>
-    </persons>
-    <persons>
-        <name>Werner Meyer</name>
-    </persons>
-    <persons>
-        <name>Lydia Kunz</name>
-    </persons>
-    <persons>
-        <name>Anna Best</name>
-    </persons>
-    <persons>
-        <name>Stefan Meier</name>
-    </persons>
-    <persons>
-        <name>Martin Mueller</name>
-    </persons>
+	<persons>
+		<name>Meeting</name>
+		<startDate>01 January 2018, 06:00 PM</startDate>
+		<endDate>23 August 1994, 06:54 PM</endDate>
+		<tagged>haha</tagged>
+	</persons>
+	<persons>
+		<name>Dinner</name>
+		<startDate>01 January 2018, 06:00 PM</startDate>
+		<endDate>23 August 1994, 06:54 PM</endDate>
+	</persons>
+	<persons>
+		<name>Concert</name>
+		<startDate>01 January 2018, 06:00 PM</startDate>
+		<endDate>23 August 1994, 06:54 PM</endDate>
+	</persons>
+	<persons>
+		<name>Movie</name>
+		<startDate>01 January 2018, 06:00 PM</startDate>
+		<endDate>23 August 1994, 06:54 PM</endDate>
+	</persons>
+	<persons>
+		<name>CS homework</name>
+		<startDate>01 January 2018, 06:00 PM</startDate>
+		<endDate>23 August 1994, 06:54 PM</endDate>
+	</persons>
+	<persons>
+		<name>Save the world</name>
+		<startDate>01 January 2018, 06:00 PM</startDate>
+		<endDate>23 August 1994, 06:54 PM</endDate>
+	</persons>
+	<persons>
+		<name>Stay healthy</name>
+		<startDate>01 January 2018, 06:00 PM</startDate>
+		<endDate>23 August 1994, 06:54 PM</endDate>
+	</persons>
+	<persons>
+		<name>Defeat terrorism</name>
+		<startDate>01 January 2018, 06:00 PM</startDate>
+		<endDate>23 August 1994, 06:54 PM</endDate>
+	</persons>
+	<persons>
+		<name>Achieve world peace</name>
+		<startDate>01 January 2018, 06:00 PM</startDate>
+		<endDate>23 August 1994, 06:54 PM</endDate>
+	</persons>
 </addressbook>
