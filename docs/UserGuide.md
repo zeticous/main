@@ -24,8 +24,8 @@ By : `Team POTATO`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbs
 4. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br>
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.
 5. Some example commands you can try:
-   * **`list all`** : lists all tasks
-   * **`add`**`add meeting 1/1/2088 1200 1/1/2088 1230`
+   * **`list`** : lists all tasks
+   * **`add`**`meeting 1/1/2088 1200 1/1/2088 1230`
      creates an event named `meeting` to the task manager.
    * **`delete`**` 3` : deletes the 3rd task shown in the current list
    * **`exit`** : exits the app
@@ -37,7 +37,8 @@ By : `Team POTATO`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbs
 **Command Format**
 >
 > * Words in `UPPER_CASE` are the parameters.
-> * Items in `SQUARE_BRACKETS` are optional.
+> * Items in `<SHARP_BRACKETS>` are compulsory.
+> * Items in `[SQUARE_BRACKETS]` are optional.
 
 ### 2.1. Viewing help : `help`
 
@@ -51,38 +52,38 @@ Add a task which can be an event, a deadline or a floating task. <br>
 
 The date expression can be in standard language. <br>
 **For example:** <br>
-formal dates: 02/28/1979 <br>
-relaxed dates: oct 1st <br>
-relative dates: the day before next thursday <br>
-date alternatives: next wed or thurs <br>
+Formal dates: 02/28/1979 <br>
+Relaxed dates: oct 1st <br>
+Relative dates: the day before next thursday <br>
+Date alternatives: next wed <br>
 
-**Event format:** `add <TASK_NAME> [DATE_START_TIME] [DATE_END_TIME]`<br>
+**Event format:** `add <TASK_NAME> [<s/>DATE_START_TIME] [<e/>DATE_END_TIME]`<br>
 **Example:** <br>
-> add event 01/01/2088 1200 01/01/2088 1230   <br> 
+> add CS2103 finals s/25/04/2017 1300 e/25/04/2017 1500   <br> 
 
-This will add an event named 'event' with [start date and time] in format dd/mm/yyyy hhmm  and [end date and time] in format dd/mm/yyyy hhmm. <br>
+This will add an event named 'CS2103 finals' with [DATE_START_TIME] in format dd/mm/yyyy hhmm  and [DATE_END_TIME] in format dd/mm/yyyy hhmm. <br>
               
               
-**Deadline format:** `add <TASK_NAME> [DATE_DUE_TIME]`<br>
+**Deadline format:** `add <TASK_NAME> [<e/>DATE_DUE_TIME]`<br>
 **Example:** <br>
-> add deadline 01/01/2088 1200  <br>
+> add v0.5 e/01/01/2020 1200  <br>
 
-This will add a deadline named 'deadline' with [date due and time] in format dd/mm/yyyy hhmm. <br>
+This will add a deadline named 'v0.5' with [DATE_DUE_TIME] in format dd/mm/yyyy hhmm. <br>
                
                
 **Floating task format:** `add <TASK_NAME>` <br>
 **Example:** <br>
-> add floating_task <br>
+> add confess to love <br>
 
-This command will simply add a floating task named 'floating_task'. <br>
+This command will simply add a floating task named 'confess to love'. <br>
      
 
 ### 2.3. Listing tasks : `list`
 
-Shows a list of tasks which can include all tasks or only events or only deadlines or only floating tasks. The tasks can be further shortlisted based on the date of the tasks. An example is given below for further clarification. <br>
-**Format:** 'list < all / floating / events / deadline > [DATE]'  <br>
+Shows a list of tasks which can include all tasks, only events, only deadlines or only floating tasks. The tasks can also be further filtered given a specified date. An example is given below for further clarification. <br>
+**Format:** 'list <  / floating / event / deadline > [DATE]'  <br>
 **Example:** <br>
-> list all  <br>
+> list <br>
 
 This command will simply list all the tasks. <br>
 
@@ -96,25 +97,28 @@ This command will list all the event tasks (with no restriction on the dates of 
 
 ### 2.4. Updating a task : `edit`
 
-Updates an existing task in the task manager.<br>
-**Event format:** `edit  <index> [NEW_TASK_NAME] [NEW_DATE_NEW_START_TIME] [NEW_DATE_NEW_END_TIME]` <br>
+Updates an existing task in the task manager. <br>
+**Event format:** `edit  <index> [NEW_TASK_NAME] [<s/>NEW_DATE_NEW_START_TIME] [<e/>NEW_DATE_NEW_END_TIME]` <br>
 **Example:** <br>
-> edit 3 new_event 01/01/2088 1200 01/01/2088 1230 <br>
+> edit 3 edited_event s/01/01/2088 1200 e/01/01/2088 1230 <br>
 
-This command will edit the task at index number 3 with new name, new start date and time, new end date and time. <br>
+This command will edit the task at index number 3 with a new name, new start date and time, new end date and time. <br>
+Note: At least one of the three [PARAMETERS] must be executed. <br>
     
             
-**Deadline format:** `edit <index> [NEW_TASK_NAME] [NEW_DATE_NEW_DUE_TIME]` <br>
+**Deadline format:** `edit <index> [NEW_TASK_NAME] [<e/>NEW_DATE_NEW_DUE_TIME]` <br>
 **Example:** <br>
-> edit 4 new_deadline 01/01/2088 1200 <br>
+> edit 4 edited_deadline e/01/01/2088 1200 <br>
 
 This command will edit the task at index number 4 with new name, new deadline date and time. <br>
+Note: At least one of the two [PARAMETERS] must be executed. <br>
                
-**Floating task format:** `edit <index> [NEW_TASK_NAME]` <br>
+**Floating task format:** `edit <index> <NEW_TASK_NAME>` <br>
 **Example:** <br>
-> edit 5 new_floating_task <br>
+> edit 5 edited_floating_task <br>
 
 This command will simply edit the task at index number 5 with new name. <br>
+
 
 ### 2.5. Searching for all tasks containing a name : `find`
 
@@ -126,7 +130,7 @@ Searches for the tasks containing the input name. An example has been given belo
 This command will simply return the tasks with the name 'event' in them.
      
 
-> * The search is case sensitive. e.g `meeting` will not match `Meeting`
+> * The search is not case sensitive. e.g `meeting` will match `Meeting`
 > * The order of the keywords does not matter. e.g. `team meeting` will match `meeting team`
 > * Only full words will be matched e.g. `meeting` will not match `meetings`
 > * Tasks matching at least one keyword will be returned (i.e. `OR` search).
@@ -135,7 +139,7 @@ This command will simply return the tasks with the name 'event' in them.
 **Example:** <br>
 > find meeting <br>
 
-This command will return `company meeting` but not `date with girlfriend` <br>
+This command will return `company meeting` but not `date with girlfriend` or `meetings` <br>
 
 ### 2.6. Deleting a task : `delete`
 
@@ -144,7 +148,7 @@ Deletes a specified task.<br>
 **Example:** <br>
 > delete 2   <br>
 
-This command will simply delete the task at index number 2.
+This command will simply delete the task at index number 2 shown on the current list.
 
 
 ### 2.7. Exiting the program : `exit`
@@ -164,23 +168,23 @@ There is no need to save manually.
 
 ## 4. Command Summary
 
-* **Create an event** : `add <TASK_NAME> [DATE_START_TIME] [DATE_END_TIME]` <br>
-  e.g. `add event 1/1/2088 1200 1/1/2088 1230`
+* **Create an event** : `add <TASK_NAME> [<s/>DATE_START_TIME] [<e/>DATE_END_TIME]` <br>
+  e.g. `add birthday party s/1/1/2088 1200 e/1/1/2088 1230`
  
-* **Create a deadline** : `add <TASK_NAME> [DATE_DUE_TIME]` <br>
-  e.g. `add homework 1/1/2088 1200`
+* **Create a deadline** : `add <TASK_NAME> [<e/>DATE_DUE_TIME]` <br>
+  e.g. `add homework e/1/1/2088 1200`
   
 * **Create a floating task** : `add <TASK_NAME>` <br>
   e.g. `add stay_healthy`
   
-* **Edit Event format** : `edit  <index> [NEW_TASK_NAME] [NEW_DATE_NEW_START_TIME] [NEW_DATE_NEW_END_TIME]` <br>
-            e.g. `edit 3 new_event 01/01/2088 1200 01/01/2088 1230`
+* **Edit Event format** : `edit  <index> [NEW_TASK_NAME] [<s/>NEW_DATE_NEW_START_TIME] [<e/>NEW_DATE_NEW_END_TIME]` <br>
+            e.g. `edit 3 edited_event s/01/01/2088 1200 e/01/01/2088 1230`
             
-* **Edit Deadline format** : `edit <index> [NEW_TASK_NAME] [NEW_DATE_NEW_DUE_TIME]` <br>
-               e.g. `edit 4 new_deadline 01/01/2088 1200`
+* **Edit Deadline format** : `edit <index> [NEW_TASK_NAME] [<e/>NEW_DATE_NEW_DUE_TIME]` <br>
+               e.g. `edit 4 edited_deadline e/01/01/2088 1200`
                
 * **Edit Floating task format** : `edit <index> [NEW_TASK_NAME]` <br>
-                   e.g. `edit 5 new_floating_task`
+                   e.g. `edit 5 edited_floating_task`
                    
 * **Delete** : `delete <INDEX>` <br>
    e.g. `delete 1`
@@ -189,7 +193,7 @@ There is no need to save manually.
   e.g. `find meeting` `find NUS` 
 
 * **List** : `list` <br>
-  e.g. `list all`
+  e.g. `list`
 
 * **Help** : `help` <br>
   e.g. `help`
