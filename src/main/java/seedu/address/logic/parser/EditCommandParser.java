@@ -29,6 +29,7 @@ public class EditCommandParser {
      * and returns an EditCommand object for execution.
      */
     public Command parse(String args) {
+    	
         assert args != null;
         ArgumentTokenizer argsTokenizer =
                 new ArgumentTokenizer(PREFIX_STARTDATE, PREFIX_ENDDATE, PREFIX_TAG);
@@ -50,6 +51,7 @@ public class EditCommandParser {
             editPersonDescriptor.setStartDate(ParserUtil.parseTaskDate(startDateString));
             editPersonDescriptor.setEndDate(ParserUtil.parseTaskDate(endDateString));
             editPersonDescriptor.setTags(parseTagsForEdit(ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))));
+        
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }

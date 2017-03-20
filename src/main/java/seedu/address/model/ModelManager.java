@@ -180,7 +180,8 @@ public class ModelManager extends ComponentManager implements Model {
     			// for parsing date
     			default:
     				TaskDate date = new TaskDate(DateTimeUtil.parseDateTime(taskType));
-    				return task.getStartDate().equals(date) || task.getEndDate().equals(date);
+    				return task.getStartDate().getOnlyDate().equals(date.getOnlyDate()) ||
+    						task.getEndDate().getOnlyDate().equals(date.getOnlyDate());
     		}
     	}
     }

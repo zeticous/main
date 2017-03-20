@@ -15,6 +15,11 @@ public class TaskDate {
     public TaskDate(Date date){
         this.taskDate = date;
     }
+    
+    public String getOnlyDate() {
+    	String[] dateAndTime = this.toString().split(",");
+    	return dateAndTime[0];
+    }
 
     @Override
     public String toString() {
