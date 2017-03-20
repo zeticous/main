@@ -673,7 +673,7 @@ Use case ends
 > * A lot of buttons, slightly complex.
 > * Has a learning curve.
 > * Does not have a priority task marker.
-
+<br>
 `**Product Name: Wunderlist**`
 
 **Pros:**
@@ -690,7 +690,7 @@ Use case ends
 > * Need to pay for the premium version which removes the limitations of free version
 > * Cannot interpret natural language date and time
 > * Cannot support recurring tasks functionality
-
+<br>
 `**Product Name: Todoist**`
 
 **Pros:**
@@ -708,8 +708,8 @@ Use case ends
 > * Cannot sort the lists manually
 > * Need to pay for the premium version that can remove the limitations of free version
 
-
-**Product Name: Any.do**
+<br>
+`**Product Name: Any.do**`
 
 **Pros:**
 
