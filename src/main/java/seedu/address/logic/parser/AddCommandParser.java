@@ -28,12 +28,7 @@ public class AddCommandParser {
         ArgumentTokenizer argsTokenizer =
                 new ArgumentTokenizer(PREFIX_STARTDATE,PREFIX_ENDDATE,PREFIX_TAG);
         argsTokenizer.tokenize(args);
-        
-        String name = argsTokenizer.getPreamble().get();
-        if(name == EMPTY_STRING){
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-        }
-        
+
         try {
             return new AddCommand(
                     argsTokenizer.getPreamble().get(),
