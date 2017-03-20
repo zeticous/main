@@ -672,8 +672,8 @@ Use case ends
 
 > * A lot of buttons, slightly complex.
 > * Has a learning curve.
-> * Does not have a priority task marker.
-<br>
+> * Does not have a priority task marker. <br>
+
 `**Product Name: Wunderlist**`
 
 **Pros:**
@@ -689,8 +689,8 @@ Use case ends
 > * Cannot be integrated with IFTTT
 > * Need to pay for the premium version which removes the limitations of free version
 > * Cannot interpret natural language date and time
-> * Cannot support recurring tasks functionality
-<br>
+> * Cannot support recurring tasks functionality <br>
+
 `**Product Name: Todoist**`
 
 **Pros:**
@@ -706,9 +706,9 @@ Use case ends
 
 > * UI is not customizable
 > * Cannot sort the lists manually
-> * Need to pay for the premium version that can remove the limitations of free version
+> * Need to pay for the premium version that can remove the limitations of free version <br>
 
-<br>
+
 `**Product Name: Any.do**`
 
 **Pros:**
