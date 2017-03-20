@@ -12,9 +12,7 @@ import seedu.address.model.tag.UniqueTagList;
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Person implements ReadOnlyPerson {
-    
-    public static final TaskDate NO_DATE = null;
-
+	
     private Name name;
     private TaskDate startDate, endDate;
     private UniqueTagList tags;
@@ -46,7 +44,7 @@ public class Person implements ReadOnlyPerson {
      * @param tags
      */
     public Person(Name name, Optional<TaskDate> startDate, Optional<TaskDate> endDate, UniqueTagList tags) {
-        this(name,startDate.orElse(NO_DATE),endDate.orElse(NO_DATE),tags);
+        this(name,startDate.orElse(new DummyStartTaskDate()),endDate.orElse(new DummyEndTaskDate()),tags);
     }
     
     /**
