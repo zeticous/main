@@ -9,20 +9,19 @@ import java.util.TimeZone;
 import com.joestelmach.natty.DateGroup;
 import com.joestelmach.natty.Parser;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-
 /**
  * Natty parser
  */
 
 public class DateTimeUtil {
+	
     public static final String INVALID_DATE_FORMAT = "Date format is not accepted by PotaTodo";
     public static final String EMPTY_STRING = "";
     
     // Used to store and print date to end user.
     public final static String DATE_STRING_FORMAT = "dd MMMMM yyyy, hh:mm aaa";
     
-    public DateTimeUtil(){};
+    public DateTimeUtil() {};
     
     private static Parser dateTimeParser = new Parser(TimeZone.getDefault());
     

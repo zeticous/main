@@ -1,8 +1,6 @@
 package seedu.address.logic.commands;
 
-import java.util.Date;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -13,13 +11,12 @@ import seedu.address.model.person.DummyStartTaskDate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TaskDate;
-import seedu.address.model.person.TaskUtil;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
- * Adds a person to the address book.
+ * Adds a task to the task manager.
  */
 public class AddCommand extends Command {
 
@@ -46,14 +43,14 @@ public class AddCommand extends Command {
             throws IllegalValueException {
         
         final Set<Tag> tagSet = new HashSet<>();
-        TaskDate startDate, endDate;
+        TaskDate startDate;
+        TaskDate endDate;
         
         if (startDateString == EMPTY_STRING) {
         	startDate = new DummyStartTaskDate();
         
         } else {
             startDate = new TaskDate(DateTimeUtil.parseDateTime(startDateString));
-        
         }
         
         if (endDateString == EMPTY_STRING) {
