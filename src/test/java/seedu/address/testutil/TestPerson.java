@@ -75,4 +75,5 @@ public class TestPerson implements ReadOnlyPerson {
         this.getTags().asObservableList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }
+
 }
