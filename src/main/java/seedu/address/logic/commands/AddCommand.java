@@ -3,6 +3,9 @@ package seedu.address.logic.commands;
 import java.util.HashSet;
 import java.util.Set;
 
+import static seedu.address.logic.parser.AddCommandParser.NO_START_DATE;
+import static seedu.address.logic.parser.AddCommandParser.NO_END_DATE;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.DateTimeUtil;
@@ -32,8 +35,6 @@ public class AddCommand extends Command {
 
     private final Person toAdd;
     
-    public static final String EMPTY_STRING = "";
-
     /**
      * Creates an AddCommand using raw values.
      *
@@ -46,14 +47,14 @@ public class AddCommand extends Command {
         TaskDate startDate;
         TaskDate endDate;
         
-        if (startDateString == EMPTY_STRING) {
+        if (startDateString == NO_START_DATE) {
         	startDate = new DummyStartTaskDate();
         
         } else {
             startDate = new TaskDate(DateTimeUtil.parseDateTime(startDateString));
         }
         
-        if (endDateString == EMPTY_STRING) {
+        if (endDateString == NO_END_DATE) {
         	endDate = new DummyEndTaskDate();
         
         } else {
