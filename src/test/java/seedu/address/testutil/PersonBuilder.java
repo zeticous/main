@@ -2,9 +2,9 @@ package seedu.address.testutil;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.TaskDate;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
-import seedu.address.model.person.TaskDate;
 
 
 /**
@@ -29,12 +29,12 @@ public class PersonBuilder {
         this.person.setName(new Name(name));
         return this;
     }
-    
+
     public PersonBuilder withStartDate(TaskDate startDate) {
         this.person.setStartDate(startDate);
         return this;
     }
-    
+
     public PersonBuilder withEndDate(TaskDate endDate) {
         this.person.setEndDate(endDate);
         return this;

@@ -33,7 +33,7 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         initTags(person);
     }
-    
+
     /**
      * Prints the task in correct format.
      * @param person
@@ -42,11 +42,11 @@ public class PersonCard extends UiPart<Region> {
         if(TaskUtil.isFloating(person)){
             startDate.setVisible(false);
             endDate.setVisible(false);
-            
+
         } else if (TaskUtil.isDeadline(person)){
             startDate.setVisible(false);
             endDate.setText("Due: "+ person.getEndDate().toString());
-        
+
         } else if (TaskUtil.isEvent(person)){
             startDate.setText("Start: "+ person.getStartDate().toString());
             endDate.setText("End: "+ person.getEndDate().toString());

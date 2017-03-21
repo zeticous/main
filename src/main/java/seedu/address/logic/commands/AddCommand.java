@@ -31,7 +31,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Person toAdd;
-    
+
     public static final String EMPTY_STRING = "";
 
     /**
@@ -41,25 +41,25 @@ public class AddCommand extends Command {
      */
     public AddCommand(String name, String startDateString, String endDateString, Set<String> tags)
             throws IllegalValueException {
-        
+
         final Set<Tag> tagSet = new HashSet<>();
         TaskDate startDate;
         TaskDate endDate;
-        
+
         if (startDateString == EMPTY_STRING) {
         	startDate = new DummyStartTaskDate();
-        
+
         } else {
             startDate = new TaskDate(DateTimeUtil.parseDateTime(startDateString));
         }
-        
+
         if (endDateString == EMPTY_STRING) {
         	endDate = new DummyEndTaskDate();
-        
+
         } else {
             endDate = new TaskDate(DateTimeUtil.parseDateTime(endDateString));
         }
-        
+
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }

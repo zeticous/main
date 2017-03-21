@@ -13,8 +13,8 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.DateTimeUtil;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
-import seedu.address.model.person.TaskUtil;
 import seedu.address.model.person.TaskDate;
+import seedu.address.model.person.TaskUtil;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.UniquePersonList.PersonNotFoundException;
 
@@ -101,10 +101,11 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredPersonList(new PredicateExpression(new NameQualifier(keywords)));
     }
 
+    @Override
     public void updateFilteredTaskListByTaskType(String taskType) {
     	updateFilteredPersonList(new PredicateExpression(new TypeQualifier(taskType)));
     }
-    
+
     private void updateFilteredPersonList(Expression expression) {
         filteredPersons.setPredicate(expression::satisfies);
     }
@@ -113,6 +114,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     interface Expression {
         boolean satisfies(ReadOnlyPerson person);
+        @Override
         String toString();
     }
 
@@ -137,6 +139,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     interface Qualifier {
         boolean run(ReadOnlyPerson person);
+        @Override
         String toString();
     }
 
@@ -163,11 +166,11 @@ public class ModelManager extends ComponentManager implements Model {
 
     private class TypeQualifier implements Qualifier {
     	private String taskType;
-    	
+
     	TypeQualifier(String taskType) {
     		this.taskType = taskType;
     	}
-    	
+
     	@Override
     	public boolean run(ReadOnlyPerson task) {
     		switch (taskType) {

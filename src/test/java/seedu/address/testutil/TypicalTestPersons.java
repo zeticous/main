@@ -1,11 +1,11 @@
 package seedu.address.testutil;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.DateTimeUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TaskDate;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.logic.parser.DateTimeUtil;
 
 /**
  *
@@ -13,12 +13,12 @@ import seedu.address.logic.parser.DateTimeUtil;
 public class TypicalTestPersons {
 
     public TestPerson event1, event2, event3, ddl1, ddl2, ddl3, flt1, flt2, flt3;
-    
+
     //Sample events
     public String EVENT1_NAME = "Meeting with principal";
     public String EVENT2_NAME = "Meeting with vice-principal";
     public String EVENT3_NAME = "Golf with president";
-    
+
     public String EVENT1_START_DATE_STRING = "26 March 2017, 10:00 PM";
     public String EVENT1_END_DATE_STRING = "26 March 2017, 11:00 PM";
     public String EVENT2_START_DATE_STRING = "2 May 2018, 8:00 AM";
@@ -30,7 +30,7 @@ public class TypicalTestPersons {
     public String DDL1_NAME = "Save uncle Ben";
     public String DDL2_NAME = "Defeat Joker";
     public String DDL3_NAME = "Finish building time machine";
-    
+
     public String DDL1_DUE_TIME_STRING = "25 March 2017, 11:00 PM";
     public String DDL2_DUE_TIME_STRING = "26 May 2017, 10:00 AM";
     public String DDL3_DUE_TIME_STRING = "28 July 2017, 9:30 PM";
@@ -40,7 +40,7 @@ public class TypicalTestPersons {
     public String FLT2_NAME = "Stay as the strongest human";
     public String FLT3_NAME = "Sleep before 11 everyday";
 
-    
+
     public TypicalTestPersons() {
         try {
             event1 = new PersonBuilder().withName(EVENT1_NAME)
@@ -63,7 +63,7 @@ public class TypicalTestPersons {
                     .withTags("essential").build();
             flt2 = new PersonBuilder().withName(FLT2_NAME)
                     .withTags("easy").build();
-            
+
            //Manually add only
             event3 = new PersonBuilder().withName(EVENT3_NAME)
                     .withStartDate(new TaskDate(DateTimeUtil.parseDateTime(EVENT3_START_DATE_STRING)))
@@ -74,7 +74,7 @@ public class TypicalTestPersons {
                     .build();
             flt3 = new PersonBuilder().withName(FLT3_NAME)
                     .withTags("hard").withTags("daunting").build();
-            
+
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";

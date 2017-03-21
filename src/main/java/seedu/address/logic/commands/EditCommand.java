@@ -88,12 +88,12 @@ public class EditCommand extends Command {
      * corresponding field value of the task.
      */
     public static class EditPersonDescriptor {
-        
+
         private Optional<Name> name = Optional.empty();
         private Optional<TaskDate> startDate = Optional.empty();
         private Optional<TaskDate> endDate = Optional.empty();
         private Optional<UniqueTagList> tags = Optional.empty();
-        
+
         public EditPersonDescriptor() {}
 
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
@@ -118,16 +118,16 @@ public class EditCommand extends Command {
         public Optional<Name> getName() {
             return name;
         }
-        
+
         public void setStartDate(Optional<TaskDate> taskDate) {
         	assert taskDate != null;
             this.startDate = taskDate;
         }
-        
+
         public Optional<TaskDate> getStartDate() {
             return startDate;
         }
-        
+
         public void setEndDate(Optional<TaskDate> taskDate) {
         	assert taskDate != null;
         	this.endDate = taskDate;
@@ -136,7 +136,7 @@ public class EditCommand extends Command {
         public Optional<TaskDate> getEndDate() {
             return endDate;
         }
-        
+
         public void setTags(Optional<UniqueTagList> tags) {
             assert tags != null;
             this.tags = tags;
