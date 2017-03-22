@@ -5,10 +5,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.taskmanager.model.person.ReadOnlyPerson;
-import seedu.taskmanager.model.person.TaskUtil;
+import seedu.taskmanager.model.task.ReadOnlyTask;
+import seedu.taskmanager.model.task.TaskUtil;
 
-public class PersonCard extends UiPart<Region> {
+public class TaskCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
 
@@ -26,7 +26,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    public PersonCard(ReadOnlyPerson person, int displayedIndex) {
+    public TaskCard(ReadOnlyTask person, int displayedIndex) {
         super(FXML);
         name.setText(person.getName().fullName);
         taskSelector(person);
@@ -38,7 +38,7 @@ public class PersonCard extends UiPart<Region> {
      * Prints the task in correct format.
      * @param person
      */
-    private void taskSelector(ReadOnlyPerson person){
+    private void taskSelector(ReadOnlyTask person){
         if(TaskUtil.isFloating(person)){
             startDate.setVisible(false);
             endDate.setVisible(false);
@@ -53,7 +53,7 @@ public class PersonCard extends UiPart<Region> {
         }
     }
 
-    private void initTags(ReadOnlyPerson person) {
+    private void initTags(ReadOnlyTask person) {
         person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }

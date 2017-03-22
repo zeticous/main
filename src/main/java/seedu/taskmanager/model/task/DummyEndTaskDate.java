@@ -1,4 +1,4 @@
-package seedu.taskmanager.model.person;
+package seedu.taskmanager.model.task;
 
 import seedu.taskmanager.logic.parser.DateTimeUtil;
 

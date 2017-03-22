@@ -29,13 +29,13 @@ import seedu.taskmanager.TestApp;
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
 import seedu.taskmanager.commons.util.FileUtil;
 import seedu.taskmanager.commons.util.XmlUtil;
-import seedu.taskmanager.model.AddressBook;
-import seedu.taskmanager.model.person.Name;
-import seedu.taskmanager.model.person.Person;
-import seedu.taskmanager.model.person.ReadOnlyPerson;
+import seedu.taskmanager.model.TaskManager;
 import seedu.taskmanager.model.tag.Tag;
 import seedu.taskmanager.model.tag.UniqueTagList;
-import seedu.taskmanager.storage.XmlSerializableAddressBook;
+import seedu.taskmanager.model.task.Name;
+import seedu.taskmanager.model.task.Task;
+import seedu.taskmanager.model.task.ReadOnlyTask;
+import seedu.taskmanager.storage.XmlSerializableTaskManager;
 
 /**
  * A utility class for test cases.
@@ -49,7 +49,7 @@ public class TestUtil {
      */
     public static final String SANDBOX_FOLDER = FileUtil.getPath("./src/test/data/sandbox/");
 
-    public static final Person[] SAMPLE_PERSON_DATA = getSamplePersonData();
+    public static final Task[] SAMPLE_PERSON_DATA = getSamplePersonData();
 
     public static final Tag[] SAMPLE_TAG_DATA = getSampleTagData();
 
@@ -68,19 +68,19 @@ public class TestUtil {
                 String.format("Expected %s to be thrown, but nothing was thrown.", expected.getName()));
     }
 
-    private static Person[] getSamplePersonData() {
+    private static Task[] getSamplePersonData() {
         try {
             //CHECKSTYLE.OFF: LineLength
-            return new Person[]{
-                new Person(new Name("Ali Muster"), new UniqueTagList()),
-                new Person(new Name("Boris Mueller"), new UniqueTagList()),
-                new Person(new Name("Carl Kurz"), new UniqueTagList()),
-                new Person(new Name("Daniel Meier"), new UniqueTagList()),
-                new Person(new Name("Elle Meyer"), new UniqueTagList()),
-                new Person(new Name("Fiona Kunz"), new UniqueTagList()),
-                new Person(new Name("George Best"), new UniqueTagList()),
-                new Person(new Name("Hoon Meier"), new UniqueTagList()),
-                new Person(new Name("Ida Mueller"), new UniqueTagList())
+            return new Task[]{
+                new Task(new Name("Ali Muster"), new UniqueTagList()),
+                new Task(new Name("Boris Mueller"), new UniqueTagList()),
+                new Task(new Name("Carl Kurz"), new UniqueTagList()),
+                new Task(new Name("Daniel Meier"), new UniqueTagList()),
+                new Task(new Name("Elle Meyer"), new UniqueTagList()),
+                new Task(new Name("Fiona Kunz"), new UniqueTagList()),
+                new Task(new Name("George Best"), new UniqueTagList()),
+                new Task(new Name("Hoon Meier"), new UniqueTagList()),
+                new Task(new Name("Ida Mueller"), new UniqueTagList())
             };
             //CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {
@@ -104,7 +104,7 @@ public class TestUtil {
         }
     }
 
-    public static List<Person> generateSamplePersonData() {
+    public static List<Task> generateSamplePersonData() {
         return Arrays.asList(SAMPLE_PERSON_DATA);
     }
 
@@ -141,8 +141,8 @@ public class TestUtil {
         createDataFileWithSampleData(TestApp.SAVE_LOCATION_FOR_TESTING);
     }
 
-    public static XmlSerializableAddressBook generateSampleStorageAddressBook() {
-        return new XmlSerializableAddressBook(new AddressBook());
+    public static XmlSerializableTaskManager generateSampleStorageAddressBook() {
+        return new XmlSerializableTaskManager(new TaskManager());
     }
 
     /**
@@ -330,7 +330,7 @@ public class TestUtil {
         return list;
     }
 
-    public static boolean compareCardAndPerson(PersonCardHandle card, ReadOnlyPerson person) {
+    public static boolean compareCardAndPerson(PersonCardHandle card, ReadOnlyTask person) {
         return card.isSamePerson(person);
     }
 

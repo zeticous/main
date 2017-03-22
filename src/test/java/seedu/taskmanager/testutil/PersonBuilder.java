@@ -1,10 +1,10 @@
 package seedu.taskmanager.testutil;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
-import seedu.taskmanager.model.person.Name;
-import seedu.taskmanager.model.person.TaskDate;
 import seedu.taskmanager.model.tag.Tag;
 import seedu.taskmanager.model.tag.UniqueTagList;
+import seedu.taskmanager.model.task.Name;
+import seedu.taskmanager.model.task.TaskDate;
 
 
 /**

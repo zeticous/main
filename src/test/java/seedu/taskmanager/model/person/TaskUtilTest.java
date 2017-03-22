@@ -3,11 +3,11 @@ package seedu.taskmanager.model.person;
 import static org.junit.Assert.assertTrue;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
-import seedu.taskmanager.model.person.Name;
-import seedu.taskmanager.model.person.Person;
-import seedu.taskmanager.model.person.TaskDate;
-import seedu.taskmanager.model.person.TaskUtil;
 import seedu.taskmanager.model.tag.UniqueTagList;
+import seedu.taskmanager.model.task.Name;
+import seedu.taskmanager.model.task.Task;
+import seedu.taskmanager.model.task.TaskDate;
+import seedu.taskmanager.model.task.TaskUtil;
 
 public class TaskUtilTest {
     public void isFloatingTask_floatingTask_returnTrue() throws IllegalValueException{
@@ -16,6 +16,6 @@ public class TaskUtilTest {
         TaskDate end = null;
         UniqueTagList tags = null;
 
-        assertTrue(TaskUtil.isFloating(new Person(name,start,end,tags)));
+        assertTrue(TaskUtil.isFloating(new Task(name,start,end,tags)));
     }
 }

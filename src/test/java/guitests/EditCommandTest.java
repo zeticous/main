@@ -8,8 +8,8 @@ import org.junit.Test;
 import guitests.guihandles.PersonCardHandle;
 import seedu.taskmanager.commons.core.Messages;
 import seedu.taskmanager.logic.commands.EditCommand;
-import seedu.taskmanager.model.person.Name;
 import seedu.taskmanager.model.tag.Tag;
+import seedu.taskmanager.model.task.Name;
 import seedu.taskmanager.testutil.PersonBuilder;
 import seedu.taskmanager.testutil.TestPerson;
 

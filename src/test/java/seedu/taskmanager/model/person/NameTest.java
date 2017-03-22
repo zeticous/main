@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import seedu.taskmanager.model.person.Name;
+import seedu.taskmanager.model.task.Name;
 
 public class NameTest {
 

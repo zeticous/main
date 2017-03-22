@@ -1,14 +1,14 @@
 package seedu.taskmanager.testutil;
 
-import seedu.taskmanager.model.person.Name;
-import seedu.taskmanager.model.person.ReadOnlyPerson;
-import seedu.taskmanager.model.person.TaskDate;
 import seedu.taskmanager.model.tag.UniqueTagList;
+import seedu.taskmanager.model.task.Name;
+import seedu.taskmanager.model.task.ReadOnlyTask;
+import seedu.taskmanager.model.task.TaskDate;
 
 /**
  * A mutable person object. For testing only.
  */
-public class TestPerson implements ReadOnlyPerson {
+public class TestPerson implements ReadOnlyTask {
 
     private Name name;
     private TaskDate startDate;

@@ -2,10 +2,10 @@ package seedu.taskmanager.testutil;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
 import seedu.taskmanager.logic.parser.DateTimeUtil;
-import seedu.taskmanager.model.AddressBook;
-import seedu.taskmanager.model.person.Person;
-import seedu.taskmanager.model.person.TaskDate;
-import seedu.taskmanager.model.person.UniquePersonList;
+import seedu.taskmanager.model.TaskManager;
+import seedu.taskmanager.model.task.Task;
+import seedu.taskmanager.model.task.TaskDate;
+import seedu.taskmanager.model.task.UniqueTaskList;
 
 /**
  *
@@ -81,11 +81,11 @@ public class TypicalTestPersons {
         }
     }
 
-    public static void loadAddressBookWithSampleData(AddressBook ab) {
+    public static void loadAddressBookWithSampleData(TaskManager ab) {
         for (TestPerson person : new TypicalTestPersons().getTypicalPersons()) {
             try {
-                ab.addPerson(new Person(person));
-            } catch (UniquePersonList.DuplicatePersonException e) {
+                ab.addPerson(new Task(person));
+            } catch (UniqueTaskList.DuplicatePersonException e) {
                 assert false : "not possible";
             }
         }
@@ -95,8 +95,8 @@ public class TypicalTestPersons {
         return new TestPerson[]{event1, event2, ddl1, ddl2, flt1, flt2};
     }
 
-    public AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public TaskManager getTypicalAddressBook() {
+        TaskManager ab = new TaskManager();
         loadAddressBookWithSampleData(ab);
         return ab;
     }

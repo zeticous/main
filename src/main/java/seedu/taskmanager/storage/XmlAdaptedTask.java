@@ -7,17 +7,17 @@ import javax.xml.bind.annotation.XmlElement;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
 import seedu.taskmanager.logic.parser.DateTimeUtil;
-import seedu.taskmanager.model.person.Name;
-import seedu.taskmanager.model.person.Person;
-import seedu.taskmanager.model.person.ReadOnlyPerson;
-import seedu.taskmanager.model.person.TaskDate;
 import seedu.taskmanager.model.tag.Tag;
 import seedu.taskmanager.model.tag.UniqueTagList;
+import seedu.taskmanager.model.task.Name;
+import seedu.taskmanager.model.task.Task;
+import seedu.taskmanager.model.task.ReadOnlyTask;
+import seedu.taskmanager.model.task.TaskDate;
 
 /**
  * JAXB-friendly version of the Person.
  */
-public class XmlAdaptedPerson {
+public class XmlAdaptedTask {
 
     @XmlElement(required = true)
     private String name;
@@ -32,7 +32,7 @@ public class XmlAdaptedPerson {
      * Constructs an XmlAdaptedPerson.
      * This is the no-arg constructor that is required by JAXB.
      */
-    public XmlAdaptedPerson() {}
+    public XmlAdaptedTask() {}
 
 
     /**
@@ -40,7 +40,7 @@ public class XmlAdaptedPerson {
      *
      * @param source future changes to this will not affect the created XmlAdaptedPerson
      */
-    public XmlAdaptedPerson(ReadOnlyPerson source) {
+    public XmlAdaptedTask(ReadOnlyTask source) {
         name = source.getName().fullName;
         startDate = source.getStartDate().toString();
         endDate = source.getEndDate().toString();
@@ -56,7 +56,7 @@ public class XmlAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
-    public Person toModelType() throws IllegalValueException {
+    public Task toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (XmlAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -65,6 +65,6 @@ public class XmlAdaptedPerson {
         final TaskDate startDate = new TaskDate(DateTimeUtil.parseDateTime(this.startDate));
         final TaskDate endDate = new TaskDate(DateTimeUtil.parseDateTime(this.endDate));
         final UniqueTagList tags = new UniqueTagList(personTags);
-        return new Person(name, startDate, endDate, tags);
+        return new Task(name, startDate, endDate, tags);
     }
 }

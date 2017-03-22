@@ -1,4 +1,4 @@
-package seedu.taskmanager.model.person;
+package seedu.taskmanager.model.task;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -11,7 +11,7 @@ import seedu.taskmanager.model.tag.UniqueTagList;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated.
  */
-public class Person implements ReadOnlyPerson {
+public class Task implements ReadOnlyTask {
 
     private Name name;
     private TaskDate startDate, endDate;
@@ -21,7 +21,7 @@ public class Person implements ReadOnlyPerson {
      * Every field must be present and not null.
      */
 
-    public Person(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags) {
+    public Task(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags) {
         assert !CollectionUtil.isAnyNull(name, tags);
         this.name = name;
         this.startDate = startDate;
@@ -30,7 +30,7 @@ public class Person implements ReadOnlyPerson {
     }
 
 
-    public Person(Name name, UniqueTagList tags) throws IllegalValueException{
+    public Task(Name name, UniqueTagList tags) throws IllegalValueException{
         this.name = name;
         this.startDate = new DummyStartTaskDate();
         this.endDate = new DummyEndTaskDate();
@@ -43,14 +43,14 @@ public class Person implements ReadOnlyPerson {
      * @param endDate
      * @param tags
      */
-    public Person(Name name, Optional<TaskDate> startDate, Optional<TaskDate> endDate, UniqueTagList tags) {
+    public Task(Name name, Optional<TaskDate> startDate, Optional<TaskDate> endDate, UniqueTagList tags) {
         this(name,startDate.orElse(new DummyStartTaskDate()),endDate.orElse(new DummyEndTaskDate()),tags);
     }
 
     /**
      * Creates a copy of the given ReadOnlyPerson.
      */
-    public Person(ReadOnlyPerson source) {
+    public Task(ReadOnlyTask source) {
         this.name = source.getName();
         this.startDate = source.getStartDate();
         this.endDate = source.getEndDate();
@@ -100,7 +100,7 @@ public class Person implements ReadOnlyPerson {
     /**
      * Updates this person with the details of {@code replacement}.
      */
-    public void resetData(ReadOnlyPerson replacement) {
+    public void resetData(ReadOnlyTask replacement) {
         assert replacement != null;
         
         this.setName(replacement.getName());
@@ -112,8 +112,8 @@ public class Person implements ReadOnlyPerson {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ReadOnlyPerson // instanceof handles nulls
-                && this.isSameStateAs((ReadOnlyPerson) other));
+                || (other instanceof ReadOnlyTask // instanceof handles nulls
+                && this.isSameStateAs((ReadOnlyTask) other));
     }
 
     @Override

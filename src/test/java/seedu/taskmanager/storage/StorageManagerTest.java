@@ -12,15 +12,15 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import seedu.taskmanager.commons.events.model.AddressBookChangedEvent;
+import seedu.taskmanager.commons.events.model.TaskManagerChangedEvent;
 import seedu.taskmanager.commons.events.storage.DataSavingExceptionEvent;
-import seedu.taskmanager.model.AddressBook;
-import seedu.taskmanager.model.ReadOnlyAddressBook;
+import seedu.taskmanager.model.TaskManager;
+import seedu.taskmanager.model.ReadOnlyTaskManager;
 import seedu.taskmanager.model.UserPrefs;
 import seedu.taskmanager.storage.JsonUserPrefsStorage;
 import seedu.taskmanager.storage.Storage;
 import seedu.taskmanager.storage.StorageManager;
-import seedu.taskmanager.storage.XmlAddressBookStorage;
+import seedu.taskmanager.storage.XmlTaskManagerStorage;
 import seedu.taskmanager.testutil.EventsCollector;
 import seedu.taskmanager.testutil.TypicalTestPersons;
 
@@ -68,7 +68,7 @@ public class StorageManagerTest {
         Storage storage = new StorageManager(new XmlAddressBookStorageExceptionThrowingStub("dummy"),
                                              new JsonUserPrefsStorage("dummy"));
         EventsCollector eventCollector = new EventsCollector();
-        storage.handleAddressBookChangedEvent(new AddressBookChangedEvent(new AddressBook()));
+        storage.handleAddressBookChangedEvent(new TaskManagerChangedEvent(new TaskManager()));
         assertTrue(eventCollector.get(0) instanceof DataSavingExceptionEvent);
     }
 
@@ -76,14 +76,14 @@ public class StorageManagerTest {
     /**
      * A Stub class to throw an exception when the save method is called
      */
-    class XmlAddressBookStorageExceptionThrowingStub extends XmlAddressBookStorage {
+    class XmlAddressBookStorageExceptionThrowingStub extends XmlTaskManagerStorage {
 
         public XmlAddressBookStorageExceptionThrowingStub(String filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath) throws IOException {
+        public void saveAddressBook(ReadOnlyTaskManager addressBook, String filePath) throws IOException {
             throw new IOException("dummy exception");
         }
     }
