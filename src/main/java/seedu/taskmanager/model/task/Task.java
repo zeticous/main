@@ -16,6 +16,7 @@ public class Task implements ReadOnlyTask {
     private Name name;
     private TaskDate startDate, endDate;
     private UniqueTagList tags;
+    private boolean isDone;
 
     /**
      * Every field must be present and not null.
@@ -131,6 +132,12 @@ public class Task implements ReadOnlyTask {
     @Override
     public String toString() {
         return getAsText();
+    }
+
+    @Override
+    public boolean isDone() {
+        // TODO Auto-generated method stub
+        return false;
     }
 
 }

@@ -5,13 +5,17 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.taskmanager.model.task.ReadOnlyTask;
 import seedu.taskmanager.model.task.TaskUtil;
 
 public class TaskCard extends UiPart<Region> {
 
     private static final String FXML = "TaskListCard.fxml";
+    private static final TaskCardStyle style = TaskCardStyle.getInstance();
 
+    @FXML
+    private VBox idContainer;
     @FXML
     private HBox cardPane;
     @FXML
@@ -36,8 +40,25 @@ public class TaskCard extends UiPart<Region> {
     private void initialise(ReadOnlyTask task, int displayedIndex) {
         name.setText(task.getName().fullName);
         taskSelector(task);
+        doneSelector(task);
         id.setText(displayedIndex + ". ");
         initTags(task);
+    }
+
+    private void doneSelector(ReadOnlyTask task) {
+        StringBuilder styleString = new StringBuilder();
+        String IS_DONE = "Done";
+        String NOT_DONE = "Not done";
+
+        if (task.isDone()) {
+            styleString.append(style.getCardDoneColour(IS_DONE));
+
+        } else {
+            styleString.append(style.getCardDoneColour(NOT_DONE));
+
+        }
+
+        idContainer.setStyle(styleString.toString());
     }
 
     /**
