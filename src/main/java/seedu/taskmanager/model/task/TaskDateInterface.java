@@ -6,7 +6,7 @@ import seedu.taskmanager.commons.exceptions.IllegalValueException;
 import seedu.taskmanager.logic.parser.DateTimeUtil;
 
 /**
- * Represents a Person's name in the address book.
+ * Represents a Task's name in the task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public interface TaskDateInterface {

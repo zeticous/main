@@ -10,7 +10,7 @@ import seedu.taskmanager.model.task.TaskUtil;
 
 public class TaskCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "TaskListCard.fxml";
 
     @FXML
     private HBox cardPane;
@@ -26,34 +26,34 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    public TaskCard(ReadOnlyTask person, int displayedIndex) {
+    public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
-        name.setText(person.getName().fullName);
-        taskSelector(person);
+        name.setText(task.getName().fullName);
+        taskSelector(task);
         id.setText(displayedIndex + ". ");
-        initTags(person);
+        initTags(task);
     }
 
     /**
      * Prints the task in correct format.
-     * @param person
+     * @param task
      */
-    private void taskSelector(ReadOnlyTask person){
-        if(TaskUtil.isFloating(person)){
+    private void taskSelector(ReadOnlyTask task){
+        if(TaskUtil.isFloating(task)){
             startDate.setVisible(false);
             endDate.setVisible(false);
 
-        } else if (TaskUtil.isDeadline(person)){
+        } else if (TaskUtil.isDeadline(task)){
             startDate.setVisible(false);
-            endDate.setText("Due: "+ person.getEndDate().toString());
+            endDate.setText("Due: "+ task.getEndDate().toString());
 
-        } else if (TaskUtil.isEvent(person)){
-            startDate.setText("Start: "+ person.getStartDate().toString());
-            endDate.setText("End: "+ person.getEndDate().toString());
+        } else if (TaskUtil.isEvent(task)){
+            startDate.setText("Start: "+ task.getStartDate().toString());
+            endDate.setText("End: "+ task.getEndDate().toString());
         }
     }
 
-    private void initTags(ReadOnlyTask person) {
-        person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    private void initTags(ReadOnlyTask task) {
+        task.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }

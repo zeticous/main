@@ -6,10 +6,10 @@ import seedu.taskmanager.model.ReadOnlyTaskManager;
 import seedu.taskmanager.model.tag.UniqueTagList;
 import seedu.taskmanager.model.task.Name;
 import seedu.taskmanager.model.task.Task;
-import seedu.taskmanager.model.task.UniqueTaskList.DuplicatePersonException;
+import seedu.taskmanager.model.task.UniqueTaskList.DuplicateTaskException;
 
 public class SampleDataUtil {
-    public static Task[] getSamplePersons() {
+    public static Task[] getSampleTasks() {
         try {
             return new Task[] {
                 new Task(new Name("Alex Yeoh"), new UniqueTagList("friends")),
@@ -24,15 +24,15 @@ public class SampleDataUtil {
         }
     }
 
-    public static ReadOnlyTaskManager getSampleAddressBook() {
+    public static ReadOnlyTaskManager getSampleTaskManager() {
         try {
             TaskManager sampleAB = new TaskManager();
-            for (Task samplePerson : getSamplePersons()) {
-                sampleAB.addPerson(samplePerson);
+            for (Task sampleTask : getSampleTasks()) {
+                sampleAB.addTask(sampleTask);
             }
             return sampleAB;
-        } catch (DuplicatePersonException e) {
-            throw new AssertionError("sample data cannot contain duplicate persons", e);
+        } catch (DuplicateTaskException e) {
+            throw new AssertionError("sample data cannot contain duplicate tasks", e);
         }
     }
 }

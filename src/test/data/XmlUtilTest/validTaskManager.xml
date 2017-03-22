@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addressbook>
-	<persons>
+<taskmanager>
+	<tasks>
 		<name>Meeting</name>
 		<startDate>01 January 2018, 06:00 PM</startDate>
 		<endDate>23 August 1994, 06:54 PM</endDate>
 		<tagged>haha</tagged>
-	</persons>
-	<persons>
+	</tasks>
+	<tasks>
 		<name>Dinner</name>
 		<startDate>01 January 2018, 06:00 PM</startDate>
 		<endDate>23 August 1994, 06:54 PM</endDate>
-	</persons>
-	<persons>
+	</tasks>
+	<tasks>
 		<name>Concert</name>
 		<startDate>01 January 2018, 06:00 PM</startDate>
 		<endDate>23 August 1994, 06:54 PM</endDate>
-	</persons>
-	<persons>
+	</tasks>
+	<tasks>
 		<name>Movie</name>
 		<startDate>01 January 2018, 06:00 PM</startDate>
 		<endDate>23 August 1994, 06:54 PM</endDate>
-	</persons>
-	<persons>
+	</tasks>
+	<tasks>
 		<name>CS homework</name>
 		<startDate>01 January 2018, 06:00 PM</startDate>
 		<endDate>23 August 1994, 06:54 PM</endDate>
-	</persons>
-	<persons>
+	</tasks>
+	<tasks>
 		<name>Save the world</name>
 		<startDate>01 January 2018, 06:00 PM</startDate>
 		<endDate>23 August 1994, 06:54 PM</endDate>
-	</persons>
-	<persons>
+	</tasks>
+	<tasks>
 		<name>Stay healthy</name>
 		<startDate>01 January 2018, 06:00 PM</startDate>
 		<endDate>23 August 1994, 06:54 PM</endDate>
-	</persons>
-	<persons>
+	</tasks>
+	<tasks>
 		<name>Defeat terrorism</name>
 		<startDate>01 January 2018, 06:00 PM</startDate>
 		<endDate>23 August 1994, 06:54 PM</endDate>
-	</persons>
-	<persons>
+	</tasks>
+	<tasks>
 		<name>Achieve world peace</name>
 		<startDate>01 January 2018, 06:00 PM</startDate>
 		<endDate>23 August 1994, 06:54 PM</endDate>
-	</persons>
-</addressbook>
+	</tasks>
+</taskmanager>

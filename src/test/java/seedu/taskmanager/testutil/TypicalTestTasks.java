@@ -81,23 +81,23 @@ public class TypicalTestTasks {
         }
     }
 
-    public static void loadAddressBookWithSampleData(TaskManager ab) {
-        for (TestTask person : new TypicalTestTasks().getTypicalPersons()) {
+    public static void loadTaskManagerWithSampleData(TaskManager ab) {
+        for (TestTask task : new TypicalTestTasks().getTypicalTasks()) {
             try {
-                ab.addPerson(new Task(person));
-            } catch (UniqueTaskList.DuplicatePersonException e) {
+                ab.addTask(new Task(task));
+            } catch (UniqueTaskList.DuplicateTaskException e) {
                 assert false : "not possible";
             }
         }
     }
 
-    public TestTask[] getTypicalPersons() {
+    public TestTask[] getTypicalTasks() {
         return new TestTask[]{event1, event2, ddl1, ddl2, flt1, flt2};
     }
 
-    public TaskManager getTypicalAddressBook() {
+    public TaskManager getTypicalTaskManager() {
         TaskManager ab = new TaskManager();
-        loadAddressBookWithSampleData(ab);
+        loadTaskManagerWithSampleData(ab);
         return ab;
     }
 }
