@@ -44,13 +44,12 @@ public class TaskListPanel extends UiPart<Region> {
     }
 
     private void setEventHandlerForSelectionChangeEvent() {
-        taskListView.getSelectionModel().selectedItemProperty()
-                .addListener((observable, oldValue, newValue) -> {
-                    if (newValue != null) {
-                        logger.fine("Selection in task list panel changed to : '" + newValue + "'");
-                        raise(new TaskPanelSelectionChangedEvent(newValue));
-                    }
-                });
+        taskListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                logger.fine("Selection in task list panel changed to : '" + newValue + "'");
+                raise(new TaskPanelSelectionChangedEvent(newValue));
+            }
+        });
     }
 
     public void scrollTo(int index) {

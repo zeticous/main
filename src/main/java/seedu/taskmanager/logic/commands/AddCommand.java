@@ -26,8 +26,7 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task manager. "
-            + "Parameters: NAME [s/START_DATE_TIME] [e/END_DATE_TIME] [t/TAG]...\n"
-            + "Example: " + COMMAND_WORD
+            + "Parameters: NAME [s/START_DATE_TIME] [e/END_DATE_TIME] [t/TAG]...\n" + "Example: " + COMMAND_WORD
             + " Meeting s/ 1 May 2017 6pm e/ 1/5/2017 7pm t/important";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
@@ -38,7 +37,8 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand using raw values.
      *
-     * @throws IllegalValueException if any of the raw values are invalid
+     * @throws IllegalValueException
+     *             if any of the raw values are invalid
      */
     public AddCommand(String name, String startDateString, String endDateString, Set<String> tags)
             throws IllegalValueException {
@@ -49,14 +49,14 @@ public class AddCommand extends Command {
 
         if (startDateString == NO_START_DATE) {
 
-        	startDate = new DummyStartTaskDate();
+            startDate = new DummyStartTaskDate();
 
         } else {
             startDate = new TaskDate(DateTimeUtil.parseDateTime(startDateString));
         }
 
         if (endDateString == NO_END_DATE) {
-        	endDate = new DummyEndTaskDate();
+            endDate = new DummyEndTaskDate();
 
         } else {
             endDate = new TaskDate(DateTimeUtil.parseDateTime(endDateString));
@@ -65,12 +65,7 @@ public class AddCommand extends Command {
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
-        this.toAdd = new Task(
-                new Name(name),
-                startDate,
-                endDate,
-                new UniqueTagList(tagSet)
-        );
+        this.toAdd = new Task(new Name(name), startDate, endDate, new UniqueTagList(tagSet));
     }
 
     @Override

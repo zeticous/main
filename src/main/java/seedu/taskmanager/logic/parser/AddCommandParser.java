@@ -27,11 +27,12 @@ public class AddCommandParser {
     public static final String NO_END_DATE = "End date not found";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the
+     * AddCommand and returns an AddCommand object for execution.
      */
     public Command parse(String args) {
-        ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_STARTDATE,PREFIX_ENDDATE,PREFIX_DEADLINE,PREFIX_TAG);
+        ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_STARTDATE, PREFIX_ENDDATE, PREFIX_DEADLINE,
+                PREFIX_TAG);
 
         argsTokenizer.tokenize(args);
         try {
@@ -39,7 +40,7 @@ public class AddCommandParser {
             String startDate = getStartDateFromArgsTokenizer(argsTokenizer);
             String endDate = getEndDateFromArgsTokenizer(argsTokenizer);
             Set<String> tags = getTagsFromArgsTokenizer(argsTokenizer);
-            return new AddCommand(name,startDate,endDate,tags);
+            return new AddCommand(name, startDate, endDate, tags);
 
         } catch (NoSuchElementException nsee) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -57,18 +58,19 @@ public class AddCommandParser {
         return name;
     }
 
-    private String getStartDateFromArgsTokenizer(ArgumentTokenizer argsTokenizer) throws IllegalValueException{
-        if(argsTokenizer.getValue(PREFIX_STARTDATE).isPresent()){
-            if(argsTokenizer.getValue(PREFIX_ENDDATE).isPresent()){
-                if(isValidStartAndEndDate(argsTokenizer)){
+    private String getStartDateFromArgsTokenizer(ArgumentTokenizer argsTokenizer) throws IllegalValueException {
+        if (argsTokenizer.getValue(PREFIX_STARTDATE).isPresent()) {
+            if (argsTokenizer.getValue(PREFIX_ENDDATE).isPresent()) {
+                if (isValidStartAndEndDate(argsTokenizer)) {
                     return argsTokenizer.getValue(PREFIX_STARTDATE).get();
 
-                } else{
+                } else {
                     throw new IllegalValueException(String.format(MESSAGE_START_AFTER_END, AddCommand.MESSAGE_USAGE));
                 }
 
             } else {
-                throw new IllegalValueException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                throw new IllegalValueException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
             }
 
         }
@@ -76,7 +78,7 @@ public class AddCommandParser {
         return NO_START_DATE;
     }
 
-    private boolean isValidStartAndEndDate(ArgumentTokenizer argsTokenizer) throws IllegalValueException{
+    private boolean isValidStartAndEndDate(ArgumentTokenizer argsTokenizer) throws IllegalValueException {
         String startDateString = argsTokenizer.getValue(PREFIX_STARTDATE).get();
         String endDateString = argsTokenizer.getValue(PREFIX_ENDDATE).get();
 
@@ -86,23 +88,18 @@ public class AddCommandParser {
         return startDate.before(endDate);
     }
 
-    private String getEndDateFromArgsTokenizer(ArgumentTokenizer argsTokenizer) throws IllegalValueException{
+    private String getEndDateFromArgsTokenizer(ArgumentTokenizer argsTokenizer) throws IllegalValueException {
         boolean hasEndDate = argsTokenizer.getValue(PREFIX_ENDDATE).isPresent();
         boolean hasDeadline = argsTokenizer.getValue(PREFIX_DEADLINE).isPresent();
-        if(hasDeadline && hasEndDate){
+        if (hasDeadline && hasEndDate) {
             throw new IllegalValueException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        return argsTokenizer
-                .getValue(PREFIX_ENDDATE)
-                .orElse(
-                        argsTokenizer
-                        .getValue(PREFIX_DEADLINE)
-                        .orElse(NO_END_DATE)
-                        );
+        return argsTokenizer.getValue(PREFIX_ENDDATE)
+                .orElse(argsTokenizer.getValue(PREFIX_DEADLINE).orElse(NO_END_DATE));
     }
 
-    private Set<String> getTagsFromArgsTokenizer(ArgumentTokenizer argsTokenizer){
+    private Set<String> getTagsFromArgsTokenizer(ArgumentTokenizer argsTokenizer) {
         return ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG));
     }
 }

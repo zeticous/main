@@ -23,7 +23,6 @@ public class StorageManager extends ComponentManager implements Storage {
     private TaskManagerStorage taskManagerStorage;
     private UserPrefsStorage userPrefsStorage;
 
-
     public StorageManager(TaskManagerStorage taskManagerStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.taskManagerStorage = taskManagerStorage;
@@ -45,7 +44,6 @@ public class StorageManager extends ComponentManager implements Storage {
     public void saveUserPrefs(UserPrefs userPrefs) throws IOException {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
-
 
     // ================ TaskManager methods ==============================
 
@@ -75,7 +73,6 @@ public class StorageManager extends ComponentManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         taskManagerStorage.saveTaskManager(taskManager, filePath);
     }
-
 
     @Override
     @Subscribe

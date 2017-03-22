@@ -23,11 +23,12 @@ public class DateTimeUtil {
     // Used to store and print date to end user.
     public final static String DATE_STRING_FORMAT = "dd MMMMM yyyy, hh:mm aaa";
 
-    public DateTimeUtil() {};
+    public DateTimeUtil() {
+    };
 
     private static Parser dateTimeParser = new Parser(TimeZone.getDefault());
 
-    public static Date parseDateTime(String date) throws IllegalValueException{
+    public static Date parseDateTime(String date) throws IllegalValueException {
         List<DateGroup> parsedDates = dateTimeParser.parse(date);
 
         if (parsedDates != null && !parsedDates.isEmpty()) {
@@ -38,7 +39,7 @@ public class DateTimeUtil {
         }
     }
 
-    public static String getStringFromDate(Date date){
+    public static String getStringFromDate(Date date) {
         DateFormat dateFormat = new SimpleDateFormat(DATE_STRING_FORMAT);
         return dateFormat.format(date);
     }

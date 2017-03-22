@@ -10,7 +10,6 @@ import seedu.taskmanager.ui.UiManager;
  */
 public class AlertDialogHandle extends GuiHandle {
 
-
     public AlertDialogHandle(GuiRobot guiRobot, Stage primaryStage, String dialogTitle) {
         super(guiRobot, primaryStage, dialogTitle);
     }

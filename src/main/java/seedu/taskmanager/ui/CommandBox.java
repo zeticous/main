@@ -56,7 +56,6 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
-
     /**
      * Sets the command box style to indicate a successful command.
      */
