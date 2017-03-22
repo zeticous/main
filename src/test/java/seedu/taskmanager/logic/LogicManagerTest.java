@@ -24,8 +24,6 @@ import seedu.taskmanager.commons.core.EventsCenter;
 import seedu.taskmanager.commons.events.model.TaskManagerChangedEvent;
 import seedu.taskmanager.commons.events.ui.JumpToListRequestEvent;
 import seedu.taskmanager.commons.events.ui.ShowHelpRequestEvent;
-import seedu.taskmanager.logic.Logic;
-import seedu.taskmanager.logic.LogicManager;
 import seedu.taskmanager.logic.commands.AddCommand;
 import seedu.taskmanager.logic.commands.ClearCommand;
 import seedu.taskmanager.logic.commands.Command;
@@ -37,15 +35,17 @@ import seedu.taskmanager.logic.commands.HelpCommand;
 import seedu.taskmanager.logic.commands.ListCommand;
 import seedu.taskmanager.logic.commands.SelectCommand;
 import seedu.taskmanager.logic.commands.exceptions.CommandException;
-import seedu.taskmanager.model.TaskManager;
+import seedu.taskmanager.logic.parser.DateTimeUtil;
 import seedu.taskmanager.model.Model;
 import seedu.taskmanager.model.ModelManager;
 import seedu.taskmanager.model.ReadOnlyTaskManager;
+import seedu.taskmanager.model.TaskManager;
 import seedu.taskmanager.model.tag.Tag;
 import seedu.taskmanager.model.tag.UniqueTagList;
 import seedu.taskmanager.model.task.Name;
-import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.ReadOnlyTask;
+import seedu.taskmanager.model.task.Task;
+import seedu.taskmanager.model.task.TaskDate;
 import seedu.taskmanager.storage.StorageManager;
 
 
@@ -120,7 +120,7 @@ public class LogicManagerTest {
      * Both the 'task manager' and the 'last shown list' are verified to be unchanged.
      * @see #assertCommandBehavior(boolean, String, String, ReadOnlyTaskManager, List)
      */
-    private void assertCommandFailure(String inputCommand, String expectedMessage) {
+    protected void assertCommandFailure(String inputCommand, String expectedMessage) {
         TaskManager expectedTaskManager = new TaskManager(model.getTaskManager());
         List<ReadOnlyTask> expectedShownList = new ArrayList<>(model.getFilteredTaskList());
         assertCommandBehavior(true, inputCommand, expectedMessage, expectedTaskManager, expectedShownList);
@@ -203,7 +203,7 @@ public class LogicManagerTest {
     public void execute_add_successful() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
-        Task toBeAdded = helper.adam();
+        Task toBeAdded = helper.meeting();
         TaskManager expectedAB = new TaskManager();
         expectedAB.addTask(toBeAdded);
 
@@ -219,7 +219,7 @@ public class LogicManagerTest {
     public void execute_addDuplicate_notAllowed() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
-        Task toBeAdded = helper.adam();
+        Task toBeAdded = helper.meeting();
 
         // setup starting state
         model.addTask(toBeAdded); // task already in internal task manager
@@ -406,12 +406,14 @@ public class LogicManagerTest {
      */
     class TestDataHelper {
 
-        Task adam() throws Exception {
-            Name name = new Name("Adam Brown");
+        Task meeting() throws Exception {
+            Name name = new Name("Company Meeting");
+            TaskDate startDate = new TaskDate(DateTimeUtil.parseDateTime("1/1/2018 6pm"));
+            TaskDate endDate = new TaskDate(DateTimeUtil.parseDateTime("1/1/2019 7pm"));
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("longertag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Task(name, tags);
+            return new Task(name,startDate,endDate, tags);
         }
 
         /**
@@ -435,7 +437,8 @@ public class LogicManagerTest {
             cmd.append("add ");
 
             cmd.append(p.getName().toString());
-
+            cmd.append(" s/").append(p.getStartDate().toString());
+            cmd.append(" e/").append(p.getEndDate().toString());
             UniqueTagList tags = p.getTags();
             for (Tag t: tags) {
                 cmd.append(" t/").append(t.tagName);
