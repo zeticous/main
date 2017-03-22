@@ -76,7 +76,7 @@ public class AddCommandParser {
         return NO_START_DATE;
     }
 
-    private boolean isValidStartAndEndDate(ArgumentTokenizer argsTokenizer){
+    private boolean isValidStartAndEndDate(ArgumentTokenizer argsTokenizer) throws IllegalValueException{
         String startDateString = argsTokenizer.getValue(PREFIX_STARTDATE).get();
         String endDateString = argsTokenizer.getValue(PREFIX_ENDDATE).get();
 

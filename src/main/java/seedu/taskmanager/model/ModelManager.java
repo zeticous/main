@@ -8,6 +8,7 @@ import seedu.taskmanager.commons.core.ComponentManager;
 import seedu.taskmanager.commons.core.LogsCenter;
 import seedu.taskmanager.commons.core.UnmodifiableObservableList;
 import seedu.taskmanager.commons.events.model.TaskManagerChangedEvent;
+import seedu.taskmanager.commons.exceptions.IllegalValueException;
 import seedu.taskmanager.commons.util.CollectionUtil;
 import seedu.taskmanager.commons.util.StringUtil;
 import seedu.taskmanager.logic.parser.DateTimeUtil;
@@ -103,7 +104,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void updateFilteredTaskListByTaskType(String taskType) {
-    	updateFilteredTaskList(new PredicateExpression(new TypeQualifier(taskType)));
+        updateFilteredTaskList(new PredicateExpression(new TypeQualifier(taskType)));
     }
 
     private void updateFilteredTaskList(Expression expression) {
@@ -165,27 +166,33 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     private class TypeQualifier implements Qualifier {
-    	private String taskType;
+        private String taskType;
 
-    	TypeQualifier(String taskType) {
-    		this.taskType = taskType;
-    	}
+        TypeQualifier(String taskType) {
+            this.taskType = taskType;
+        }
 
-    	@Override
-    	public boolean run(ReadOnlyTask task) {
-    		switch (taskType) {
-    			case "floating":
-    				return TaskUtil.isFloating(task);
-    			case "deadline":
-    				return TaskUtil.isDeadline(task);
-    			case "event":
-    				return TaskUtil.isEvent(task);
-    			// for parsing date
-    			default:
-    				TaskDate date = new TaskDate(DateTimeUtil.parseDateTime(taskType));
-    				return task.getStartDate().getOnlyDate().equals(date.getOnlyDate()) ||
-    						task.getEndDate().getOnlyDate().equals(date.getOnlyDate());
-    		}
-    	}
+        @Override
+        public boolean run(ReadOnlyTask task) {
+            switch (taskType) {
+            case "floating":
+                return TaskUtil.isFloating(task);
+            case "deadline":
+                return TaskUtil.isDeadline(task);
+            case "event":
+                return TaskUtil.isEvent(task);
+                // for parsing date
+            default:
+                try {
+                    TaskDate date = new TaskDate(DateTimeUtil.parseDateTime(taskType));
+                    return task.getStartDate().getOnlyDate().equals(date.getOnlyDate()) ||
+                            task.getEndDate().getOnlyDate().equals(date.getOnlyDate());
+
+                } catch(IllegalValueException ive) {
+                    // Deliberately empty as taskType will not throw exception
+                    return false;
+                }
+            }
+        }
     }
 }

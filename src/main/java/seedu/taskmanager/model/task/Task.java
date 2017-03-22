@@ -42,8 +42,9 @@ public class Task implements ReadOnlyTask {
      * @param startDate
      * @param endDate
      * @param tags
+     * @throws IllegalValueException
      */
-    public Task(Name name, Optional<TaskDate> startDate, Optional<TaskDate> endDate, UniqueTagList tags) {
+    public Task(Name name, Optional<TaskDate> startDate, Optional<TaskDate> endDate, UniqueTagList tags) throws IllegalValueException {
         this(name,startDate.orElse(new DummyStartTaskDate()),endDate.orElse(new DummyEndTaskDate()),tags);
     }
 
