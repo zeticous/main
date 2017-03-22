@@ -183,22 +183,6 @@ public class LogicManagerTest {
         assertCommandSuccess("clear", ClearCommand.MESSAGE_SUCCESS, new TaskManager(), Collections.emptyList());
     }
 
-
-    @Test
-    public void execute_add_invalidArgsFormat() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
-        assertCommandFailure("add", expectedMessage);
-    }
-
-    @Test
-    public void execute_add_invalidTaskData() {
-        assertCommandFailure("add []\\[;]",
-                Name.MESSAGE_NAME_CONSTRAINTS);
-        assertCommandFailure("add Valid Name t/invalid_-[.tag",
-                Tag.MESSAGE_TAG_CONSTRAINTS);
-
-    }
-
     @Test
     public void execute_add_successful() throws Exception {
         // setup expectations

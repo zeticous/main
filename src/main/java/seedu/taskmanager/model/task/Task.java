@@ -102,7 +102,7 @@ public class Task implements ReadOnlyTask {
      */
     public void resetData(ReadOnlyTask replacement) {
         assert replacement != null;
-        
+
         this.setName(replacement.getName());
         this.setStartDate(replacement.getStartDate());
         this.setEndDate(replacement.getEndDate());
