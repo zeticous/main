@@ -6,7 +6,6 @@ import seedu.taskmanager.model.tag.UniqueTagList;
 import seedu.taskmanager.model.task.Name;
 import seedu.taskmanager.model.task.TaskDate;
 
-
 /**
  *
  */
@@ -40,9 +39,9 @@ public class TaskBuilder {
         return this;
     }
 
-    public TaskBuilder withTags(String ... tags) throws IllegalValueException {
+    public TaskBuilder withTags(String... tags) throws IllegalValueException {
         task.setTags(new UniqueTagList());
-        for (String tag: tags) {
+        for (String tag : tags) {
             task.getTags().add(new Tag(tag));
         }
         return this;

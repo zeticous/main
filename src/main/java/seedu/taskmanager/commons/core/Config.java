@@ -17,7 +17,6 @@ public class Config {
     private String taskManagerFilePath = "data/taskmanager.xml";
     private String taskManagerName = "MyTaskManager";
 
-
     public String getAppTitle() {
         return appTitle;
     }
@@ -58,20 +57,18 @@ public class Config {
         this.taskManagerName = taskManagerName;
     }
 
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
-        if (!(other instanceof Config)) { //this handles null as well.
+        if (!(other instanceof Config)) { // this handles null as well.
             return false;
         }
 
         Config o = (Config) other;
 
-        return Objects.equals(appTitle, o.appTitle)
-                && Objects.equals(logLevel, o.logLevel)
+        return Objects.equals(appTitle, o.appTitle) && Objects.equals(logLevel, o.logLevel)
                 && Objects.equals(userPrefsFilePath, o.userPrefsFilePath)
                 && Objects.equals(taskManagerFilePath, o.taskManagerFilePath)
                 && Objects.equals(taskManagerName, o.taskManagerName);

@@ -10,12 +10,12 @@ import seedu.taskmanager.model.task.TaskDate;
 import seedu.taskmanager.model.task.TaskUtil;
 
 public class TaskUtilTest {
-    public void isFloatingTask_floatingTask_returnTrue() throws IllegalValueException{
+    public void isFloatingTask_floatingTask_returnTrue() throws IllegalValueException {
         Name name = new Name("apple");
         TaskDate start = null;
         TaskDate end = null;
         UniqueTagList tags = null;
 
-        assertTrue(TaskUtil.isFloating(new Task(name,start,end,tags)));
+        assertTrue(TaskUtil.isFloating(new Task(name, start, end, tags)));
     }
 }

@@ -20,8 +20,8 @@ import seedu.taskmanager.model.task.UniqueTaskList;
 import seedu.taskmanager.model.task.UniqueTaskList.TaskNotFoundException;
 
 /**
- * Represents the in-memory model of the task manager data.
- * All changes to any model should be synchronized.
+ * Represents the in-memory model of the task manager data. All changes to any
+ * model should be synchronized.
  */
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -85,7 +85,8 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
-    //=========== Filtered Task List Accessors =============================================================
+    // =========== Filtered Task List Accessors
+    // =============================================================
 
     @Override
     public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList() {
@@ -111,10 +112,12 @@ public class ModelManager extends ComponentManager implements Model {
         filteredTasks.setPredicate(expression::satisfies);
     }
 
-    //========== Inner classes/interfaces used for filtering =================================================
+    // ========== Inner classes/interfaces used for filtering
+    // =================================================
 
     interface Expression {
         boolean satisfies(ReadOnlyTask task);
+
         @Override
         String toString();
     }
@@ -140,6 +143,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     interface Qualifier {
         boolean run(ReadOnlyTask task);
+
         @Override
         String toString();
     }
@@ -154,8 +158,7 @@ public class ModelManager extends ComponentManager implements Model {
         @Override
         public boolean run(ReadOnlyTask task) {
             return nameKeyWords.stream()
-                    .filter(keyword -> StringUtil.containsWordIgnoreCase(task.getName().fullName, keyword))
-                    .findAny()
+                    .filter(keyword -> StringUtil.containsWordIgnoreCase(task.getName().fullName, keyword)).findAny()
                     .isPresent();
         }
 
@@ -181,14 +184,14 @@ public class ModelManager extends ComponentManager implements Model {
                 return TaskUtil.isDeadline(task);
             case "event":
                 return TaskUtil.isEvent(task);
-                // for parsing date
+            // for parsing date
             default:
                 try {
                     TaskDate date = new TaskDate(DateTimeUtil.parseDateTime(taskType));
-                    return task.getStartDate().getOnlyDate().equals(date.getOnlyDate()) ||
-                            task.getEndDate().getOnlyDate().equals(date.getOnlyDate());
+                    return task.getStartDate().getOnlyDate().equals(date.getOnlyDate())
+                            || task.getEndDate().getOnlyDate().equals(date.getOnlyDate());
 
-                } catch(IllegalValueException ive) {
+                } catch (IllegalValueException ive) {
                     // Deliberately empty as taskType will not throw exception
                     return false;
                 }

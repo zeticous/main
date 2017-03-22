@@ -28,8 +28,8 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
     private List<XmlAdaptedTag> tags;
 
     /**
-     * Creates an empty XmlSerializableTaskManager.
-     * This empty constructor is required for marshalling.
+     * Creates an empty XmlSerializableTaskManager. This empty constructor is
+     * required for marshalling.
      */
     public XmlSerializableTaskManager() {
         tasks = new ArrayList<>();
@@ -52,7 +52,7 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
                 return p.toModelType();
             } catch (IllegalValueException e) {
                 e.printStackTrace();
-                //TODO: better error handling
+                // TODO: better error handling
                 return null;
             }
         }).collect(Collectors.toCollection(FXCollections::observableArrayList));
@@ -66,7 +66,7 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
                 return t.toModelType();
             } catch (IllegalValueException e) {
                 e.printStackTrace();
-                //TODO: better error handling
+                // TODO: better error handling
                 return null;
             }
         }).collect(Collectors.toCollection(FXCollections::observableArrayList));

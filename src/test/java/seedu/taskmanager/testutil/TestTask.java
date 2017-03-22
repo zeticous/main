@@ -58,7 +58,6 @@ public class TestTask implements ReadOnlyTask {
         return endDate;
     }
 
-
     @Override
     public UniqueTagList getTags() {
         return tags;
@@ -74,6 +73,12 @@ public class TestTask implements ReadOnlyTask {
         sb.append("add " + this.getName().fullName + " ");
         this.getTags().asObservableList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
+    }
+
+    @Override
+    public boolean isDone() {
+        // TODO Auto-generated method stub
+        return false;
     }
 
 }

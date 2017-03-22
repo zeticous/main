@@ -15,8 +15,7 @@ public class XmlFileStorage {
     /**
      * Saves the given taskmanager data to the specified file.
      */
-    public static void saveDataToFile(File file, XmlSerializableTaskManager taskManager)
-            throws FileNotFoundException {
+    public static void saveDataToFile(File file, XmlSerializableTaskManager taskManager) throws FileNotFoundException {
         try {
             XmlUtil.saveDataToFile(file, taskManager);
         } catch (JAXBException e) {
@@ -27,8 +26,8 @@ public class XmlFileStorage {
     /**
      * Returns task manager in the file or an empty task manager
      */
-    public static XmlSerializableTaskManager loadDataFromSaveFile(File file) throws DataConversionException,
-                                                                            FileNotFoundException {
+    public static XmlSerializableTaskManager loadDataFromSaveFile(File file)
+            throws DataConversionException, FileNotFoundException {
         try {
             return XmlUtil.getDataFromFile(file, XmlSerializableTaskManager.class);
         } catch (JAXBException e) {
