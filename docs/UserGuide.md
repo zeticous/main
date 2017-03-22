@@ -106,18 +106,21 @@ This command will edit the task at index number 3 with a new name, new start dat
 Note: At least one of the three [PARAMETERS] must be executed. <br>
     
             
-**Deadline format:** `edit <index> [NEW_TASK_NAME] [<e/>NEW_DATE_NEW_DUE_TIME]` <br>
+**Deadline format:** `edit <index> [NEW_TASK_NAME] [<s/>NEW_DATE_NEW_START_TIME] [<e/>NEW_DATE_NEW_DUE_TIME]` <br>
 **Example:** <br>
-> edit 4 edited_deadline e/01/01/2088 1200 <br>
+> edit 4 edited_deadline s/01/01/2077<br>
 
-This command will edit the task at index number 4 with new name, new deadline date and time. <br>
-Note: At least one of the two [PARAMETERS] must be executed. <br>
+This command will edit the task at index number 4 with new name, new event date and time. <br>
+This deadline will become an event upon addition of the new start date. <br>
+Note: At least one of the three [PARAMETERS] must be executed. <br>
                
-**Floating task format:** `edit <index> <NEW_TASK_NAME>` <br>
+**Floating task format:** `edit <index> <NEW_TASK_NAME> [<s/>NEW_DATE_NEW_START_TIME] [<e/>NEW_DATE_NEW_DUE_TIME]` <br>
 **Example:** <br>
-> edit 5 edited_floating_task <br>
+> edit 5 edited_floating_task e/01/01/2088 <br>
 
-This command will simply edit the task at index number 5 with new name. <br>
+This command will simply edit the task at index number 5 with new name, new date and time. <br>
+This floating task will become a deadline upon addition of the new end date. <br>
+Note: At least one of the three [PARAMETERS] must be executed. <br>
 
 
 ### 2.5. Searching for all tasks containing a name : `find`
