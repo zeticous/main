@@ -19,7 +19,7 @@ public class TaskDate {
     public Date getTaskDate(){
         return taskDate;
     }
-    
+
     public String getOnlyDate() {
     	String[] dateAndTime = this.toString().split(",");
     	return dateAndTime[0];
