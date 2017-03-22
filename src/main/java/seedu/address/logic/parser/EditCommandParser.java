@@ -41,12 +41,12 @@ public class EditCommandParser {
         if (!index.isPresent()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
-
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        
         try {
             Optional<String> startDateString = argsTokenizer.getValue(PREFIX_STARTDATE);
         	Optional<String> endDateString = argsTokenizer.getValue(PREFIX_ENDDATE);
-        	
+
             editPersonDescriptor.setName(ParserUtil.parseName(preambleFields.get(1)));
             editPersonDescriptor.setStartDate(ParserUtil.parseTaskDate(startDateString));
             editPersonDescriptor.setEndDate(ParserUtil.parseTaskDate(endDateString));

@@ -1,6 +1,6 @@
 package seedu.address.model.person;
 
-public class TaskUtil {
+public class TaskUtil{
     private static boolean hasStart(ReadOnlyPerson task) {
     	return !task.getStartDate().equals(new DummyStartTaskDate());
     }
