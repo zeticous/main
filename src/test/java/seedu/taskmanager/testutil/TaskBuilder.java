@@ -10,37 +10,37 @@ import seedu.taskmanager.model.task.TaskDate;
 /**
  *
  */
-public class PersonBuilder {
+public class TaskBuilder {
 
-    private TestPerson person;
+    private TestTask person;
 
-    public PersonBuilder() {
-        this.person = new TestPerson();
+    public TaskBuilder() {
+        this.person = new TestTask();
     }
 
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(TestPerson personToCopy) {
-        this.person = new TestPerson(personToCopy);
+    public TaskBuilder(TestTask personToCopy) {
+        this.person = new TestTask(personToCopy);
     }
 
-    public PersonBuilder withName(String name) throws IllegalValueException {
+    public TaskBuilder withName(String name) throws IllegalValueException {
         this.person.setName(new Name(name));
         return this;
     }
 
-    public PersonBuilder withStartDate(TaskDate startDate) {
+    public TaskBuilder withStartDate(TaskDate startDate) {
         this.person.setStartDate(startDate);
         return this;
     }
 
-    public PersonBuilder withEndDate(TaskDate endDate) {
+    public TaskBuilder withEndDate(TaskDate endDate) {
         this.person.setEndDate(endDate);
         return this;
     }
 
-    public PersonBuilder withTags(String ... tags) throws IllegalValueException {
+    public TaskBuilder withTags(String ... tags) throws IllegalValueException {
         person.setTags(new UniqueTagList());
         for (String tag: tags) {
             person.getTags().add(new Tag(tag));
@@ -48,7 +48,7 @@ public class PersonBuilder {
         return this;
     }
 
-    public TestPerson build() {
+    public TestTask build() {
         return this.person;
     }
 

@@ -10,9 +10,9 @@ import seedu.taskmanager.model.task.UniqueTaskList;
 /**
  *
  */
-public class TypicalTestPersons {
+public class TypicalTestTasks {
 
-    public TestPerson event1, event2, event3, ddl1, ddl2, ddl3, flt1, flt2, flt3;
+    public TestTask event1, event2, event3, ddl1, ddl2, ddl3, flt1, flt2, flt3;
 
     //Sample events
     public String EVENT1_NAME = "Meeting with principal";
@@ -41,38 +41,38 @@ public class TypicalTestPersons {
     public String FLT3_NAME = "Sleep before 11 everyday";
 
 
-    public TypicalTestPersons() {
+    public TypicalTestTasks() {
         try {
-            event1 = new PersonBuilder().withName(EVENT1_NAME)
+            event1 = new TaskBuilder().withName(EVENT1_NAME)
                     .withStartDate(new TaskDate(DateTimeUtil.parseDateTime(EVENT1_START_DATE_STRING)))
                     .withEndDate(new TaskDate(DateTimeUtil.parseDateTime(EVENT1_END_DATE_STRING)))
                     .withTags("important").build();
-            event2 = new PersonBuilder().withName(EVENT2_NAME)
+            event2 = new TaskBuilder().withName(EVENT2_NAME)
                     .withStartDate(new TaskDate(DateTimeUtil.parseDateTime(EVENT2_START_DATE_STRING)))
                     .withEndDate(new TaskDate(DateTimeUtil.parseDateTime(EVENT2_END_DATE_STRING)))
                     .build();
 
-            ddl1 = new PersonBuilder().withName(DDL1_NAME)
+            ddl1 = new TaskBuilder().withName(DDL1_NAME)
                     .withEndDate(new TaskDate(DateTimeUtil.parseDateTime(DDL1_DUE_TIME_STRING)))
                     .withTags("urgent").withTags("dying").build();
-            ddl2 = new PersonBuilder().withName(DDL2_NAME)
+            ddl2 = new TaskBuilder().withName(DDL2_NAME)
                     .withEndDate(new TaskDate(DateTimeUtil.parseDateTime(DDL2_DUE_TIME_STRING)))
                     .build();
 
-            flt1 = new PersonBuilder().withName(FLT1_NAME)
+            flt1 = new TaskBuilder().withName(FLT1_NAME)
                     .withTags("essential").build();
-            flt2 = new PersonBuilder().withName(FLT2_NAME)
+            flt2 = new TaskBuilder().withName(FLT2_NAME)
                     .withTags("easy").build();
 
            //Manually add only
-            event3 = new PersonBuilder().withName(EVENT3_NAME)
+            event3 = new TaskBuilder().withName(EVENT3_NAME)
                     .withStartDate(new TaskDate(DateTimeUtil.parseDateTime(EVENT3_START_DATE_STRING)))
                     .withEndDate(new TaskDate(DateTimeUtil.parseDateTime(EVENT3_END_DATE_STRING)))
                     .build();
-            ddl3 = new PersonBuilder().withName(DDL3_NAME)
+            ddl3 = new TaskBuilder().withName(DDL3_NAME)
                     .withEndDate(new TaskDate(DateTimeUtil.parseDateTime(DDL3_DUE_TIME_STRING)))
                     .build();
-            flt3 = new PersonBuilder().withName(FLT3_NAME)
+            flt3 = new TaskBuilder().withName(FLT3_NAME)
                     .withTags("hard").withTags("daunting").build();
 
         } catch (IllegalValueException e) {
@@ -82,7 +82,7 @@ public class TypicalTestPersons {
     }
 
     public static void loadAddressBookWithSampleData(TaskManager ab) {
-        for (TestPerson person : new TypicalTestPersons().getTypicalPersons()) {
+        for (TestTask person : new TypicalTestTasks().getTypicalPersons()) {
             try {
                 ab.addPerson(new Task(person));
             } catch (UniqueTaskList.DuplicatePersonException e) {
@@ -91,8 +91,8 @@ public class TypicalTestPersons {
         }
     }
 
-    public TestPerson[] getTypicalPersons() {
-        return new TestPerson[]{event1, event2, ddl1, ddl2, flt1, flt2};
+    public TestTask[] getTypicalPersons() {
+        return new TestTask[]{event1, event2, ddl1, ddl2, flt1, flt2};
     }
 
     public TaskManager getTypicalAddressBook() {

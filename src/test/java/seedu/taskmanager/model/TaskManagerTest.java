@@ -19,9 +19,9 @@ import seedu.taskmanager.model.ReadOnlyTaskManager;
 import seedu.taskmanager.model.tag.Tag;
 import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.ReadOnlyTask;
-import seedu.taskmanager.testutil.TypicalTestPersons;
+import seedu.taskmanager.testutil.TypicalTestTasks;
 
-public class AddressBookTest {
+public class TaskManagerTest {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -42,14 +42,14 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        TaskManager newData = new TypicalTestPersons().getTypicalAddressBook();
+        TaskManager newData = new TypicalTestTasks().getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
 
     @Test
     public void resetData_withDuplicatePersons_throwsAssertionError() {
-        TypicalTestPersons td = new TypicalTestPersons();
+        TypicalTestTasks td = new TypicalTestTasks();
         // Repeat td.event1 twice
         List<Task> newPersons = Arrays.asList(new Task(td.event1), new Task(td.event1));
         List<Tag> newTags = td.event1.getTags().asObservableList();
@@ -61,7 +61,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withDuplicateTags_throwsAssertionError() {
-        TaskManager typicalAddressBook = new TypicalTestPersons().getTypicalAddressBook();
+        TaskManager typicalAddressBook = new TypicalTestTasks().getTypicalAddressBook();
         List<ReadOnlyTask> newPersons = typicalAddressBook.getPersonList();
         List<Tag> newTags = new ArrayList<>(typicalAddressBook.getTagList());
         // Repeat the first tag twice

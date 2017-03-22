@@ -22,7 +22,7 @@ import seedu.taskmanager.storage.Storage;
 import seedu.taskmanager.storage.StorageManager;
 import seedu.taskmanager.storage.XmlTaskManagerStorage;
 import seedu.taskmanager.testutil.EventsCollector;
-import seedu.taskmanager.testutil.TypicalTestPersons;
+import seedu.taskmanager.testutil.TypicalTestTasks;
 
 public class StorageManagerTest {
 
