@@ -15,6 +15,8 @@ public interface ReadOnlyTask {
 
     TaskDate getEndDate();
 
+    boolean isDone();
+
     /**
      * The returned TagList is a deep copy of the internal TagList, changes on
      * the returned list will not affect the task's internal tags.
