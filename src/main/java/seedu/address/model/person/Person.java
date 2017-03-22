@@ -102,8 +102,10 @@ public class Person implements ReadOnlyPerson {
      */
     public void resetData(ReadOnlyPerson replacement) {
         assert replacement != null;
-
+        
         this.setName(replacement.getName());
+        this.setStartDate(replacement.getStartDate());
+        this.setEndDate(replacement.getEndDate());
         this.setTags(replacement.getTags());
     }
 

@@ -16,6 +16,10 @@ public class TaskDate {
         this.taskDate = date;
     }
 
+    public Date getTaskDate(){
+        return taskDate;
+    }
+    
     public String getOnlyDate() {
     	String[] dateAndTime = this.toString().split(",");
     	return dateAndTime[0];
