@@ -22,47 +22,71 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
             </columnConstraints>
             <children>
-                <VBox alignment="CENTER_LEFT" minHeight="105.0" GridPane.columnIndex="0">
-                    <stylesheets>
-                        <URL value="@DarkTheme.css" />
-                        <URL value="@Extensions.css" />
-                    </stylesheets>
-                    <padding>
-                        <Insets bottom="5" left="15" right="5" top="5" />
-                    </padding>
-
-                    <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                      <VBox alignment="CENTER_LEFT" minHeight="105.0">
+                          <stylesheets>
+                              <URL value="@DarkTheme.css" />
+                              <URL value="@Extensions.css" />
+                          </stylesheets>
+                          <padding>
+                              <Insets bottom="5" left="15" right="5" top="5" />
+                          </padding>
+      
+                          <children>
+                              <HBox alignment="CENTER_LEFT" spacing="5">
+                                  <children>
+                                      <HBox>
+                                         <children>
+                                             <Label fx:id="id" styleClass="cell_big_label" text="\$id" />
+                                             <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                                         </children>
+                                      </HBox>
+                                  </children>
+                              </HBox>
                         <HBox alignment="CENTER_LEFT" spacing="5">
-                            <children>
-                                <HBox>
-                                   <children>
-                                       <Label fx:id="id" styleClass="cell_big_label" />
-                                       <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-                                   </children>
-                                </HBox>
-                            </children>
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <Label fx:id="startDate" styleClass="cell_small_label" text="\$start" />
+                                 </children>
+                              </HBox>
+                           </children>
                         </HBox>
-                  <HBox alignment="CENTER_LEFT" spacing="5">
+                        <HBox alignment="CENTER_LEFT" spacing="5">
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <Label fx:id="endDate" styleClass="cell_small_label" text="\$end" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                              <FlowPane fx:id="tags" />
+                          </children>
+                      </VBox>
+               </children>
+            </HBox>
+            <VBox alignment="BOTTOM_RIGHT" minHeight="105.0">
+               <children>
+                  <HBox alignment="BOTTOM_RIGHT" opacity="0.3" spacing="5">
                      <children>
                         <HBox>
                            <children>
-                              <Label fx:id="startDate" styleClass="cell_small_label" text="\$start" />
+                              <Label fx:id="taskType" styleClass="cell_big_label" text="\$type" textAlignment="CENTER" />
                            </children>
                         </HBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" spacing="5">
-                     <children>
-                        <HBox>
-                           <children>
-                              <Label fx:id="endDate" styleClass="cell_small_label" text="\$end" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </HBox>
-                        <FlowPane fx:id="tags" />
-                    </children>
-                </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="5" left="15" right="5" top="5" />
+               </padding>
+               <stylesheets>
+                  <URL value="@DarkTheme.css" />
+                  <URL value="@Extensions.css" />
+               </stylesheets>
+            </VBox>
             </children>
          <rowConstraints>
             <RowConstraints />

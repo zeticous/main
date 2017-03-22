@@ -22,12 +22,18 @@ public class TaskCard extends UiPart<Region> {
     private Label endDate;
     @FXML
     private Label id;
+    @FXML
+    private Label taskType;
 
     @FXML
     private FlowPane tags;
 
     public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
+        initialise(task,displayedIndex);
+    }
+    
+    private void initialise(ReadOnlyTask task, int displayedIndex){
         name.setText(task.getName().fullName);
         taskSelector(task);
         id.setText(displayedIndex + ". ");
@@ -40,17 +46,24 @@ public class TaskCard extends UiPart<Region> {
      */
     private void taskSelector(ReadOnlyTask task){
         if(TaskUtil.isFloating(task)){
-            startDate.setVisible(false);
-            endDate.setVisible(false);
+            deleteLabel(startDate);
+            deleteLabel(endDate);
+            taskType.setText("Floating");
 
         } else if (TaskUtil.isDeadline(task)){
-            startDate.setVisible(false);
+            deleteLabel(startDate);
             endDate.setText("Due: "+ task.getEndDate().toString());
+            taskType.setText("Deadline");
 
         } else if (TaskUtil.isEvent(task)){
             startDate.setText("Start: "+ task.getStartDate().toString());
             endDate.setText("End: "+ task.getEndDate().toString());
+            taskType.setText("Event");
         }
+    }
+    
+    private void deleteLabel(Label label){
+        cardPane.getChildren().remove(label);
     }
 
     private void initTags(ReadOnlyTask task) {
