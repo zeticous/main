@@ -12,7 +12,7 @@ import seedu.address.model.tag.UniqueTagList;
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Person implements ReadOnlyPerson {
-	
+
     private Name name;
     private TaskDate startDate, endDate;
     private UniqueTagList tags;
@@ -20,7 +20,7 @@ public class Person implements ReadOnlyPerson {
     /**
      * Every field must be present and not null.
      */
-    
+
     public Person(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags) {
         assert !CollectionUtil.isAnyNull(name, tags);
         this.name = name;
@@ -28,8 +28,8 @@ public class Person implements ReadOnlyPerson {
         this.endDate = endDate;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
-    
-    
+
+
     public Person(Name name, UniqueTagList tags) throws IllegalValueException{
         this.name = name;
         this.startDate = new DummyStartTaskDate();
@@ -46,7 +46,7 @@ public class Person implements ReadOnlyPerson {
     public Person(Name name, Optional<TaskDate> startDate, Optional<TaskDate> endDate, UniqueTagList tags) {
         this(name,startDate.orElse(new DummyStartTaskDate()),endDate.orElse(new DummyEndTaskDate()),tags);
     }
-    
+
     /**
      * Creates a copy of the given ReadOnlyPerson.
      */
@@ -66,21 +66,21 @@ public class Person implements ReadOnlyPerson {
     public Name getName() {
         return name;
     }
-    
+
     @Override
     public TaskDate getStartDate(){
         return startDate;
     }
-    
+
     @Override
     public TaskDate getEndDate(){
         return endDate;
     }
-    
+
     public void setStartDate(TaskDate taskDate){
         this.startDate = taskDate;
     }
-    
+
     public void setEndDate(TaskDate taskDate){
         this.endDate = taskDate;
     }

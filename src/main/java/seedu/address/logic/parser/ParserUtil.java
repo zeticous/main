@@ -14,9 +14,9 @@ import java.util.stream.Collectors;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.TaskDate;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
-import seedu.address.model.person.TaskDate;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes
@@ -79,7 +79,7 @@ public class ParserUtil {
         assert date != null;
         return date.isPresent() ? Optional.of(new TaskDate(DateTimeUtil.parseDateTime(date.get()))) : Optional.empty();
     }
-    
+
     /**
      * Parses {@code Collection<String> tags} into an {@code UniqueTagList}.
      */

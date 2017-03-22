@@ -34,11 +34,11 @@ public class TestPerson implements ReadOnlyPerson {
     public void setTags(UniqueTagList tags) {
         this.tags = tags;
     }
-    
+
     public void setStartDate(TaskDate startDate) {
         this.startDate = startDate;
     }
-    
+
     public void setEndDate(TaskDate endDate) {
         this.endDate = endDate;
     }
@@ -47,12 +47,12 @@ public class TestPerson implements ReadOnlyPerson {
     public Name getName() {
         return name;
     }
-    
+
     @Override
     public TaskDate getStartDate() {
         return startDate;
     }
-    
+
     @Override
     public TaskDate getEndDate() {
         return endDate;
@@ -75,5 +75,5 @@ public class TestPerson implements ReadOnlyPerson {
         this.getTags().asObservableList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }
-    
+
 }

@@ -8,7 +8,7 @@ import seedu.address.logic.parser.DateTimeUtil;
  */
 public class DummyEndTaskDate extends TaskDate {
     public static final String DUMMY_END_DATE_STRING = "23 August 1994, 06:54 PM";
-    
+
     public DummyEndTaskDate() {
         super(DateTimeUtil.parseDateTime(DUMMY_END_DATE_STRING));
     }

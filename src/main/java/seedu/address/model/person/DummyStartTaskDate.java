@@ -8,7 +8,7 @@ import seedu.address.logic.parser.DateTimeUtil;
  */
 public class DummyStartTaskDate extends TaskDate {
     public static final String DUMMY_START_DATE_STRING = "26 March 1992, 12:12 PM";
-    
+
     public DummyStartTaskDate() {
         super(DateTimeUtil.parseDateTime(DUMMY_START_DATE_STRING));
     }

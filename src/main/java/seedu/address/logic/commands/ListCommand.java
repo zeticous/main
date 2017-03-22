@@ -6,7 +6,7 @@ package seedu.address.logic.commands;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
-    
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the details of the specified task "
             + "by the type of task or by date. \n"
             + "Parameters: [ [floating/ deadline/ event] / DATE] \n"
@@ -14,11 +14,11 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
     public static final String MESSAGE_NOT_LISTED = "Invalid input" + MESSAGE_USAGE;
-    
+
     private static final String EMPTY_STRING = "";
 
     private String taskType;
-    
+
     public ListCommand(String taskType) {
     	this.taskType = taskType;
     }

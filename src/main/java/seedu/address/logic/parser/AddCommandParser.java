@@ -1,16 +1,19 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import static seedu.address.commons.core.Messages.MESSAGE_START_AFTER_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Set;
-
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddCommand;
@@ -21,8 +24,9 @@ import seedu.address.logic.commands.IncorrectCommand;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser {
-	
+
     public static final String EMPTY_STRING = "";
+
     public static final String NO_START_DATE = "Start date not found";
     public static final String NO_END_DATE = "End date not found";
     
@@ -34,7 +38,6 @@ public class AddCommandParser {
         ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_STARTDATE,PREFIX_ENDDATE,PREFIX_DEADLINE,PREFIX_TAG);
 
         argsTokenizer.tokenize(args);
-        
         try {
             String name = getNameFromArgsTokenizer(argsTokenizer);
             String startDate = getStartDateFromArgsTokenizer(argsTokenizer);
@@ -48,7 +51,7 @@ public class AddCommandParser {
             return new IncorrectCommand(ive.getMessage());
         }
     }
-    
+
     private String getNameFromArgsTokenizer(ArgumentTokenizer argsTokenizer) throws IllegalValueException {
         String name = argsTokenizer.getPreamble().get();
         if (name == EMPTY_STRING) {
@@ -93,7 +96,7 @@ public class AddCommandParser {
         if(hasDeadline && hasEndDate){
             throw new IllegalValueException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
-        
+
         return argsTokenizer
                 .getValue(PREFIX_ENDDATE)
                 .orElse(
@@ -102,7 +105,7 @@ public class AddCommandParser {
                         .orElse(NO_END_DATE)
                         );
     }
-    
+
     private Set<String> getTagsFromArgsTokenizer(ArgumentTokenizer argsTokenizer){
         return ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG));
     }
