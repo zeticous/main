@@ -38,19 +38,12 @@ public class TaskCardHandle extends GuiHandle {
     }
 
     private List<String> getTags(Region tagsContainer) {
-        return tagsContainer
-                .getChildrenUnmodifiable()
-                .stream()
-                .map(node -> ((Labeled) node).getText())
+        return tagsContainer.getChildrenUnmodifiable().stream().map(node -> ((Labeled) node).getText())
                 .collect(Collectors.toList());
     }
 
     private List<String> getTags(UniqueTagList tags) {
-        return tags
-                .asObservableList()
-                .stream()
-                .map(tag -> tag.tagName)
-                .collect(Collectors.toList());
+        return tags.asObservableList().stream().map(tag -> tag.tagName).collect(Collectors.toList());
     }
 
     private Region getTagsContainer() {
@@ -58,16 +51,14 @@ public class TaskCardHandle extends GuiHandle {
     }
 
     public boolean isSameTask(ReadOnlyTask task) {
-        return getFullName().equals(task.getName().fullName)
-                && getTags().equals(getTags(task.getTags()));
+        return getFullName().equals(task.getName().fullName) && getTags().equals(getTags(task.getTags()));
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof TaskCardHandle) {
             TaskCardHandle handle = (TaskCardHandle) obj;
-            return getFullName().equals(handle.getFullName())
-                    && getTags().equals(handle.getTags());
+            return getFullName().equals(handle.getFullName()) && getTags().equals(handle.getTags());
         }
         return super.equals(obj);
     }

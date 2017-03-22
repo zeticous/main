@@ -22,17 +22,16 @@ import seedu.taskmanager.model.tag.UniqueTagList;
  */
 public class EditCommandParser {
 
-	public static final String EMPTY_STRING = "";
+    public static final String EMPTY_STRING = "";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the
+     * EditCommand and returns an EditCommand object for execution.
      */
     public Command parse(String args) {
 
         assert args != null;
-        ArgumentTokenizer argsTokenizer =
-                new ArgumentTokenizer(PREFIX_STARTDATE, PREFIX_ENDDATE, PREFIX_TAG);
+        ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_STARTDATE, PREFIX_ENDDATE, PREFIX_TAG);
         argsTokenizer.tokenize(args);
 
         List<Optional<String>> preambleFields = ParserUtil.splitPreamble(argsTokenizer.getPreamble().orElse(""), 2);
@@ -42,10 +41,10 @@ public class EditCommandParser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
-        
+
         try {
             Optional<String> startDateString = argsTokenizer.getValue(PREFIX_STARTDATE);
-        	Optional<String> endDateString = argsTokenizer.getValue(PREFIX_ENDDATE);
+            Optional<String> endDateString = argsTokenizer.getValue(PREFIX_ENDDATE);
 
             editTaskDescriptor.setName(ParserUtil.parseName(preambleFields.get(1)));
             editTaskDescriptor.setStartDate(ParserUtil.parseTaskDate(startDateString));
@@ -64,9 +63,10 @@ public class EditCommandParser {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into an {@code Optional<UniqueTagList>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Optional<UniqueTagList>} containing zero tags.
+     * Parses {@code Collection<String> tags} into an
+     * {@code Optional<UniqueTagList>} if {@code tags} is non-empty. If
+     * {@code tags} contain only one element which is an empty string, it will
+     * be parsed into a {@code Optional<UniqueTagList>} containing zero tags.
      */
     private Optional<UniqueTagList> parseTagsForEdit(Collection<String> tags) throws IllegalValueException {
         assert tags != null;

@@ -58,7 +58,6 @@ public class TestTask implements ReadOnlyTask {
         return endDate;
     }
 
-
     @Override
     public UniqueTagList getTags() {
         return tags;

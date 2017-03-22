@@ -2,7 +2,7 @@ package seedu.taskmanager.model.task;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
 
-public class TaskUtil{
+public class TaskUtil {
     private static boolean hasStart(ReadOnlyTask task) {
         try {
             return !task.getStartDate().equals(new DummyStartTaskDate());
@@ -19,15 +19,15 @@ public class TaskUtil{
         }
     }
 
-    public static boolean isFloating(ReadOnlyTask task){
+    public static boolean isFloating(ReadOnlyTask task) {
         return (!hasStart(task) && !hasEnd(task));
     }
 
-    public static boolean isDeadline(ReadOnlyTask task){
+    public static boolean isDeadline(ReadOnlyTask task) {
         return (hasStart(task) && !hasEnd(task) || !hasStart(task) && hasEnd(task));
     }
 
-    public static boolean isEvent(ReadOnlyTask task){
+    public static boolean isEvent(ReadOnlyTask task) {
         return (hasStart(task) && hasEnd(task));
     }
 }

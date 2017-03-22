@@ -3,15 +3,17 @@ package seedu.taskmanager.ui;
 import javafx.beans.DefaultProperty;
 
 /**
- * A test object which can be constructed via an FXML file.
- * Unlike other JavaFX classes, this class can be constructed without the JavaFX toolkit being initialized.
+ * A test object which can be constructed via an FXML file. Unlike other JavaFX
+ * classes, this class can be constructed without the JavaFX toolkit being
+ * initialized.
  */
 @DefaultProperty("text")
 public class TestFxmlObject {
 
     private String text;
 
-    public TestFxmlObject() {}
+    public TestFxmlObject() {
+    }
 
     public TestFxmlObject(String text) {
         setText(text);
@@ -27,9 +29,8 @@ public class TestFxmlObject {
 
     @Override
     public boolean equals(Object other) {
-        return other == this ||
-                (other instanceof TestFxmlObject
-                        && this.text.equals(((TestFxmlObject) other).getText()));
+        return other == this
+                || (other instanceof TestFxmlObject && this.text.equals(((TestFxmlObject) other).getText()));
     }
 
 }

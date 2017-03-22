@@ -18,7 +18,8 @@ public class SampleDataTest extends TaskManagerGuiTest {
 
     @Override
     protected String getDataFileLocation() {
-        // return a non-existent file location to force test app to load sample data
+        // return a non-existent file location to force test app to load sample
+        // data
         return TestUtil.getFilePathInSandboxFolder("SomeFileThatDoesNotExist1234567890.xml");
     }
 

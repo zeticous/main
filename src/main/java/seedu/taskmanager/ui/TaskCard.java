@@ -30,10 +30,10 @@ public class TaskCard extends UiPart<Region> {
 
     public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
-        initialise(task,displayedIndex);
+        initialise(task, displayedIndex);
     }
-    
-    private void initialise(ReadOnlyTask task, int displayedIndex){
+
+    private void initialise(ReadOnlyTask task, int displayedIndex) {
         name.setText(task.getName().fullName);
         taskSelector(task);
         id.setText(displayedIndex + ". ");
@@ -42,27 +42,28 @@ public class TaskCard extends UiPart<Region> {
 
     /**
      * Prints the task in correct format.
+     * 
      * @param task
      */
-    private void taskSelector(ReadOnlyTask task){
-        if(TaskUtil.isFloating(task)){
+    private void taskSelector(ReadOnlyTask task) {
+        if (TaskUtil.isFloating(task)) {
             deleteLabel(startDate);
             deleteLabel(endDate);
             taskType.setText("Floating");
 
-        } else if (TaskUtil.isDeadline(task)){
+        } else if (TaskUtil.isDeadline(task)) {
             deleteLabel(startDate);
-            endDate.setText("Due: "+ task.getEndDate().toString());
+            endDate.setText("Due: " + task.getEndDate().toString());
             taskType.setText("Deadline");
 
-        } else if (TaskUtil.isEvent(task)){
-            startDate.setText("Start: "+ task.getStartDate().toString());
-            endDate.setText("End: "+ task.getEndDate().toString());
+        } else if (TaskUtil.isEvent(task)) {
+            startDate.setText("Start: " + task.getStartDate().toString());
+            endDate.setText("End: " + task.getEndDate().toString());
             taskType.setText("Event");
         }
     }
-    
-    private void deleteLabel(Label label){
+
+    private void deleteLabel(Label label) {
         cardPane.getChildren().remove(label);
     }
 

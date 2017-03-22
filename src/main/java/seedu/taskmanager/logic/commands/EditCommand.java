@@ -34,8 +34,10 @@ public class EditCommand extends Command {
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
-     * @param filteredTaskListIndex the index of the task in the filtered task list to edit
-     * @param editTaskDescriptor details to edit the task with
+     * @param filteredTaskListIndex
+     *            the index of the task in the filtered task list to edit
+     * @param editTaskDescriptor
+     *            details to edit the task with
      */
     public EditCommand(int filteredTaskListIndex, EditTaskDescriptor editTaskDescriptor) {
         assert filteredTaskListIndex > 0;
@@ -64,7 +66,7 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
         model.updateFilteredListToShowAll();
-        
+
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
 
@@ -72,8 +74,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
      */
-    private static Task createEditedTask(ReadOnlyTask taskToEdit,
-                                             EditTaskDescriptor editTaskDescriptor) {
+    private static Task createEditedTask(ReadOnlyTask taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElseGet(taskToEdit::getName);
@@ -85,8 +86,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the task with. Each non-empty field value will replace the
-     * corresponding field value of the task.
+     * Stores the details to edit the task with. Each non-empty field value will
+     * replace the corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
 
@@ -95,7 +96,8 @@ public class EditCommand extends Command {
         private Optional<TaskDate> endDate = Optional.empty();
         private Optional<UniqueTagList> tags = Optional.empty();
 
-        public EditTaskDescriptor() {}
+        public EditTaskDescriptor() {
+        }
 
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             this.name = toCopy.getName();
@@ -121,7 +123,7 @@ public class EditCommand extends Command {
         }
 
         public void setStartDate(Optional<TaskDate> taskDate) {
-        	assert taskDate != null;
+            assert taskDate != null;
             this.startDate = taskDate;
         }
 
@@ -130,8 +132,8 @@ public class EditCommand extends Command {
         }
 
         public void setEndDate(Optional<TaskDate> taskDate) {
-        	assert taskDate != null;
-        	this.endDate = taskDate;
+            assert taskDate != null;
+            this.endDate = taskDate;
         }
 
         public Optional<TaskDate> getEndDate() {
