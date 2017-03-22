@@ -1,5 +1,6 @@
 package seedu.taskmanager.model.task;
 
+import seedu.taskmanager.commons.exceptions.IllegalValueException;
 import seedu.taskmanager.logic.parser.DateTimeUtil;
 
 /**
@@ -9,7 +10,7 @@ import seedu.taskmanager.logic.parser.DateTimeUtil;
 public class DummyEndTaskDate extends TaskDate {
     public static final String DUMMY_END_DATE_STRING = "23 August 1994, 06:54 PM";
 
-    public DummyEndTaskDate() {
+    public DummyEndTaskDate() throws IllegalValueException {
         super(DateTimeUtil.parseDateTime(DUMMY_END_DATE_STRING));
     }
 

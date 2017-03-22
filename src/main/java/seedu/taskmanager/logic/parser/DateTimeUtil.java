@@ -9,6 +9,8 @@ import java.util.TimeZone;
 import com.joestelmach.natty.DateGroup;
 import com.joestelmach.natty.Parser;
 
+import seedu.taskmanager.commons.exceptions.IllegalValueException;
+
 /**
  * Natty parser
  */
@@ -25,14 +27,14 @@ public class DateTimeUtil {
 
     private static Parser dateTimeParser = new Parser(TimeZone.getDefault());
 
-    public static Date parseDateTime(String date){
+    public static Date parseDateTime(String date) throws IllegalValueException{
         List<DateGroup> parsedDates = dateTimeParser.parse(date);
 
         if (parsedDates != null && !parsedDates.isEmpty()) {
             return parsedDates.get(0).getDates().get(0);
 
         } else {
-            return null;
+            throw new IllegalValueException(INVALID_DATE_FORMAT);
         }
     }
 
