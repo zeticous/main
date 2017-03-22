@@ -23,6 +23,6 @@
 
 * Some parts of this sample application were inspired by the excellent
   [Java FX tutorial](http://code.makery.ch/library/javafx-8-tutorial/) by *Marco Jakob*.
-* This code is based on [addressbook-level4](https://github.com/nus-cs2103-AY1617S2/addressbook-level4)
+* This code is based on [taskmanager-level4](https://github.com/nus-cs2103-AY1617S2/taskmanager-level4)
 
 #### Licence : [MIT](LICENSE)
