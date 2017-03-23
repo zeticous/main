@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <GridPane HBox.hgrow="ALWAYS">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+            </columnConstraints>
+            <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox fx:id="idContainer" alignment="CENTER" minWidth="16.0">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" top="4.0" />
+                     </HBox.margin>
+                     <children>
+                                 <Label fx:id="id" alignment="CENTER" styleClass="cell_small_label" text="\$id" />
+                     </children>
+                  </VBox>
+                      <VBox fx:id="labelContainer" alignment="CENTER_LEFT" minHeight="105.0">
+                          <stylesheets>
+                              <URL value="@DarkTheme.css" />
+                              <URL value="@Extensions.css" />
+                          </stylesheets>
+                          <padding>
+                              <Insets bottom="5" left="15" right="5" top="5" />
+                          </padding>
+
+                          <children>
+                                 <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                        <Label fx:id="startDate" styleClass="cell_small_label" text="\$start" />
+                        <Label fx:id="endDate" styleClass="cell_small_label" text="\$end" />
+                              <FlowPane fx:id="tags" />
+                          </children>
+                      </VBox>
+               </children>
+            </HBox>
+            <VBox alignment="BOTTOM_RIGHT" minHeight="105.0">
+               <children>
+                  <HBox alignment="BOTTOM_RIGHT" opacity="0.3" spacing="5">
+                     <children>
+                        <HBox>
+                           <children>
+                              <Label fx:id="taskType" styleClass="cell_big_label" text="\$type" textAlignment="CENTER" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="5" left="15" right="5" top="5" />
+               </padding>
+               <stylesheets>
+                  <URL value="@DarkTheme.css" />
+                  <URL value="@Extensions.css" />
+               </stylesheets>
+            </VBox>
+            </children>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
+        </GridPane>
+    </children>
+</HBox>

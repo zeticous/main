@@ -120,7 +120,7 @@ _Figure 2.1.2 : Class Diagram of the Logic Component_
 The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the
 command `delete 1`.
 
-<img src="images\SDforDeletePerson.png" width="800"><br>
+<img src="images\SDforDeleteTask.png" width="800"><br>
 _Figure 2.1.3a : Component interactions for `delete 1` command (part 1)_
 
 >Note how the `Model` simply raises a `TaskManagerChangedEvent` when the Task Manager data are changed,
@@ -128,7 +128,7 @@ _Figure 2.1.3a : Component interactions for `delete 1` command (part 1)_
 
 The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates
 being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time. <br>
-<img src="images\SDforDeletePersonEventHandling.png" width="800"><br>
+<img src="images\SDforDeleteTaskEventHandling.png" width="800"><br>
 _Figure 2.1.3b : Component interactions for `delete 1` command (part 2)_
 
 > Note how the event is propagated through the `EventsCenter` to the `Storage` and `UI` without `Model` having
@@ -139,14 +139,12 @@ The sections below give more details of each component.
 
 ### 2.2. UI component
 
-Author: Alice Bee
-
 <img src="images/UiClassDiagram.png" width="800"><br>
 _Figure 2.2.1 : Structure of the UI Component_
 
 **API** : [`Ui.java`](../src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`,
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`,
 `StatusBarFooter`, `BrowserPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
@@ -160,9 +158,9 @@ The `UI` component,
 * Binds itself to some data in the `Model` so that the UI can auto-update when data in the `Model` change.
 * Responds to events raised from various parts of the App and updates the UI accordingly.
 
-### 2.3. Logic component
+For the TaskCard, an additional `TaskCardStyle` class is used to colour code the card. It will be red if the task is undone, and green if the task is completed.
 
-Author: Bernard Choo
+### 2.3. Logic component
 
 <img src="images/LogicClassDiagram.png" width="800"><br>
 _Figure 2.3.1 : Structure of the Logic Component_
@@ -171,17 +169,15 @@ _Figure 2.3.1 : Structure of the Logic Component_
 
 1. `Logic` uses the `Parser` class to parse the user command.
 2. This results in a `Command` object which is executed by the `LogicManager`.
-3. The command execution can affect the `Model` (e.g. adding a person) and/or raise events.
+3. The command execution can affect the `Model` (e.g. adding a task) and/or raise events.
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")`
  API call.<br>
-<img src="images/DeletePersonSdForLogic.png" width="800"><br>
+<img src="images/LogicSequenceDiagram.png" width="800"><br>
 _Figure 2.3.1 : Interactions Inside the Logic Component for the `delete 1` Command_
 
 ### 2.4. Model component
-
-Author: Cynthia Dharman
 
 <img src="images/ModelClassDiagram.png" width="800"><br>
 _Figure 2.4.1 : Structure of the Model Component_
@@ -192,13 +188,11 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Task Manager data.
-* exposes a `UnmodifiableObservableList<ReadOnlyPerson>` that can be 'observed' e.g. the UI can be bound to this list
+* exposes a `UnmodifiableObservableList<ReadOnlyTask>` that can be 'observed' e.g. the UI can be bound to this list
   so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 ### 2.5. Storage component
-
-Author: Darius Foong
 
 <img src="images/StorageClassDiagram.png" width="800"><br>
 _Figure 2.5.1 : Structure of the Storage Component_
@@ -209,6 +203,7 @@ The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
 * can save the Task Manager data in xml format and read it back.
+* It stores relevant date object as a string which will be parsed by `DateTimeUtil.dateTimeParse`.
 
 ### 2.6. Common classes
 
@@ -240,6 +235,14 @@ and logging destinations.
 Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file
 (default: `config.json`):
 
+### 3.3. Handling different types of tasks
+
+We used `Optional` attributes in our implementation of different type of tasks.
+* If a task is a floating task (no dates specified), both startDate and endDate will be empty.
+* If a task is a deadline, only endDate will be filled with a `TaskDate` object.
+* An event task will have both startDate and endDate filled. 
+
+A seperate Utility class (TaskUtil) is defined in the commons class to identify whether a task is of different types. This is to adhere to the Single Responsibility Principle.
 
 ## 4. Testing
 
@@ -263,13 +266,13 @@ We have two types of tests:
 
 2. **Non-GUI Tests** - These are tests not involving the GUI. They include,
    1. _Unit tests_ targeting the lowest level methods/classes. <br>
-      e.g. `seedu.address.commons.UrlUtilTest`
+      e.g. `seedu.taskmanager.commons.UrlUtilTest`
    2. _Integration tests_ that are checking the integration of multiple code units
      (those code units are assumed to be working).<br>
-      e.g. `seedu.address.storage.StorageManagerTest`
+      e.g. `seedu.taskmanager.storage.StorageManagerTest`
    3. Hybrids of unit and integration tests. These test are checking multiple code units as well as
       how the are connected together.<br>
-      e.g. `seedu.address.logic.LogicManagerTest`
+      e.g. `seedu.taskmanager.logic.LogicManagerTest`
 
 #### Headless GUI Testing
 Thanks to the [TestFX](https://github.com/TestFX/TestFX) library we use,
@@ -516,7 +519,7 @@ Use case ends
 Use case ends
 
 **Extensions**
-	
+
 2a. Task does not exist
 
 1. System displays warning to user that the index is invalid
@@ -569,7 +572,7 @@ Use case ends
 Use case ends
 
 **Extensions**
-	
+
 2a. Task does not exist
 
 1. System displays warning to user that there are no such tasks
@@ -679,7 +682,7 @@ Use case ends
 **Pros:**
 
 > * Can interface with apps like Dropbox adding more potential features
-> * Can be personalized with configurable backgrounds
+> * Can be taskalized with configurable backgrounds
 > * Can search for tasks, migrate tasks, mark tasks easily
 > * Can be synced across OS
 
@@ -699,7 +702,7 @@ Use case ends
 > * Can be synced across OS and interfaced with other apps
 > * Easy to use UI
 > * Can add subtasks easily and supports recurring task functionality
-> * Powerful features of search, nested lists, natural language 
+> * Powerful features of search, nested lists, natural language
 > * Easy to add subtasks, priorities, notes and share tasks
 
 **Cons:**
@@ -714,9 +717,9 @@ Use case ends
 **Pros:**
 
 > * Can sync across devices
-> * Can customize the recurring tasks 
+> * Can customize the recurring tasks
 > * Can view the tasks in different ways. For example standard view, time view, priority list view, calendar view
-> * Can separate tasks based on lists. For example work, personal, miscellaneous.
+> * Can separate tasks based on lists. For example work, taskal, miscellaneous.
 > * Can add subtasks, priority, attachments etc. for all tasks
 
 **Cons:**
