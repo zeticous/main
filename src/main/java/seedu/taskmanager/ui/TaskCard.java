@@ -65,7 +65,7 @@ public class TaskCard extends UiPart<Region> {
 
     /**
      * Prints the task in correct format.
-     * 
+     *
      * @param task
      */
     private void taskSelector(ReadOnlyTask task) {

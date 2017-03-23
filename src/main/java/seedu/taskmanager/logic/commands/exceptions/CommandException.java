@@ -7,7 +7,7 @@ import seedu.taskmanager.logic.commands.Command;
  */
 public class CommandException extends Exception {
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = -1275525082130303227L;
 

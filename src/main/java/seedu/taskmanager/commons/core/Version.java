@@ -47,7 +47,7 @@ public class Version implements Comparable<Version> {
 
     /**
      * Parses a version number string in the format V1.2.3.
-     * 
+     *
      * @param versionString
      *            version number string
      * @return a Version object
@@ -64,6 +64,7 @@ public class Version implements Comparable<Version> {
                 Integer.parseInt(versionMatcher.group(3)), versionMatcher.group(4) == null ? false : true);
     }
 
+    @Override
     @JsonValue
     public String toString() {
         return String.format("V%d.%d.%d%s", major, minor, patch, isEarlyAccess ? "ea" : "");

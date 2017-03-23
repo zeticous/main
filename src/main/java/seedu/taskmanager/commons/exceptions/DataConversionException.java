@@ -5,7 +5,7 @@ package seedu.taskmanager.commons.exceptions;
  */
 public class DataConversionException extends Exception {
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = -8853026629033272111L;
 
