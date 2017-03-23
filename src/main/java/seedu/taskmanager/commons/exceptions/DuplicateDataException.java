@@ -5,7 +5,7 @@ package seedu.taskmanager.commons.exceptions;
  */
 public abstract class DuplicateDataException extends IllegalValueException {
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = 8975376343804862535L;
 

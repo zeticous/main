@@ -5,7 +5,7 @@ import java.util.HashMap;
 /*
 * Class for converting task properties to CSS style strings which
 * are used to style UI elements.
-* 
+*
 * PRE-CON: Task properties are of string data type.
 *
 */

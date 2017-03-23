@@ -12,10 +12,9 @@ import org.junit.rules.TemporaryFolder;
 
 import seedu.taskmanager.commons.exceptions.DataConversionException;
 import seedu.taskmanager.commons.util.FileUtil;
+import seedu.taskmanager.model.ReadOnlyTaskManager;
 import seedu.taskmanager.model.TaskManager;
 import seedu.taskmanager.model.task.Task;
-import seedu.taskmanager.model.ReadOnlyTaskManager;
-import seedu.taskmanager.storage.XmlTaskManagerStorage;
 import seedu.taskmanager.testutil.TypicalTestTasks;
 
 public class XmlTaskManagerStorageTest {

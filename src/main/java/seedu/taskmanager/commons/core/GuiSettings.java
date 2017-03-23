@@ -10,7 +10,7 @@ import java.util.Objects;
 public class GuiSettings implements Serializable {
 
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = -3869982997613557678L;
 

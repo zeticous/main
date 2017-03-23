@@ -5,7 +5,7 @@ package seedu.taskmanager.commons.exceptions;
  */
 public class IllegalValueException extends Exception {
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = -4967960537872351727L;
 

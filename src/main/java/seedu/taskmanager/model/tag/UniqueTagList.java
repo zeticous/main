@@ -169,7 +169,7 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public static class DuplicateTagException extends DuplicateDataException {
         /**
-         * 
+         *
          */
         private static final long serialVersionUID = 2558667503304758626L;
 

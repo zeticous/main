@@ -42,7 +42,7 @@ public class Task implements ReadOnlyTask {
 
     /**
      * Creates task based on optional startDate and endDate
-     * 
+     *
      * @param name
      * @param startDate
      * @param endDate
