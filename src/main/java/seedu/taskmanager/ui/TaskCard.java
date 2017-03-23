@@ -17,6 +17,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private VBox idContainer;
     @FXML
+    private VBox labelContainer;
+    @FXML
     private HBox cardPane;
     @FXML
     private Label name;
@@ -85,7 +87,7 @@ public class TaskCard extends UiPart<Region> {
     }
 
     private void deleteLabel(Label label) {
-        cardPane.getChildren().remove(label);
+        labelContainer.getChildren().remove(label);
     }
 
     private void initTags(ReadOnlyTask task) {
