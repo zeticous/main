@@ -48,7 +48,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
         model.addTask(task2);
 
         // execute command and verify result
-        String invalidCommand = "edit 1 birthday";
+        String invalidCommand = "edit 1 CS Homework";
         String expectedMessage = EditCommand.MESSAGE_DUPLICATE_TASK;
         assertCommandFailure(invalidCommand, expectedMessage);
     }
