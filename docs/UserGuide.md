@@ -153,7 +153,6 @@ Deletes a specified task.<br>
 
 This command will simply delete the task at index number 2 shown on the current list.
 
-
 ### 2.7. Exiting the program : `exit`
 
 Exits the program.<br>
@@ -162,6 +161,11 @@ Exits the program.<br>
 ### 2.8. Saving the data
 Task manager data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.
+
+### 2.9. Marking tasks as done: `mark`
+
+Marks a particular task as either done or not done<br>
+**Format:** `mark <INDEX> <done/undone>` <br>
 
 ## 3. FAQ
 
@@ -203,3 +207,6 @@ There is no need to save manually.
 
 * **Exit** : 'exit' <br>
    e.g. `exit`
+
+* **Mark Tasks as Done/Undone** : 'exit' <br>
+   e.g. `mark 2 done`

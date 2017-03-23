@@ -139,8 +139,6 @@ The sections below give more details of each component.
 
 ### 2.2. UI component
 
-Author: Alice Bee
-
 <img src="images/UiClassDiagram.png" width="800"><br>
 _Figure 2.2.1 : Structure of the UI Component_
 
@@ -160,9 +158,9 @@ The `UI` component,
 * Binds itself to some data in the `Model` so that the UI can auto-update when data in the `Model` change.
 * Responds to events raised from various parts of the App and updates the UI accordingly.
 
-### 2.3. Logic component
+For the TaskCard, an additional `TaskCardStyle` class is used to colour code the card. It will be red if the task is undone, and green if the task is completed.
 
-Author: Bernard Choo
+### 2.3. Logic component
 
 <img src="images/LogicClassDiagram.png" width="800"><br>
 _Figure 2.3.1 : Structure of the Logic Component_
@@ -181,8 +179,6 @@ _Figure 2.3.1 : Interactions Inside the Logic Component for the `delete 1` Comma
 
 ### 2.4. Model component
 
-Author: Cynthia Dharman
-
 <img src="images/ModelClassDiagram.png" width="800"><br>
 _Figure 2.4.1 : Structure of the Model Component_
 
@@ -198,8 +194,6 @@ The `Model`,
 
 ### 2.5. Storage component
 
-Author: Darius Foong
-
 <img src="images/StorageClassDiagram.png" width="800"><br>
 _Figure 2.5.1 : Structure of the Storage Component_
 
@@ -209,6 +203,7 @@ The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
 * can save the Task Manager data in xml format and read it back.
+* It stores relevant date object as a string which will be parsed by `DateTimeUtil.dateTimeParse`.
 
 ### 2.6. Common classes
 
@@ -240,6 +235,14 @@ and logging destinations.
 Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file
 (default: `config.json`):
 
+### 3.3. Handling different types of tasks
+
+We used `Optional` attributes in our implementation of different type of tasks.
+* If a task is a floating task (no dates specified), both startDate and endDate will be empty.
+* If a task is a deadline, only endDate will be filled with a `TaskDate` object.
+* An event task will have both startDate and endDate filled. 
+
+A seperate Utility class (TaskUtil) is defined in the commons class to identify whether a task is of different types. This is to adhere to the Single Responsibility Principle.
 
 ## 4. Testing
 
