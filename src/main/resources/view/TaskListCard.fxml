@@ -33,7 +33,7 @@
                                  <Label fx:id="id" alignment="CENTER" styleClass="cell_small_label" text="\$id" />
                      </children>
                   </VBox>
-                      <VBox alignment="CENTER_LEFT" minHeight="105.0">
+                      <VBox fx:id="labelContainer" alignment="CENTER_LEFT" minHeight="105.0">
                           <stylesheets>
                               <URL value="@DarkTheme.css" />
                               <URL value="@Extensions.css" />
