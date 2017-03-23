@@ -124,6 +124,6 @@ public class EditCommandTest extends TaskManagerGuiTest {
         // updated details
         expectedTasksList[taskManagerIndex - 1] = editedTask;
         assertTrue(taskListPanel.isListMatching(expectedTasksList));
-        assertResultMessage(String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask));
+        assertResultMessage(String.format(EditCommand.MESSAGE_SUCCESS, editedTask));
     }
 }
