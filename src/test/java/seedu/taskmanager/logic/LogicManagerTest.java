@@ -138,9 +138,9 @@ public class LogicManagerTest {
      * - the backing list shown by UI matches the {@code shownList} <br>
      * - {@code expectedTaskManager} was saved to the storage file. <br>
      */
-    protected void assertCommandBehavior(boolean isCommandExceptionExpected, String inputCommand, String expectedMessage,
-                                       ReadOnlyTaskManager expectedTaskManager,
-                                       List<? extends ReadOnlyTask> expectedShownList) {
+    protected void assertCommandBehavior(boolean isCommandExceptionExpected, String inputCommand,
+            String expectedMessage, ReadOnlyTaskManager expectedTaskManager,
+            List<? extends ReadOnlyTask> expectedShownList) {
         try {
             CommandResult result = logic.execute(inputCommand);
             assertFalse("CommandException expected but was not thrown.", isCommandExceptionExpected);
@@ -224,14 +224,14 @@ public class LogicManagerTest {
             return new Task(name, startDate, endDate, tags);
         }
 
-        
         Task homework() throws Exception {
-                Name name = new Name("CS Homework");
-                Tag tag1 = new Tag("tag1");
-                Tag tag2 = new Tag("longertag2");
-                UniqueTagList tags = new UniqueTagList(tag1, tag2);
-                return new Task(name, tags);
-            }
+            Name name = new Name("CS Homework");
+            Tag tag1 = new Tag("tag1");
+            Tag tag2 = new Tag("longertag2");
+            UniqueTagList tags = new UniqueTagList(tag1, tag2);
+            return new Task(name, tags);
+        }
+
         /**
          * Generates a valid task using the given seed. Running this function
          * with the same parameter values guarantees the returned task will have
@@ -345,12 +345,8 @@ public class LogicManagerTest {
          * Generates a Task object with given name, start and end dates.
          */
         Task generateTaskWithAll(String name, String startDate, String endDate) throws Exception {
-            return new Task(
-                    new Name(name),
-                    new TaskDate(DateTimeUtil.parseDateTime(startDate)),
-                    new TaskDate(DateTimeUtil.parseDateTime(endDate)),
-                    new UniqueTagList(new Tag("tag"))
-            );
+            return new Task(new Name(name), new TaskDate(DateTimeUtil.parseDateTime(startDate)),
+                    new TaskDate(DateTimeUtil.parseDateTime(endDate)), new UniqueTagList(new Tag("tag")));
         }
     }
 }

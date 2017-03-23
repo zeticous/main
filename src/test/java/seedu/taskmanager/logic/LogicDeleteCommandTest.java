@@ -12,7 +12,7 @@ import seedu.taskmanager.model.task.Task;
 
 public class LogicDeleteCommandTest extends LogicManagerTest {
 
-	@Test
+    @Test
     public void execute_deleteInvalidArgsFormat_errorMessageShown() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
         assertIncorrectIndexFormatBehaviorForCommand("delete", expectedMessage);
@@ -32,10 +32,8 @@ public class LogicDeleteCommandTest extends LogicManagerTest {
         expectedAB.removeTask(threeTasks.get(1));
         helper.addToModel(model, threeTasks);
 
-        assertCommandSuccess("delete 2",
-                String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, threeTasks.get(1)),
-                expectedAB,
-                expectedAB.getTaskList());
+        assertCommandSuccess("delete 2", String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, threeTasks.get(1)),
+                expectedAB, expectedAB.getTaskList());
     }
 
 }

@@ -60,11 +60,11 @@ public class LogicAddCommandTest extends LogicManagerTest {
     // endDate when they are not present
     @Test
     public void execute_add_successfulDummyDate() throws Exception {
-            // setup expectations
-            TestDataHelper helper = new TestDataHelper();
-            Task toBeAdded = helper.homework();
-            assertEquals(toBeAdded.getStartDate().toString(),DummyStartTaskDate.DUMMY_START_DATE_STRING);
-            assertEquals(toBeAdded.getEndDate().toString(),DummyEndTaskDate.DUMMY_END_DATE_STRING);
+        // setup expectations
+        TestDataHelper helper = new TestDataHelper();
+        Task toBeAdded = helper.homework();
+        assertEquals(toBeAdded.getStartDate().toString(), DummyStartTaskDate.DUMMY_START_DATE_STRING);
+        assertEquals(toBeAdded.getEndDate().toString(), DummyEndTaskDate.DUMMY_END_DATE_STRING);
     }
 
 }

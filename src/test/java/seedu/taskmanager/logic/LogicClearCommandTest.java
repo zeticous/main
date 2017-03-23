@@ -9,7 +9,7 @@ import seedu.taskmanager.model.TaskManager;
 
 public class LogicClearCommandTest extends LogicManagerTest {
 
-	@Test
+    @Test
     public void execute_clear() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         model.addTask(helper.generateTask(1));

@@ -9,10 +9,10 @@ import seedu.taskmanager.model.TaskManager;
 
 public class LogicExitCommandTest extends LogicManagerTest {
 
-	@Test
+    @Test
     public void execute_exit() {
-        assertCommandSuccess("exit", ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT,
-                new TaskManager(), Collections.emptyList());
+        assertCommandSuccess("exit", ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT, new TaskManager(),
+                Collections.emptyList());
     }
 
 }

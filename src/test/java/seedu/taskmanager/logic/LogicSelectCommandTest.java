@@ -13,7 +13,7 @@ import seedu.taskmanager.model.task.Task;
 
 public class LogicSelectCommandTest extends LogicManagerTest {
 
-	@Test
+    @Test
     public void execute_selectInvalidArgsFormat_errorMessageShown() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE);
         assertIncorrectIndexFormatBehaviorForCommand("select", expectedMessage);
@@ -32,9 +32,7 @@ public class LogicSelectCommandTest extends LogicManagerTest {
         TaskManager expectedAB = helper.generateTaskManager(threeTasks);
         helper.addToModel(model, threeTasks);
 
-        assertCommandSuccess("select 2",
-                String.format(SelectCommand.MESSAGE_SELECT_TASK_SUCCESS, 2),
-                expectedAB,
+        assertCommandSuccess("select 2", String.format(SelectCommand.MESSAGE_SELECT_TASK_SUCCESS, 2), expectedAB,
                 expectedAB.getTaskList());
         assertEquals(1, targetedJumpIndex);
         assertEquals(model.getFilteredTaskList().get(1), threeTasks.get(1));

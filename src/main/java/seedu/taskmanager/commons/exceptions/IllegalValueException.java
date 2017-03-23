@@ -5,6 +5,11 @@ package seedu.taskmanager.commons.exceptions;
  */
 public class IllegalValueException extends Exception {
     /**
+     * 
+     */
+    private static final long serialVersionUID = -4967960537872351727L;
+
+    /**
      * @param message
      *            should contain relevant information on the failed
      *            constraint(s)
