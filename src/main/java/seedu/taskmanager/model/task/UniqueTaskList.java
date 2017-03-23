@@ -1,5 +1,6 @@
 package seedu.taskmanager.model.task;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -127,6 +128,11 @@ public class UniqueTaskList implements Iterable<Task> {
      * property of the list.
      */
     public static class DuplicateTaskException extends DuplicateDataException {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -6262186798759315300L;
+
         protected DuplicateTaskException() {
             super("Operation would result in duplicate tasks");
         }
@@ -137,6 +143,11 @@ public class UniqueTaskList implements Iterable<Task> {
      * fail because there is no such matching task in the list.
      */
     public static class TaskNotFoundException extends Exception {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 3500678284364510933L;
     }
 
 }

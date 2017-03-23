@@ -10,7 +10,7 @@ import seedu.taskmanager.model.task.ReadOnlyTask;
 
 public class LogicListCommandTest extends LogicManagerTest {
 
-	@Test
+    @Test
     public void execute_list_showsAllTasks() throws Exception {
         // prepare expectations
         TestDataHelper helper = new TestDataHelper();
@@ -20,10 +20,7 @@ public class LogicListCommandTest extends LogicManagerTest {
         // prepare task manager state
         helper.addToModel(model, 2);
 
-        assertCommandSuccess("list",
-                ListCommand.MESSAGE_SUCCESS,
-                expectedAB,
-                expectedList);
+        assertCommandSuccess("list", ListCommand.MESSAGE_SUCCESS, expectedAB, expectedList);
     }
 
 }

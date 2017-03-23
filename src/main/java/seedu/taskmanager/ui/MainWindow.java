@@ -16,7 +16,6 @@ import seedu.taskmanager.commons.events.ui.ExitAppRequestEvent;
 import seedu.taskmanager.commons.util.FxViewUtil;
 import seedu.taskmanager.logic.Logic;
 import seedu.taskmanager.model.UserPrefs;
-import seedu.taskmanager.model.task.ReadOnlyTask;
 
 /**
  * The Main Window. Provides the basic application layout containing a menu bar
@@ -33,7 +32,6 @@ public class MainWindow extends UiPart<Region> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private BrowserPanel browserPanel;
     private TaskListPanel taskListPanel;
     private Config config;
 

@@ -126,6 +126,11 @@ public class JsonUtil {
 
     private static class LevelDeserializer extends FromStringDeserializer<Level> {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1902231331939484658L;
+
         protected LevelDeserializer(Class<?> vc) {
             super(vc);
         }

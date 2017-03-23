@@ -37,6 +37,7 @@ public class Task implements ReadOnlyTask {
         this.endDate = new DummyEndTaskDate();
         this.tags = new UniqueTagList(tags); // protect internal tags from
                                              // changes in the arg list
+        this.isDone = false;
     }
 
     /**
@@ -136,8 +137,7 @@ public class Task implements ReadOnlyTask {
 
     @Override
     public boolean isDone() {
-        // TODO Auto-generated method stub
-        return false;
+        return isDone;
     }
 
 }
