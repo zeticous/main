@@ -372,7 +372,14 @@ public class LogicManagerTest {
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
             return new Task(name, startDate, endDate, tags);
         }
-
+        
+        Task homework() throws Exception {
+                Name name = new Name("CS Homework");
+                Tag tag1 = new Tag("tag1");
+                Tag tag2 = new Tag("longertag2");
+                UniqueTagList tags = new UniqueTagList(tag1, tag2);
+                return new Task(name, tags);
+            }
         /**
          * Generates a valid task using the given seed. Running this function
          * with the same parameter values guarantees the returned task will have
