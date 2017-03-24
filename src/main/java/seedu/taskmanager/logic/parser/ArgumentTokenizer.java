@@ -29,6 +29,8 @@ public class ArgumentTokenizer {
     /** Arguments found after tokenizing **/
     private final Map<Prefix, List<String>> tokenizedArguments = new HashMap<>();
 
+    private static final String PREFIX_FORMAT = " %s";
+
     /**
      * Creates an ArgumentTokenizer that can tokenize arguments string as
      * described by prefixes
@@ -107,11 +109,11 @@ public class ArgumentTokenizer {
     private List<PrefixPosition> findPrefixPositions(String argsString, Prefix prefix) {
         List<PrefixPosition> positions = new ArrayList<>();
 
-        int argumentStart = argsString.indexOf(prefix.getPrefix());
+        int argumentStart = argsString.indexOf(String.format(PREFIX_FORMAT, prefix.getPrefix()));
         while (argumentStart != -1) {
             PrefixPosition extendedPrefix = new PrefixPosition(prefix, argumentStart);
             positions.add(extendedPrefix);
-            argumentStart = argsString.indexOf(prefix.getPrefix(), argumentStart + 1);
+            argumentStart = argsString.indexOf(String.format(PREFIX_FORMAT, prefix.getPrefix()), argumentStart + 1);
         }
 
         return positions;
