@@ -21,9 +21,15 @@ public class DateTimeUtil {
     public static final String INVALID_DATE_FORMAT = "Date format is not accepted by PotaTodo";
     public static final String EMPTY_STRING = "";
 
-    private static final int FIRST_ELEMENT_INDEX = 0;
     private static final String TIME_SYNTAX = "EXPLICIT_TIME";
+    private static final int FIRST_ELEMENT_INDEX = 0;
 
+    private static final int STARTING_TIME_HOUR = 0;
+    private static final int STARTING_TIME_MINUTE = 0;
+    private static final int STARTING_TIME_SECOND = 0;
+    private static final int ENDING_TIME_HOUR = 23;
+    private static final int ENDING_TIME_MINUTE = 59;
+    private static final int ENDING_TIME_SECOND = 59;
 
     // Used to store and print date to end user.
     public static final String DATE_STRING_FORMAT = "dd MMMMM yyyy, hh:mm aaa";
@@ -111,9 +117,9 @@ public class DateTimeUtil {
     private static Date setStartDateTime(Date date) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.HOUR_OF_DAY, STARTING_TIME_HOUR);
+        cal.set(Calendar.MINUTE, STARTING_TIME_MINUTE);
+        cal.set(Calendar.SECOND, STARTING_TIME_SECOND);
         return cal.getTime();
     }
 
@@ -122,9 +128,9 @@ public class DateTimeUtil {
     private static Date setEndDateTime(Date date) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        cal.set(Calendar.HOUR_OF_DAY, 23);
-        cal.set(Calendar.MINUTE, 59);
-        cal.set(Calendar.SECOND, 59);
+        cal.set(Calendar.HOUR_OF_DAY, ENDING_TIME_HOUR);
+        cal.set(Calendar.MINUTE, ENDING_TIME_MINUTE);
+        cal.set(Calendar.SECOND, ENDING_TIME_SECOND);
         return cal.getTime();
     }
 }
