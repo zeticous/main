@@ -52,7 +52,7 @@ public class AddCommand extends Command {
             startDate = new DummyStartTaskDate();
 
         } else {
-            startDate = new TaskDate(DateTimeUtil.parseDateTime(startDateString));
+            startDate = new TaskDate(DateTimeUtil.parseStartDateTime(startDateString));
         }
 
         if (endDateString == NO_END_DATE) {
