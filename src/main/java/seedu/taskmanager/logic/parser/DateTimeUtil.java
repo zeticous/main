@@ -47,7 +47,7 @@ public class DateTimeUtil {
     
     //Specialized date/time parser for startDate string with only date element
     //Set time of the returned date object as the starting time of the day
-    //i.e. 00:00 am
+    //i.e. 00:00:00 am
     public static Date parseStartDateTime(String startDate) throws IllegalValueException {
     	List<DateGroup> parsedStartDatesList = dateTimeParser.parse(startDate);
 
@@ -60,6 +60,27 @@ public class DateTimeUtil {
     			return setStartDateTime(parsedStartDate.getDates().get(FIRST_ELEMENT_INDEX));
     		}
     		return parsedStartDate.getDates().get(FIRST_ELEMENT_INDEX);
+
+    	} else {
+    		throw new IllegalValueException(INVALID_DATE_FORMAT);
+    	}
+    }
+
+    //Specialized date/time parser for endDate string with only date element
+    //Set time of the returned date object as the ending time of the day
+    //i.e. 11:59:59 pm
+    public static Date parseEndDateTime(String endDate) throws IllegalValueException {
+    	List<DateGroup> parsedEndDatesList = dateTimeParser.parse(endDate);
+
+    	if (isValidArg(parsedEndDatesList)) {
+
+    		DateGroup parsedEndDate = parsedEndDatesList.get(FIRST_ELEMENT_INDEX);
+    		String syntaxTreeString = parsedEndDate.getSyntaxTree().getChild(FIRST_ELEMENT_INDEX).toStringTree();
+    		
+    		if (!isTimePresent(syntaxTreeString)) {
+    			return setEndDateTime(parsedEndDate.getDates().get(FIRST_ELEMENT_INDEX));
+    		}
+    		return parsedEndDate.getDates().get(FIRST_ELEMENT_INDEX);
 
     	} else {
     		throw new IllegalValueException(INVALID_DATE_FORMAT);
@@ -93,6 +114,17 @@ public class DateTimeUtil {
         cal.set(Calendar.HOUR_OF_DAY, 0);
         cal.set(Calendar.MINUTE, 0);
         cal.set(Calendar.SECOND, 0);
+        return cal.getTime();
+    }
+
+    //Set time of the returned Date object as the starting time of the day
+    //i.e. 00:00:00
+    private static Date setEndDateTime(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.set(Calendar.HOUR_OF_DAY, 23);
+        cal.set(Calendar.MINUTE, 59);
+        cal.set(Calendar.SECOND, 59);
         return cal.getTime();
     }
 }

@@ -59,7 +59,7 @@ public class AddCommand extends Command {
             endDate = new DummyEndTaskDate();
 
         } else {
-            endDate = new TaskDate(DateTimeUtil.parseDateTime(endDateString));
+            endDate = new TaskDate(DateTimeUtil.parseEndDateTime(endDateString));
         }
 
         for (String tagName : tags) {
