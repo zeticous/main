@@ -12,7 +12,7 @@ import com.joestelmach.natty.Parser;
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
 
 /**
- * Natty parser
+ * Natty date parser that parses a command with date and time and return a Date object
  */
 
 public class DateTimeUtil {
