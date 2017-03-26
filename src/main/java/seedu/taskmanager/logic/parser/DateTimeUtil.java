@@ -123,8 +123,8 @@ public class DateTimeUtil {
         return cal.getTime();
     }
 
-    //Set time of the returned Date object as the starting time of the day
-    //i.e. 00:00:00
+    //Set time of the returned Date object as the ending time of the day
+    //i.e. 23:59:59
     private static Date setEndDateTime(Date date) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
