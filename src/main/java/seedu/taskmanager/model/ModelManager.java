@@ -199,8 +199,8 @@ public class ModelManager extends ComponentManager implements Model {
             default:
                 try {
                     TaskDate date = new TaskDate(DateTimeUtil.parseDateTime(taskType));
-                    return task.getStartDate().getOnlyDate().equals(date.getOnlyDate())
-                            || task.getEndDate().getOnlyDate().equals(date.getOnlyDate());
+                    return task.getStartDate().get().getOnlyDate().equals(date.getOnlyDate())
+                            || task.getEndDate().get().getOnlyDate().equals(date.getOnlyDate());
 
                 } catch (IllegalValueException ive) {
                     // Deliberately empty as taskType will not throw exception
@@ -227,8 +227,8 @@ public class ModelManager extends ComponentManager implements Model {
         @Override
         public boolean run(ReadOnlyTask task) {
 
-        	boolean dateFilter = task.getStartDate().getOnlyDate().equals(date.getOnlyDate())
-                    || task.getEndDate().getOnlyDate().equals(date.getOnlyDate());
+        	boolean dateFilter = task.getStartDate().get().getOnlyDate().equals(date.getOnlyDate())
+                    || task.getEndDate().get().getOnlyDate().equals(date.getOnlyDate());
 
             switch (taskType) {
             case "floating":
