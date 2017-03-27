@@ -92,4 +92,17 @@ public class FileUtil {
         return pathWithForwardSlash.replace("/", File.separator);
     }
 
+    /**
+     * Deletes a file
+     * @param file
+     * @return true if deleted, false if file do not exist
+     * @throws IOException
+     */
+    public static boolean deleteFile(File file) throws IOException {
+        if (!file.exists()) {
+            return false;
+        }
+
+        return file.delete();
+    }
 }

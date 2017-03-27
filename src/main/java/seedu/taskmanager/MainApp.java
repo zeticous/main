@@ -14,6 +14,7 @@ import seedu.taskmanager.commons.core.Config;
 import seedu.taskmanager.commons.core.EventsCenter;
 import seedu.taskmanager.commons.core.LogsCenter;
 import seedu.taskmanager.commons.core.Version;
+import seedu.taskmanager.commons.events.model.FilePathChangedEvent;
 import seedu.taskmanager.commons.events.ui.ExitAppRequestEvent;
 import seedu.taskmanager.commons.exceptions.DataConversionException;
 import seedu.taskmanager.commons.util.ConfigUtil;
@@ -185,6 +186,22 @@ public class MainApp extends Application {
     public void handleExitAppRequestEvent(ExitAppRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         this.stop();
+    }
+
+    @Subscribe
+    public void handleFilePathChangedEvent(FilePathChangedEvent fpse) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(fpse, "Config data changed, saving to file"));
+        String oldFilePath = config.getTaskManagerFilePath();
+        try {
+            storage.setTaskManagerFilePath(fpse.filePath);
+            storage.saveTaskManager(model.getTaskManager());
+            config.setTaskManagerFilePath(fpse.filePath);
+            ConfigUtil.saveConfig(config, config.getConfigFilePath());
+        } catch (IOException e) {
+            storage.setTaskManagerFilePath(oldFilePath);
+            config.setTaskManagerFilePath(oldFilePath);
+            logger.warning("Failed to save config file, reverting to old : " + StringUtil.getDetails(e));
+        }
     }
 
     public static void main(String[] args) {
