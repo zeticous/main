@@ -16,6 +16,8 @@ import seedu.taskmanager.logic.commands.EditCommand;
 import seedu.taskmanager.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.taskmanager.logic.commands.IncorrectCommand;
 import seedu.taskmanager.model.tag.UniqueTagList;
+import seedu.taskmanager.model.task.DummyEndTaskDate;
+import seedu.taskmanager.model.task.DummyStartTaskDate;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -42,11 +44,17 @@ public class EditCommandParser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
-//        if (argsTokenizer.getValue(PREFIX_STARTDATE).isPresent()) {
-//        	if (argsTokenizer.getValue(PREFIX_STARTDATE).get() == REMOVE_STRING) {
-//            	argsTokenizer.changeArgument(PREFIX_STARTDATE, DummyStartTaskDate.DUMMY_START_DATE_STRING);
-//            }
-//        }
+        if (argsTokenizer.getValue(PREFIX_STARTDATE).isPresent()) {
+        	if (argsTokenizer.getValue(PREFIX_STARTDATE).get().equals(REMOVE_STRING)) {
+            	argsTokenizer.changeArgument(PREFIX_STARTDATE, DummyStartTaskDate.DUMMY_START_DATE_STRING);
+            }
+        }
+
+        if (argsTokenizer.getValue(PREFIX_ENDDATE).isPresent()) {
+        	if (argsTokenizer.getValue(PREFIX_ENDDATE).get().equals(REMOVE_STRING)) {
+            	argsTokenizer.changeArgument(PREFIX_ENDDATE, DummyEndTaskDate.DUMMY_END_DATE_STRING);
+            }
+        }
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
 
