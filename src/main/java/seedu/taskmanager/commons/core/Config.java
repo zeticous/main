@@ -16,6 +16,7 @@ public class Config {
     private String userPrefsFilePath = "preferences.json";
     private String taskManagerFilePath = "data/taskmanager.xml";
     private String taskManagerName = "MyTaskManager";
+    private String configFilePath = DEFAULT_CONFIG_FILE;
 
     public String getAppTitle() {
         return appTitle;
@@ -55,6 +56,14 @@ public class Config {
 
     public void setTaskManagerName(String taskManagerName) {
         this.taskManagerName = taskManagerName;
+    }
+
+    public String getConfigFilePath() {
+        return configFilePath;
+    }
+
+    public void setConfigFilePath(String newPath) {
+        this.configFilePath = newPath;
     }
 
     @Override

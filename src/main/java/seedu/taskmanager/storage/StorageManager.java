@@ -53,6 +53,11 @@ public class StorageManager extends ComponentManager implements Storage {
     }
 
     @Override
+    public void setTaskManagerFilePath(String newPath) {
+        taskManagerStorage.setTaskManagerFilePath(newPath);
+    }
+
+    @Override
     public Optional<ReadOnlyTaskManager> readTaskManager() throws DataConversionException, IOException {
         return readTaskManager(taskManagerStorage.getTaskManagerFilePath());
     }
@@ -84,5 +89,4 @@ public class StorageManager extends ComponentManager implements Storage {
             raise(new DataSavingExceptionEvent(e));
         }
     }
-
 }

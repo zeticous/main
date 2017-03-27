@@ -7,6 +7,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.taskmanager.commons.core.ComponentManager;
 import seedu.taskmanager.commons.core.LogsCenter;
 import seedu.taskmanager.commons.core.UnmodifiableObservableList;
+import seedu.taskmanager.commons.events.model.FilePathChangedEvent;
 import seedu.taskmanager.commons.events.model.TaskManagerChangedEvent;
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
 import seedu.taskmanager.commons.util.CollectionUtil;
@@ -55,6 +56,11 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public ReadOnlyTaskManager getTaskManager() {
         return taskManager;
+    }
+
+    @Override
+    public void changeFilePath(String newPath) {
+        raise(new FilePathChangedEvent(newPath));
     }
 
     /** Raises an event to indicate the model has changed */
