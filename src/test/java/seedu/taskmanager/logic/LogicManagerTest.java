@@ -361,6 +361,7 @@ public class LogicManagerTest {
             		new TaskDate(DateTimeUtil.parseDateTime(startDate)),
                     new TaskDate(DateTimeUtil.parseDateTime(endDate)),
                     new UniqueTagList(new Tag("tag")));
+
         }
     }
 }
