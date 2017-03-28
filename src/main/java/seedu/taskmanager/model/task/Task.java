@@ -57,6 +57,7 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setStartDate(Optional<TaskDate> taskDate) {
+    	assert taskDate != null;
         this.startDate = taskDate;
     }
 
@@ -66,6 +67,7 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setEndDate(Optional<TaskDate> taskDate) {
+    	assert taskDate != null;
         this.endDate = taskDate;
     }
 

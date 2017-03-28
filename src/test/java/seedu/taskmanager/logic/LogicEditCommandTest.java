@@ -140,7 +140,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
     public void execute_edit_validEndDate() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         Task task = helper.generateTaskWithName("potato");
-        Task editedTask = helper.generateTaskWithAll("potato", null, "now");
+        Task editedTask = helper.generateTaskWithDueDate("potato", "now");
 
         List<Task> sampleTasks = helper.generateTaskList(task);
         TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
