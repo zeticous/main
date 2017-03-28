@@ -59,8 +59,8 @@ public class Task implements ReadOnlyTask {
      */
     public Task(ReadOnlyTask source) {
         this.name = source.getName();
-        this.startDate = Optional.of(source.getStartDate());
-        this.endDate = Optional.of(source.getEndDate());
+        this.startDate = Optional.ofNullable(source.getStartDate());
+        this.endDate = Optional.ofNullable(source.getEndDate());
         this.tags = source.getTags();
     }
 
@@ -76,24 +76,22 @@ public class Task implements ReadOnlyTask {
 
     @Override
     public TaskDate getStartDate() {
-        assert startDate.isPresent();
-        return startDate.get();
+        return startDate.orElse(null);
     }
 
     @Override
     public TaskDate getEndDate() {
-        assert endDate.isPresent();
-        return endDate.get();
+        return endDate.orElse(null);
     }
 
     public void setStartDate(TaskDate taskDate) {
         assert taskDate != null;
-        this.startDate = Optional.of(taskDate);
+        this.startDate = Optional.ofNullable(taskDate);
     }
 
     public void setEndDate(TaskDate taskDate) {
         assert taskDate != null;
-        this.endDate = Optional.of(taskDate);
+        this.endDate = Optional.ofNullable(taskDate);
     }
 
     public void removeStartDate() {

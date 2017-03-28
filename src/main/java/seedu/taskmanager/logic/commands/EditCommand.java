@@ -5,8 +5,10 @@ import java.util.Optional;
 
 import seedu.taskmanager.commons.core.Messages;
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
+import seedu.taskmanager.commons.util.CollectionUtil;
 import seedu.taskmanager.logic.commands.exceptions.CommandException;
 import seedu.taskmanager.model.tag.UniqueTagList;
+import seedu.taskmanager.model.task.DummyTaskDate;
 import seedu.taskmanager.model.task.Name;
 import seedu.taskmanager.model.task.ReadOnlyTask;
 import seedu.taskmanager.model.task.Task;
@@ -72,8 +74,8 @@ public class EditCommand extends Command {
             throw new CommandException(ive.getMessage());
 
         }
-        model.updateFilteredListToShowAll();
 
+        model.updateFilteredListToShowAll();
         return new CommandResult(String.format(MESSAGE_SUCCESS, taskToEdit));
     }
 
@@ -88,15 +90,15 @@ public class EditCommand extends Command {
         Name updatedName = editTaskDescriptor.getName().orElseGet(taskToEdit::getName);
         UniqueTagList updatedTags = editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
 
-        TaskDate updatedStartDate = null;
-        TaskDate updatedEndDate = null;
+        TaskDate updatedStartDate = editTaskDescriptor.getStartDate().orElseGet(taskToEdit::getStartDate);
+        TaskDate updatedEndDate = editTaskDescriptor.getEndDate().orElseGet(taskToEdit::getEndDate);
 
-        if (!editTaskDescriptor.startDateRemoved()) {
-            updatedStartDate = editTaskDescriptor.getStartDate().orElseGet(taskToEdit::getStartDate);
+        if (updatedStartDate.equals(new DummyTaskDate())) {
+            updatedStartDate = null;
         }
 
-        if (!editTaskDescriptor.endDateRemoved()) {
-            updatedEndDate = editTaskDescriptor.getEndDate().orElseGet(taskToEdit::getEndDate);
+        if (updatedEndDate.equals(new DummyTaskDate())) {
+            updatedEndDate = null;
         }
 
         Task createdTask = new Task(updatedName, updatedStartDate, updatedEndDate, updatedTags);
@@ -112,10 +114,9 @@ public class EditCommand extends Command {
         // Checks if a task is in a valid time structure.
         if (!createdTask.isValidTask()) {
             throw new IllegalValueException(MESSAGE_INVALID_EDITTED_TASK);
-
         }
 
-        return createdTask;
+        return new Task(updatedName, updatedStartDate, updatedEndDate, updatedTags);
     }
 
     /**
@@ -129,14 +130,7 @@ public class EditCommand extends Command {
         private Optional<TaskDate> endDate = Optional.empty();
         private Optional<UniqueTagList> tags = Optional.empty();
 
-        // Needs to be static such that the flags carries over from
-        // EditCommandParser
-        private static boolean editFlag, startDateRemovedFlag, endDateRemovedFlag;
-
         public EditTaskDescriptor() {
-            startDateRemovedFlag = false;
-            endDateRemovedFlag = false;
-            editFlag = false;
         }
 
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
@@ -150,13 +144,12 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return editFlag;
+            return CollectionUtil.isAnyPresent(this.name, this.startDate, this.endDate, this.tags);
         }
 
         public void setName(Optional<Name> name) {
             assert name != null;
             this.name = name;
-            setEditted();
         }
 
         public Optional<Name> getName() {
@@ -166,7 +159,6 @@ public class EditCommand extends Command {
         public void setStartDate(Optional<TaskDate> taskDate) {
             assert taskDate != null;
             this.startDate = taskDate;
-            setEditted();
         }
 
         public Optional<TaskDate> getStartDate() {
@@ -174,18 +166,17 @@ public class EditCommand extends Command {
         }
 
         public boolean startDateRemoved() {
-            return startDateRemovedFlag;
-        }
-
-        public void setStartDateRemovedFlag() {
-            startDateRemovedFlag = true;
-            setEditted();
+            try {
+                return startDate.get().equals(new DummyTaskDate());
+            } catch (IllegalValueException e) {
+                // Not possible as DummyTaskDate is always valid
+                return false;
+            }
         }
 
         public void setEndDate(Optional<TaskDate> taskDate) {
             assert taskDate != null;
             this.endDate = taskDate;
-            setEditted();
         }
 
         public Optional<TaskDate> getEndDate() {
@@ -193,30 +184,21 @@ public class EditCommand extends Command {
         }
 
         public boolean endDateRemoved() {
-            return endDateRemovedFlag;
-        }
-
-        public void setEndDateRemovedFlag() {
-            endDateRemovedFlag = true;
-            setEditted();
+            try {
+                return endDate.get().equals(new DummyTaskDate());
+            } catch (IllegalValueException e) {
+                // Not possible as DummyTaskDate is always valid
+                return false;
+            }
         }
 
         public void setTags(Optional<UniqueTagList> tags) {
             assert tags != null;
             this.tags = tags;
-            setEditted();
         }
 
         public Optional<UniqueTagList> getTags() {
             return tags;
-        }
-
-        /**
-         * Set the descriptor as editted even if no values are touched. Used in
-         * optional taskdate implementation
-         */
-        public void setEditted() {
-            editFlag = true;
         }
     }
 }

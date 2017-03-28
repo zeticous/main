@@ -16,6 +16,7 @@ import seedu.taskmanager.logic.commands.EditCommand;
 import seedu.taskmanager.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.taskmanager.logic.commands.IncorrectCommand;
 import seedu.taskmanager.model.tag.UniqueTagList;
+import seedu.taskmanager.model.task.DummyTaskDate;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -23,7 +24,7 @@ import seedu.taskmanager.model.tag.UniqueTagList;
 public class EditCommandParser {
 
     public static final String EMPTY_STRING = "";
-    public static final String REMOVE_STRING = "/remove";
+    public static final String REMOVE_STRING = "remove";
 
     /**
      * Parses the given {@code String} of arguments in the context of the
@@ -48,19 +49,24 @@ public class EditCommandParser {
             Optional<String> startDateString = argsTokenizer.getValue(PREFIX_STARTDATE);
             Optional<String> endDateString = argsTokenizer.getValue(PREFIX_ENDDATE);
 
-            if (startDateString.isPresent() && startDateString.get().toLowerCase().equals(REMOVE_STRING)) {
-                editTaskDescriptor.setStartDateRemovedFlag();
+            if (startDateString.isPresent()) {
+                if (isRemoveString(startDateString)) {
+                    editTaskDescriptor.setStartDate(Optional.of(new DummyTaskDate()));
 
-            } else {
-                editTaskDescriptor.setStartDate(ParserUtil.parseTaskDate(startDateString));
+                } else {
+                    editTaskDescriptor.setStartDate(ParserUtil.parseTaskDate(startDateString));
+                }
             }
 
-            if (endDateString.isPresent() && endDateString.get().toLowerCase().equals(REMOVE_STRING)) {
-                editTaskDescriptor.setEndDateRemovedFlag();
+            if (endDateString.isPresent()) {
+                if (isRemoveString(endDateString)) {
+                    editTaskDescriptor.setEndDate(Optional.of(new DummyTaskDate()));
 
-            } else {
-                editTaskDescriptor.setEndDate(ParserUtil.parseTaskDate(endDateString));
+                } else {
+                    editTaskDescriptor.setEndDate(ParserUtil.parseTaskDate(endDateString));
+                }
             }
+
             editTaskDescriptor.setName(ParserUtil.parseName(preambleFields.get(1)));
             editTaskDescriptor.setTags(parseTagsForEdit(ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))));
 
@@ -73,6 +79,10 @@ public class EditCommandParser {
         }
 
         return new EditCommand(index.get(), editTaskDescriptor);
+    }
+
+    private boolean isRemoveString(Optional<String> dateString) {
+        return dateString.get().substring(1).trim().toLowerCase().equals(REMOVE_STRING);
     }
 
     /**
