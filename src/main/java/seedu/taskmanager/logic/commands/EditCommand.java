@@ -1,5 +1,7 @@
 package seedu.taskmanager.logic.commands;
 
+import static seedu.taskmanager.logic.parser.EditCommandParser.EMPTY_STRING;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -86,6 +88,7 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElseGet(taskToEdit::getName);
+
         UniqueTagList updatedTags = editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
 
         TaskDate updatedStartDate = null;
@@ -116,6 +119,7 @@ public class EditCommand extends Command {
         }
 
         return createdTask;
+
     }
 
     /**

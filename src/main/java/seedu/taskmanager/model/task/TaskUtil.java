@@ -1,6 +1,7 @@
 package seedu.taskmanager.model.task;
 
 public class TaskUtil {
+
     public static boolean isFloating(ReadOnlyTask task) {
         return (task.isFloating());
     }

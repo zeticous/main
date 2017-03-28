@@ -37,12 +37,14 @@ public class TestTask implements ReadOnlyTask {
         this.tags = tags;
     }
 
+
     public void setStartDate(TaskDate startDate) {
         this.startDate = Optional.of(startDate);
     }
 
     public void setEndDate(TaskDate endDate) {
         this.endDate = Optional.of(endDate);
+
     }
 
     @Override
@@ -51,6 +53,7 @@ public class TestTask implements ReadOnlyTask {
     }
 
     @Override
+
     public TaskDate getStartDate() {
         return startDate.get();
     }
@@ -58,6 +61,7 @@ public class TestTask implements ReadOnlyTask {
     @Override
     public TaskDate getEndDate() {
         return endDate.get();
+
     }
 
     @Override

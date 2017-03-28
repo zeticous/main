@@ -17,6 +17,7 @@ import seedu.taskmanager.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.taskmanager.logic.commands.IncorrectCommand;
 import seedu.taskmanager.model.tag.UniqueTagList;
 
+
 /**
  * Parses input arguments and creates a new EditCommand object
  */
@@ -45,8 +46,24 @@ public class EditCommandParser {
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
 
         try {
-            Optional<String> startDateString = argsTokenizer.getValue(PREFIX_STARTDATE);
+        	editTaskDescriptor.setName(ParserUtil.parseName(preambleFields.get(1)));
+
+        	Optional<String> startDateString = argsTokenizer.getValue(PREFIX_STARTDATE);
+            if (argsTokenizer.getValue(PREFIX_STARTDATE).isPresent()) {
+            	if (!argsTokenizer.getValue(PREFIX_STARTDATE).get().equals(REMOVE_STRING)) {
+            		editTaskDescriptor.setStartDate(ParserUtil.parseTaskDate(startDateString));
+                }
+            }
+            editTaskDescriptor.setStartDate(emptyStartDate);
+
             Optional<String> endDateString = argsTokenizer.getValue(PREFIX_ENDDATE);
+            if (argsTokenizer.getValue(PREFIX_ENDDATE).isPresent()) {
+            	if (!argsTokenizer.getValue(PREFIX_ENDDATE).get().equals(REMOVE_STRING)) {
+            		editTaskDescriptor.setEndDate(ParserUtil.parseTaskDate(endDateString));
+                }
+            }
+            editTaskDescriptor.setStartDate(emptyEndDate);
+
 
             if (startDateString.isPresent() && startDateString.get().toLowerCase().equals(REMOVE_STRING)) {
                 editTaskDescriptor.setStartDateRemovedFlag();
@@ -62,6 +79,7 @@ public class EditCommandParser {
                 editTaskDescriptor.setEndDate(ParserUtil.parseTaskDate(endDateString));
             }
             editTaskDescriptor.setName(ParserUtil.parseName(preambleFields.get(1)));
+
             editTaskDescriptor.setTags(parseTagsForEdit(ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))));
 
         } catch (IllegalValueException ive) {

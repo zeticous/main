@@ -4,6 +4,7 @@ import static seedu.taskmanager.logic.parser.AddCommandParser.NO_END_DATE;
 import static seedu.taskmanager.logic.parser.AddCommandParser.NO_START_DATE;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
@@ -42,6 +43,7 @@ public class AddCommand extends Command {
             throws IllegalValueException {
 
         final Set<Tag> tagSet = new HashSet<>();
+
         TaskDate startDate = null;
         TaskDate endDate = null;
 
@@ -51,11 +53,13 @@ public class AddCommand extends Command {
 
         if (endDateString != NO_END_DATE) {
             endDate = new TaskDate(DateTimeUtil.parseDateTime(endDateString));
+
         }
 
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
+
         this.toAdd = new Task(new Name(name), startDate, endDate, new UniqueTagList(tagSet));
     }
 
