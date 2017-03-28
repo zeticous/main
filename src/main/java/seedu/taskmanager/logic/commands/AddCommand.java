@@ -11,8 +11,6 @@ import seedu.taskmanager.logic.commands.exceptions.CommandException;
 import seedu.taskmanager.logic.parser.DateTimeUtil;
 import seedu.taskmanager.model.tag.Tag;
 import seedu.taskmanager.model.tag.UniqueTagList;
-import seedu.taskmanager.model.task.DummyEndTaskDate;
-import seedu.taskmanager.model.task.DummyStartTaskDate;
 import seedu.taskmanager.model.task.Name;
 import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.TaskDate;
@@ -44,22 +42,15 @@ public class AddCommand extends Command {
             throws IllegalValueException {
 
         final Set<Tag> tagSet = new HashSet<>();
-        TaskDate startDate;
-        TaskDate endDate;
+        TaskDate startDate = null;
+        TaskDate endDate = null;
 
-        if (startDateString == NO_START_DATE) {
-
-            startDate = new DummyStartTaskDate();
-
-        } else {
-            startDate = new TaskDate(DateTimeUtil.parseStartDateTime(startDateString));
+        if (startDateString != NO_START_DATE) {
+            startDate = new TaskDate(DateTimeUtil.parseDateTime(startDateString));
         }
 
-        if (endDateString == NO_END_DATE) {
-            endDate = new DummyEndTaskDate();
-
-        } else {
-            endDate = new TaskDate(DateTimeUtil.parseEndDateTime(endDateString));
+        if (endDateString != NO_END_DATE) {
+            endDate = new TaskDate(DateTimeUtil.parseDateTime(endDateString));
         }
 
         for (String tagName : tags) {
