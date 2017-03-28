@@ -519,7 +519,7 @@ Use case ends
 Use case ends
 
 **Extensions**
-	
+
 2a. Task does not exist
 
 1. System displays warning to user that the index is invalid
@@ -572,7 +572,7 @@ Use case ends
 Use case ends
 
 **Extensions**
-	
+
 2a. Task does not exist
 
 1. System displays warning to user that there are no such tasks
@@ -702,7 +702,7 @@ Use case ends
 > * Can be synced across OS and interfaced with other apps
 > * Easy to use UI
 > * Can add subtasks easily and supports recurring task functionality
-> * Powerful features of search, nested lists, natural language 
+> * Powerful features of search, nested lists, natural language
 > * Easy to add subtasks, priorities, notes and share tasks
 
 **Cons:**
@@ -717,7 +717,7 @@ Use case ends
 **Pros:**
 
 > * Can sync across devices
-> * Can customize the recurring tasks 
+> * Can customize the recurring tasks
 > * Can view the tasks in different ways. For example standard view, time view, priority list view, calendar view
 > * Can separate tasks based on lists. For example work, taskal, miscellaneous.
 > * Can add subtasks, priority, attachments etc. for all tasks

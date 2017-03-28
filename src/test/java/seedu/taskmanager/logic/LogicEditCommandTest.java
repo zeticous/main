@@ -48,7 +48,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
         model.addTask(task2);
 
         // execute command and verify result
-        String invalidCommand = "edit 1 birthday";
+        String invalidCommand = "edit 1 CS Homework";
         String expectedMessage = EditCommand.MESSAGE_DUPLICATE_TASK;
         assertCommandFailure(invalidCommand, expectedMessage);
     }
@@ -87,6 +87,21 @@ public class LogicEditCommandTest extends LogicManagerTest {
 
         String invalidCommand2 = "edit 1 s/!@#$%^";
         assertCommandFailure(invalidCommand2, expectedMessage);
+    }
+
+    @Test
+    public void execute_edit_startAfterEndDate() throws Exception {
+        // setup expectations
+        TestDataHelper helper = new TestDataHelper();
+        Task task = helper.meeting();
+
+        // setup starting state
+        model.addTask(task); // task already in internal task manager
+
+        // execute command and verify result
+        String expectedMessage = Messages.MESSAGE_START_AFTER_END;
+        String invalidCommand = "edit 1 e/1/1/2017";
+        assertCommandFailure(invalidCommand, expectedMessage);
     }
 
     @Test

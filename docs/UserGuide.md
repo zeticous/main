@@ -19,7 +19,7 @@ By : `Team POTATO`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbs
 1. Download the latest `pota-todo.jar` from the [releases](../../../releases) tab.
 2. Copy the file to the folder you want to use as the home folder for your task manager.
 3. Double-click the file to start the app. The GUI should appear in a few seconds.
-   > <img src="images/NewUi.png" width="600">
+   > <img src="images/newUi.png" width="600">
 
 4. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br>
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.
