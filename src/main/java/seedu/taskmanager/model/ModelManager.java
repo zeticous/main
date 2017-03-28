@@ -16,7 +16,6 @@ import seedu.taskmanager.logic.parser.DateTimeUtil;
 import seedu.taskmanager.model.task.ReadOnlyTask;
 import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.TaskDate;
-import seedu.taskmanager.model.task.TaskUtil;
 import seedu.taskmanager.model.task.UniqueTaskList;
 import seedu.taskmanager.model.task.UniqueTaskList.TaskNotFoundException;
 
@@ -185,11 +184,11 @@ public class ModelManager extends ComponentManager implements Model {
         public boolean run(ReadOnlyTask task) {
             switch (taskType) {
             case "floating":
-                return TaskUtil.isFloating(task);
+                return task.isFloating();
             case "deadline":
-                return TaskUtil.isDeadline(task);
+                return task.isDeadline();
             case "event":
-                return TaskUtil.isEvent(task);
+                return task.isEvent();
             // for parsing date
             default:
                 try {
