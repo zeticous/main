@@ -217,27 +217,27 @@ public class ModelManager extends ComponentManager implements Model {
             taskType = taskTypeAndDate[0];
 
             try {
-            	date = new TaskDate(DateTimeUtil.parseDateTime(taskTypeAndDate[1]));
+                date = new TaskDate(DateTimeUtil.parseDateTime(taskTypeAndDate[1]));
             } catch (IllegalValueException ive) {
-            	// Deliberately empty as this date will not throw exception
+                // Deliberately empty as this date will not throw exception
             }
         }
 
         @Override
         public boolean run(ReadOnlyTask task) {
 
-        	boolean dateFilter = task.getStartDate().getOnlyDate().equals(date.getOnlyDate())
+            boolean dateFilter = task.getStartDate().getOnlyDate().equals(date.getOnlyDate())
                     || task.getEndDate().getOnlyDate().equals(date.getOnlyDate());
 
             switch (taskType) {
             case "floating":
-                return TaskUtil.isFloating(task) && dateFilter;
+                return task.isFloating() && dateFilter;
             case "deadline":
-                return TaskUtil.isDeadline(task) && dateFilter;
+                return task.isDeadline() && dateFilter;
             case "event":
-                return TaskUtil.isEvent(task) && dateFilter;
+                return task.isEvent() && dateFilter;
             default:
-            	// will never reach this step
+                // will never reach this step
                 return false;
             }
         }

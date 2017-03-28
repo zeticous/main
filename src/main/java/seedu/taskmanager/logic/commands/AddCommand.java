@@ -45,28 +45,12 @@ public class AddCommand extends Command {
         TaskDate startDate = null;
         TaskDate endDate = null;
 
-<<<<<<< HEAD
         if (startDateString != NO_START_DATE) {
             startDate = new TaskDate(DateTimeUtil.parseDateTime(startDateString));
         }
 
         if (endDateString != NO_END_DATE) {
             endDate = new TaskDate(DateTimeUtil.parseDateTime(endDateString));
-=======
-        if (startDateString == NO_START_DATE) {
-
-            startDate = new DummyStartTaskDate();
-
-        } else {
-            startDate = new TaskDate(DateTimeUtil.parseStartDateTime(startDateString));
-        }
-
-        if (endDateString == NO_END_DATE) {
-            endDate = new DummyEndTaskDate();
-
-        } else {
-            endDate = new TaskDate(DateTimeUtil.parseEndDateTime(endDateString));
->>>>>>> 34435f53d7f615a69eed94e06965c6ce67088c3b
         }
 
         for (String tagName : tags) {

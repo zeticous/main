@@ -129,6 +129,11 @@ public class Task implements ReadOnlyTask {
         return hasStartDate() && hasEndDate();
     }
 
+    public boolean isValidTask() {
+        return isFloating() || isDeadline()
+                || (isEvent() && startDate.get().getTaskDate().before(endDate.get().getTaskDate()));
+    }
+
     @Override
     public UniqueTagList getTags() {
         return new UniqueTagList(tags);
