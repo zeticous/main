@@ -16,7 +16,6 @@ import seedu.taskmanager.logic.commands.EditCommand;
 import seedu.taskmanager.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.taskmanager.logic.commands.IncorrectCommand;
 import seedu.taskmanager.model.tag.UniqueTagList;
-import seedu.taskmanager.model.task.DummyTaskDate;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -51,7 +50,7 @@ public class EditCommandParser {
 
             if (startDateString.isPresent()) {
                 if (isRemoveString(startDateString)) {
-                    editTaskDescriptor.setStartDate(Optional.of(new DummyTaskDate()));
+                    editTaskDescriptor.setStartDateRemovedFlag();
 
                 } else {
                     editTaskDescriptor.setStartDate(ParserUtil.parseTaskDate(startDateString));
@@ -60,8 +59,7 @@ public class EditCommandParser {
 
             if (endDateString.isPresent()) {
                 if (isRemoveString(endDateString)) {
-                    editTaskDescriptor.setEndDate(Optional.of(new DummyTaskDate()));
-
+                    editTaskDescriptor.setEndDateRemovedFlag();
                 } else {
                     editTaskDescriptor.setEndDate(ParserUtil.parseTaskDate(endDateString));
                 }
