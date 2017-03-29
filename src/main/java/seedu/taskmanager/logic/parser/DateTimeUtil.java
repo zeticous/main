@@ -52,7 +52,7 @@ public class DateTimeUtil {
             throw new IllegalValueException(INVALID_DATE_FORMAT);
         }
     }
-    
+
     //Specialized date/time parser for startDate string with only date element
     //Set time of the returned date object as the starting time of the day
     //i.e. 00:00:00 am
@@ -63,7 +63,7 @@ public class DateTimeUtil {
 
     		DateGroup parsedStartDate = parsedStartDatesList.get(FIRST_ELEMENT_INDEX);
     		String syntaxTreeString = parsedStartDate.getSyntaxTree().getChild(FIRST_ELEMENT_INDEX).toStringTree();
-    		
+
     		if (!isTimePresent(syntaxTreeString)) {
     			return setStartDateTime(parsedStartDate.getDates().get(FIRST_ELEMENT_INDEX));
     		}
@@ -84,7 +84,7 @@ public class DateTimeUtil {
 
     		DateGroup parsedEndDate = parsedEndDatesList.get(FIRST_ELEMENT_INDEX);
     		String syntaxTreeString = parsedEndDate.getSyntaxTree().getChild(FIRST_ELEMENT_INDEX).toStringTree();
-    		
+
     		if (!isTimePresent(syntaxTreeString)) {
     			return setEndDateTime(parsedEndDate.getDates().get(FIRST_ELEMENT_INDEX));
     		}
@@ -108,13 +108,13 @@ public class DateTimeUtil {
                 return false;
         }
     }
-    
+
     //Check if explicit time is present in the syntax tree
     private static boolean isTimePresent(String syntaxTreeString) {
     	System.out.println(syntaxTreeString);
     	return syntaxTreeString.contains(EXPLICIT_TIME_SYNTAX) || syntaxTreeString.contains(RELATIVE_TIME_SYNTAX);
     }
-    
+
     //Set time of the returned Date object as the starting time of the day
     //i.e. 00:00:00
     private static Date setStartDateTime(Date date) {
