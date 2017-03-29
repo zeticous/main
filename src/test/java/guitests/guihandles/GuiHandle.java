@@ -1,3 +1,4 @@
+
 package guitests.guihandles;
 
 import java.util.Optional;
@@ -20,8 +21,7 @@ public class GuiHandle {
     protected final GuiRobot guiRobot;
     protected final Stage primaryStage;
     /**
-     * An optional stage that exists in the App other than the primaryStage,
-     * could be a alert dialog, popup window, etc.
+     * An optional stage that exists in the App other than the primaryStage, could be a alert dialog, popup window, etc.
      */
     protected Optional<Stage> intermediateStage = Optional.empty();
     protected final String stageTitle;

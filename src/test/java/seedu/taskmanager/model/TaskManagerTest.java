@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.model;
 
 import static org.junit.Assert.assertEquals;
@@ -71,8 +72,7 @@ public class TaskManagerTest {
     }
 
     /**
-     * A stub ReadOnlyTaskManager whose tasks and tags lists can violate
-     * interface constraints.
+     * A stub ReadOnlyTaskManager whose tasks and tags lists can violate interface constraints.
      */
     private static class TaskManagerStub implements ReadOnlyTaskManager {
         private final ObservableList<ReadOnlyTask> tasks = FXCollections.observableArrayList();

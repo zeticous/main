@@ -1,10 +1,11 @@
+
 package seedu.taskmanager.model.tag;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Tag in the task manager. Guarantees: immutable; name is valid as
- * declared in {@link #isValidTagName(String)}
+ * Represents a Tag in the task manager. Guarantees: immutable; name is valid as declared in
+ * {@link #isValidTagName(String)}
  */
 public class Tag {
 
@@ -17,7 +18,7 @@ public class Tag {
      * Validates given tag name.
      *
      * @throws IllegalValueException
-     *             if the given tag name string is invalid.
+     *         if the given tag name string is invalid.
      */
     public Tag(String name) throws IllegalValueException {
         assert name != null;

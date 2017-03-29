@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.ui;
 
 import java.util.HashMap;
@@ -11,9 +12,9 @@ import java.util.HashMap;
 */
 
 public class TaskCardStyle {
-    private final static String PROPERTY_BACKGROUND = "-fx-background-color";
+    private static final String PROPERTY_BACKGROUND = "-fx-background-color";
 
-    private final static PropertyMap cardDoneMap;
+    private static final PropertyMap cardDoneMap;
 
     private static TaskCardStyle instance = null;
 
@@ -39,9 +40,8 @@ public class TaskCardStyle {
     }
 
     /*
-     * Wrapper class for a hash map that maps a task property to CSS Style
-     * String. Returns a default value (empty string) if the property does not
-     * exist.
+     * Wrapper class for a hash map that maps a task property to CSS Style String. Returns a default value (empty
+     * string) if the property does not exist.
      */
     private static class PropertyMap {
         private final String property;

@@ -1,3 +1,4 @@
+
 package guitests;
 
 import static org.junit.Assert.assertEquals;
@@ -35,8 +36,7 @@ import seedu.taskmanager.testutil.TypicalTestTasks;
 public abstract class TaskManagerGuiTest {
 
     /*
-     * The TestName Rule makes the current test name available inside test
-     * methods
+     * The TestName Rule makes the current test name available inside test methods
      */
     @Rule
     public TestName name = new TestName();
@@ -46,8 +46,7 @@ public abstract class TaskManagerGuiTest {
     protected TypicalTestTasks td = new TypicalTestTasks();
 
     /*
-     * Handles to GUI elements present at the start up are created in advance
-     * for easy access from child classes.
+     * Handles to GUI elements present at the start up are created in advance for easy access from child classes.
      */
     protected MainGuiHandle mainGui;
     protected MainMenuHandle mainMenu;
@@ -87,8 +86,8 @@ public abstract class TaskManagerGuiTest {
     }
 
     /**
-     * Override this in child classes to set the initial local data. Return null
-     * to use the data in the file specified in {@link #getDataFileLocation()}
+     * Override this in child classes to set the initial local data. Return null to use the data in the file specified
+     * in {@link #getDataFileLocation()}
      */
     protected TaskManager getInitialData() {
         TaskManager ab = new TaskManager();
@@ -124,8 +123,7 @@ public abstract class TaskManagerGuiTest {
     }
 
     /**
-     * Asserts the message shown in the Result Display area is same as the given
-     * string.
+     * Asserts the message shown in the Result Display area is same as the given string.
      */
     protected void assertResultMessage(String expected) {
         assertEquals(expected, resultDisplay.getText());

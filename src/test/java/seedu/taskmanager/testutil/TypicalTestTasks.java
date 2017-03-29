@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.testutil;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
@@ -44,8 +45,8 @@ public class TypicalTestTasks {
         try {
             event1 = new TaskBuilder().withName(EVENT1_NAME)
                     .withStartDate(new TaskDate(DateTimeUtil.parseStartDateTime(EVENT1_START_DATE_STRING)))
-                    .withEndDate(new TaskDate(DateTimeUtil.parseEndDateTime(EVENT1_END_DATE_STRING))).withTags("important")
-                    .build();
+                    .withEndDate(new TaskDate(DateTimeUtil.parseEndDateTime(EVENT1_END_DATE_STRING)))
+                    .withTags("important").build();
             event2 = new TaskBuilder().withName(EVENT2_NAME)
                     .withStartDate(new TaskDate(DateTimeUtil.parseStartDateTime(EVENT2_START_DATE_STRING)))
                     .withEndDate(new TaskDate(DateTimeUtil.parseEndDateTime(EVENT2_END_DATE_STRING))).build();
@@ -84,7 +85,14 @@ public class TypicalTestTasks {
     }
 
     public TestTask[] getTypicalTasks() {
-        return new TestTask[] { event1, event2, ddl1, ddl2, flt1, flt2 };
+        return new TestTask[] {
+            event1,
+            event2,
+            ddl1,
+            ddl2,
+            flt1,
+            flt2
+        };
     }
 
     public TaskManager getTypicalTaskManager() {

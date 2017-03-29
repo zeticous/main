@@ -47,7 +47,7 @@ allprojects {
     }
 
     checkstyle {
-        toolVersion = "$checkstyleVersion"
+       toolVersion = "$checkstyleVersion"
     }
 
     jacocoTestReport {

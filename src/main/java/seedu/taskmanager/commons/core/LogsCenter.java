@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.commons.core;
 
 import java.io.IOException;
@@ -11,11 +12,10 @@ import java.util.logging.SimpleFormatter;
 import seedu.taskmanager.commons.events.BaseEvent;
 
 /**
- * Configures and manages loggers and handlers, including their logging level
- * Named {@link Logger}s can be obtained from this class<br>
- * These loggers have been configured to output messages to the console and a
- * {@code .log} file by default, at the {@code INFO} level. A new {@code .log}
- * file with a new numbering will be created after the log file reaches 5MB big,
+ * Configures and manages loggers and handlers, including their logging level Named {@link Logger}s can be obtained from
+ * this class<br>
+ * These loggers have been configured to output messages to the console and a {@code .log} file by default, at the
+ * {@code INFO} level. A new {@code .log} file with a new numbering will be created after the log file reaches 5MB big,
  * up to a maximum of 5 files.<br>
  */
 public class LogsCenter {
@@ -28,11 +28,10 @@ public class LogsCenter {
     private static ConsoleHandler consoleHandler;
 
     /**
-     * Initializes with a custom log level (specified in the {@code config}
-     * object) Loggers obtained *AFTER* this initialization will have their
-     * logging level changed<br>
-     * Logging levels for existing loggers will only be updated if the logger
-     * with the same name is requested again from the LogsCenter.
+     * Initializes with a custom log level (specified in the {@code config} object) Loggers obtained *AFTER* this
+     * initialization will have their logging level changed<br>
+     * Logging levels for existing loggers will only be updated if the logger with the same name is requested again from
+     * the LogsCenter.
      */
     public static void init(Config config) {
         currentLogLevel = config.getLogLevel();
@@ -57,14 +56,16 @@ public class LogsCenter {
      * Creates a Logger for the given class name.
      */
     public static <T> Logger getLogger(Class<T> clazz) {
-        if (clazz == null)
+        if (clazz == null) {
             return Logger.getLogger("");
+        }
         return getLogger(clazz.getSimpleName());
     }
 
     private static void addConsoleHandler(Logger logger) {
-        if (consoleHandler == null)
+        if (consoleHandler == null) {
             consoleHandler = createConsoleHandler();
+        }
         logger.addHandler(consoleHandler);
     }
 
@@ -77,8 +78,9 @@ public class LogsCenter {
 
     private static void addFileHandler(Logger logger) {
         try {
-            if (fileHandler == null)
+            if (fileHandler == null) {
                 fileHandler = createFileHandler();
+            }
             logger.addHandler(fileHandler);
         } catch (IOException e) {
             logger.warning("Error adding file handler for logger.");
@@ -99,8 +101,7 @@ public class LogsCenter {
     }
 
     /**
-     * Decorates the given string to create a log message suitable for logging
-     * event handling methods.
+     * Decorates the given string to create a log message suitable for logging event handling methods.
      */
     public static String getEventHandlingLogMessage(BaseEvent e, String message) {
         return "---[Event handled][" + e + "]" + message;

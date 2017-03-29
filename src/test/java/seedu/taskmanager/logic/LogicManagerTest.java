@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic;
 
 import static org.junit.Assert.assertEquals;
@@ -102,12 +103,10 @@ public class LogicManagerTest {
     }
 
     /**
-     * Executes the command, confirms that a CommandException is not thrown and
-     * that the result message is correct. Also confirms that both the 'task
-     * manager' and the 'last shown list' are as specified.
+     * Executes the command, confirms that a CommandException is not thrown and that the result message is correct. Also
+     * confirms that both the 'task manager' and the 'last shown list' are as specified.
      *
-     * @see #assertCommandBehavior(boolean, String, String, ReadOnlyTaskManager,
-     *      List)
+     * @see #assertCommandBehavior(boolean, String, String, ReadOnlyTaskManager, List)
      */
     protected void assertCommandSuccess(String inputCommand, String expectedMessage,
             ReadOnlyTaskManager expectedTaskManager, List<? extends ReadOnlyTask> expectedShownList) {
@@ -115,12 +114,10 @@ public class LogicManagerTest {
     }
 
     /**
-     * Executes the command, confirms that a CommandException is thrown and that
-     * the result message is correct. Both the 'task manager' and the 'last
-     * shown list' are verified to be unchanged.
+     * Executes the command, confirms that a CommandException is thrown and that the result message is correct. Both the
+     * 'task manager' and the 'last shown list' are verified to be unchanged.
      *
-     * @see #assertCommandBehavior(boolean, String, String, ReadOnlyTaskManager,
-     *      List)
+     * @see #assertCommandBehavior(boolean, String, String, ReadOnlyTaskManager, List)
      */
     protected void assertCommandFailure(String inputCommand, String expectedMessage) {
         TaskManager expectedTaskManager = new TaskManager(model.getTaskManager());
@@ -129,12 +126,9 @@ public class LogicManagerTest {
     }
 
     /**
-     * Executes the command, confirms that the result message is correct and
-     * that a CommandException is thrown if expected and also confirms that the
-     * following three parts of the LogicManager object's state are as
-     * expected:<br>
-     * - the internal task manager data are same as those in the
-     * {@code expectedTaskManager} <br>
+     * Executes the command, confirms that the result message is correct and that a CommandException is thrown if
+     * expected and also confirms that the following three parts of the LogicManager object's state are as expected:<br>
+     * - the internal task manager data are same as those in the {@code expectedTaskManager} <br>
      * - the backing list shown by UI matches the {@code shownList} <br>
      * - {@code expectedTaskManager} was saved to the storage file. <br>
      */
@@ -165,12 +159,11 @@ public class LogicManagerTest {
     }
 
     /**
-     * Confirms the 'invalid argument index number behaviour' for the given
-     * command targeting a single task in the shown list, using visible index.
+     * Confirms the 'invalid argument index number behaviour' for the given command targeting a single task in the shown
+     * list, using visible index.
      *
      * @param commandWord
-     *            to test assuming it targets a single task in the last shown
-     *            list based on visible index.
+     *        to test assuming it targets a single task in the last shown list based on visible index.
      */
     protected void assertIncorrectIndexFormatBehaviorForCommand(String commandWord, String expectedMessage)
             throws Exception {
@@ -188,12 +181,11 @@ public class LogicManagerTest {
     }
 
     /**
-     * Confirms the 'invalid argument index number behaviour' for the given
-     * command targeting a single task in the shown list, using visible index.
+     * Confirms the 'invalid argument index number behaviour' for the given command targeting a single task in the shown
+     * list, using visible index.
      *
      * @param commandWord
-     *            to test assuming it targets a single task in the last shown
-     *            list based on visible index.
+     *        to test assuming it targets a single task in the last shown list based on visible index.
      */
     protected void assertIndexNotFoundBehaviorForCommand(String commandWord) throws Exception {
         String expectedMessage = MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
@@ -233,12 +225,11 @@ public class LogicManagerTest {
         }
 
         /**
-         * Generates a valid task using the given seed. Running this function
-         * with the same parameter values guarantees the returned task will have
-         * the same state. Each unique seed will generate a unique Task object.
+         * Generates a valid task using the given seed. Running this function with the same parameter values guarantees
+         * the returned task will have the same state. Each unique seed will generate a unique Task object.
          *
          * @param seed
-         *            used to generate the task data field values
+         *        used to generate the task data field values
          */
         Task generateTask(int seed) throws Exception {
             return new Task(new Name("Task " + seed),
@@ -284,7 +275,7 @@ public class LogicManagerTest {
          * Adds auto-generated Task objects to the given TaskManager
          *
          * @param taskManager
-         *            The TaskManager to which the Tasks will be added
+         *        The TaskManager to which the Tasks will be added
          */
         void addToTaskManager(TaskManager taskManager, int numGenerated) throws Exception {
             addToTaskManager(taskManager, generateTaskList(numGenerated));
@@ -303,7 +294,7 @@ public class LogicManagerTest {
          * Adds auto-generated Task objects to the given model
          *
          * @param model
-         *            The model to which the Tasks will be added
+         *        The model to which the Tasks will be added
          */
         void addToModel(Model model, int numGenerated) throws Exception {
             addToModel(model, generateTaskList(numGenerated));
@@ -334,21 +325,17 @@ public class LogicManagerTest {
         }
 
         /**
-         * Generates a Task object with given name. Other fields will have some
-         * dummy values.
+         * Generates a Task object with given name. Other fields will have some dummy values.
          */
         Task generateTaskWithName(String name) throws Exception {
-            return new Task(new Name(name),
-            				new UniqueTagList(new Tag("tag")));
+            return new Task(new Name(name), new UniqueTagList(new Tag("tag")));
         }
 
         /**
          * Generates a Task object with given name and due date.
          */
         Task generateTaskWithDueDate(String name, String dueDate) throws Exception {
-            return new Task(new Name(name),
-            		null,
-                    new TaskDate(DateTimeUtil.parseEndDateTime(dueDate)),
+            return new Task(new Name(name), null, new TaskDate(DateTimeUtil.parseEndDateTime(dueDate)),
                     new UniqueTagList(new Tag("tag")));
         }
 
@@ -356,10 +343,8 @@ public class LogicManagerTest {
          * Generates a Task object with given name, start and end dates.
          */
         Task generateTaskWithAll(String name, String startDate, String endDate) throws Exception {
-            return new Task(new Name(name),
-            		new TaskDate(DateTimeUtil.parseStartDateTime(startDate)),
-                    new TaskDate(DateTimeUtil.parseEndDateTime(endDate)),
-                    new UniqueTagList(new Tag("tag")));
+            return new Task(new Name(name), new TaskDate(DateTimeUtil.parseStartDateTime(startDate)),
+                    new TaskDate(DateTimeUtil.parseEndDateTime(endDate)), new UniqueTagList(new Tag("tag")));
 
         }
     }

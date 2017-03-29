@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic.parser;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -36,7 +37,7 @@ public class Parser {
      * Parses user input into command for execution.
      *
      * @param userInput
-     *            full user input string
+     *        full user input string
      * @return the command based on the user input
      * @throws IllegalValueException
      */

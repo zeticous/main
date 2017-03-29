@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic.commands.exceptions;
 
 import seedu.taskmanager.logic.commands.Command;

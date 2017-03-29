@@ -1,9 +1,9 @@
+
 package seedu.taskmanager.commons.exceptions;
 
 /**
- * Signals an error when task format is not in the right date structure.
- * Floating: no startDate & endDate Deadline: no startDate, has endDate Event:
- * has startDate & endDate
+ * Signals an error when task format is not in the right date structure. Floating: no startDate & endDate Deadline: no
+ * startDate, has endDate Event: has startDate & endDate
  */
 public class InvalidTaskFormatException extends Exception {
 

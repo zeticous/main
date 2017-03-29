@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.storage;
 
 import static org.junit.Assert.assertEquals;
@@ -48,9 +49,8 @@ public class JsonUserPrefsStorageTest {
         readUserPrefs("NotJsonFormatUserPrefs.json");
 
         /*
-         * IMPORTANT: Any code below an exception-throwing line (like the one
-         * above) will be ignored. That means you should not have more than one
-         * exception test in one method
+         * IMPORTANT: Any code below an exception-throwing line (like the one above) will be ignored. That means you
+         * should not have more than one exception test in one method
          */
     }
 

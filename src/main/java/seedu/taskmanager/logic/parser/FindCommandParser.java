@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic.parser;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -18,8 +19,8 @@ import seedu.taskmanager.logic.commands.IncorrectCommand;
 public class FindCommandParser {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the
-     * FindCommand and returns an FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FindCommand and returns an FindCommand object
+     * for execution.
      */
     public Command parse(String args) {
         final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());

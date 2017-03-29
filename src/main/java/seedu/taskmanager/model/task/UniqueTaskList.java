@@ -1,6 +1,6 @@
+
 package seedu.taskmanager.model.task;
 
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,8 +11,7 @@ import seedu.taskmanager.commons.exceptions.DuplicateDataException;
 import seedu.taskmanager.commons.util.CollectionUtil;
 
 /**
- * A list of tasks that enforces uniqueness between its elements and does not
- * allow nulls.
+ * A list of tasks that enforces uniqueness between its elements and does not allow nulls.
  *
  * Supports a minimal set of list operations.
  *
@@ -24,8 +23,7 @@ public class UniqueTaskList implements Iterable<Task> {
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
 
     /**
-     * Returns true if the list contains an equivalent task as the given
-     * argument.
+     * Returns true if the list contains an equivalent task as the given argument.
      */
     public boolean contains(ReadOnlyTask toCheck) {
         assert toCheck != null;
@@ -36,8 +34,7 @@ public class UniqueTaskList implements Iterable<Task> {
      * Adds a task to the list.
      *
      * @throws DuplicateTaskException
-     *             if the task to add is a duplicate of an existing task in the
-     *             list.
+     *         if the task to add is a duplicate of an existing task in the list.
      */
     public void add(Task toAdd) throws DuplicateTaskException {
         assert toAdd != null;
@@ -48,14 +45,12 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Updates the task in the list at position {@code index} with
-     * {@code editedTask}.
+     * Updates the task in the list at position {@code index} with {@code editedTask}.
      *
      * @throws DuplicateTaskException
-     *             if updating the task's details causes the task to be
-     *             equivalent to another existing task in the list.
+     *         if updating the task's details causes the task to be equivalent to another existing task in the list.
      * @throws IndexOutOfBoundsException
-     *             if {@code index} < 0 or >= the size of the list.
+     *         if {@code index} < 0 or >= the size of the list.
      */
     public void updateTask(int index, ReadOnlyTask editedTask) throws DuplicateTaskException {
         assert editedTask != null;
@@ -79,7 +74,7 @@ public class UniqueTaskList implements Iterable<Task> {
      * Removes the equivalent task from the list.
      *
      * @throws TaskNotFoundException
-     *             if no such task could be found in the list.
+     *         if no such task could be found in the list.
      */
     public boolean remove(ReadOnlyTask toRemove) throws TaskNotFoundException {
         assert toRemove != null;
@@ -124,8 +119,7 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Signals that an operation would have violated the 'no duplicates'
-     * property of the list.
+     * Signals that an operation would have violated the 'no duplicates' property of the list.
      */
     public static class DuplicateTaskException extends DuplicateDataException {
         /**
@@ -139,8 +133,8 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Signals that an operation targeting a specified task in the list would
-     * fail because there is no such matching task in the list.
+     * Signals that an operation targeting a specified task in the list would fail because there is no such matching
+     * task in the list.
      */
     public static class TaskNotFoundException extends Exception {
 

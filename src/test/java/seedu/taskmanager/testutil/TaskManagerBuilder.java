@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.testutil;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
@@ -7,8 +8,7 @@ import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.UniqueTaskList;
 
 /**
- * A utility class to help with building TaskManager objects. Example usage:
- * <br>
+ * A utility class to help with building TaskManager objects. Example usage: <br>
  * {@code TaskManager ab = new TaskManagerBuilder().withTask("John", "Doe").withTag("Friend").build();}
  */
 public class TaskManagerBuilder {
