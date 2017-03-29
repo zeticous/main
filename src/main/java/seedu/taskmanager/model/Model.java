@@ -67,4 +67,10 @@ public interface Model {
      * type and date
      */
     void updateFilteredTaskListByTaskTypeAndDate(String[] taskTypeAndDate);
+
+    void loadPreviousState() throws ArrayIndexOutOfBoundsException;
+
+    void loadNextState() throws ArrayIndexOutOfBoundsException;
+
+    void saveState(String commandString);
 }

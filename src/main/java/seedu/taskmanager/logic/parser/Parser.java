@@ -18,7 +18,9 @@ import seedu.taskmanager.logic.commands.FindCommand;
 import seedu.taskmanager.logic.commands.HelpCommand;
 import seedu.taskmanager.logic.commands.IncorrectCommand;
 import seedu.taskmanager.logic.commands.ListCommand;
+import seedu.taskmanager.logic.commands.RedoCommand;
 import seedu.taskmanager.logic.commands.SelectCommand;
+import seedu.taskmanager.logic.commands.UndoCommand;
 
 /**
  * Parses user input.
@@ -77,6 +79,12 @@ public class Parser {
 
         case FilepathCommand.COMMAND_WORD:
             return new FilepathCommand(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
