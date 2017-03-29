@@ -33,7 +33,6 @@ import seedu.taskmanager.model.ReadOnlyTaskManager;
 import seedu.taskmanager.model.TaskManager;
 import seedu.taskmanager.model.tag.Tag;
 import seedu.taskmanager.model.tag.UniqueTagList;
-import seedu.taskmanager.model.task.DummyStartTaskDate;
 import seedu.taskmanager.model.task.Name;
 import seedu.taskmanager.model.task.ReadOnlyTask;
 import seedu.taskmanager.model.task.Task;
@@ -348,7 +347,7 @@ public class LogicManagerTest {
          */
         Task generateTaskWithDueDate(String name, String dueDate) throws Exception {
             return new Task(new Name(name),
-            		new TaskDate(DateTimeUtil.parseDateTime(DummyStartTaskDate.DUMMY_START_DATE_STRING)),
+            		null,
                     new TaskDate(DateTimeUtil.parseDateTime(dueDate)),
                     new UniqueTagList(new Tag("tag")));
         }
