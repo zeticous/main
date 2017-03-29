@@ -216,8 +216,8 @@ public class LogicManagerTest {
 
         Task meeting() throws Exception {
             Name name = new Name("Company Meeting");
-            TaskDate startDate = new TaskDate(DateTimeUtil.parseDateTime("1/1/2018 6pm"));
-            TaskDate endDate = new TaskDate(DateTimeUtil.parseDateTime("1/1/2019 7pm"));
+            TaskDate startDate = new TaskDate(DateTimeUtil.parseStartDateTime("1/1/2018 6pm"));
+            TaskDate endDate = new TaskDate(DateTimeUtil.parseEndDateTime("1/1/2019 7pm"));
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("longertag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
@@ -348,7 +348,7 @@ public class LogicManagerTest {
         Task generateTaskWithDueDate(String name, String dueDate) throws Exception {
             return new Task(new Name(name),
             		null,
-                    new TaskDate(DateTimeUtil.parseDateTime(dueDate)),
+                    new TaskDate(DateTimeUtil.parseEndDateTime(dueDate)),
                     new UniqueTagList(new Tag("tag")));
         }
 
@@ -357,8 +357,8 @@ public class LogicManagerTest {
          */
         Task generateTaskWithAll(String name, String startDate, String endDate) throws Exception {
             return new Task(new Name(name),
-            		new TaskDate(DateTimeUtil.parseDateTime(startDate)),
-                    new TaskDate(DateTimeUtil.parseDateTime(endDate)),
+            		new TaskDate(DateTimeUtil.parseStartDateTime(startDate)),
+                    new TaskDate(DateTimeUtil.parseEndDateTime(endDate)),
                     new UniqueTagList(new Tag("tag")));
 
         }

@@ -21,7 +21,9 @@ public class DateTimeUtil {
     public static final String INVALID_DATE_FORMAT = "Date format is not accepted by PotaTodo";
     public static final String EMPTY_STRING = "";
 
-    private static final String TIME_SYNTAX = "EXPLICIT_TIME";
+    private static final String EXPLICIT_TIME_SYNTAX = "EXPLICIT_TIME";
+    private static final String RELATIVE_TIME_SYNTAX = "RELATIVE_TIME";
+
     private static final int FIRST_ELEMENT_INDEX = 0;
 
     private static final int STARTING_TIME_HOUR = 0;
@@ -109,7 +111,8 @@ public class DateTimeUtil {
     
     //Check if explicit time is present in the syntax tree
     private static boolean isTimePresent(String syntaxTreeString) {
-    	return syntaxTreeString.contains(TIME_SYNTAX);
+    	System.out.println(syntaxTreeString);
+    	return syntaxTreeString.contains(EXPLICIT_TIME_SYNTAX) || syntaxTreeString.contains(RELATIVE_TIME_SYNTAX);
     }
     
     //Set time of the returned Date object as the starting time of the day
