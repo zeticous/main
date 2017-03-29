@@ -21,7 +21,9 @@ public class DateTimeUtil {
     public static final String INVALID_DATE_FORMAT = "Date format is not accepted by PotaTodo";
     public static final String EMPTY_STRING = "";
 
-    private static final String TIME_SYNTAX = "EXPLICIT_TIME";
+    private static final String EXPLICIT_TIME_SYNTAX = "EXPLICIT_TIME";
+    private static final String RELATIVE_TIME_SYNTAX = "RELATIVE_TIME";
+
     private static final int FIRST_ELEMENT_INDEX = 0;
 
     private static final int STARTING_TIME_HOUR = 0;
@@ -50,7 +52,7 @@ public class DateTimeUtil {
             throw new IllegalValueException(INVALID_DATE_FORMAT);
         }
     }
-    
+
     //Specialized date/time parser for startDate string with only date element
     //Set time of the returned date object as the starting time of the day
     //i.e. 00:00:00 am
@@ -61,7 +63,7 @@ public class DateTimeUtil {
 
     		DateGroup parsedStartDate = parsedStartDatesList.get(FIRST_ELEMENT_INDEX);
     		String syntaxTreeString = parsedStartDate.getSyntaxTree().getChild(FIRST_ELEMENT_INDEX).toStringTree();
-    		
+
     		if (!isTimePresent(syntaxTreeString)) {
     			return setStartDateTime(parsedStartDate.getDates().get(FIRST_ELEMENT_INDEX));
     		}
@@ -82,7 +84,7 @@ public class DateTimeUtil {
 
     		DateGroup parsedEndDate = parsedEndDatesList.get(FIRST_ELEMENT_INDEX);
     		String syntaxTreeString = parsedEndDate.getSyntaxTree().getChild(FIRST_ELEMENT_INDEX).toStringTree();
-    		
+
     		if (!isTimePresent(syntaxTreeString)) {
     			return setEndDateTime(parsedEndDate.getDates().get(FIRST_ELEMENT_INDEX));
     		}
@@ -106,12 +108,13 @@ public class DateTimeUtil {
                 return false;
         }
     }
-    
+
     //Check if explicit time is present in the syntax tree
     private static boolean isTimePresent(String syntaxTreeString) {
-    	return syntaxTreeString.contains(TIME_SYNTAX);
+    	System.out.println(syntaxTreeString);
+    	return syntaxTreeString.contains(EXPLICIT_TIME_SYNTAX) || syntaxTreeString.contains(RELATIVE_TIME_SYNTAX);
     }
-    
+
     //Set time of the returned Date object as the starting time of the day
     //i.e. 00:00:00
     private static Date setStartDateTime(Date date) {

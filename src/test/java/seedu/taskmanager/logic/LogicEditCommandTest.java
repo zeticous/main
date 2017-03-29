@@ -156,7 +156,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
     public void execute_edit_validAll() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         Task task = helper.generateTaskWithName("kantang");
-        Task editedTask = helper.generateTaskWithAll("potato", "now", "1/2/2023 4.56pm");
+        Task editedTask = helper.generateTaskWithAll("potato", "next hour", "1/2/2023 4.56pm");
 
         List<Task> sampleTasks = helper.generateTaskList(task);
         TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
@@ -167,6 +167,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
         String validCommand = "edit 1 potato s/now e/1/2/2023 4.56pm";
         assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
     }
+
 
     // @Test
     // public void execute_edit_invalidDemotion() throws Exception {
