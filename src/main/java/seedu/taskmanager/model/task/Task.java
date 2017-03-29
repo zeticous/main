@@ -85,12 +85,10 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setStartDate(TaskDate taskDate) {
-        assert taskDate != null;
         this.startDate = Optional.ofNullable(taskDate);
     }
 
     public void setEndDate(TaskDate taskDate) {
-        assert taskDate != null;
         this.endDate = Optional.ofNullable(taskDate);
     }
 

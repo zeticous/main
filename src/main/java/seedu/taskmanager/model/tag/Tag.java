@@ -21,7 +21,7 @@ public class Tag {
      */
     public Tag(String name) throws IllegalValueException {
         assert name != null;
-        String trimmedName = name.trim();
+        String trimmedName = name.substring(1).trim();
         if (!isValidTagName(trimmedName)) {
             throw new IllegalValueException(MESSAGE_TAG_CONSTRAINTS);
         }

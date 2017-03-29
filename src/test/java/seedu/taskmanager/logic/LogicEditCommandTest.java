@@ -140,7 +140,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
     public void execute_edit_validEndDate() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         Task task = helper.generateTaskWithName("potato");
-        Task editedTask = helper.generateTaskWithDueDate("potato", "17/7/2017 1:34pm");
+        Task editedTask = helper.generateTaskWithDueDate("potato", "17 july 2017 1:34pm");
 
         List<Task> sampleTasks = helper.generateTaskList(task);
         TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
@@ -148,7 +148,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
         helper.addToModel(model, sampleTasks);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_SUCCESS, editedTask);
-        String validCommand = "edit 1 e/17/7/2017 1:34pm";
+        String validCommand = "edit 1 e/17 july 2017 1:34pm";
         assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
     }
 

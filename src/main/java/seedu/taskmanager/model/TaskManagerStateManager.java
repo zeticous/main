@@ -7,9 +7,10 @@ public class TaskManagerStateManager {
     private Integer currentStateIndex;
     private static final int FRONT = 0;
 
-    public TaskManagerStateManager() {
+    public TaskManagerStateManager(TaskManagerState initState) {
         this.states = new ArrayList<TaskManagerState>();
         this.currentStateIndex = FRONT;
+        states.add(initState);
     }
 
     public void addState(TaskManagerState state) {
