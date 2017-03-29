@@ -1,22 +1,61 @@
 package seedu.taskmanager.model.util;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
+import seedu.taskmanager.logic.parser.DateTimeUtil;
 import seedu.taskmanager.model.ReadOnlyTaskManager;
 import seedu.taskmanager.model.TaskManager;
 import seedu.taskmanager.model.tag.UniqueTagList;
 import seedu.taskmanager.model.task.Name;
 import seedu.taskmanager.model.task.Task;
+import seedu.taskmanager.model.task.TaskDate;
 import seedu.taskmanager.model.task.UniqueTaskList.DuplicateTaskException;
 
 public class SampleDataUtil {
+	
+    // Sample events
+    private static final String EVENT1_NAME = "Meeting with client";
+    private static final String EVENT2_NAME = "Dinner with friend";
+
+    private static final String EVENT1_START_DATE_STRING = "26 March 2017, 10:00 PM";
+    private static final String EVENT1_END_DATE_STRING = "26 March 2017, 11:00 PM";
+    private static final String EVENT2_START_DATE_STRING = "2 May 2018, 8:00 AM";
+    private static final String EVENT2_END_DATE_STRING = "2 May 2018, 10:00 AM";
+
+    // Sample deadlines
+    private static final String DDL1_NAME = "Project submission";
+    private static final String DDL2_NAME = "Pay bills";
+
+    private static final String DDL1_DUE_TIME_STRING = "25 March 2017, 11:00 PM";
+    private static final String DDL2_DUE_TIME_STRING = "26 May 2017";
+
+    // Sample floating tasks
+    public static final String FLT1_NAME = "Stay healthy";
+    public static final String FLT2_NAME = "Smile more";
+        
     public static Task[] getSampleTasks() {
         try {
-            return new Task[] { new Task(new Name("Alex Yeoh"), new UniqueTagList("friends")),
-                    new Task(new Name("Bernice Yu"), new UniqueTagList("colleagues", "friends")),
-                    new Task(new Name("Charlotte Oliveiro"), new UniqueTagList("neighbours")),
-                    new Task(new Name("David Li"), new UniqueTagList("family")),
-                    new Task(new Name("Irfan Ibrahim"), new UniqueTagList("classmates")),
-                    new Task(new Name("Roy Balakrishnan"), new UniqueTagList("colleagues")) };
+        	return new Task[] { 
+        			new Task(new Name(EVENT1_NAME),
+        					new TaskDate(DateTimeUtil.parseStartDateTime(EVENT1_START_DATE_STRING)), 
+        					new TaskDate(DateTimeUtil.parseEndDateTime(EVENT1_END_DATE_STRING)), 
+        					new UniqueTagList("important")),
+        			new Task(new Name(DDL1_NAME),
+        					new TaskDate(null),
+        					new TaskDate(DateTimeUtil.parseEndDateTime(DDL1_DUE_TIME_STRING)), 
+        					new UniqueTagList()),
+        			new Task(new Name(FLT1_NAME),
+        					new UniqueTagList()),
+        			new Task(new Name(EVENT2_NAME),
+         		                new TaskDate(DateTimeUtil.parseStartDateTime(EVENT2_START_DATE_STRING)), 
+         		                new TaskDate(DateTimeUtil.parseEndDateTime(EVENT2_END_DATE_STRING)), 
+         		                new UniqueTagList()),
+        			new Task(new Name(DDL2_NAME),
+     		                new TaskDate(null), 
+     		                new TaskDate(DateTimeUtil.parseEndDateTime(DDL2_DUE_TIME_STRING)), 
+     		                new UniqueTagList("urgent")),
+        	        new Task(new Name(FLT1_NAME),
+				         	new UniqueTagList())
+        	        };
         } catch (IllegalValueException e) {
             throw new AssertionError("sample data cannot be invalid", e);
         }
