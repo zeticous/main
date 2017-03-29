@@ -13,7 +13,7 @@ import seedu.taskmanager.model.task.UniqueTaskList.DuplicateTaskException;
 public class SampleDataUtil {
 	
     // Sample events
-    private static final String EVENT1_NAME = "Meeting with client";
+    private static final String EVENT1_NAME = "Meeting with prof";
     private static final String EVENT2_NAME = "Dinner with friend";
 
     private static final String EVENT1_START_DATE_STRING = "26 March 2017, 10:00 PM";
@@ -53,7 +53,7 @@ public class SampleDataUtil {
      		                new TaskDate(null), 
      		                new TaskDate(DateTimeUtil.parseEndDateTime(DDL2_DUE_TIME_STRING)), 
      		                new UniqueTagList("urgent")),
-        	        new Task(new Name(FLT1_NAME),
+        	        new Task(new Name(FLT2_NAME),
 				         	new UniqueTagList())
         	        };
         } catch (IllegalValueException e) {

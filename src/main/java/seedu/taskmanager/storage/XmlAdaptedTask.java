@@ -19,6 +19,8 @@ import seedu.taskmanager.model.task.TaskDate;
  */
 public class XmlAdaptedTask {
 
+	public static final String NO_DATE = "N/A";
+
     @XmlElement(required = true)
     private String name;
     @XmlElement
@@ -44,8 +46,18 @@ public class XmlAdaptedTask {
      */
     public XmlAdaptedTask(ReadOnlyTask source) {
         name = source.getName().fullName;
-        startDate = source.getStartDate().toString();
-        endDate = source.getEndDate().toString();
+
+        if (source.getStartDate() == null) {
+        	startDate = NO_DATE;
+        } else {
+        	startDate = source.getStartDate().toString();
+        }
+
+        if (source.getEndDate() == null) {
+        	endDate = NO_DATE;
+        } else {
+        	endDate = source.getEndDate().toString();
+        }
 
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
@@ -67,8 +79,8 @@ public class XmlAdaptedTask {
             taskTags.add(tag.toModelType());
         }
         final Name name = new Name(this.name);
-        final TaskDate startDate = new TaskDate(DateTimeUtil.parseStartDateTime(this.startDate));
-        final TaskDate endDate = new TaskDate(DateTimeUtil.parseEndDateTime(this.endDate));
+        final TaskDate startDate = this.startDate.equals(NO_DATE) ? null : new TaskDate(DateTimeUtil.parseStartDateTime(this.startDate));
+        final TaskDate endDate = this.endDate.equals(NO_DATE) ? null :new TaskDate(DateTimeUtil.parseEndDateTime(this.endDate));
         final UniqueTagList tags = new UniqueTagList(taskTags);
         return new Task(name, startDate, endDate, tags);
     }
