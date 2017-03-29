@@ -111,7 +111,6 @@ public class DateTimeUtil {
 
     //Check if explicit time is present in the syntax tree
     private static boolean isTimePresent(String syntaxTreeString) {
-    	System.out.println(syntaxTreeString);
     	return syntaxTreeString.contains(EXPLICIT_TIME_SYNTAX) || syntaxTreeString.contains(RELATIVE_TIME_SYNTAX);
     }
 
