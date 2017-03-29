@@ -11,7 +11,7 @@ import seedu.taskmanager.model.task.TaskDate;
 import seedu.taskmanager.model.task.UniqueTaskList.DuplicateTaskException;
 
 public class SampleDataUtil {
-	
+
     // Sample events
     private static final String EVENT1_NAME = "Meeting with prof";
     private static final String EVENT2_NAME = "Dinner with friend";
@@ -31,27 +31,27 @@ public class SampleDataUtil {
     // Sample floating tasks
     public static final String FLT1_NAME = "Stay healthy";
     public static final String FLT2_NAME = "Smile more";
-        
+
     public static Task[] getSampleTasks() {
         try {
-        	return new Task[] { 
+        	return new Task[] {
         			new Task(new Name(EVENT1_NAME),
-        					new TaskDate(DateTimeUtil.parseStartDateTime(EVENT1_START_DATE_STRING)), 
-        					new TaskDate(DateTimeUtil.parseEndDateTime(EVENT1_END_DATE_STRING)), 
+        					new TaskDate(DateTimeUtil.parseStartDateTime(EVENT1_START_DATE_STRING)),
+        					new TaskDate(DateTimeUtil.parseEndDateTime(EVENT1_END_DATE_STRING)),
         					new UniqueTagList("important")),
         			new Task(new Name(DDL1_NAME),
         					new TaskDate(null),
-        					new TaskDate(DateTimeUtil.parseEndDateTime(DDL1_DUE_TIME_STRING)), 
+        					new TaskDate(DateTimeUtil.parseEndDateTime(DDL1_DUE_TIME_STRING)),
         					new UniqueTagList()),
         			new Task(new Name(FLT1_NAME),
         					new UniqueTagList()),
         			new Task(new Name(EVENT2_NAME),
-         		                new TaskDate(DateTimeUtil.parseStartDateTime(EVENT2_START_DATE_STRING)), 
-         		                new TaskDate(DateTimeUtil.parseEndDateTime(EVENT2_END_DATE_STRING)), 
+         		                new TaskDate(DateTimeUtil.parseStartDateTime(EVENT2_START_DATE_STRING)),
+         		                new TaskDate(DateTimeUtil.parseEndDateTime(EVENT2_END_DATE_STRING)),
          		                new UniqueTagList()),
         			new Task(new Name(DDL2_NAME),
-     		                new TaskDate(null), 
-     		                new TaskDate(DateTimeUtil.parseEndDateTime(DDL2_DUE_TIME_STRING)), 
+     		                new TaskDate(null),
+     		                new TaskDate(DateTimeUtil.parseEndDateTime(DDL2_DUE_TIME_STRING)),
      		                new UniqueTagList("urgent")),
         	        new Task(new Name(FLT2_NAME),
 				         	new UniqueTagList())
