@@ -18,7 +18,7 @@ public interface TaskManagerStorage {
 
     /**
      * Sets the file path of the data file as a new path
-     * 
+     *
      * @param newPath
      */
     void setTaskManagerFilePath(String newPath);
@@ -50,6 +50,7 @@ public interface TaskManagerStorage {
     void saveTaskManager(ReadOnlyTaskManager taskManager) throws IOException;
 
     /**
+     * @throws IOException
      * @see #saveTaskManager(ReadOnlyTaskManager)
      */
     void saveTaskManager(ReadOnlyTaskManager taskManager, String filePath) throws IOException;

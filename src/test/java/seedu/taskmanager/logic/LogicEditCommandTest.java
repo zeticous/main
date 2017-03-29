@@ -10,7 +10,6 @@ import seedu.taskmanager.commons.core.Messages;
 import seedu.taskmanager.logic.commands.EditCommand;
 import seedu.taskmanager.logic.parser.DateTimeUtil;
 import seedu.taskmanager.model.TaskManager;
-import seedu.taskmanager.model.task.DummyStartTaskDate;
 import seedu.taskmanager.model.task.Task;
 
 public class LogicEditCommandTest extends LogicManagerTest {
@@ -124,7 +123,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
     @Test
     public void execute_edit_validStartDate() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Task task = helper.generateTaskWithAll("potato", "now", "12/12/2012 12am");
+        Task task = helper.generateTaskWithAll("potato", "10/10/2010 10am", "12/12/2012 12am");
         Task editedTask = helper.generateTaskWithAll("potato", "11/11/2011 11am", "12/12/2012 12am");
 
         List<Task> sampleTasks = helper.generateTaskList(task);
@@ -141,7 +140,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
     public void execute_edit_validEndDate() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         Task task = helper.generateTaskWithName("potato");
-        Task editedTask = helper.generateTaskWithAll("potato", DummyStartTaskDate.DUMMY_START_DATE_STRING, "now");
+        Task editedTask = helper.generateTaskWithDueDate("potato", "17/7/2017 1:34pm");
 
         List<Task> sampleTasks = helper.generateTaskList(task);
         TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
@@ -149,7 +148,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
         helper.addToModel(model, sampleTasks);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_SUCCESS, editedTask);
-        String validCommand = "edit 1 e/now";
+        String validCommand = "edit 1 e/17/7/2017 1:34pm";
         assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
     }
 
