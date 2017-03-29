@@ -1,13 +1,13 @@
 package seedu.taskmanager.logic;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import seedu.taskmanager.logic.commands.EditCommand;
 
 import java.util.List;
 
 import org.junit.Test;
 
 import seedu.taskmanager.commons.core.Messages;
+import seedu.taskmanager.logic.commands.EditCommand;
 import seedu.taskmanager.logic.parser.DateTimeUtil;
 import seedu.taskmanager.model.TaskManager;
 import seedu.taskmanager.model.task.Task;
@@ -156,7 +156,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
     public void execute_edit_validAll() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         Task task = helper.generateTaskWithName("kantang");
-        Task editedTask = helper.generateTaskWithAll("potato", "now", "1/2/2023 4.56pm");
+        Task editedTask = helper.generateTaskWithAll("potato", "next hour", "1/2/2023 4.56pm");
 
         List<Task> sampleTasks = helper.generateTaskList(task);
         TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
