@@ -17,7 +17,7 @@ public class UndoCommand extends Command {
         assert model != null;
         try {
             model.loadPreviousState();
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             return new CommandResult(MESSAGE_NO_PREVIOUS_STATE);
         }
 

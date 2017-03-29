@@ -32,8 +32,6 @@ public class AddCommand extends Command {
 
     private final Task toAdd;
 
-    boolean mutatesData = true;
-
     /**
      * Creates an AddCommand using raw values.
      *
@@ -71,6 +69,11 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
+    }
+
+    @Override
+    public boolean mutatesTaskManager(){
+    	return true;
     }
 
 }

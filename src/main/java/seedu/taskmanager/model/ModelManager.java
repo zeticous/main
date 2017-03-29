@@ -43,8 +43,8 @@ public class ModelManager extends ComponentManager implements Model {
 
         this.taskManager = new TaskManager(taskManager);
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
-        this.stateManager = new TaskManagerStateManager();
-        saveState(STRING_INITIAL);
+        TaskManagerState initState = new TaskManagerState(taskManager, STRING_INITIAL);
+        this.stateManager = new TaskManagerStateManager(initState);
     }
 
     public ModelManager() {
@@ -101,13 +101,13 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void loadPreviousState() throws ArrayIndexOutOfBoundsException {
+    public void loadPreviousState() throws IndexOutOfBoundsException {
         taskManager.resetData(stateManager.getPreviousState().getTaskManager());
         indicateTaskManagerChanged();
     }
 
     @Override
-    public void loadNextState() throws ArrayIndexOutOfBoundsException {
+    public void loadNextState() throws IndexOutOfBoundsException {
         taskManager.resetData(stateManager.getNextState().getTaskManager());
         indicateTaskManagerChanged();
     }

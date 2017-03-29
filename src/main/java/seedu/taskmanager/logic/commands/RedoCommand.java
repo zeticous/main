@@ -15,7 +15,7 @@ public class RedoCommand extends Command {
         assert model != null;
         try {
             model.loadNextState();
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             return new CommandResult(MESSAGE_NO_NEW_STATE);
         }
 
