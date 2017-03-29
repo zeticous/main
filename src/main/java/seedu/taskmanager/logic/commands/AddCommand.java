@@ -32,6 +32,8 @@ public class AddCommand extends Command {
 
     private final Task toAdd;
 
+    boolean mutatesData = true;
+
     /**
      * Creates an AddCommand using raw values.
      *

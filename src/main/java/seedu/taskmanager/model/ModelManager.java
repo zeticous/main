@@ -26,8 +26,11 @@ import seedu.taskmanager.model.task.UniqueTaskList.TaskNotFoundException;
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private static final String STRING_INITIAL = "Initial";
+
     private final TaskManager taskManager;
     private final FilteredList<ReadOnlyTask> filteredTasks;
+    private final TaskManagerStateManager stateManager;
 
     /**
      * Initializes a ModelManager with the given taskManager and userPrefs.
@@ -40,10 +43,17 @@ public class ModelManager extends ComponentManager implements Model {
 
         this.taskManager = new TaskManager(taskManager);
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
+        this.stateManager = new TaskManagerStateManager();
+        saveState(STRING_INITIAL);
     }
 
     public ModelManager() {
         this(new TaskManager(), new UserPrefs());
+    }
+
+    @Override
+    public void saveState(String commandString) {
+        stateManager.addState(new TaskManagerState(taskManager, commandString));
     }
 
     @Override
@@ -87,6 +97,18 @@ public class ModelManager extends ComponentManager implements Model {
 
         int taskManagerIndex = filteredTasks.getSourceIndex(filteredTaskListIndex);
         taskManager.updateTask(taskManagerIndex, editedTask);
+        indicateTaskManagerChanged();
+    }
+
+    @Override
+    public void loadPreviousState() throws ArrayIndexOutOfBoundsException {
+        taskManager.resetData(stateManager.getPreviousState().getTaskManager());
+        indicateTaskManagerChanged();
+    }
+
+    @Override
+    public void loadNextState() throws ArrayIndexOutOfBoundsException {
+        taskManager.resetData(stateManager.getNextState().getTaskManager());
         indicateTaskManagerChanged();
     }
 

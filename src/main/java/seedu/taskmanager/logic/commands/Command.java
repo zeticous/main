@@ -10,6 +10,7 @@ import seedu.taskmanager.model.Model;
  */
 public abstract class Command {
     protected Model model;
+    protected boolean mutatesData = false;
 
     /**
      * Constructs a feedback message to summarise an operation that displayed a
@@ -39,5 +40,9 @@ public abstract class Command {
      */
     public void setData(Model model) {
         this.model = model;
+    }
+
+    public boolean mutatesTaskManager() {
+        return this.mutatesData;
     }
 }
