@@ -168,4 +168,16 @@ public class LogicEditCommandTest extends LogicManagerTest {
         assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
     }
 
+
+    // @Test
+    // public void execute_edit_invalidDemotion() throws Exception {
+    // TestDataHelper helper = new TestDataHelper();
+    // Task task = helper.generateTaskWithAll("meeting1","now", "1/2/2020 3pm");
+    //
+    // model.addTask(task);
+    //
+    // String invalidDemotionCommand = "edit 1 e/remove";
+    // String expectedMessage = EditCommand.MESSAGE_INVALID_EDITTED_TASK;
+    // assertCommandSuccess(invalidDemotionCommand, expectedMessage, );
+    // }
 }

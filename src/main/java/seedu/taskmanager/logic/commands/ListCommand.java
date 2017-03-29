@@ -24,7 +24,7 @@ public class ListCommand extends Command {
     }
 
     public ListCommand(String[] taskTypeAndDate) {
-    	this.taskTypeAndDate = taskTypeAndDate;
+        this.taskTypeAndDate = taskTypeAndDate;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ListCommand extends Command {
         assert model != null;
 
         if (taskType != null) {
-        	if (taskType.equals(EMPTY_STRING)) {
+            if (taskType.equals(EMPTY_STRING)) {
                 model.updateFilteredListToShowAll();
                 return new CommandResult(MESSAGE_SUCCESS);
             }
@@ -41,7 +41,11 @@ public class ListCommand extends Command {
         }
 
         model.updateFilteredTaskListByTaskTypeAndDate(taskTypeAndDate);
-        return new CommandResult(MESSAGE_SUCCESS + " (" + taskTypeAndDate[0] + ", " +
-        							taskTypeAndDate[1] + ")");
+        return new CommandResult(MESSAGE_SUCCESS + " (" + taskTypeAndDate[0] + ", " + taskTypeAndDate[1] + ")");
+    }
+
+    @Override
+    public boolean mutatesTaskManager() {
+        return false;
     }
 }
