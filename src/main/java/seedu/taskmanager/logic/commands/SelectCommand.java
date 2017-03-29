@@ -41,4 +41,9 @@ public class SelectCommand extends Command {
 
     }
 
+    @Override
+    public boolean mutatesTaskManager() {
+        return false;
+    }
+
 }

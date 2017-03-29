@@ -20,7 +20,7 @@ public class ClearCommand extends Command {
     }
 
     @Override
-    public boolean mutatesTaskManager(){
-    	return true;
+    public boolean mutatesTaskManager() {
+        return true;
     }
 }
