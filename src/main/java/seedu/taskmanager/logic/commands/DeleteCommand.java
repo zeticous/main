@@ -47,8 +47,8 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public boolean mutatesTaskManager(){
-    	return true;
+    public boolean mutatesTaskManager() {
+        return true;
     }
 
 }

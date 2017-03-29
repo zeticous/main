@@ -1,11 +1,11 @@
 package seedu.taskmanager.model;
 
 public class TaskManagerState {
-    private final ReadOnlyTaskManager taskManager;
-    private final String executedCommand;
+    private TaskManager taskManager = new TaskManager();
+    private String executedCommand;
 
     public TaskManagerState(ReadOnlyTaskManager taskManager, String executedCommand) {
-        this.taskManager = taskManager;
+        this.taskManager.resetData(taskManager);
         this.executedCommand = executedCommand;
     }
 

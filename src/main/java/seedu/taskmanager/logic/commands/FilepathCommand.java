@@ -82,4 +82,9 @@ public class FilepathCommand extends Command {
         // Check if file can be created
         FileUtil.createFile(file);
     }
+
+    @Override
+    public boolean mutatesTaskManager() {
+        return false;
+    }
 }
