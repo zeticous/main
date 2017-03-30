@@ -16,6 +16,7 @@ public class TaskDate {
     private final Date taskDate;
 
     public TaskDate(Date date) {
+        assert date != null;
         this.taskDate = date;
     }
 

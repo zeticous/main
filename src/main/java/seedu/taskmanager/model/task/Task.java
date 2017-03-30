@@ -111,7 +111,7 @@ public class Task implements ReadOnlyTask {
     }
 
     public void removeEndDate() {
-        this.startDate = Optional.empty();
+        this.endDate = Optional.empty();
     }
 
     @Override
