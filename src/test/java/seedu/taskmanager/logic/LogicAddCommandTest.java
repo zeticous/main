@@ -1,6 +1,6 @@
+
 package seedu.taskmanager.logic;
 
-import static org.junit.Assert.assertEquals;
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import org.junit.Test;
@@ -9,10 +9,9 @@ import seedu.taskmanager.logic.commands.AddCommand;
 import seedu.taskmanager.logic.parser.DateTimeUtil;
 import seedu.taskmanager.model.TaskManager;
 import seedu.taskmanager.model.tag.Tag;
-import seedu.taskmanager.model.task.DummyEndTaskDate;
-import seedu.taskmanager.model.task.DummyStartTaskDate;
 import seedu.taskmanager.model.task.Task;
 
+//@@author A0130277L
 public class LogicAddCommandTest extends LogicManagerTest {
 
     @Test
@@ -55,16 +54,4 @@ public class LogicAddCommandTest extends LogicManagerTest {
         assertCommandFailure(helper.generateAddCommand(toBeAdded), AddCommand.MESSAGE_DUPLICATE_TASK);
 
     }
-
-    // Test if Dummy start date and end date are added to startDate and
-    // endDate when they are not present
-    @Test
-    public void execute_add_successfulDummyDate() throws Exception {
-        // setup expectations
-        TestDataHelper helper = new TestDataHelper();
-        Task toBeAdded = helper.homework();
-        assertEquals(toBeAdded.getStartDate().toString(), DummyStartTaskDate.DUMMY_START_DATE_STRING);
-        assertEquals(toBeAdded.getEndDate().toString(), DummyEndTaskDate.DUMMY_END_DATE_STRING);
-    }
-
 }

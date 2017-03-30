@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic.parser;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -20,19 +21,19 @@ import seedu.taskmanager.logic.commands.IncorrectCommand;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser {
-
+    // @@author A0140417R
     public static final String EMPTY_STRING = "";
 
     public static final String NO_START_DATE = "Start date not found";
     public static final String NO_END_DATE = "End date not found";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the
-     * AddCommand and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddCommand and returns an AddCommand object
+     * for execution.
      */
     public Command parse(String args) {
-        ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_STARTDATE, PREFIX_ENDDATE, PREFIX_DEADLINE,
-                PREFIX_TAG);
+        ArgumentTokenizer argsTokenizer =
+                new ArgumentTokenizer(PREFIX_STARTDATE, PREFIX_ENDDATE, PREFIX_DEADLINE, PREFIX_TAG);
 
         argsTokenizer.tokenize(args);
         try {
@@ -82,8 +83,8 @@ public class AddCommandParser {
         String startDateString = argsTokenizer.getValue(PREFIX_STARTDATE).get();
         String endDateString = argsTokenizer.getValue(PREFIX_ENDDATE).get();
 
-        Date startDate = DateTimeUtil.parseDateTime(startDateString);
-        Date endDate = DateTimeUtil.parseDateTime(endDateString);
+        Date startDate = DateTimeUtil.parseStartDateTime(startDateString);
+        Date endDate = DateTimeUtil.parseEndDateTime(endDateString);
 
         return startDate.before(endDate);
     }

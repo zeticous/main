@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.ui;
 
 import javafx.fxml.FXML;
@@ -7,12 +8,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.taskmanager.model.task.ReadOnlyTask;
-import seedu.taskmanager.model.task.TaskUtil;
 
+//@@author A0140417R
 public class TaskCard extends UiPart<Region> {
 
     private static final String FXML = "TaskListCard.fxml";
     private static final TaskCardStyle style = TaskCardStyle.getInstance();
+    private static final String IS_DONE = "Done";
+    private static final String NOT_DONE = "Not done";
 
     @FXML
     private VBox idContainer;
@@ -49,8 +52,6 @@ public class TaskCard extends UiPart<Region> {
 
     private void doneSelector(ReadOnlyTask task) {
         StringBuilder styleString = new StringBuilder();
-        String IS_DONE = "Done";
-        String NOT_DONE = "Not done";
 
         if (task.isDone()) {
             styleString.append(style.getCardDoneColour(IS_DONE));
@@ -69,20 +70,24 @@ public class TaskCard extends UiPart<Region> {
      * @param task
      */
     private void taskSelector(ReadOnlyTask task) {
-        if (TaskUtil.isFloating(task)) {
+        if (task.isFloating()) {
             deleteLabel(startDate);
             deleteLabel(endDate);
             taskType.setText("Floating");
 
-        } else if (TaskUtil.isDeadline(task)) {
+        } else if (task.isDeadline()) {
             deleteLabel(startDate);
             endDate.setText("Due: " + task.getEndDate().toString());
             taskType.setText("Deadline");
 
-        } else if (TaskUtil.isEvent(task)) {
+        } else if (task.isEvent()) {
             startDate.setText("Start: " + task.getStartDate().toString());
             endDate.setText("End: " + task.getEndDate().toString());
             taskType.setText("Event");
+        } else {
+            deleteLabel(startDate);
+            deleteLabel(endDate);
+            taskType.setText("Error");
         }
     }
 

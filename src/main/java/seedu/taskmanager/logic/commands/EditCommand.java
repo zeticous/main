@@ -1,9 +1,11 @@
+
 package seedu.taskmanager.logic.commands;
 
 import java.util.List;
 import java.util.Optional;
 
 import seedu.taskmanager.commons.core.Messages;
+import seedu.taskmanager.commons.exceptions.IllegalValueException;
 import seedu.taskmanager.commons.util.CollectionUtil;
 import seedu.taskmanager.logic.commands.exceptions.CommandException;
 import seedu.taskmanager.model.tag.UniqueTagList;
@@ -20,24 +22,29 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
-            + "by the index number as shown in the list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) [NAME] [s/START_DATE] [e/END_DATE] [t/TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    boolean mutatesData = true;
+
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + ": Edits the details of the task identified " + "by the index number as shown in the list. "
+                    + "Existing values will be overwritten by the input values.\n"
+                    + "Parameters: INDEX (must be a positive integer) [NAME] [s/START_DATE] [e/END_DATE] [t/TAG]...\n"
+                    + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager.";
+    public static final String MESSAGE_START_AFTER_END = "The start date provided is after end date.";
+    public static final String MESSAGE_INVALID_EDITTED_TASK =
+            "The editted task is not in the right format." + " Please check the type of your task to edit accordingly.";
 
     private final int filteredTaskListIndex;
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
      * @param filteredTaskListIndex
-     *            the index of the task in the filtered task list to edit
+     *        the index of the task in the filtered task list to edit
      * @param editTaskDescriptor
-     *            details to edit the task with
+     *        details to edit the task with
      */
     public EditCommand(int filteredTaskListIndex, EditTaskDescriptor editTaskDescriptor) {
         assert filteredTaskListIndex > 0;
@@ -58,36 +65,64 @@ public class EditCommand extends Command {
         }
 
         ReadOnlyTask taskToEdit = lastShownList.get(filteredTaskListIndex);
-        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
         try {
+            Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
             model.updateTask(filteredTaskListIndex, editedTask);
         } catch (UniqueTaskList.DuplicateTaskException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        }
-        model.updateFilteredListToShowAll();
 
+        } catch (IllegalValueException ive) {
+            throw new CommandException(ive.getMessage());
+
+        }
+
+        model.updateFilteredListToShowAll();
         return new CommandResult(String.format(MESSAGE_SUCCESS, taskToEdit));
     }
 
     /**
-     * Creates and returns a {@code Task} with the details of {@code taskToEdit}
-     * edited with {@code editTaskDescriptor}.
+     * Creates and returns a {@code Task} with the details of {@code taskToEdit} edited with {@code editTaskDescriptor}.
      */
-    private static Task createEditedTask(ReadOnlyTask taskToEdit, EditTaskDescriptor editTaskDescriptor) {
+    private static Task createEditedTask(ReadOnlyTask taskToEdit, EditTaskDescriptor editTaskDescriptor)
+            throws IllegalValueException {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElseGet(taskToEdit::getName);
-        TaskDate updatedStartDate = editTaskDescriptor.getStartDate().orElseGet(taskToEdit::getStartDate);
-        TaskDate updatedEndDate = editTaskDescriptor.getEndDate().orElseGet(taskToEdit::getEndDate);
         UniqueTagList updatedTags = editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
+
+        TaskDate updatedStartDate = null;
+        TaskDate updatedEndDate = null;
+
+        if (!editTaskDescriptor.startDateRemoved()) {
+            updatedStartDate = editTaskDescriptor.getStartDate().orElseGet(taskToEdit::getStartDate);
+        }
+
+        if (!editTaskDescriptor.endDateRemoved()) {
+            updatedEndDate = editTaskDescriptor.getEndDate().orElseGet(taskToEdit::getEndDate);
+        }
+
+        Task createdTask = new Task(updatedName, updatedStartDate, updatedEndDate, updatedTags);
+
+        // If the created task is an event, the startDate should be before the
+        // endDate
+        if (createdTask.isEvent()) {
+            if (!createdTask.getStartDate().getTaskDate().before(createdTask.getEndDate().getTaskDate())) {
+                throw new IllegalValueException(MESSAGE_START_AFTER_END);
+            }
+        }
+
+        // Checks if a task is in a valid time structure.
+        if (!createdTask.isValidTask()) {
+            throw new IllegalValueException(MESSAGE_INVALID_EDITTED_TASK);
+        }
 
         return new Task(updatedName, updatedStartDate, updatedEndDate, updatedTags);
     }
 
     /**
-     * Stores the details to edit the task with. Each non-empty field value will
-     * replace the corresponding field value of the task.
+     * Stores the details to edit the task with. Each non-empty field value will replace the corresponding field value
+     * of the task.
      */
     public static class EditTaskDescriptor {
 
@@ -95,6 +130,9 @@ public class EditCommand extends Command {
         private Optional<TaskDate> startDate = Optional.empty();
         private Optional<TaskDate> endDate = Optional.empty();
         private Optional<UniqueTagList> tags = Optional.empty();
+
+        private static Boolean startDateRemovedFlag = false;
+        private static Boolean endDateRemovedFlag = false;
 
         public EditTaskDescriptor() {
         }
@@ -110,7 +148,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyPresent(this.name, this.startDate, this.endDate, this.tags);
+            return startDateRemovedFlag || endDateRemovedFlag
+                    || CollectionUtil.isAnyPresent(this.name, this.startDate, this.endDate, this.tags);
         }
 
         public void setName(Optional<Name> name) {
@@ -131,6 +170,18 @@ public class EditCommand extends Command {
             return startDate;
         }
 
+        public void setStartDateRemovedFlag() {
+            startDateRemovedFlag = true;
+        }
+
+        public void setEndDateRemovedFlag() {
+            endDateRemovedFlag = true;
+        }
+
+        public boolean startDateRemoved() {
+            return startDateRemovedFlag;
+        }
+
         public void setEndDate(Optional<TaskDate> taskDate) {
             assert taskDate != null;
             this.endDate = taskDate;
@@ -138,6 +189,10 @@ public class EditCommand extends Command {
 
         public Optional<TaskDate> getEndDate() {
             return endDate;
+        }
+
+        public boolean endDateRemoved() {
+            return endDateRemovedFlag;
         }
 
         public void setTags(Optional<UniqueTagList> tags) {
@@ -148,5 +203,10 @@ public class EditCommand extends Command {
         public Optional<UniqueTagList> getTags() {
             return tags;
         }
+    }
+
+    @Override
+    public boolean mutatesTaskManager() {
+        return true;
     }
 }

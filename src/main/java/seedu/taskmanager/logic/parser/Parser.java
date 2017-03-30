@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic.parser;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -13,11 +14,14 @@ import seedu.taskmanager.logic.commands.Command;
 import seedu.taskmanager.logic.commands.DeleteCommand;
 import seedu.taskmanager.logic.commands.EditCommand;
 import seedu.taskmanager.logic.commands.ExitCommand;
+import seedu.taskmanager.logic.commands.FilepathCommand;
 import seedu.taskmanager.logic.commands.FindCommand;
 import seedu.taskmanager.logic.commands.HelpCommand;
 import seedu.taskmanager.logic.commands.IncorrectCommand;
 import seedu.taskmanager.logic.commands.ListCommand;
-import seedu.taskmanager.logic.commands.SelectCommand;
+import seedu.taskmanager.logic.commands.MarkCommand;
+import seedu.taskmanager.logic.commands.RedoCommand;
+import seedu.taskmanager.logic.commands.UndoCommand;
 
 /**
  * Parses user input.
@@ -33,7 +37,7 @@ public class Parser {
      * Parses user input into command for execution.
      *
      * @param userInput
-     *            full user input string
+     *        full user input string
      * @return the command based on the user input
      * @throws IllegalValueException
      */
@@ -53,9 +57,6 @@ public class Parser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case SelectCommand.COMMAND_WORD:
-            return new SelectCommandParser().parse(arguments);
-
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
@@ -73,6 +74,18 @@ public class Parser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case FilepathCommand.COMMAND_WORD:
+            return new FilepathCommand(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommandParser().parse(arguments);
 
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);

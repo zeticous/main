@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.ui;
 
 import javafx.event.Event;
@@ -20,7 +21,7 @@ public class BrowserPanel extends UiPart<Region> {
 
     /**
      * @param placeholder
-     *            The AnchorPane where the BrowserPanel must be inserted
+     *        The AnchorPane where the BrowserPanel must be inserted
      */
     public BrowserPanel(AnchorPane placeholder) {
         super(FXML);

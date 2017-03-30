@@ -1,4 +1,7 @@
+
 package seedu.taskmanager.testutil;
+
+import java.util.Optional;
 
 import seedu.taskmanager.model.tag.UniqueTagList;
 import seedu.taskmanager.model.task.Name;
@@ -11,8 +14,8 @@ import seedu.taskmanager.model.task.TaskDate;
 public class TestTask implements ReadOnlyTask {
 
     private Name name;
-    private TaskDate startDate;
-    private TaskDate endDate;
+    private Optional<TaskDate> startDate;
+    private Optional<TaskDate> endDate;
     private UniqueTagList tags;
 
     public TestTask() {
@@ -36,11 +39,11 @@ public class TestTask implements ReadOnlyTask {
     }
 
     public void setStartDate(TaskDate startDate) {
-        this.startDate = startDate;
+        this.startDate = Optional.of(startDate);
     }
 
     public void setEndDate(TaskDate endDate) {
-        this.endDate = endDate;
+        this.endDate = Optional.of(endDate);
     }
 
     @Override
@@ -50,12 +53,12 @@ public class TestTask implements ReadOnlyTask {
 
     @Override
     public TaskDate getStartDate() {
-        return startDate;
+        return startDate.orElse(null);
     }
 
     @Override
     public TaskDate getEndDate() {
-        return endDate;
+        return endDate.orElse(null);
     }
 
     @Override
@@ -81,4 +84,28 @@ public class TestTask implements ReadOnlyTask {
         return false;
     }
 
+    @Override
+    public boolean hasStartDate() {
+        return startDate.isPresent();
+    }
+
+    @Override
+    public boolean hasEndDate() {
+        return endDate.isPresent();
+    }
+
+    @Override
+    public boolean isFloating() {
+        return !hasStartDate() && !hasEndDate();
+    }
+
+    @Override
+    public boolean isDeadline() {
+        return !hasStartDate() && hasEndDate();
+    }
+
+    @Override
+    public boolean isEvent() {
+        return hasStartDate() && hasEndDate();
+    }
 }

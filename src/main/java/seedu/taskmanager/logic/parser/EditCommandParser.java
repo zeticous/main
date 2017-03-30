@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic.parser;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -23,10 +24,12 @@ import seedu.taskmanager.model.tag.UniqueTagList;
 public class EditCommandParser {
 
     public static final String EMPTY_STRING = "";
+    public static final String REMOVE_STRING = "remove";
 
+    // @@author A0140538J
     /**
-     * Parses the given {@code String} of arguments in the context of the
-     * EditCommand and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditCommand and returns an EditCommand object
+     * for execution.
      */
     public Command parse(String args) {
 
@@ -40,15 +43,31 @@ public class EditCommandParser {
         if (!index.isPresent()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
+
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
 
         try {
             Optional<String> startDateString = argsTokenizer.getValue(PREFIX_STARTDATE);
             Optional<String> endDateString = argsTokenizer.getValue(PREFIX_ENDDATE);
 
+            if (startDateString.isPresent()) {
+                if (isRemoveString(startDateString)) {
+                    editTaskDescriptor.setStartDateRemovedFlag();
+
+                } else {
+                    editTaskDescriptor.setStartDate(ParserUtil.parseTaskDate(startDateString));
+                }
+            }
+
+            if (endDateString.isPresent()) {
+                if (isRemoveString(endDateString)) {
+                    editTaskDescriptor.setEndDateRemovedFlag();
+                } else {
+                    editTaskDescriptor.setEndDate(ParserUtil.parseTaskDate(endDateString));
+                }
+            }
+
             editTaskDescriptor.setName(ParserUtil.parseName(preambleFields.get(1)));
-            editTaskDescriptor.setStartDate(ParserUtil.parseTaskDate(startDateString));
-            editTaskDescriptor.setEndDate(ParserUtil.parseTaskDate(endDateString));
             editTaskDescriptor.setTags(parseTagsForEdit(ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))));
 
         } catch (IllegalValueException ive) {
@@ -62,11 +81,15 @@ public class EditCommandParser {
         return new EditCommand(index.get(), editTaskDescriptor);
     }
 
+    private boolean isRemoveString(Optional<String> dateString) {
+        return dateString.get().substring(1).trim().toLowerCase().equals(REMOVE_STRING);
+    }
+    // @@author
+
     /**
-     * Parses {@code Collection<String> tags} into an
-     * {@code Optional<UniqueTagList>} if {@code tags} is non-empty. If
-     * {@code tags} contain only one element which is an empty string, it will
-     * be parsed into a {@code Optional<UniqueTagList>} containing zero tags.
+     * Parses {@code Collection<String> tags} into an {@code Optional<UniqueTagList>} if {@code tags} is non-empty. If
+     * {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Optional<UniqueTagList>} containing zero tags.
      */
     private Optional<UniqueTagList> parseTagsForEdit(Collection<String> tags) throws IllegalValueException {
         assert tags != null;

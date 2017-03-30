@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic.commands;
 
 import seedu.taskmanager.commons.core.EventsCenter;
@@ -16,6 +17,11 @@ public class ExitCommand extends Command {
     public CommandResult execute() {
         EventsCenter.getInstance().post(new ExitAppRequestEvent());
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT);
+    }
+
+    @Override
+    public boolean mutatesTaskManager() {
+        return false;
     }
 
 }

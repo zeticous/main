@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.commons.events.model;
 
 import seedu.taskmanager.commons.events.BaseEvent;

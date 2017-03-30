@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.commons.util;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -55,9 +56,8 @@ public class StringUtilTest {
     // --------------------------------------
 
     /*
-     * Invalid equivalence partitions for word: null, empty, multiple words
-     * Invalid equivalence partitions for sentence: null The four test cases
-     * below test one invalid input at a time.
+     * Invalid equivalence partitions for word: null, empty, multiple words Invalid equivalence partitions for sentence:
+     * null The four test cases below test one invalid input at a time.
      */
 
     @Test
@@ -87,20 +87,19 @@ public class StringUtilTest {
     }
 
     /*
-     * Valid equivalence partitions for word: - any word - word containing
-     * symbols/numbers - word with leading/trailing spaces
+     * Valid equivalence partitions for word: - any word - word containing symbols/numbers - word with leading/trailing
+     * spaces
      *
-     * Valid equivalence partitions for sentence: - empty string - one word -
-     * multiple words - sentence with extra spaces
+     * Valid equivalence partitions for sentence: - empty string - one word - multiple words - sentence with extra
+     * spaces
      *
-     * Possible scenarios returning true: - matches first word in sentence -
-     * last word in sentence - middle word in sentence - matches multiple words
+     * Possible scenarios returning true: - matches first word in sentence - last word in sentence - middle word in
+     * sentence - matches multiple words
      *
-     * Possible scenarios returning false: - query word matches part of a
-     * sentence word - sentence word matches part of the query word
+     * Possible scenarios returning false: - query word matches part of a sentence word - sentence word matches part of
+     * the query word
      *
-     * The test method below tries to verify all above with a reasonably low
-     * number of test cases.
+     * The test method below tries to verify all above with a reasonably low number of test cases.
      */
 
     @Test

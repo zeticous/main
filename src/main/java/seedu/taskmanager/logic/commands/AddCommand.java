@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic.commands;
 
 import static seedu.taskmanager.logic.parser.AddCommandParser.NO_END_DATE;
@@ -11,8 +12,6 @@ import seedu.taskmanager.logic.commands.exceptions.CommandException;
 import seedu.taskmanager.logic.parser.DateTimeUtil;
 import seedu.taskmanager.model.tag.Tag;
 import seedu.taskmanager.model.tag.UniqueTagList;
-import seedu.taskmanager.model.task.DummyEndTaskDate;
-import seedu.taskmanager.model.task.DummyStartTaskDate;
 import seedu.taskmanager.model.task.Name;
 import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.TaskDate;
@@ -38,28 +37,22 @@ public class AddCommand extends Command {
      * Creates an AddCommand using raw values.
      *
      * @throws IllegalValueException
-     *             if any of the raw values are invalid
+     *         if any of the raw values are invalid
      */
     public AddCommand(String name, String startDateString, String endDateString, Set<String> tags)
             throws IllegalValueException {
 
         final Set<Tag> tagSet = new HashSet<>();
-        TaskDate startDate;
-        TaskDate endDate;
+        // @@author A0140417R
+        TaskDate startDate = null;
+        TaskDate endDate = null;
 
-        if (startDateString == NO_START_DATE) {
-
-            startDate = new DummyStartTaskDate();
-
-        } else {
-            startDate = new TaskDate(DateTimeUtil.parseDateTime(startDateString));
+        if (startDateString != NO_START_DATE) {
+            startDate = new TaskDate(DateTimeUtil.parseStartDateTime(startDateString));
         }
 
-        if (endDateString == NO_END_DATE) {
-            endDate = new DummyEndTaskDate();
-
-        } else {
-            endDate = new TaskDate(DateTimeUtil.parseDateTime(endDateString));
+        if (endDateString != NO_END_DATE) {
+            endDate = new TaskDate(DateTimeUtil.parseEndDateTime(endDateString));
         }
 
         for (String tagName : tags) {
@@ -68,6 +61,7 @@ public class AddCommand extends Command {
         this.toAdd = new Task(new Name(name), startDate, endDate, new UniqueTagList(tagSet));
     }
 
+    // @@author
     @Override
     public CommandResult execute() throws CommandException {
         assert model != null;
@@ -79,5 +73,12 @@ public class AddCommand extends Command {
         }
 
     }
+
+    // @@author A0140417R
+    @Override
+    public boolean mutatesTaskManager() {
+        return true;
+    }
+    // @@author
 
 }

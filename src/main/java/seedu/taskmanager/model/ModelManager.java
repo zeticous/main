@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.model;
 
 import java.util.Set;
@@ -7,6 +8,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.taskmanager.commons.core.ComponentManager;
 import seedu.taskmanager.commons.core.LogsCenter;
 import seedu.taskmanager.commons.core.UnmodifiableObservableList;
+import seedu.taskmanager.commons.events.model.FilePathChangedEvent;
 import seedu.taskmanager.commons.events.model.TaskManagerChangedEvent;
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
 import seedu.taskmanager.commons.util.CollectionUtil;
@@ -15,19 +17,20 @@ import seedu.taskmanager.logic.parser.DateTimeUtil;
 import seedu.taskmanager.model.task.ReadOnlyTask;
 import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.TaskDate;
-import seedu.taskmanager.model.task.TaskUtil;
 import seedu.taskmanager.model.task.UniqueTaskList;
 import seedu.taskmanager.model.task.UniqueTaskList.TaskNotFoundException;
 
 /**
- * Represents the in-memory model of the task manager data. All changes to any
- * model should be synchronized.
+ * Represents the in-memory model of the task manager data. All changes to any model should be synchronized.
  */
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private static final String STRING_INITIAL = "Initial";
+
     private final TaskManager taskManager;
     private final FilteredList<ReadOnlyTask> filteredTasks;
+    private final TaskManagerStateManager stateManager;
 
     /**
      * Initializes a ModelManager with the given taskManager and userPrefs.
@@ -40,11 +43,22 @@ public class ModelManager extends ComponentManager implements Model {
 
         this.taskManager = new TaskManager(taskManager);
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
+        TaskManagerState initState = new TaskManagerState(taskManager, STRING_INITIAL);
+        // @@author A0140417R
+        this.stateManager = new TaskManagerStateManager(initState);
+        // @@author
     }
 
     public ModelManager() {
         this(new TaskManager(), new UserPrefs());
     }
+
+    // @@author A0140417R
+    @Override
+    public void saveState(String commandString) {
+        stateManager.addState(new TaskManagerState(taskManager, commandString));
+    }
+    // @@author
 
     @Override
     public void resetData(ReadOnlyTaskManager newData) {
@@ -56,6 +70,13 @@ public class ModelManager extends ComponentManager implements Model {
     public ReadOnlyTaskManager getTaskManager() {
         return taskManager;
     }
+
+    // @@author A0140417R
+    @Override
+    public void changeFilePath(String newPath) {
+        raise(new FilePathChangedEvent(newPath));
+    }
+    // @@author
 
     /** Raises an event to indicate the model has changed */
     private void indicateTaskManagerChanged() {
@@ -85,6 +106,20 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
+    // @@author A0140417R
+    @Override
+    public void loadPreviousState() throws IndexOutOfBoundsException {
+        taskManager.resetData(stateManager.getPreviousState().getTaskManager());
+        indicateTaskManagerChanged();
+    }
+
+    @Override
+    public void loadNextState() throws IndexOutOfBoundsException {
+        taskManager.resetData(stateManager.getNextState().getTaskManager());
+        indicateTaskManagerChanged();
+    }
+    // @@author
+
     // =========== Filtered Task List Accessors
     // =============================================================
 
@@ -103,10 +138,17 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
     }
 
+    // @@author A0140538J
     @Override
-    public void updateFilteredTaskListByTaskType(String taskType) {
+    public void updateFilteredTaskListByTaskTypeOrDate(String taskType) {
         updateFilteredTaskList(new PredicateExpression(new TypeQualifier(taskType)));
     }
+
+    @Override
+    public void updateFilteredTaskListByTaskTypeAndDate(String[] taskTypeAndDate) {
+        updateFilteredTaskList(new PredicateExpression(new TypeAndDateQualifier(taskTypeAndDate)));
+    }
+    // @@author
 
     private void updateFilteredTaskList(Expression expression) {
         filteredTasks.setPredicate(expression::satisfies);
@@ -168,6 +210,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
+    // @@author A0140538J
     private class TypeQualifier implements Qualifier {
         private String taskType;
 
@@ -179,22 +222,58 @@ public class ModelManager extends ComponentManager implements Model {
         public boolean run(ReadOnlyTask task) {
             switch (taskType) {
             case "floating":
-                return TaskUtil.isFloating(task);
+                return task.isFloating();
             case "deadline":
-                return TaskUtil.isDeadline(task);
+                return task.isDeadline();
             case "event":
-                return TaskUtil.isEvent(task);
+                return task.isEvent();
             // for parsing date
             default:
                 try {
                     TaskDate date = new TaskDate(DateTimeUtil.parseDateTime(taskType));
-                    return task.getStartDate().getOnlyDate().equals(date.getOnlyDate())
-                            || task.getEndDate().getOnlyDate().equals(date.getOnlyDate());
+                    return (task.getStartDate() != null && task.getStartDate().getOnlyDate().equals(date.getOnlyDate()))
+                            || (task.getEndDate() != null
+                                    && task.getEndDate().getOnlyDate().equals(date.getOnlyDate()));
 
                 } catch (IllegalValueException ive) {
                     // Deliberately empty as taskType will not throw exception
                     return false;
                 }
+            }
+        }
+    }
+
+    private class TypeAndDateQualifier implements Qualifier {
+        private String taskType;
+        private TaskDate date;
+
+        TypeAndDateQualifier(String[] taskTypeAndDate) {
+            taskType = taskTypeAndDate[0];
+
+            try {
+                date = new TaskDate(DateTimeUtil.parseDateTime(taskTypeAndDate[1]));
+            } catch (IllegalValueException ive) {
+                // Deliberately empty as this date will not throw exception
+            }
+        }
+
+        @Override
+        public boolean run(ReadOnlyTask task) {
+
+            boolean dateFilter = (task.getStartDate() != null
+                    && task.getStartDate().getOnlyDate().equals(date.getOnlyDate()))
+                    || (task.getEndDate() != null && task.getEndDate().getOnlyDate().equals(date.getOnlyDate()));
+
+            switch (taskType) {
+            case "floating":
+                return task.isFloating() && dateFilter;
+            case "deadline":
+                return task.isDeadline() && dateFilter;
+            case "event":
+                return task.isEvent() && dateFilter;
+            default:
+                // will never reach this step
+                return false;
             }
         }
     }

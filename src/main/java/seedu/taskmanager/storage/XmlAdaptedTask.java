@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.storage;
 
 import java.util.ArrayList;
@@ -19,7 +20,10 @@ import seedu.taskmanager.model.task.TaskDate;
  */
 public class XmlAdaptedTask {
 
-    @XmlElement(required = true)
+    public static final String NO_DATE = "N/A";
+
+    @XmlElement(
+            required = true)
     private String name;
     @XmlElement
     private String startDate;
@@ -27,39 +31,50 @@ public class XmlAdaptedTask {
     private String endDate;
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
+    @XmlElement
+    private boolean isDoneStatus;
 
     /**
-     * Constructs an XmlAdaptedTask. This is the no-arg constructor that is
-     * required by JAXB.
+     * Constructs an XmlAdaptedTask. This is the no-arg constructor that is required by JAXB.
      */
     public XmlAdaptedTask() {
     }
 
+    // @@author A0140538J
     /**
      * Converts a given Task into this class for JAXB use.
      *
      * @param source
-     *            future changes to this will not affect the created
-     *            XmlAdaptedTask
+     *        future changes to this will not affect the created XmlAdaptedTask
      */
     public XmlAdaptedTask(ReadOnlyTask source) {
         name = source.getName().fullName;
-        startDate = source.getStartDate().toString();
-        endDate = source.getEndDate().toString();
+
+        if (source.getStartDate() == null) {
+            startDate = NO_DATE;
+        } else {
+            startDate = source.getStartDate().toString();
+        }
+
+        if (source.getEndDate() == null) {
+            endDate = NO_DATE;
+        } else {
+            endDate = source.getEndDate().toString();
+        }
 
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
         }
+
+        isDoneStatus = source.isDone();
     }
 
     /**
-     * Converts this jaxb-friendly adapted task object into the model's Task
-     * object.
+     * Converts this jaxb-friendly adapted task object into the model's Task object.
      *
      * @throws IllegalValueException
-     *             if there were any data constraints violated in the adapted
-     *             task
+     *         if there were any data constraints violated in the adapted task
      */
     public Task toModelType() throws IllegalValueException {
         final List<Tag> taskTags = new ArrayList<>();
@@ -67,9 +82,12 @@ public class XmlAdaptedTask {
             taskTags.add(tag.toModelType());
         }
         final Name name = new Name(this.name);
-        final TaskDate startDate = new TaskDate(DateTimeUtil.parseDateTime(this.startDate));
-        final TaskDate endDate = new TaskDate(DateTimeUtil.parseDateTime(this.endDate));
+        final TaskDate startDate =
+                this.startDate.equals(NO_DATE) ? null : new TaskDate(DateTimeUtil.parseStartDateTime(this.startDate));
+        final TaskDate endDate =
+                this.endDate.equals(NO_DATE) ? null : new TaskDate(DateTimeUtil.parseEndDateTime(this.endDate));
         final UniqueTagList tags = new UniqueTagList(taskTags);
-        return new Task(name, startDate, endDate, tags);
+        final boolean isDoneStatus = this.isDoneStatus;
+        return new Task(name, startDate, endDate, tags, isDoneStatus);
     }
 }

@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic;
 
 import java.util.logging.Logger;
@@ -32,7 +33,14 @@ public class LogicManager extends ComponentManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         Command command = parser.parseCommand(commandText);
         command.setData(model);
-        return command.execute();
+        // @@author A0140417R
+        CommandResult result = command.execute();
+        if (command.mutatesTaskManager()) {
+            model.saveState(commandText);
+        }
+
+        return result;
+        // @@author
     }
 
     @Override

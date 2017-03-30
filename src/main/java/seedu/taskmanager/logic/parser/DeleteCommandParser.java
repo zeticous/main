@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic.parser;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -14,8 +15,8 @@ import seedu.taskmanager.logic.commands.IncorrectCommand;
 public class DeleteCommandParser {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the
-     * DeleteCommand and returns an DeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteCommand and returns an DeleteCommand
+     * object for execution.
      */
     public Command parse(String args) {
 
