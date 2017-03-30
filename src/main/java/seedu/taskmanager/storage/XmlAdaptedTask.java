@@ -40,7 +40,7 @@ public class XmlAdaptedTask {
     public XmlAdaptedTask() {
     }
 
-    //@@author A0140538J
+    // @@author A0140538J
     /**
      * Converts a given Task into this class for JAXB use.
      *

@@ -20,10 +20,10 @@ public class ClearCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    //@@author A0140417R
+    // @@author A0140417R
     @Override
     public boolean mutatesTaskManager() {
         return true;
     }
-    //@@author
+    // @@author
 }

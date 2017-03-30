@@ -3,7 +3,6 @@ package seedu.taskmanager.commons.events.model;
 
 import seedu.taskmanager.commons.events.BaseEvent;
 
-
 //@@author A0140417R
 /** Indicates the filepath of the TaskBook has changed */
 public class FilePathChangedEvent extends BaseEvent {
@@ -19,4 +18,4 @@ public class FilePathChangedEvent extends BaseEvent {
         return "new file path: " + filePath;
     }
 }
-//@@author
+// @@author

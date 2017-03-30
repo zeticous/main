@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import seedu.taskmanager.commons.util.FileUtil;
 
-
 //@@author A0140417R
 /**
  * Changes the file path to the indicated directory

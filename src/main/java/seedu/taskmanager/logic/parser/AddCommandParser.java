@@ -21,7 +21,7 @@ import seedu.taskmanager.logic.commands.IncorrectCommand;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser {
-    //@@author A0140417R
+    // @@author A0140417R
     public static final String EMPTY_STRING = "";
 
     public static final String NO_START_DATE = "Start date not found";

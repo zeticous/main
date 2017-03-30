@@ -15,7 +15,7 @@ import seedu.taskmanager.model.task.Task;
 
 public class LogicEditCommandTest extends LogicManagerTest {
 
-    //@@author A0140538J
+    // @@author A0140538J
     @Test
     public void execute_edit_blank() throws Exception {
         String invalidCommand = "edit";
@@ -153,7 +153,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
         String validCommand = "edit 1 e/17 july 2017 1:34pm";
         assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
     }
-    //@@author
+    // @@author
 
     // @Test
     // public void execute_edit_validAll() throws Exception {
