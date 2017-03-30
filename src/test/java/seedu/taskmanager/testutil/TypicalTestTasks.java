@@ -8,8 +8,9 @@ import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.TaskDate;
 import seedu.taskmanager.model.task.UniqueTaskList;
 
+//@@author A0130277L
 /**
- *
+ * Stores typical testing tasks
  */
 public class TypicalTestTasks {
 
