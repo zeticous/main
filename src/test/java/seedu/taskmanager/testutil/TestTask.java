@@ -52,12 +52,12 @@ public class TestTask implements ReadOnlyTask {
 
     @Override
     public TaskDate getStartDate() {
-        return startDate.get();
+        return startDate.orElse(null);
     }
 
     @Override
     public TaskDate getEndDate() {
-        return endDate.get();
+        return endDate.orElse(null);
     }
 
     @Override
