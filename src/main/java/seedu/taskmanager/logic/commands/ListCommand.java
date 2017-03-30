@@ -28,6 +28,7 @@ public class ListCommand extends Command {
         this.taskTypeAndDate = taskTypeAndDate;
     }
 
+    //@@author A0140538J
     @Override
     public CommandResult execute() {
         assert model != null;
@@ -44,6 +45,7 @@ public class ListCommand extends Command {
         model.updateFilteredTaskListByTaskTypeAndDate(taskTypeAndDate);
         return new CommandResult(MESSAGE_SUCCESS + " (" + taskTypeAndDate[0] + ", " + taskTypeAndDate[1] + ")");
     }
+    //@@author
 
     @Override
     public boolean mutatesTaskManager() {
