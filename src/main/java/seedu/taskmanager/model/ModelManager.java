@@ -130,7 +130,7 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
     }
 
-    //@@author A0140538J
+    // @@author A0140538J
     @Override
     public void updateFilteredTaskListByTaskTypeOrDate(String taskType) {
         updateFilteredTaskList(new PredicateExpression(new TypeQualifier(taskType)));
@@ -140,7 +140,7 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredTaskListByTaskTypeAndDate(String[] taskTypeAndDate) {
         updateFilteredTaskList(new PredicateExpression(new TypeAndDateQualifier(taskTypeAndDate)));
     }
-    //@@author
+    // @@author
 
     private void updateFilteredTaskList(Expression expression) {
         filteredTasks.setPredicate(expression::satisfies);
@@ -202,7 +202,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
-    //@@author A0140538J
+    // @@author A0140538J
     private class TypeQualifier implements Qualifier {
         private String taskType;
 
@@ -224,7 +224,8 @@ public class ModelManager extends ComponentManager implements Model {
                 try {
                     TaskDate date = new TaskDate(DateTimeUtil.parseDateTime(taskType));
                     return (task.getStartDate() != null && task.getStartDate().getOnlyDate().equals(date.getOnlyDate()))
-                            || (task.getEndDate() != null && task.getEndDate().getOnlyDate().equals(date.getOnlyDate()));
+                            || (task.getEndDate() != null
+                                    && task.getEndDate().getOnlyDate().equals(date.getOnlyDate()));
 
                 } catch (IllegalValueException ive) {
                     // Deliberately empty as taskType will not throw exception
@@ -251,7 +252,8 @@ public class ModelManager extends ComponentManager implements Model {
         @Override
         public boolean run(ReadOnlyTask task) {
 
-            boolean dateFilter = (task.getStartDate() != null && task.getStartDate().getOnlyDate().equals(date.getOnlyDate()))
+            boolean dateFilter = (task.getStartDate() != null
+                    && task.getStartDate().getOnlyDate().equals(date.getOnlyDate()))
                     || (task.getEndDate() != null && task.getEndDate().getOnlyDate().equals(date.getOnlyDate()));
 
             switch (taskType) {

@@ -9,32 +9,32 @@ import seedu.taskmanager.testutil.TestUtil;
 
 public class AddCommandTest extends TaskManagerGuiTest {
 
-//    @Test
-//    public void add() {
-//        // add one task
-//        TestTask[] currentList = td.getTypicalTasks();
-//        TestTask taskToAdd = td.event3;
-//        assertAddSuccess(taskToAdd, currentList);
-//        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
-//
-//        // add another task
-//        taskToAdd = td.ddl3;
-//        assertAddSuccess(taskToAdd, currentList);
-//        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
-//
-//        // add duplicate task
-//        commandBox.runCommand(td.event3.getAddCommand());
-//        assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
-//        assertTrue(taskListPanel.isListMatching(currentList));
-//
-//        // add to empty list
-//        commandBox.runCommand("clear");
-//        assertAddSuccess(td.event1);
-//
-//        // invalid command
-//        commandBox.runCommand("adds meeting");
-//        assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
-//    }
+    // @Test
+    // public void add() {
+    // // add one task
+    // TestTask[] currentList = td.getTypicalTasks();
+    // TestTask taskToAdd = td.event3;
+    // assertAddSuccess(taskToAdd, currentList);
+    // currentList = TestUtil.addTasksToList(currentList, taskToAdd);
+    //
+    // // add another task
+    // taskToAdd = td.ddl3;
+    // assertAddSuccess(taskToAdd, currentList);
+    // currentList = TestUtil.addTasksToList(currentList, taskToAdd);
+    //
+    // // add duplicate task
+    // commandBox.runCommand(td.event3.getAddCommand());
+    // assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
+    // assertTrue(taskListPanel.isListMatching(currentList));
+    //
+    // // add to empty list
+    // commandBox.runCommand("clear");
+    // assertAddSuccess(td.event1);
+    //
+    // // invalid command
+    // commandBox.runCommand("adds meeting");
+    // assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
+    // }
 
     private void assertAddSuccess(TestTask taskToAdd, TestTask... currentList) {
         commandBox.runCommand(taskToAdd.getAddCommand());

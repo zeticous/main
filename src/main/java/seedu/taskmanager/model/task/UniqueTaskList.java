@@ -57,11 +57,10 @@ public class UniqueTaskList implements Iterable<Task> {
 
         Task taskToUpdate = internalList.get(index);
         if (taskToUpdate.isDone() == editedTask.isDone()) {
-        	if (!taskToUpdate.equals(editedTask) && internalList.contains(editedTask)) {
+            if (!taskToUpdate.equals(editedTask) && internalList.contains(editedTask)) {
                 throw new DuplicateTaskException();
             }
         }
-
 
         taskToUpdate.resetData(editedTask);
         // TODO: The code below is just a workaround to notify observers of the

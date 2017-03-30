@@ -55,35 +55,35 @@ public class XmlTaskManagerStorageTest {
          */
     }
 
-//    @Test
-//    public void readAndSaveTaskManager_allInOrder_success() throws Exception {
-//        String filePath = testFolder.getRoot().getPath() + "TempTaskManager.xml";
-//        TypicalTestTasks td = new TypicalTestTasks();
-//        TaskManager original = td.getTypicalTaskManager();
-//        XmlTaskManagerStorage xmlTaskManagerStorage = new XmlTaskManagerStorage(filePath);
-//
-//        // Save in new file and read back
-//        xmlTaskManagerStorage.saveTaskManager(original, filePath);
-//        ReadOnlyTaskManager readBack = xmlTaskManagerStorage.readTaskManager(filePath).get();
-//        assertEquals(original, new TaskManager(readBack));
-//
-//        // Modify data, overwrite exiting file, and read back
-//        original.addTask(new Task(td.event3));
-//        original.removeTask(new Task(td.event1));
-//        xmlTaskManagerStorage.saveTaskManager(original, filePath);
-//        readBack = xmlTaskManagerStorage.readTaskManager(filePath).get();
-//        assertEquals(original, new TaskManager(readBack));
-//
-//        // Save and read without specifying file path
-//        original.addTask(new Task(td.ddl3));
-//        xmlTaskManagerStorage.saveTaskManager(original); // file path not
-//                                                         // specified
-//        readBack = xmlTaskManagerStorage.readTaskManager().get(); // file path
-//                                                                  // not
-//                                                                  // specified
-//        assertEquals(original, new TaskManager(readBack));
-//
-//    }
+    // @Test
+    // public void readAndSaveTaskManager_allInOrder_success() throws Exception {
+    // String filePath = testFolder.getRoot().getPath() + "TempTaskManager.xml";
+    // TypicalTestTasks td = new TypicalTestTasks();
+    // TaskManager original = td.getTypicalTaskManager();
+    // XmlTaskManagerStorage xmlTaskManagerStorage = new XmlTaskManagerStorage(filePath);
+    //
+    // // Save in new file and read back
+    // xmlTaskManagerStorage.saveTaskManager(original, filePath);
+    // ReadOnlyTaskManager readBack = xmlTaskManagerStorage.readTaskManager(filePath).get();
+    // assertEquals(original, new TaskManager(readBack));
+    //
+    // // Modify data, overwrite exiting file, and read back
+    // original.addTask(new Task(td.event3));
+    // original.removeTask(new Task(td.event1));
+    // xmlTaskManagerStorage.saveTaskManager(original, filePath);
+    // readBack = xmlTaskManagerStorage.readTaskManager(filePath).get();
+    // assertEquals(original, new TaskManager(readBack));
+    //
+    // // Save and read without specifying file path
+    // original.addTask(new Task(td.ddl3));
+    // xmlTaskManagerStorage.saveTaskManager(original); // file path not
+    // // specified
+    // readBack = xmlTaskManagerStorage.readTaskManager().get(); // file path
+    // // not
+    // // specified
+    // assertEquals(original, new TaskManager(readBack));
+    //
+    // }
 
     @Test
     public void saveTaskManager_nullTaskManager_assertionFailure() throws IOException {
