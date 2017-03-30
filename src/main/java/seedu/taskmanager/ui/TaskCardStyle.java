@@ -3,6 +3,7 @@ package seedu.taskmanager.ui;
 
 import java.util.HashMap;
 
+//@@author A0140417R
 /*
 * Class for converting task properties to CSS style strings which
 * are used to style UI elements.
@@ -10,7 +11,6 @@ import java.util.HashMap;
 * PRE-CON: Task properties are of string data type.
 *
 */
-
 public class TaskCardStyle {
     private static final String PROPERTY_BACKGROUND = "-fx-background-color";
 

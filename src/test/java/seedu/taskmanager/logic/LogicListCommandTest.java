@@ -14,6 +14,7 @@ import seedu.taskmanager.model.task.Task;
 
 public class LogicListCommandTest extends LogicManagerTest {
 
+    // @@author A0140538J
     @Test
     public void execute_list_invalidTaskType() throws Exception {
         String invalidCommand = "list asdf";
@@ -93,6 +94,7 @@ public class LogicListCommandTest extends LogicManagerTest {
         String validCommand = "list event";
         assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
     }
+    // @@author
 
     // @Test
     // public void execute_list_date() throws Exception {

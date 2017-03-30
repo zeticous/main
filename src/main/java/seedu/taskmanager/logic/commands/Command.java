@@ -39,5 +39,7 @@ public abstract class Command {
         this.model = model;
     }
 
+    // @@author A0140417R
     public abstract boolean mutatesTaskManager();
+    // @@author
 }

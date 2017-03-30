@@ -1,6 +1,7 @@
 
 package seedu.taskmanager.model;
 
+//@@author A0140417R
 public class TaskManagerState {
     private TaskManager taskManager = new TaskManager();
     private String executedCommand;

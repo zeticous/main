@@ -44,17 +44,21 @@ public class ModelManager extends ComponentManager implements Model {
         this.taskManager = new TaskManager(taskManager);
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
         TaskManagerState initState = new TaskManagerState(taskManager, STRING_INITIAL);
+        // @@author A0140417R
         this.stateManager = new TaskManagerStateManager(initState);
+        // @@author
     }
 
     public ModelManager() {
         this(new TaskManager(), new UserPrefs());
     }
 
+    // @@author A0140417R
     @Override
     public void saveState(String commandString) {
         stateManager.addState(new TaskManagerState(taskManager, commandString));
     }
+    // @@author
 
     @Override
     public void resetData(ReadOnlyTaskManager newData) {
@@ -67,10 +71,12 @@ public class ModelManager extends ComponentManager implements Model {
         return taskManager;
     }
 
+    // @@author A0140417R
     @Override
     public void changeFilePath(String newPath) {
         raise(new FilePathChangedEvent(newPath));
     }
+    // @@author
 
     /** Raises an event to indicate the model has changed */
     private void indicateTaskManagerChanged() {
@@ -100,6 +106,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
+    // @@author A0140417R
     @Override
     public void loadPreviousState() throws IndexOutOfBoundsException {
         taskManager.resetData(stateManager.getPreviousState().getTaskManager());
@@ -111,6 +118,7 @@ public class ModelManager extends ComponentManager implements Model {
         taskManager.resetData(stateManager.getNextState().getTaskManager());
         indicateTaskManagerChanged();
     }
+    // @@author
 
     // =========== Filtered Task List Accessors
     // =============================================================
