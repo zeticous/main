@@ -1,4 +1,3 @@
-
 package seedu.taskmanager.logic.parser;
 
 import java.text.DateFormat;
@@ -42,7 +41,7 @@ public class DateTimeUtil {
 
     private static Parser dateTimeParser = new Parser(TimeZone.getDefault());
 
-    // General date/time parses for string with both date and time elements
+    //General date/time parses for string with both date and time elements
     public static Date parseDateTime(String date) throws IllegalValueException {
         List<DateGroup> parsedDates = dateTimeParser.parse(date);
 
@@ -54,46 +53,46 @@ public class DateTimeUtil {
         }
     }
 
-    // Specialized date/time parser for startDate string with only date element
-    // Set time of the returned date object as the starting time of the day
-    // i.e. 00:00:00 am
+    //Specialized date/time parser for startDate string with only date element
+    //Set time of the returned date object as the starting time of the day
+    //i.e. 00:00:00 am
     public static Date parseStartDateTime(String startDate) throws IllegalValueException {
-        List<DateGroup> parsedStartDatesList = dateTimeParser.parse(startDate);
+    	List<DateGroup> parsedStartDatesList = dateTimeParser.parse(startDate);
 
-        if (isValidArg(parsedStartDatesList)) {
+    	if (isValidArg(parsedStartDatesList)) {
 
-            DateGroup parsedStartDate = parsedStartDatesList.get(FIRST_ELEMENT_INDEX);
-            String syntaxTreeString = parsedStartDate.getSyntaxTree().getChild(FIRST_ELEMENT_INDEX).toStringTree();
+    		DateGroup parsedStartDate = parsedStartDatesList.get(FIRST_ELEMENT_INDEX);
+    		String syntaxTreeString = parsedStartDate.getSyntaxTree().getChild(FIRST_ELEMENT_INDEX).toStringTree();
 
-            if (!isTimePresent(syntaxTreeString)) {
-                return setStartDateTime(parsedStartDate.getDates().get(FIRST_ELEMENT_INDEX));
-            }
-            return parsedStartDate.getDates().get(FIRST_ELEMENT_INDEX);
+    		if (!isTimePresent(syntaxTreeString)) {
+    			return setStartDateTime(parsedStartDate.getDates().get(FIRST_ELEMENT_INDEX));
+    		}
+    		return parsedStartDate.getDates().get(FIRST_ELEMENT_INDEX);
 
-        } else {
-            throw new IllegalValueException(INVALID_DATE_FORMAT);
-        }
+    	} else {
+    		throw new IllegalValueException(INVALID_DATE_FORMAT);
+    	}
     }
 
-    // Specialized date/time parser for endDate string with only date element
-    // Set time of the returned date object as the ending time of the day
-    // i.e. 11:59:59 pm
+    //Specialized date/time parser for endDate string with only date element
+    //Set time of the returned date object as the ending time of the day
+    //i.e. 11:59:59 pm
     public static Date parseEndDateTime(String endDate) throws IllegalValueException {
-        List<DateGroup> parsedEndDatesList = dateTimeParser.parse(endDate);
+    	List<DateGroup> parsedEndDatesList = dateTimeParser.parse(endDate);
 
-        if (isValidArg(parsedEndDatesList)) {
+    	if (isValidArg(parsedEndDatesList)) {
 
-            DateGroup parsedEndDate = parsedEndDatesList.get(FIRST_ELEMENT_INDEX);
-            String syntaxTreeString = parsedEndDate.getSyntaxTree().getChild(FIRST_ELEMENT_INDEX).toStringTree();
+    		DateGroup parsedEndDate = parsedEndDatesList.get(FIRST_ELEMENT_INDEX);
+    		String syntaxTreeString = parsedEndDate.getSyntaxTree().getChild(FIRST_ELEMENT_INDEX).toStringTree();
 
-            if (!isTimePresent(syntaxTreeString)) {
-                return setEndDateTime(parsedEndDate.getDates().get(FIRST_ELEMENT_INDEX));
-            }
-            return parsedEndDate.getDates().get(FIRST_ELEMENT_INDEX);
+    		if (!isTimePresent(syntaxTreeString)) {
+    			return setEndDateTime(parsedEndDate.getDates().get(FIRST_ELEMENT_INDEX));
+    		}
+    		return parsedEndDate.getDates().get(FIRST_ELEMENT_INDEX);
 
-        } else {
-            throw new IllegalValueException(INVALID_DATE_FORMAT);
-        }
+    	} else {
+    		throw new IllegalValueException(INVALID_DATE_FORMAT);
+    	}
     }
 
     public static String getStringFromDate(Date date) {
@@ -101,23 +100,22 @@ public class DateTimeUtil {
         return dateFormat.format(date);
     }
 
-    // Check if the DateGroup argument input is valid
+    //Check if the DateGroup argument input is valid
     private static boolean isValidArg(List<DateGroup> parsedDatesList) {
         if (parsedDatesList != null && !parsedDatesList.isEmpty()) {
-            return true;
+                return true;
         } else {
-            return false;
+                return false;
         }
     }
 
-    // Check if explicit time is present in the syntax tree
+    //Check if explicit time is present in the syntax tree
     private static boolean isTimePresent(String syntaxTreeString) {
-        System.out.println(syntaxTreeString);
-        return syntaxTreeString.contains(EXPLICIT_TIME_SYNTAX) || syntaxTreeString.contains(RELATIVE_TIME_SYNTAX);
+    	return syntaxTreeString.contains(EXPLICIT_TIME_SYNTAX) || syntaxTreeString.contains(RELATIVE_TIME_SYNTAX);
     }
 
-    // Set time of the returned Date object as the starting time of the day
-    // i.e. 00:00:00
+    //Set time of the returned Date object as the starting time of the day
+    //i.e. 00:00:00
     private static Date setStartDateTime(Date date) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -127,8 +125,8 @@ public class DateTimeUtil {
         return cal.getTime();
     }
 
-    // Set time of the returned Date object as the ending time of the day
-    // i.e. 23:59:59
+    //Set time of the returned Date object as the ending time of the day
+    //i.e. 23:59:59
     private static Date setEndDateTime(Date date) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
