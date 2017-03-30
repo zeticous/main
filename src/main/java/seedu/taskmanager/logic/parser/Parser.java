@@ -19,8 +19,8 @@ import seedu.taskmanager.logic.commands.FindCommand;
 import seedu.taskmanager.logic.commands.HelpCommand;
 import seedu.taskmanager.logic.commands.IncorrectCommand;
 import seedu.taskmanager.logic.commands.ListCommand;
+import seedu.taskmanager.logic.commands.MarkCommand;
 import seedu.taskmanager.logic.commands.RedoCommand;
-import seedu.taskmanager.logic.commands.SelectCommand;
 import seedu.taskmanager.logic.commands.UndoCommand;
 
 /**
@@ -57,9 +57,6 @@ public class Parser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case SelectCommand.COMMAND_WORD:
-            return new SelectCommandParser().parse(arguments);
-
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
@@ -86,6 +83,9 @@ public class Parser {
 
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
+
+        case MarkCommand.COMMAND_WORD:
+        	return new MarkCommandParser().parse(arguments);
 
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);

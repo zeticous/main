@@ -31,6 +31,8 @@ public class XmlAdaptedTask {
     private String endDate;
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
+    @XmlElement
+    private boolean isDoneStatus;
 
     /**
      * Constructs an XmlAdaptedTask. This is the no-arg constructor that is required by JAXB.
@@ -63,6 +65,8 @@ public class XmlAdaptedTask {
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
         }
+
+        isDoneStatus = source.isDone();
     }
 
     /**
@@ -82,6 +86,7 @@ public class XmlAdaptedTask {
         final TaskDate endDate =
                 this.endDate.equals(NO_DATE) ? null : new TaskDate(DateTimeUtil.parseEndDateTime(this.endDate));
         final UniqueTagList tags = new UniqueTagList(taskTags);
-        return new Task(name, startDate, endDate, tags);
+        final boolean isDoneStatus = this.isDoneStatus;
+        return new Task(name, startDate, endDate, tags, isDoneStatus);
     }
 }
