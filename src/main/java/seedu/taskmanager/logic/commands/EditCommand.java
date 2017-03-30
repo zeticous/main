@@ -131,8 +131,8 @@ public class EditCommand extends Command {
         private Optional<TaskDate> endDate = Optional.empty();
         private Optional<UniqueTagList> tags = Optional.empty();
 
-        private static Boolean startDateRemovedFlag = false;
-        private static Boolean endDateRemovedFlag = false;
+        private boolean startDateRemovedFlag = false;
+        private boolean endDateRemovedFlag = false;
 
         public EditTaskDescriptor() {
         }
@@ -142,6 +142,9 @@ public class EditCommand extends Command {
             this.startDate = toCopy.getStartDate();
             this.endDate = toCopy.getEndDate();
             this.tags = toCopy.getTags();
+
+            this.endDateRemovedFlag = toCopy.endDateRemoved();
+            this.startDateRemovedFlag = toCopy.startDateRemoved();
         }
 
         /**
