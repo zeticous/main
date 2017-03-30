@@ -85,7 +85,7 @@ public class Parser {
             return new RedoCommand();
 
         case MarkCommand.COMMAND_WORD:
-        	return new MarkCommandParser().parse(arguments);
+            return new MarkCommandParser().parse(arguments);
 
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);

@@ -193,7 +193,7 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setDoneStatus(boolean status) {
-    	this.isDoneStatus = status;
+        this.isDoneStatus = status;
     }
 
 }
