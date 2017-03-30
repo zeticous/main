@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -167,7 +168,6 @@ public class LogicEditCommandTest extends LogicManagerTest {
         String validCommand = "edit 1 potato s/now e/1/2/2023 4.56pm";
         assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
     }
-
 
     // @Test
     // public void execute_edit_invalidDemotion() throws Exception {

@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.model;
 
 import java.util.Set;
@@ -20,8 +21,7 @@ import seedu.taskmanager.model.task.UniqueTaskList;
 import seedu.taskmanager.model.task.UniqueTaskList.TaskNotFoundException;
 
 /**
- * Represents the in-memory model of the task manager data. All changes to any
- * model should be synchronized.
+ * Represents the in-memory model of the task manager data. All changes to any model should be synchronized.
  */
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -130,6 +130,7 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
     }
 
+    //@@author A0140538J
     @Override
     public void updateFilteredTaskListByTaskTypeOrDate(String taskType) {
         updateFilteredTaskList(new PredicateExpression(new TypeQualifier(taskType)));
@@ -139,6 +140,7 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredTaskListByTaskTypeAndDate(String[] taskTypeAndDate) {
         updateFilteredTaskList(new PredicateExpression(new TypeAndDateQualifier(taskTypeAndDate)));
     }
+    //@@author
 
     private void updateFilteredTaskList(Expression expression) {
         filteredTasks.setPredicate(expression::satisfies);
@@ -200,6 +202,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
+    //@@author A0140538J
     private class TypeQualifier implements Qualifier {
         private String taskType;
 
@@ -220,8 +223,8 @@ public class ModelManager extends ComponentManager implements Model {
             default:
                 try {
                     TaskDate date = new TaskDate(DateTimeUtil.parseDateTime(taskType));
-                    return task.getStartDate().getOnlyDate().equals(date.getOnlyDate())
-                            || task.getEndDate().getOnlyDate().equals(date.getOnlyDate());
+                    return (task.getStartDate() != null && task.getStartDate().getOnlyDate().equals(date.getOnlyDate()))
+                            || (task.getEndDate() != null && task.getEndDate().getOnlyDate().equals(date.getOnlyDate()));
 
                 } catch (IllegalValueException ive) {
                     // Deliberately empty as taskType will not throw exception
@@ -248,8 +251,8 @@ public class ModelManager extends ComponentManager implements Model {
         @Override
         public boolean run(ReadOnlyTask task) {
 
-            boolean dateFilter = task.getStartDate().getOnlyDate().equals(date.getOnlyDate())
-                    || task.getEndDate().getOnlyDate().equals(date.getOnlyDate());
+            boolean dateFilter = (task.getStartDate() != null && task.getStartDate().getOnlyDate().equals(date.getOnlyDate()))
+                    || (task.getEndDate() != null && task.getEndDate().getOnlyDate().equals(date.getOnlyDate()));
 
             switch (taskType) {
             case "floating":

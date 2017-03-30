@@ -1,18 +1,19 @@
+
 package seedu.taskmanager.model.task;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Task's name in the task manager. Guarantees: immutable; is valid
- * as declared in {@link #isValidName(String)}
+ * Represents a Task's name in the task manager. Guarantees: immutable; is valid as declared in
+ * {@link #isValidName(String)}
  */
 public class Name {
 
-    public static final String MESSAGE_NAME_CONSTRAINTS = "Task names should only contain any characters and spaces, and it should not be blank";
+    public static final String MESSAGE_NAME_CONSTRAINTS =
+            "Task names should only contain any characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the task must not be a whitespace, otherwise " "
-     * (a blank string) becomes a valid input.
+     * The first character of the task must not be a whitespace, otherwise " " (a blank string) becomes a valid input.
      */
     public static final String NAME_VALIDATION_REGEX = "[\\p{ASCII}][\\p{ASCII} ]*";
 
@@ -22,7 +23,7 @@ public class Name {
      * Validates given name.
      *
      * @throws IllegalValueException
-     *             if given task string is invalid.
+     *         if given task string is invalid.
      */
     public Name(String name) throws IllegalValueException {
         assert name != null;

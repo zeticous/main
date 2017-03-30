@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.commons.util;
 
 import static org.junit.Assert.assertEquals;
@@ -31,8 +32,8 @@ public class JsonUtilTest {
     public void deserializeObjectFromJsonFile_noExceptionThrown() throws IOException {
         FileUtil.writeToFile(SERIALIZATION_FILE, SerializableTestClass.JSON_STRING_REPRESENTATION);
 
-        SerializableTestClass serializableTestClass = JsonUtil.deserializeObjectFromJsonFile(SERIALIZATION_FILE,
-                SerializableTestClass.class);
+        SerializableTestClass serializableTestClass =
+                JsonUtil.deserializeObjectFromJsonFile(SERIALIZATION_FILE, SerializableTestClass.class);
 
         assertEquals(serializableTestClass.getName(), SerializableTestClass.getNameTestValue());
         assertEquals(serializableTestClass.getListOfLocalDateTimes(), SerializableTestClass.getListTestValues());

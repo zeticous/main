@@ -1,3 +1,4 @@
+
 package guitests;
 
 import static org.junit.Assert.assertEquals;
@@ -24,8 +25,7 @@ public class SelectCommandTest extends TaskManagerGuiTest {
         assertTaskSelected(middleIndex); // assert previous selection remains
 
         /*
-         * Testing other invalid indexes such as -1 should be done when testing
-         * the SelectCommand
+         * Testing other invalid indexes such as -1 should be done when testing the SelectCommand
          */
     }
 

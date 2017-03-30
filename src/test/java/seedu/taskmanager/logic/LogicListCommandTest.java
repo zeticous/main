@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -13,7 +14,7 @@ import seedu.taskmanager.model.task.Task;
 
 public class LogicListCommandTest extends LogicManagerTest {
 
-	@Test
+    @Test
     public void execute_list_invalidTaskType() throws Exception {
         String invalidCommand = "list asdf";
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE);

@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.ui;
 
 import java.io.IOException;
@@ -12,8 +13,8 @@ import seedu.taskmanager.commons.core.EventsCenter;
 import seedu.taskmanager.commons.events.BaseEvent;
 
 /**
- * Represents a distinct part of the UI. e.g. Windows, dialogs, panels, status
- * bars, etc. It contains a scene graph with a root node of type {@code T}.
+ * Represents a distinct part of the UI. e.g. Windows, dialogs, panels, status bars, etc. It contains a scene graph with
+ * a root node of type {@code T}.
  */
 public abstract class UiPart<T> {
 
@@ -23,8 +24,8 @@ public abstract class UiPart<T> {
     private FXMLLoader fxmlLoader;
 
     /**
-     * Constructs a UiPart with the specified FXML file URL. The FXML file must
-     * not specify the {@code fx:controller} attribute.
+     * Constructs a UiPart with the specified FXML file URL. The FXML file must not specify the {@code fx:controller}
+     * attribute.
      */
     public UiPart(URL fxmlFileUrl) {
         assert fxmlFileUrl != null;
@@ -38,8 +39,7 @@ public abstract class UiPart<T> {
     }
 
     /**
-     * Constructs a UiPart using the specified FXML file within
-     * {@link #FXML_FILE_FOLDER}.
+     * Constructs a UiPart using the specified FXML file within {@link #FXML_FILE_FOLDER}.
      *
      * @see #UiPart(URL)
      */
@@ -67,7 +67,7 @@ public abstract class UiPart<T> {
      * Registers the object as an event handler at the {@link EventsCenter}
      *
      * @param handler
-     *            usually {@code this}
+     *        usually {@code this}
      */
     protected void registerAsAnEventHandler(Object handler) {
         EventsCenter.getInstance().registerHandler(handler);
@@ -77,11 +77,11 @@ public abstract class UiPart<T> {
      * Creates a modal dialog.
      *
      * @param title
-     *            Title of the dialog.
+     *        Title of the dialog.
      * @param parentStage
-     *            The owner stage of the dialog.
+     *        The owner stage of the dialog.
      * @param scene
-     *            The scene that will contain the dialog.
+     *        The scene that will contain the dialog.
      * @return the created dialog, not yet made visible.
      */
     protected Stage createDialogStage(String title, Stage parentStage, Scene scene) {

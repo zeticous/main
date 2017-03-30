@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.model.util;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
@@ -34,28 +35,19 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         try {
-        	return new Task[] {
-        			new Task(new Name(EVENT1_NAME),
-        					new TaskDate(DateTimeUtil.parseStartDateTime(EVENT1_START_DATE_STRING)),
-        					new TaskDate(DateTimeUtil.parseEndDateTime(EVENT1_END_DATE_STRING)),
-        					new UniqueTagList("important")),
-        			new Task(new Name(DDL1_NAME),
-        					new TaskDate(null),
-        					new TaskDate(DateTimeUtil.parseEndDateTime(DDL1_DUE_TIME_STRING)),
-        					new UniqueTagList()),
-        			new Task(new Name(FLT1_NAME),
-        					new UniqueTagList()),
-        			new Task(new Name(EVENT2_NAME),
-         		                new TaskDate(DateTimeUtil.parseStartDateTime(EVENT2_START_DATE_STRING)),
-         		                new TaskDate(DateTimeUtil.parseEndDateTime(EVENT2_END_DATE_STRING)),
-         		                new UniqueTagList()),
-        			new Task(new Name(DDL2_NAME),
-     		                new TaskDate(null),
-     		                new TaskDate(DateTimeUtil.parseEndDateTime(DDL2_DUE_TIME_STRING)),
-     		                new UniqueTagList("urgent")),
-        	        new Task(new Name(FLT2_NAME),
-				         	new UniqueTagList())
-        	        };
+            return new Task[] {
+                new Task(new Name(EVENT1_NAME), new TaskDate(DateTimeUtil.parseStartDateTime(EVENT1_START_DATE_STRING)),
+                        new TaskDate(DateTimeUtil.parseEndDateTime(EVENT1_END_DATE_STRING)),
+                        new UniqueTagList("important")),
+                new Task(new Name(DDL1_NAME), new TaskDate(null),
+                        new TaskDate(DateTimeUtil.parseEndDateTime(DDL1_DUE_TIME_STRING)), new UniqueTagList()),
+                new Task(new Name(FLT1_NAME), new UniqueTagList()),
+                new Task(new Name(EVENT2_NAME), new TaskDate(DateTimeUtil.parseStartDateTime(EVENT2_START_DATE_STRING)),
+                        new TaskDate(DateTimeUtil.parseEndDateTime(EVENT2_END_DATE_STRING)), new UniqueTagList()),
+                new Task(new Name(DDL2_NAME), new TaskDate(null),
+                        new TaskDate(DateTimeUtil.parseEndDateTime(DDL2_DUE_TIME_STRING)), new UniqueTagList("urgent")),
+                new Task(new Name(FLT2_NAME), new UniqueTagList())
+            };
         } catch (IllegalValueException e) {
             throw new AssertionError("sample data cannot be invalid", e);
         }

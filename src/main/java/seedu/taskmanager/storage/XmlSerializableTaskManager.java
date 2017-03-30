@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.storage;
 
 import java.util.ArrayList;
@@ -19,7 +20,8 @@ import seedu.taskmanager.model.task.Task;
 /**
  * An Immutable TaskManager that is serializable to XML format
  */
-@XmlRootElement(name = "taskmanager")
+@XmlRootElement(
+        name = "taskmanager")
 public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
 
     @XmlElement
@@ -28,8 +30,7 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
     private List<XmlAdaptedTag> tags;
 
     /**
-     * Creates an empty XmlSerializableTaskManager. This empty constructor is
-     * required for marshalling.
+     * Creates an empty XmlSerializableTaskManager. This empty constructor is required for marshalling.
      */
     public XmlSerializableTaskManager() {
         tasks = new ArrayList<>();

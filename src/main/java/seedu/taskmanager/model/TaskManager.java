@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.model;
 
 import java.util.Collection;
@@ -18,8 +19,7 @@ import seedu.taskmanager.model.task.UniqueTaskList;
 import seedu.taskmanager.model.task.UniqueTaskList.DuplicateTaskException;
 
 /**
- * Wraps all data at the address-book level Duplicates are not allowed (by
- * .equals comparison)
+ * Wraps all data at the address-book level Duplicates are not allowed (by .equals comparison)
  */
 public class TaskManager implements ReadOnlyTaskManager {
 
@@ -27,12 +27,11 @@ public class TaskManager implements ReadOnlyTaskManager {
     private final UniqueTagList tags;
 
     /*
-     * The 'unusual' code block below is an non-static initialization block,
-     * sometimes used to avoid duplication between constructors. See
-     * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication between
+     * constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are
-     * other ways to avoid duplication among constructors.
+     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication among
+     * constructors.
      */
     {
         tasks = new UniqueTaskList();
@@ -78,12 +77,11 @@ public class TaskManager implements ReadOnlyTaskManager {
     //// task-level operations
 
     /**
-     * Adds a task to the task manager. Also checks the new task's tags and
-     * updates {@link #tags} with any new tags found, and updates the Tag
-     * objects in the task to point to those in {@link #tags}.
+     * Adds a task to the task manager. Also checks the new task's tags and updates {@link #tags} with any new tags
+     * found, and updates the Tag objects in the task to point to those in {@link #tags}.
      *
      * @throws UniqueTaskList.DuplicateTaskException
-     *             if an equivalent task already exists.
+     *         if an equivalent task already exists.
      */
     public void addTask(Task p) throws UniqueTaskList.DuplicateTaskException {
         syncMasterTagListWith(p);
@@ -91,17 +89,15 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     /**
-     * Updates the task in the list at position {@code index} with
-     * {@code editedReadOnlyTask}. {@code TaskManager}'s tag list will be
-     * updated with the tags of {@code editedReadOnlyTask}.
+     * Updates the task in the list at position {@code index} with {@code editedReadOnlyTask}. {@code TaskManager}'s tag
+     * list will be updated with the tags of {@code editedReadOnlyTask}.
      *
      * @see #syncMasterTagListWith(Task)
      *
      * @throws DuplicateTaskException
-     *             if updating the task's details causes the task to be
-     *             equivalent to another existing task in the list.
+     *         if updating the task's details causes the task to be equivalent to another existing task in the list.
      * @throws IndexOutOfBoundsException
-     *             if {@code index} < 0 or >= the size of the list.
+     *         if {@code index} < 0 or >= the size of the list.
      */
     public void updateTask(int index, ReadOnlyTask editedReadOnlyTask) throws UniqueTaskList.DuplicateTaskException {
         assert editedReadOnlyTask != null;
@@ -117,8 +113,8 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     /**
-     * Ensures that every tag in this task: - exists in the master list
-     * {@link #tags} - points to a Tag object in the master list
+     * Ensures that every tag in this task: - exists in the master list {@link #tags} - points to a Tag object in the
+     * master list
      */
     private void syncMasterTagListWith(Task task) {
         final UniqueTagList taskTags = task.getTags();
@@ -137,8 +133,8 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     /**
-     * Ensures that every tag in these tasks: - exists in the master list
-     * {@link #tags} - points to a Tag object in the master list
+     * Ensures that every tag in these tasks: - exists in the master list {@link #tags} - points to a Tag object in the
+     * master list
      *
      * @see #syncMasterTagListWith(Task)
      */

@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic.parser;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -27,12 +28,12 @@ public class AddCommandParser {
     public static final String NO_END_DATE = "End date not found";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the
-     * AddCommand and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddCommand and returns an AddCommand object
+     * for execution.
      */
     public Command parse(String args) {
-        ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_STARTDATE, PREFIX_ENDDATE, PREFIX_DEADLINE,
-                PREFIX_TAG);
+        ArgumentTokenizer argsTokenizer =
+                new ArgumentTokenizer(PREFIX_STARTDATE, PREFIX_ENDDATE, PREFIX_DEADLINE, PREFIX_TAG);
 
         argsTokenizer.tokenize(args);
         try {

@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.model;
 
 import java.util.Set;
@@ -29,21 +30,17 @@ public interface Model {
     void addTask(Task task) throws UniqueTaskList.DuplicateTaskException;
 
     /**
-     * Updates the task located at {@code filteredTaskListIndex} with
-     * {@code editedTask}.
+     * Updates the task located at {@code filteredTaskListIndex} with {@code editedTask}.
      *
      * @throws DuplicateTaskException
-     *             if updating the task's details causes the task to be
-     *             equivalent to another existing task in the list.
+     *         if updating the task's details causes the task to be equivalent to another existing task in the list.
      * @throws IndexOutOfBoundsException
-     *             if {@code filteredTaskListIndex} < 0 or >= the size of the
-     *             filtered list.
+     *         if {@code filteredTaskListIndex} < 0 or >= the size of the filtered list.
      */
     void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask) throws UniqueTaskList.DuplicateTaskException;
 
     /**
-     * Returns the filtered task list as an
-     * {@code UnmodifiableObservableList<ReadOnlyTask>}
+     * Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>}
      */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
 
@@ -51,20 +48,17 @@ public interface Model {
     void updateFilteredListToShowAll();
 
     /**
-     * Updates the filter of the filtered task list to filter by the given
-     * keywords
+     * Updates the filter of the filtered task list to filter by the given keywords
      */
     void updateFilteredTaskListByTaskName(Set<String> keywords);
 
     /**
-     * Updates the filter of the filtered task list to filter by the given task
-     * type or date
+     * Updates the filter of the filtered task list to filter by the given task type or date
      */
     void updateFilteredTaskListByTaskTypeOrDate(String taskType);
 
     /**
-     * Updates the filter of the filtered task list to filter by the given task
-     * type and date
+     * Updates the filter of the filtered task list to filter by the given task type and date
      */
     void updateFilteredTaskListByTaskTypeAndDate(String[] taskTypeAndDate);
 

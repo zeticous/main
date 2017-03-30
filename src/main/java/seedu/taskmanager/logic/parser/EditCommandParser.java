@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic.parser;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -26,8 +27,8 @@ public class EditCommandParser {
     public static final String REMOVE_STRING = "remove";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the
-     * EditCommand and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditCommand and returns an EditCommand object
+     * for execution.
      */
     public Command parse(String args) {
 
@@ -84,10 +85,9 @@ public class EditCommandParser {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into an
-     * {@code Optional<UniqueTagList>} if {@code tags} is non-empty. If
-     * {@code tags} contain only one element which is an empty string, it will
-     * be parsed into a {@code Optional<UniqueTagList>} containing zero tags.
+     * Parses {@code Collection<String> tags} into an {@code Optional<UniqueTagList>} if {@code tags} is non-empty. If
+     * {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Optional<UniqueTagList>} containing zero tags.
      */
     private Optional<UniqueTagList> parseTagsForEdit(Collection<String> tags) throws IllegalValueException {
         assert tags != null;

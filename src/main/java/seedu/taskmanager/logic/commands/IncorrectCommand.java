@@ -1,10 +1,10 @@
+
 package seedu.taskmanager.logic.commands;
 
 import seedu.taskmanager.logic.commands.exceptions.CommandException;
 
 /**
- * Represents an incorrect command. Upon execution, throws a CommandException
- * with feedback to the user.
+ * Represents an incorrect command. Upon execution, throws a CommandException with feedback to the user.
  */
 public class IncorrectCommand extends Command {
 

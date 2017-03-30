@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic.parser;
 
 import static org.junit.Assert.assertEquals;
@@ -98,8 +99,7 @@ public class ArgumentTokenizerTest {
         assertArgumentAbsent(tokenizer, hatQ);
 
         /*
-         * Also covers: Cases where the prefix doesn't have a space before/after
-         * it
+         * Also covers: Cases where the prefix doesn't have a space before/after it
          */
 
         // All three arguments are present, no spaces before the prefixes
