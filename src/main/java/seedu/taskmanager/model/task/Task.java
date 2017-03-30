@@ -21,7 +21,7 @@ public class Task implements ReadOnlyTask {
     /**
      * Every field must be present and not null.
      */
-
+    //@@author A0140538J
     public Task(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags) {
         assert !CollectionUtil.isAnyNull(name, tags);
         this.name = name;
@@ -41,6 +41,7 @@ public class Task implements ReadOnlyTask {
                                              // changes in the arg list
         this.isDoneStatus = status;
     }
+    //@@author
 
     public Task(Name name, UniqueTagList tags) throws IllegalValueException {
         this.name = name;
@@ -142,6 +143,7 @@ public class Task implements ReadOnlyTask {
         return isFloating() || isDeadline()
                 || (isEvent() && startDate.get().getTaskDate().before(endDate.get().getTaskDate()));
     }
+    //@@author
 
     @Override
     public UniqueTagList getTags() {
@@ -187,6 +189,7 @@ public class Task implements ReadOnlyTask {
         return getAsText();
     }
 
+    //@@author A0140538J
     @Override
     public boolean isDone() {
         return isDoneStatus;
