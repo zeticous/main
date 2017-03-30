@@ -46,9 +46,11 @@ public class DeleteCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
 
+    //@@author A0140417R
     @Override
     public boolean mutatesTaskManager() {
         return true;
     }
+    //@@author
 
 }

@@ -6,8 +6,10 @@ import java.io.IOException;
 
 import seedu.taskmanager.commons.util.FileUtil;
 
+
+//@@author A0140417R
 /**
- * Format full help instructions for every command for display.
+ * Changes the file path to the indicated directory
  */
 public class FilepathCommand extends Command {
 

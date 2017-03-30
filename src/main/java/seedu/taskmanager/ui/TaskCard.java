@@ -9,10 +9,13 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.taskmanager.model.task.ReadOnlyTask;
 
+//@@author A0140417R
 public class TaskCard extends UiPart<Region> {
 
     private static final String FXML = "TaskListCard.fxml";
     private static final TaskCardStyle style = TaskCardStyle.getInstance();
+    private static final String IS_DONE = "Done";
+    private static final String NOT_DONE = "Not done";
 
     @FXML
     private VBox idContainer;
@@ -49,8 +52,6 @@ public class TaskCard extends UiPart<Region> {
 
     private void doneSelector(ReadOnlyTask task) {
         StringBuilder styleString = new StringBuilder();
-        String IS_DONE = "Done";
-        String NOT_DONE = "Not done";
 
         if (task.isDone()) {
             styleString.append(style.getCardDoneColour(IS_DONE));

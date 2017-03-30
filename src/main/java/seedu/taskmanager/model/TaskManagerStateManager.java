@@ -3,6 +3,7 @@ package seedu.taskmanager.model;
 
 import java.util.ArrayList;
 
+//@@author A0140417R
 public class TaskManagerStateManager {
 
     private ArrayList<TaskManagerState> states = new ArrayList<TaskManagerState>();
