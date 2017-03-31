@@ -30,7 +30,7 @@ public class ListCommandParser {
         }
 
         if (modifiedArg.contains(ListArguments.FLOATING_TASK_STRING)) {
-            return new ListCommand(formatArgs(modifiedArg, ListArguments.FLOATING_TASK_STRING));
+            return new IncorrectCommand(ListCommand.MESSAGE_FLOATING_NO_DATE);
         } else if (modifiedArg.contains(ListArguments.DEADLINE_STRING)) {
             return new ListCommand(formatArgs(modifiedArg, ListArguments.DEADLINE_STRING));
         } else if (modifiedArg.contains(ListArguments.EVENT_STRING)) {

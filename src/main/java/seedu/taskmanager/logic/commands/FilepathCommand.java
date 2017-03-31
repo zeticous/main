@@ -24,11 +24,10 @@ public class FilepathCommand extends Command {
             + "Examples: potatodo.xml, data\\awesomeness.xml, C:\\data\\taskmanager.xml";
 
     public static final String MESSAGE_SUCCESS = "File path changed to %1$s";
-    public static final String MESSAGE_MISSING_EXTENSION =
-            "Invalid file path. Please check if your filepath ends with " + FILE_EXTENSION + ".";
-    public static final String MESSAGE_CANNOT_WRITE =
-            "Unable to write to file. Please check that the filepath is valid, "
-                    + " and that you have permission to write to the folder.";
+    public static final String MESSAGE_MISSING_EXTENSION = "Invalid file path. Please check if your filepath ends with "
+            + FILE_EXTENSION + ".";
+    public static final String MESSAGE_CANNOT_WRITE = "Unable to write to file. Please check that the filepath is valid, "
+            + " and that you have permission to write to the folder.";
     public static final String MESSAGE_EXCEPTION_ERROR = "File path change request failed due to unhandled exceptions";
 
     private final String filePath;
@@ -74,7 +73,7 @@ public class FilepathCommand extends Command {
      *
      * @param path
      * @throws IOException
-     *         if unable to access file
+     *             if unable to access file
      */
     private void fileCreationCheck(String path) throws IOException {
         File file = new File(path);

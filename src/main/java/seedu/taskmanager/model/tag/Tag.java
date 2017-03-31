@@ -18,7 +18,7 @@ public class Tag {
      * Validates given tag name.
      *
      * @throws IllegalValueException
-     *         if the given tag name string is invalid.
+     *             if the given tag name string is invalid.
      */
     public Tag(String name) throws IllegalValueException {
         assert name != null;

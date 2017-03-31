@@ -37,7 +37,7 @@ public class AddCommand extends Command {
      * Creates an AddCommand using raw values.
      *
      * @throws IllegalValueException
-     *         if any of the raw values are invalid
+     *             if any of the raw values are invalid
      */
     public AddCommand(String name, String startDateString, String endDateString, Set<String> tags)
             throws IllegalValueException {

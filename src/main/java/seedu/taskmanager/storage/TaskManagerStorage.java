@@ -29,9 +29,9 @@ public interface TaskManagerStorage {
      * not found.
      *
      * @throws DataConversionException
-     *         if the data in storage is not in the expected format.
+     *             if the data in storage is not in the expected format.
      * @throws IOException
-     *         if there was any problem when reading from the storage.
+     *             if there was any problem when reading from the storage.
      */
     Optional<ReadOnlyTaskManager> readTaskManager() throws DataConversionException, IOException;
 
@@ -44,9 +44,9 @@ public interface TaskManagerStorage {
      * Saves the given {@link ReadOnlyTaskManager} to the storage.
      *
      * @param taskManager
-     *        cannot be null.
+     *            cannot be null.
      * @throws IOException
-     *         if there was any problem writing to the file.
+     *             if there was any problem writing to the file.
      */
     void saveTaskManager(ReadOnlyTaskManager taskManager) throws IOException;
 

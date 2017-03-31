@@ -85,7 +85,7 @@ public class MainWindow extends UiPart<Region> {
      * Sets the accelerator of a MenuItem.
      *
      * @param keyCombination
-     *        the KeyCombination value of the accelerator
+     *            the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
         menuItem.setAccelerator(keyCombination);
@@ -144,7 +144,7 @@ public class MainWindow extends UiPart<Region> {
      * Sets the given image as the icon of the main window.
      *
      * @param iconSource
-     *        e.g. {@code "/images/help_icon.png"}
+     *            e.g. {@code "/images/help_icon.png"}
      */
     private void setIcon(String iconSource) {
         FxViewUtil.setStageIcon(primaryStage, iconSource);
