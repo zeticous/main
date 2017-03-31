@@ -20,13 +20,26 @@ public class Tag {
      * @throws IllegalValueException
      *         if the given tag name string is invalid.
      */
-    public Tag(String name) throws IllegalValueException {
-        assert name != null;
-        String trimmedName = name.substring(1).trim();
+    public Tag(String argName) throws IllegalValueException {
+        assert argName != null;
+        String trimmedName = getTagNameFromArgName(argName);
         if (!isValidTagName(trimmedName)) {
             throw new IllegalValueException(MESSAGE_TAG_CONSTRAINTS);
         }
         this.tagName = trimmedName;
+    }
+
+    /**
+     * Hot-fix for tags as tags stored have a '/' character
+     * @param argName
+     * @return trimmed argName without the '/' character
+     */
+    private String getTagNameFromArgName(String argName) {
+        if (argName.startsWith("/")) {
+            return argName.substring(1).trim();
+        }
+
+        return argName.trim();
     }
 
     /**
