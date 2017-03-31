@@ -76,7 +76,7 @@ public class Parser {
             return new HelpCommand();
 
         case FilepathCommand.COMMAND_WORD:
-            return new FilepathCommand(arguments);
+            return new FilepathCommandParser().parse(arguments);
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
