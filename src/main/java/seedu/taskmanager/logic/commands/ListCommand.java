@@ -2,14 +2,15 @@
 package seedu.taskmanager.logic.commands;
 
 /**
- * Lists all/ the specified task type in the task manager to the user.
+ * Lists all, task type, date or done status in the task manager to the user.
  */
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the details of the specified task "
-            + "by the type of task or by date. \n" + "Parameters: [ [floating/ deadline/ event] / DATE] \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the details of all tasks, "
+            + "task type, date or done status. \n"
+            + "Parameters: [(floating/deadline/event) / DATE / (done/undone) ] \n"
             + "Example: " + COMMAND_WORD + " floating";
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
@@ -18,15 +19,15 @@ public class ListCommand extends Command {
 
     private static final String EMPTY_STRING = "";
 
-    private String taskType = null;
-    private String[] taskTypeAndDate;
+    private String filter = null;
+    private String[] filters;
 
-    public ListCommand(String taskType) {
-        this.taskType = taskType;
+    public ListCommand(String filter) {
+        this.filter = filter;
     }
 
-    public ListCommand(String[] taskTypeAndDate) {
-        this.taskTypeAndDate = taskTypeAndDate;
+    public ListCommand(String[] filters) {
+        this.filters = filters;
     }
 
     // @@author A0140538J
@@ -34,17 +35,17 @@ public class ListCommand extends Command {
     public CommandResult execute() {
         assert model != null;
 
-        if (taskType != null) {
-            if (taskType.equals(EMPTY_STRING)) {
+        if (filter != null) {
+            if (filter.equals(EMPTY_STRING)) {
                 model.updateFilteredListToShowAll();
                 return new CommandResult(MESSAGE_SUCCESS);
             }
-            model.updateFilteredTaskListByTaskTypeOrDate(taskType);
-            return new CommandResult(MESSAGE_SUCCESS + " (" + taskType + ")");
+            model.updateFilteredTaskListByOneFilter(filter);
+            return new CommandResult(MESSAGE_SUCCESS + " (" + filter + ")");
         }
 
-        model.updateFilteredTaskListByTaskTypeAndDate(taskTypeAndDate);
-        return new CommandResult(MESSAGE_SUCCESS + " (" + taskTypeAndDate[0] + ", " + taskTypeAndDate[1] + ")");
+        model.updateFilteredTaskListByTaskTypeAndDate(filters);
+        return new CommandResult(MESSAGE_SUCCESS + " (" + filters[0] + ", " + filters[1] + ")");
     }
     // @@author
 
