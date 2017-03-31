@@ -15,7 +15,7 @@ public abstract class Command {
      * Constructs a feedback message to summarise an operation that displayed a listing of tasks.
      *
      * @param displaySize
-     *        used to generate summary
+     *            used to generate summary
      * @return summary message for tasks displayed
      */
     public static String getMessageForTaskListShownSummary(int displaySize) {
@@ -27,7 +27,7 @@ public abstract class Command {
      *
      * @return feedback message of the operation result for display
      * @throws CommandException
-     *         If an error occurs during command execution.
+     *             If an error occurs during command execution.
      */
     public abstract CommandResult execute() throws CommandException;
 

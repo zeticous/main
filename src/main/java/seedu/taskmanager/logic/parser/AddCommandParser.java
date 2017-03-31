@@ -32,8 +32,8 @@ public class AddCommandParser {
      * for execution.
      */
     public Command parse(String args) {
-        ArgumentTokenizer argsTokenizer =
-                new ArgumentTokenizer(PREFIX_STARTDATE, PREFIX_ENDDATE, PREFIX_DEADLINE, PREFIX_TAG);
+        ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_STARTDATE, PREFIX_ENDDATE, PREFIX_DEADLINE,
+                PREFIX_TAG);
 
         argsTokenizer.tokenize(args);
         try {

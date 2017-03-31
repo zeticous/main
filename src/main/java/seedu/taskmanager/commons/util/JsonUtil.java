@@ -28,13 +28,13 @@ public class JsonUtil {
 
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
 
-    private static ObjectMapper objectMapper =
-            new ObjectMapper().findAndRegisterModules().configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
-                    .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-                    .setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE)
-                    .setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY).registerModule(
-                            new SimpleModule("SimpleModule").addSerializer(Level.class, new ToStringSerializer())
-                                    .addDeserializer(Level.class, new LevelDeserializer(Level.class)));
+    private static ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules()
+            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            .setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE)
+            .setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)
+            .registerModule(new SimpleModule("SimpleModule").addSerializer(Level.class, new ToStringSerializer())
+                    .addDeserializer(Level.class, new LevelDeserializer(Level.class)));
 
     static <T> void serializeObjectToJsonFile(File jsonFile, T objectToSerialize) throws IOException {
         FileUtil.writeToFile(jsonFile, toJsonString(objectToSerialize));
@@ -49,11 +49,11 @@ public class JsonUtil {
      * values are missing from the file, default values will be used, as long as the file is a valid json file.
      *
      * @param filePath
-     *        cannot be null.
+     *            cannot be null.
      * @param classOfObjectToDeserialize
-     *        Json file has to correspond to the structure in the class given here.
+     *            Json file has to correspond to the structure in the class given here.
      * @throws DataConversionException
-     *         if the file format is not as expected.
+     *             if the file format is not as expected.
      */
     public static <T> Optional<T> readJsonFile(String filePath, Class<T> classOfObjectToDeserialize)
             throws DataConversionException {
@@ -84,11 +84,11 @@ public class JsonUtil {
      * doesn't.
      *
      * @param jsonFile
-     *        cannot be null
+     *            cannot be null
      * @param filePath
-     *        cannot be null
+     *            cannot be null
      * @throws IOException
-     *         if there was an error during writing to the file
+     *             if there was an error during writing to the file
      */
     public static <T> void saveJsonFile(T jsonFile, String filePath) throws IOException {
         assert jsonFile != null;
@@ -101,7 +101,7 @@ public class JsonUtil {
      * Converts a given string representation of a JSON data to instance of a class
      *
      * @param <T>
-     *        The generic type to create an instance of
+     *            The generic type to create an instance of
      * @return The instance of T with the specified values in the JSON string
      */
     public static <T> T fromJsonString(String json, Class<T> instanceClass) throws IOException {
@@ -112,9 +112,9 @@ public class JsonUtil {
      * Converts a given instance of a class into its JSON data string representation
      *
      * @param instance
-     *        The T object to be converted into the JSON string
+     *            The T object to be converted into the JSON string
      * @param <T>
-     *        The generic type to create an instance of
+     *            The generic type to create an instance of
      * @return JSON data representation of the given class instance, in string
      */
     public static <T> String toJsonString(T instance) throws JsonProcessingException {

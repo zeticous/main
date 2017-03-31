@@ -33,9 +33,9 @@ public interface Model {
      * Updates the task located at {@code filteredTaskListIndex} with {@code editedTask}.
      *
      * @throws DuplicateTaskException
-     *         if updating the task's details causes the task to be equivalent to another existing task in the list.
+     *             if updating the task's details causes the task to be equivalent to another existing task in the list.
      * @throws IndexOutOfBoundsException
-     *         if {@code filteredTaskListIndex} < 0 or >= the size of the filtered list.
+     *             if {@code filteredTaskListIndex} < 0 or >= the size of the filtered list.
      */
     void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask) throws UniqueTaskList.DuplicateTaskException;
 

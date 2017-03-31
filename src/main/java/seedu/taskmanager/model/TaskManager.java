@@ -81,7 +81,7 @@ public class TaskManager implements ReadOnlyTaskManager {
      * found, and updates the Tag objects in the task to point to those in {@link #tags}.
      *
      * @throws UniqueTaskList.DuplicateTaskException
-     *         if an equivalent task already exists.
+     *             if an equivalent task already exists.
      */
     public void addTask(Task p) throws UniqueTaskList.DuplicateTaskException {
         syncMasterTagListWith(p);
@@ -95,9 +95,9 @@ public class TaskManager implements ReadOnlyTaskManager {
      * @see #syncMasterTagListWith(Task)
      *
      * @throws DuplicateTaskException
-     *         if updating the task's details causes the task to be equivalent to another existing task in the list.
+     *             if updating the task's details causes the task to be equivalent to another existing task in the list.
      * @throws IndexOutOfBoundsException
-     *         if {@code index} < 0 or >= the size of the list.
+     *             if {@code index} < 0 or >= the size of the list.
      */
     public void updateTask(int index, ReadOnlyTask editedReadOnlyTask) throws UniqueTaskList.DuplicateTaskException {
         assert editedReadOnlyTask != null;
