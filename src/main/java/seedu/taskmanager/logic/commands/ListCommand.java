@@ -10,7 +10,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the details of all tasks, "
             + "task type, date or done status. \n"
-            + "Parameters: [(floating/deadline/event) / DATE / (done/undone) ] \n"
+            + "Parameters: [(floating/deadline/event) / DATE / (done/undone)] \n"
             + "Example: " + COMMAND_WORD + " floating";
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
