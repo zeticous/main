@@ -368,14 +368,14 @@ Priority | As a ... | I want to ... | So that I can...
 `* *` | user | exit the program | quit the task manager as may not need it all the time
 `* *` | user | clear all tasks | remove all tasks in one go if it is needed as removing them one by one may take significant time 
 `* *` | user | re-do the last undone command | undo my undo command as I may have made a mistake undoing the latest undo command
-`* *` | user | search an event type task by name | find a particular event task only as deadline and floating tasks may not be required
-`* *` | user | search a deadline type task by name | find a particular deadline task only as event and floating tasks may not be required
-`* *` | user | search a floating type task by name | find a particular floating task only as deadline and event tasks may not be required
+`* *` | user | search an event task by name | find a particular event task only as deadline and floating tasks may not be required
+`* *` | user | search a deadline task by name | find a particular deadline task only as event and floating tasks may not be required
+`* *` | user | search a floating task by name | find a particular floating task only as deadline and event tasks may not be required
 `* *` | user | add a recurring event | avoid having to add the same task repetitively; with its parameters automatically updated
-`* *` | user | view all tasks today in a summarized format | quickly know my agenda for today in order to plan my day 
-`*` | user | tag a location to an existing task | know where the task is at if needed
+`* *` | user | view all tasks today | quickly know my agenda for today in order to plan my day 
+`*` | user | tag location to a task | know where the task is at if needed as I may need the task manager to remember this detail
 `*` | user | search by location | know which task/tasks is/are held at that location
-`*` | user | update the location of a task | change the place in case the location changes
+`*` | user | update location of a task | change the place in case the location of task changes
 
 
 ## Appendix B : Use Cases
