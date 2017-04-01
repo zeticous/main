@@ -32,11 +32,11 @@ public class AddCommandParser {
      * for execution.
      */
     public Command parse(String args) {
-        ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_STARTDATE, PREFIX_ENDDATE, PREFIX_DEADLINE,
-                PREFIX_TAG);
-
-        argsTokenizer.tokenize(args);
+        ArgumentTokenizer argsTokenizer =
+                new ArgumentTokenizer(PREFIX_STARTDATE, PREFIX_ENDDATE, PREFIX_DEADLINE, PREFIX_TAG);
         try {
+            args = DateMarkerParser.replaceMarkersWithPrefix(args);
+            argsTokenizer.tokenize(args);
             String name = getNameFromArgsTokenizer(argsTokenizer);
             String startDate = getStartDateFromArgsTokenizer(argsTokenizer);
             String endDate = getEndDateFromArgsTokenizer(argsTokenizer);

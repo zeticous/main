@@ -88,18 +88,11 @@ public class StringUtilTest {
 
     /*
      * Valid equivalence partitions for word: - any word - word containing symbols/numbers - word with leading/trailing
-     * spaces
-     *
-     * Valid equivalence partitions for sentence: - empty string - one word - multiple words - sentence with extra
-     * spaces
-     *
-     * Possible scenarios returning true: - matches first word in sentence - last word in sentence - middle word in
-     * sentence - matches multiple words
-     *
-     * Possible scenarios returning false: - query word matches part of a sentence word - sentence word matches part of
-     * the query word
-     *
-     * The test method below tries to verify all above with a reasonably low number of test cases.
+     * spaces Valid equivalence partitions for sentence: - empty string - one word - multiple words - sentence with
+     * extra spaces Possible scenarios returning true: - matches first word in sentence - last word in sentence - middle
+     * word in sentence - matches multiple words Possible scenarios returning false: - query word matches part of a
+     * sentence word - sentence word matches part of the query word The test method below tries to verify all above with
+     * a reasonably low number of test cases.
      */
 
     @Test

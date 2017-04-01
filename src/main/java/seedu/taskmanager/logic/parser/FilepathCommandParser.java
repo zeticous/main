@@ -48,7 +48,6 @@ public class FilepathCommandParser {
 
     /**
      * Checks if file could be created in the specified path
-     *
      * @param path
      * @return true if file can be created, false if otherwise
      */
@@ -63,7 +62,6 @@ public class FilepathCommandParser {
 
     /**
      * helper to check if a file can be created on the specified path
-     *
      * @param path
      * @throws IOException
      *         if unable to access file
