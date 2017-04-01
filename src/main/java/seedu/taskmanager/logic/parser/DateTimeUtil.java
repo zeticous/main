@@ -117,6 +117,16 @@ public class DateTimeUtil {
         return syntaxTreeString.contains(EXPLICIT_TIME_SYNTAX) || syntaxTreeString.contains(RELATIVE_TIME_SYNTAX);
     }
 
+    /**
+     * Checks if a particular string is a valid time format
+     * @param date
+     * @return true if string is parseable to date, false otherwise
+     */
+    public static boolean isValidDateString(String args) {
+        List<DateGroup> parsedString = dateTimeParser.parse(args);
+        return isValidArg(parsedString);
+    }
+
     // Set time of the returned Date object as the starting time of the day
     // i.e. 00:00:00
     private static Date setStartDateTime(Date date) {

@@ -4,7 +4,6 @@ package seedu.taskmanager.model.task;
 import java.util.Objects;
 import java.util.Optional;
 
-import seedu.taskmanager.commons.exceptions.IllegalValueException;
 import seedu.taskmanager.commons.util.CollectionUtil;
 import seedu.taskmanager.model.tag.UniqueTagList;
 
@@ -14,23 +13,10 @@ import seedu.taskmanager.model.tag.UniqueTagList;
 public class Task implements ReadOnlyTask {
 
     private Name name;
+    // @@author A0140417R
     private Optional<TaskDate> startDate, endDate;
     private UniqueTagList tags;
     private boolean isDoneStatus;
-
-    /**
-     * Every field must be present and not null.
-     */
-    // @@author A0140538J
-    public Task(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags) {
-        assert !CollectionUtil.isAnyNull(name, tags);
-        this.name = name;
-        this.startDate = Optional.ofNullable(startDate);
-        this.endDate = Optional.ofNullable(endDate);
-        this.tags = new UniqueTagList(tags); // protect internal tags from
-                                             // changes in the arg list
-        this.isDoneStatus = false;
-    }
 
     public Task(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags, boolean status) {
         assert !CollectionUtil.isAnyNull(name, tags);
@@ -41,41 +27,25 @@ public class Task implements ReadOnlyTask {
                                              // changes in the arg list
         this.isDoneStatus = status;
     }
-    // @@author
 
-    public Task(Name name, UniqueTagList tags) throws IllegalValueException {
-        this.name = name;
-        this.startDate = Optional.empty();
-        this.endDate = Optional.empty();
-        this.tags = new UniqueTagList(tags); // protect internal tags from
-                                             // changes in the arg list
-        this.isDoneStatus = false;
+    // @@author A0140538J
+    public Task(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags) {
+        this(name, startDate, endDate, tags, false);
     }
 
-    /**
-     * Creates task based on optional startDate and endDate
-     *
-     * @param name
-     * @param startDate
-     * @param endDate
-     * @param tags
-     * @throws IllegalValueException
-     */
-    public Task(Name name, Optional<TaskDate> startDate, Optional<TaskDate> endDate, UniqueTagList tags)
-            throws IllegalValueException {
-        this(name, startDate.orElse(null), endDate.orElse(null), tags);
-        this.isDoneStatus = false;
+    public Task(Name name, UniqueTagList tags) {
+        this(name, null, null, tags, false);
+    }
+
+    public Task(Name name, Optional<TaskDate> startDate, Optional<TaskDate> endDate, UniqueTagList tags) {
+        this(name, startDate.orElse(null), endDate.orElse(null), tags, false);
     }
 
     /**
      * Creates a copy of the given ReadOnlyTask.
      */
     public Task(ReadOnlyTask source) {
-        this.name = source.getName();
-        this.startDate = Optional.ofNullable(source.getStartDate());
-        this.endDate = Optional.ofNullable(source.getEndDate());
-        this.tags = source.getTags();
-        this.isDoneStatus = source.isDone();
+        this(source.getName(), source.getStartDate(), source.getEndDate(), source.getTags(), source.isDone());
     }
 
     public void setName(Name name) {
@@ -88,6 +58,7 @@ public class Task implements ReadOnlyTask {
         return name;
     }
 
+    // @@author A0140417R
     @Override
     public TaskDate getStartDate() {
         return startDate.orElse(null);

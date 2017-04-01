@@ -16,7 +16,6 @@ public class Tag {
 
     /**
      * Validates given tag name.
-     *
      * @throws IllegalValueException
      *         if the given tag name string is invalid.
      */
