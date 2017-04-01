@@ -91,7 +91,6 @@ public class FileUtil {
 
     /**
      * Deletes a file
-     * 
      * @param file
      * @return true if deleted, false if file do not exist
      * @throws IOException
