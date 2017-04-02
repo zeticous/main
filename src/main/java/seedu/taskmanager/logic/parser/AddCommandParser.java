@@ -83,8 +83,8 @@ public class AddCommandParser {
         String startDateString = argsTokenizer.getValue(PREFIX_STARTDATE).get();
         String endDateString = argsTokenizer.getValue(PREFIX_ENDDATE).get();
 
-        Date startDate = DateTimeUtil.parseStartDateTime(startDateString);
-        Date endDate = DateTimeUtil.parseEndDateTime(endDateString);
+        Date startDate = DateTimeUtil.parseStartDateTime(startDateString).getTaskDate();
+        Date endDate = DateTimeUtil.parseEndDateTime(endDateString).getTaskDate();
 
         return startDate.before(endDate);
     }

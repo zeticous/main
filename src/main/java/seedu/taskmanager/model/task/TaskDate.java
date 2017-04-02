@@ -13,45 +13,64 @@ import seedu.taskmanager.logic.parser.DateTimeUtil;
  */
 public class TaskDate {
 
-    private final Date taskDate;
+	private final Date taskDate;
+	private final boolean hasTime;
 
-    public TaskDate(Date date) {
-        assert date != null;
-        this.taskDate = date;
-    }
+	public TaskDate(Date date, boolean hasTime) {
+		assert date != null;
+		this.taskDate = date;
+		this.hasTime = hasTime;
+	}
 
-    public Date getTaskDate() {
-        return taskDate;
-    }
+	public boolean hasTime() {
+		return hasTime;
+	}
 
-    public String getOnlyDate() {
-        Calendar c = Calendar.getInstance();
-        c.setTime(taskDate);
+	//@@author A0130277L
+	public Date getTaskDate() {
+		return taskDate;
+	}
+	// @@author
 
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        int month = c.get(Calendar.MONTH);
-        int year = c.get(Calendar.YEAR);
+	public String getOnlyDate() {
+		Calendar c = Calendar.getInstance();
+		c.setTime(taskDate);
 
-        return Integer.toString(day) + Integer.toString(month) + Integer.toString(year);
-    }
+		int day = c.get(Calendar.DAY_OF_MONTH);
+		int month = c.get(Calendar.MONTH);
+		int year = c.get(Calendar.YEAR);
 
-    @Override
-    public String toString() {
-        return DateTimeUtil.getStringFromDate(taskDate);
-    }
+		return Integer.toString(day) + Integer.toString(month) + Integer.toString(year);
+	}
 
-    @Override
-    public boolean equals(Object other) {
+	//@@author A0130277L
+	//toString method for taskDate
+	//@return date with no time element if there is no explicit time
+	@Override
+	public String toString() {
+		String toBeDisplayed;
+		if(hasTime == false) {
+			toBeDisplayed = DateTimeUtil.getOnlyDateStringFromDate(taskDate);
+		}
+		else {
+			toBeDisplayed = DateTimeUtil.getStringFromDate(taskDate);
+		}
+		return toBeDisplayed;
+	}
+	//@@author
 
-        return other == this // short circuit if same object
-                || (other instanceof TaskDate // instanceof handles nulls
-                        && this.taskDate.equals(((TaskDate) other).taskDate)); // state
-                                                                               // check
-    }
+	@Override
+	public boolean equals(Object other) {
 
-    @Override
-    public int hashCode() {
-        return taskDate.hashCode();
-    }
+		return other == this // short circuit if same object
+				|| (other instanceof TaskDate // instanceof handles nulls
+						&& this.taskDate.equals(((TaskDate) other).taskDate)); // state
+		// check
+	}
+
+	@Override
+	public int hashCode() {
+		return taskDate.hashCode();
+	}
 
 }
