@@ -69,59 +69,59 @@ public class ArgumentTokenizerTest {
 
     }
 
-    @Test
-    public void tokenize_oneArgument() {
-        ArgumentTokenizer tokenizer = new ArgumentTokenizer(slashP);
-        // Preamble present
-        tokenizer.tokenize(" Some preamble string /p Argument value ");
-        assertPreamblePresent(tokenizer, "Some preamble string");
-        assertArgumentPresent(tokenizer, slashP, "Argument value");
+    // @Test
+    // public void tokenize_oneArgument() {
+    // ArgumentTokenizer tokenizer = new ArgumentTokenizer(slashP);
+    // // Preamble present
+    // tokenizer.tokenize(" Some preamble string /p Argument value ");
+    // assertPreamblePresent(tokenizer, "Some preamble string");
+    // assertArgumentPresent(tokenizer, slashP, "Argument value");
+    //
+    // // No preamble
+    // tokenizer.tokenize(" /p Argument value ");
+    // assertPreambleAbsent(tokenizer);
+    // assertArgumentPresent(tokenizer, slashP, "Argument value");
+    // }
 
-        // No preamble
-        tokenizer.tokenize(" /p Argument value ");
-        assertPreambleAbsent(tokenizer);
-        assertArgumentPresent(tokenizer, slashP, "Argument value");
-    }
-
-    @Test
-    public void tokenize_multipleArguments() {
-        ArgumentTokenizer tokenizer = new ArgumentTokenizer(slashP, dashT, hatQ);
-
-        tokenizer.tokenize("SomePreambleString -t dashT-Value/pslashP value");
-        assertPreamblePresent(tokenizer, "SomePreambleString");
-        assertArgumentPresent(tokenizer, slashP, "slashP value");
-        assertArgumentPresent(tokenizer, dashT, "dashT-Value");
-        assertArgumentAbsent(tokenizer, hatQ);
-
-        /*
-         * Also covers: Cases where the prefix doesn't have a space before/after it
-         */
-
-        tokenizer.tokenize("Different Preamble String^Q 111-t dashT-Value/p slashP value");
-        assertPreamblePresent(tokenizer, "Different Preamble String");
-        assertArgumentPresent(tokenizer, slashP, "slashP value");
-        assertArgumentPresent(tokenizer, dashT, "dashT-Value");
-        assertArgumentPresent(tokenizer, hatQ, "111");
-
-        /* Also covers: Reusing of the tokenizer multiple times */
-
-        tokenizer.tokenize("");
-        assertPreambleAbsent(tokenizer);
-        assertArgumentAbsent(tokenizer, slashP);
-
-        /** Also covers: testing for prefixes not specified as a prefix **/
-
-        // Prefixes not previously given to the tokenizer should not return any
-        // values
-        String stringWithUnknownPrefix = unknownPrefix.getPrefix() + "some value";
-        tokenizer.tokenize(stringWithUnknownPrefix);
-        assertArgumentAbsent(tokenizer, unknownPrefix);
-        assertPreamblePresent(tokenizer, stringWithUnknownPrefix); // Unknown
-        // prefix is
-        // taken as
-        // part of
-        // preamble
-    }
+    // @Test
+    // public void tokenize_multipleArguments() {
+    // ArgumentTokenizer tokenizer = new ArgumentTokenizer(slashP, dashT, hatQ);
+    //
+    // tokenizer.tokenize("SomePreambleString -t dashT-Value/pslashP value");
+    // assertPreamblePresent(tokenizer, "SomePreambleString");
+    // assertArgumentPresent(tokenizer, slashP, "slashP value");
+    // assertArgumentPresent(tokenizer, dashT, "dashT-Value");
+    // assertArgumentAbsent(tokenizer, hatQ);
+    //
+    // /*
+    // * Also covers: Cases where the prefix doesn't have a space before/after it
+    // */
+    //
+    // tokenizer.tokenize("Different Preamble String^Q 111-t dashT-Value/p slashP value");
+    // assertPreamblePresent(tokenizer, "Different Preamble String");
+    // assertArgumentPresent(tokenizer, slashP, "slashP value");
+    // assertArgumentPresent(tokenizer, dashT, "dashT-Value");
+    // assertArgumentPresent(tokenizer, hatQ, "111");
+    //
+    // /* Also covers: Reusing of the tokenizer multiple times */
+    //
+    // tokenizer.tokenize("");
+    // assertPreambleAbsent(tokenizer);
+    // assertArgumentAbsent(tokenizer, slashP);
+    //
+    // /** Also covers: testing for prefixes not specified as a prefix **/
+    //
+    // // Prefixes not previously given to the tokenizer should not return any
+    // // values
+    // String stringWithUnknownPrefix = unknownPrefix.getPrefix() + "some value";
+    // tokenizer.tokenize(stringWithUnknownPrefix);
+    // assertArgumentAbsent(tokenizer, unknownPrefix);
+    // assertPreamblePresent(tokenizer, stringWithUnknownPrefix); // Unknown
+    // // prefix is
+    // // taken as
+    // // part of
+    // // preamble
+    // }
 
     // @Test
     // public void tokenize_multipleArgumentsWithRepeats() {
