@@ -107,7 +107,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
 
     @Test
     public void execute_edit_invalidDemotion() throws Exception {
-     // setup expectations
+        // setup expectations
         TestDataHelper helper = new TestDataHelper();
         Task task = helper.meeting();
 
@@ -169,7 +169,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
         assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
     }
 
-    //@@author A0130277L
+    // @@author A0130277L
     @Test
     public void execute_edit_validAll() throws Exception {
         TestDataHelper helper = new TestDataHelper();
@@ -186,7 +186,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
         assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
     }
 
-    //@@author A0140538J
+    // @@author A0140538J
     @Test
     public void execute_edit_validRemoveStartDate() throws Exception {
         TestDataHelper helper = new TestDataHelper();
