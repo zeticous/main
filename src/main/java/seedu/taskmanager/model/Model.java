@@ -68,4 +68,9 @@ public interface Model {
 
     void saveState(String commandString);
     // @@author
+
+    /**
+     * Sets a visual notifier to indicate the tasks that are expiring.
+     */
+    void setNotification(String duration);
 }

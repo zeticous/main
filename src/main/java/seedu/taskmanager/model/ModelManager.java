@@ -31,6 +31,7 @@ public class ModelManager extends ComponentManager implements Model {
     private final TaskManager taskManager;
     private final FilteredList<ReadOnlyTask> filteredTasks;
     private final TaskManagerStateManager stateManager;
+    private final TaskNotifier taskNotifier;
 
     /**
      * Initializes a ModelManager with the given taskManager and userPrefs.
@@ -47,10 +48,15 @@ public class ModelManager extends ComponentManager implements Model {
         // @@author A0140417R
         this.stateManager = new TaskManagerStateManager(initState);
         // @@author
+        this.taskNotifier = new TaskNotifierManager();
     }
 
     public ModelManager() {
         this(new TaskManager(), new UserPrefs());
+    }
+
+    public void setNotification(String duration) {
+        taskNotifier.setNotification(duration);
     }
 
     // @@author A0140417R
