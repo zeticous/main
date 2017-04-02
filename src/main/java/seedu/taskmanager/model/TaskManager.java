@@ -28,10 +28,8 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     /*
      * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication between
-     * constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication among
-     * constructors.
+     * constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html Note that non-static init
+     * blocks are not recommended to use. There are other ways to avoid duplication among constructors.
      */
     {
         tasks = new UniqueTaskList();
@@ -79,9 +77,8 @@ public class TaskManager implements ReadOnlyTaskManager {
     /**
      * Adds a task to the task manager. Also checks the new task's tags and updates {@link #tags} with any new tags
      * found, and updates the Tag objects in the task to point to those in {@link #tags}.
-     *
      * @throws UniqueTaskList.DuplicateTaskException
-     *         if an equivalent task already exists.
+     *             if an equivalent task already exists.
      */
     public void addTask(Task p) throws UniqueTaskList.DuplicateTaskException {
         syncMasterTagListWith(p);
@@ -91,13 +88,11 @@ public class TaskManager implements ReadOnlyTaskManager {
     /**
      * Updates the task in the list at position {@code index} with {@code editedReadOnlyTask}. {@code TaskManager}'s tag
      * list will be updated with the tags of {@code editedReadOnlyTask}.
-     *
      * @see #syncMasterTagListWith(Task)
-     *
      * @throws DuplicateTaskException
-     *         if updating the task's details causes the task to be equivalent to another existing task in the list.
+     *             if updating the task's details causes the task to be equivalent to another existing task in the list.
      * @throws IndexOutOfBoundsException
-     *         if {@code index} < 0 or >= the size of the list.
+     *             if {@code index} < 0 or >= the size of the list.
      */
     public void updateTask(int index, ReadOnlyTask editedReadOnlyTask) throws UniqueTaskList.DuplicateTaskException {
         assert editedReadOnlyTask != null;
@@ -135,7 +130,6 @@ public class TaskManager implements ReadOnlyTaskManager {
     /**
      * Ensures that every tag in these tasks: - exists in the master list {@link #tags} - points to a Tag object in the
      * master list
-     *
      * @see #syncMasterTagListWith(Task)
      */
     private void syncMasterTagListWith(UniqueTaskList tasks) {

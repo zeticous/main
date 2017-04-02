@@ -4,9 +4,7 @@ package seedu.taskmanager.commons.core;
 import seedu.taskmanager.commons.events.BaseEvent;
 
 /**
- * Base class for *Manager classes
- *
- * Registers the class' event handlers in eventsCenter
+ * Base class for *Manager classes Registers the class' event handlers in eventsCenter
  */
 public abstract class ComponentManager {
     protected EventsCenter eventsCenter;

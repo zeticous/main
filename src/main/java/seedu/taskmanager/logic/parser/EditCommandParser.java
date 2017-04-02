@@ -35,18 +35,19 @@ public class EditCommandParser {
 
         assert args != null;
         ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_STARTDATE, PREFIX_ENDDATE, PREFIX_TAG);
-        argsTokenizer.tokenize(args);
-
-        List<Optional<String>> preambleFields = ParserUtil.splitPreamble(argsTokenizer.getPreamble().orElse(""), 2);
-
-        Optional<Integer> index = preambleFields.get(0).flatMap(ParserUtil::parseIndex);
-        if (!index.isPresent()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
-        }
-
+        Optional<Integer> index;
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
 
         try {
+            argsTokenizer.tokenize(args);
+
+            List<Optional<String>> preambleFields = ParserUtil.splitPreamble(argsTokenizer.getPreamble().orElse(""), 2);
+
+            index = preambleFields.get(0).flatMap(ParserUtil::parseIndex);
+            if (!index.isPresent()) {
+                return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            }
+            // @@author A0140417R
             Optional<String> startDateString = argsTokenizer.getValue(PREFIX_STARTDATE);
             Optional<String> endDateString = argsTokenizer.getValue(PREFIX_ENDDATE);
 
@@ -55,7 +56,7 @@ public class EditCommandParser {
                     editTaskDescriptor.setStartDateRemovedFlag();
 
                 } else {
-                    editTaskDescriptor.setStartDate(ParserUtil.parseTaskDate(startDateString));
+                    editTaskDescriptor.setStartDate(ParserUtil.parseStartTaskDate(startDateString));
                 }
             }
 
@@ -63,7 +64,7 @@ public class EditCommandParser {
                 if (isRemoveString(endDateString)) {
                     editTaskDescriptor.setEndDateRemovedFlag();
                 } else {
-                    editTaskDescriptor.setEndDate(ParserUtil.parseTaskDate(endDateString));
+                    editTaskDescriptor.setEndDate(ParserUtil.parseEndTaskDate(endDateString));
                 }
             }
 

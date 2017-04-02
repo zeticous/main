@@ -36,7 +36,7 @@ public class ArgumentTokenizer {
 
     /**
      * @param argsString
-     *        arguments string of the form: preamble <prefix>value <prefix>value ...
+     *            arguments string of the form: preamble <prefix>value <prefix>value ...
      */
     public void tokenize(String argsString) {
         resetTokenizerState();
@@ -113,12 +113,10 @@ public class ArgumentTokenizer {
 
     /**
      * Extracts the preamble/arguments and stores them in local variables.
-     *
      * @param prefixPositions
-     *        must contain all prefixes in the {@code argsString}
+     *            must contain all prefixes in the {@code argsString}
      */
     private void extractArguments(String argsString, List<PrefixPosition> prefixPositions) {
-
         // Sort by start position
         prefixPositions.sort((prefix1, prefix2) -> prefix1.getStartPosition() - prefix2.getStartPosition());
 
@@ -183,11 +181,11 @@ public class ArgumentTokenizer {
     public static class Prefix {
         final String prefix;
 
-        Prefix(String prefix) {
+        public Prefix(String prefix) {
             this.prefix = prefix;
         }
 
-        String getPrefix() {
+        public String getPrefix() {
             return this.prefix;
         }
 
@@ -230,5 +228,4 @@ public class ArgumentTokenizer {
             return this.prefix;
         }
     }
-
 }

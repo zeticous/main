@@ -20,9 +20,8 @@ public class CollectionUtil {
 
     /**
      * Returns true if any element of {@code items} is null.
-     *
      * @throws NullPointerException
-     *         if {@code items} itself is null.
+     *             if {@code items} itself is null.
      */
     public static boolean isAnyNull(Collection<?> items) {
         return items.stream().anyMatch(Objects::isNull);

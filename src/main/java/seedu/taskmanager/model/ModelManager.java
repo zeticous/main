@@ -140,8 +140,8 @@ public class ModelManager extends ComponentManager implements Model {
 
     // @@author A0140538J
     @Override
-    public void updateFilteredTaskListByTaskTypeOrDate(String taskType) {
-        updateFilteredTaskList(new PredicateExpression(new TypeQualifier(taskType)));
+    public void updateFilteredTaskListByOneFilter(String filter) {
+        updateFilteredTaskList(new PredicateExpression(new OneFilterQualifier(filter)));
     }
 
     @Override
@@ -211,32 +211,36 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     // @@author A0140538J
-    private class TypeQualifier implements Qualifier {
-        private String taskType;
+    private class OneFilterQualifier implements Qualifier {
+        private String filter;
 
-        TypeQualifier(String taskType) {
-            this.taskType = taskType;
+        OneFilterQualifier(String filter) {
+            this.filter = filter;
         }
 
         @Override
         public boolean run(ReadOnlyTask task) {
-            switch (taskType) {
+            switch (filter) {
             case "floating":
                 return task.isFloating();
             case "deadline":
                 return task.isDeadline();
             case "event":
                 return task.isEvent();
+            case "done":
+                return task.isDone();
+            case "undone":
+                return !task.isDone();
             // for parsing date
             default:
                 try {
-                    TaskDate date = new TaskDate(DateTimeUtil.parseDateTime(taskType));
+                    TaskDate date = DateTimeUtil.parseDateTime(filter);
                     return (task.getStartDate() != null && task.getStartDate().getOnlyDate().equals(date.getOnlyDate()))
                             || (task.getEndDate() != null
                                     && task.getEndDate().getOnlyDate().equals(date.getOnlyDate()));
 
                 } catch (IllegalValueException ive) {
-                    // Deliberately empty as taskType will not throw exception
+                    // Deliberately empty as filter will not throw exception
                     return false;
                 }
             }
@@ -251,7 +255,7 @@ public class ModelManager extends ComponentManager implements Model {
             taskType = taskTypeAndDate[0];
 
             try {
-                date = new TaskDate(DateTimeUtil.parseDateTime(taskTypeAndDate[1]));
+                date = DateTimeUtil.parseDateTime(taskTypeAndDate[1]);
             } catch (IllegalValueException ive) {
                 // Deliberately empty as this date will not throw exception
             }

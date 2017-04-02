@@ -20,8 +20,7 @@ import seedu.taskmanager.model.task.Task;
 /**
  * An Immutable TaskManager that is serializable to XML format
  */
-@XmlRootElement(
-        name = "taskmanager")
+@XmlRootElement(name = "taskmanager")
 public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
 
     @XmlElement

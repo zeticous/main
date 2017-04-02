@@ -22,8 +22,7 @@ public class XmlAdaptedTask {
 
     public static final String NO_DATE = "N/A";
 
-    @XmlElement(
-            required = true)
+    @XmlElement(required = true)
     private String name;
     @XmlElement
     private String startDate;
@@ -43,9 +42,8 @@ public class XmlAdaptedTask {
     // @@author A0140538J
     /**
      * Converts a given Task into this class for JAXB use.
-     *
      * @param source
-     *        future changes to this will not affect the created XmlAdaptedTask
+     *            future changes to this will not affect the created XmlAdaptedTask
      */
     public XmlAdaptedTask(ReadOnlyTask source) {
         name = source.getName().fullName;
@@ -72,9 +70,8 @@ public class XmlAdaptedTask {
 
     /**
      * Converts this jaxb-friendly adapted task object into the model's Task object.
-     *
      * @throws IllegalValueException
-     *         if there were any data constraints violated in the adapted task
+     *             if there were any data constraints violated in the adapted task
      */
     public Task toModelType() throws IllegalValueException {
         final List<Tag> taskTags = new ArrayList<>();
@@ -82,10 +79,10 @@ public class XmlAdaptedTask {
             taskTags.add(tag.toModelType());
         }
         final Name name = new Name(this.name);
-        final TaskDate startDate =
-                this.startDate.equals(NO_DATE) ? null : new TaskDate(DateTimeUtil.parseStartDateTime(this.startDate));
-        final TaskDate endDate =
-                this.endDate.equals(NO_DATE) ? null : new TaskDate(DateTimeUtil.parseEndDateTime(this.endDate));
+        final TaskDate startDate = this.startDate.equals(NO_DATE) ? null
+                : DateTimeUtil.parseStartDateTime(this.startDate);
+        final TaskDate endDate = this.endDate.equals(NO_DATE) ? null
+                : DateTimeUtil.parseEndDateTime(this.endDate);
         final UniqueTagList tags = new UniqueTagList(taskTags);
         final boolean isDoneStatus = this.isDoneStatus;
         return new Task(name, startDate, endDate, tags, isDoneStatus);

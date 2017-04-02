@@ -35,9 +35,8 @@ public class Parser {
 
     /**
      * Parses user input into command for execution.
-     *
      * @param userInput
-     *        full user input string
+     *            full user input string
      * @return the command based on the user input
      * @throws IllegalValueException
      */
@@ -76,7 +75,7 @@ public class Parser {
             return new HelpCommand();
 
         case FilepathCommand.COMMAND_WORD:
-            return new FilepathCommand(arguments);
+            return new FilepathCommandParser().parse(arguments);
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();

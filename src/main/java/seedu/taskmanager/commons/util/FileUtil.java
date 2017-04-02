@@ -24,7 +24,6 @@ public class FileUtil {
 
     /**
      * Creates a file if it does not exist along with its missing parent directories
-     *
      * @return true if file is created, false if file already exists
      */
     public static boolean createFile(File file) throws IOException {
@@ -39,11 +38,10 @@ public class FileUtil {
 
     /**
      * Creates the given directory along with its parent directories
-     *
      * @param dir
-     *        the directory to be created; assumed not null
+     *            the directory to be created; assumed not null
      * @throws IOException
-     *         if the directory or a parent directory cannot be created
+     *             if the directory or a parent directory cannot be created
      */
     public static void createDirs(File dir) throws IOException {
         if (!dir.exists() && !dir.mkdirs()) {
@@ -78,9 +76,8 @@ public class FileUtil {
 
     /**
      * Converts a string to a platform-specific file path
-     *
      * @param pathWithForwardSlash
-     *        A String representing a file path but using '/' as the separator
+     *            A String representing a file path but using '/' as the separator
      * @return {@code pathWithForwardSlash} but '/' replaced with {@code File.separator}
      */
     public static String getPath(String pathWithForwardSlash) {

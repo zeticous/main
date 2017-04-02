@@ -14,15 +14,23 @@ import seedu.taskmanager.logic.parser.DateTimeUtil;
 public class TaskDate {
 
     private final Date taskDate;
+    private final boolean hasTime;
 
-    public TaskDate(Date date) {
+    public TaskDate(Date date, boolean hasTime) {
         assert date != null;
         this.taskDate = date;
+        this.hasTime = hasTime;
     }
 
+    public boolean hasTime() {
+        return hasTime;
+    }
+
+    // @@author A0130277L
     public Date getTaskDate() {
         return taskDate;
     }
+    // @@author
 
     public String getOnlyDate() {
         Calendar c = Calendar.getInstance();
@@ -35,10 +43,20 @@ public class TaskDate {
         return Integer.toString(day) + Integer.toString(month) + Integer.toString(year);
     }
 
+    // @@author A0130277L
+    // toString method for taskDate
+    // @return date with no time element if there is no explicit time
     @Override
     public String toString() {
-        return DateTimeUtil.getStringFromDate(taskDate);
+        String toBeDisplayed;
+        if (hasTime == false) {
+            toBeDisplayed = DateTimeUtil.getOnlyDateStringFromDate(taskDate);
+        } else {
+            toBeDisplayed = DateTimeUtil.getStringFromDate(taskDate);
+        }
+        return toBeDisplayed;
     }
+    // @@author
 
     @Override
     public boolean equals(Object other) {
@@ -46,7 +64,7 @@ public class TaskDate {
         return other == this // short circuit if same object
                 || (other instanceof TaskDate // instanceof handles nulls
                         && this.taskDate.equals(((TaskDate) other).taskDate)); // state
-                                                                               // check
+        // check
     }
 
     @Override

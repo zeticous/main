@@ -31,11 +31,10 @@ public interface Model {
 
     /**
      * Updates the task located at {@code filteredTaskListIndex} with {@code editedTask}.
-     *
      * @throws DuplicateTaskException
-     *         if updating the task's details causes the task to be equivalent to another existing task in the list.
+     *             if updating the task's details causes the task to be equivalent to another existing task in the list.
      * @throws IndexOutOfBoundsException
-     *         if {@code filteredTaskListIndex} < 0 or >= the size of the filtered list.
+     *             if {@code filteredTaskListIndex} < 0 or >= the size of the filtered list.
      */
     void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask) throws UniqueTaskList.DuplicateTaskException;
 
@@ -55,7 +54,7 @@ public interface Model {
     /**
      * Updates the filter of the filtered task list to filter by the given task type or date
      */
-    void updateFilteredTaskListByTaskTypeOrDate(String taskType);
+    void updateFilteredTaskListByOneFilter(String taskType);
 
     /**
      * Updates the filter of the filtered task list to filter by the given task type and date

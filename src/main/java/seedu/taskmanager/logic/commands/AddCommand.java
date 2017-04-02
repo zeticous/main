@@ -35,9 +35,8 @@ public class AddCommand extends Command {
 
     /**
      * Creates an AddCommand using raw values.
-     *
      * @throws IllegalValueException
-     *         if any of the raw values are invalid
+     *             if any of the raw values are invalid
      */
     public AddCommand(String name, String startDateString, String endDateString, Set<String> tags)
             throws IllegalValueException {
@@ -48,11 +47,11 @@ public class AddCommand extends Command {
         TaskDate endDate = null;
 
         if (startDateString != NO_START_DATE) {
-            startDate = new TaskDate(DateTimeUtil.parseStartDateTime(startDateString));
+            startDate = DateTimeUtil.parseStartDateTime(startDateString);
         }
 
         if (endDateString != NO_END_DATE) {
-            endDate = new TaskDate(DateTimeUtil.parseEndDateTime(endDateString));
+            endDate = DateTimeUtil.parseEndDateTime(endDateString);
         }
 
         for (String tagName : tags) {
