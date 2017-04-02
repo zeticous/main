@@ -44,7 +44,7 @@ public class LogicManagerTest {
 
     /**
      * See https://github.com/junit-team/junit4/wiki/rules#temporaryfolder-rule
-     */
+     */ 
     @Rule
     public TemporaryFolder saveFolder = new TemporaryFolder();
 
@@ -80,13 +80,13 @@ public class LogicManagerTest {
         EventsCenter.getInstance().registerHandler(this);
 
         latestSavedTaskManager = new TaskManager(model.getTaskManager()); // last
-                                                                          // saved
-                                                                          // assumed
-                                                                          // to
-                                                                          // be
-                                                                          // up
-                                                                          // to
-                                                                          // date
+        // saved
+        // assumed
+        // to
+        // be
+        // up
+        // to
+        // date
         helpShown = false;
         targetedJumpIndex = -1; // non yet
     }
@@ -166,14 +166,14 @@ public class LogicManagerTest {
             throws Exception {
         assertCommandFailure(commandWord, expectedMessage); // index missing
         assertCommandFailure(commandWord + " +1", expectedMessage); // index
-                                                                    // should be
-                                                                    // unsigned
+        // should be
+        // unsigned
         assertCommandFailure(commandWord + " -1", expectedMessage); // index
-                                                                    // should be
-                                                                    // unsigned
+        // should be
+        // unsigned
         assertCommandFailure(commandWord + " 0", expectedMessage); // index
-                                                                   // cannot be
-                                                                   // 0
+        // cannot be
+        // 0
         assertCommandFailure(commandWord + " not_a_number", expectedMessage);
     }
 
@@ -204,8 +204,8 @@ public class LogicManagerTest {
 
         Task meeting() throws Exception {
             Name name = new Name("Company Meeting");
-            TaskDate startDate = new TaskDate(DateTimeUtil.parseStartDateTime("1/1/2018 6pm"));
-            TaskDate endDate = new TaskDate(DateTimeUtil.parseEndDateTime("1/1/2019 7pm"));
+            TaskDate startDate = DateTimeUtil.parseStartDateTime("1/1/2018 6pm");
+            TaskDate endDate = DateTimeUtil.parseEndDateTime("1/1/2019 7pm");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("longertag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
@@ -328,7 +328,7 @@ public class LogicManagerTest {
          * Generates a Task object with given name and due date.
          */
         Task generateTaskWithDueDate(String name, String dueDate) throws Exception {
-            return new Task(new Name(name), null, new TaskDate(DateTimeUtil.parseEndDateTime(dueDate)),
+            return new Task(new Name(name), null, DateTimeUtil.parseEndDateTime(dueDate),
                     new UniqueTagList(new Tag("tag")));
         }
 
@@ -336,8 +336,8 @@ public class LogicManagerTest {
          * Generates a Task object with given name, start and end dates.
          */
         Task generateTaskWithAll(String name, String startDate, String endDate) throws Exception {
-            return new Task(new Name(name), new TaskDate(DateTimeUtil.parseStartDateTime(startDate)),
-                    new TaskDate(DateTimeUtil.parseEndDateTime(endDate)), new UniqueTagList(new Tag("tag")));
+            return new Task(new Name(name), DateTimeUtil.parseStartDateTime(startDate),
+                    DateTimeUtil.parseEndDateTime(endDate), new UniqueTagList(new Tag("tag")));
 
         }
     }

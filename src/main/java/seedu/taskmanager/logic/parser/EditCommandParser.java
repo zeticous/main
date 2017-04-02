@@ -56,7 +56,7 @@ public class EditCommandParser {
                     editTaskDescriptor.setStartDateRemovedFlag();
 
                 } else {
-                    editTaskDescriptor.setStartDate(ParserUtil.parseTaskDate(startDateString));
+                    editTaskDescriptor.setStartDate(ParserUtil.parseStartTaskDate(startDateString));
                 }
             }
 
@@ -64,7 +64,7 @@ public class EditCommandParser {
                 if (isRemoveString(endDateString)) {
                     editTaskDescriptor.setEndDateRemovedFlag();
                 } else {
-                    editTaskDescriptor.setEndDate(ParserUtil.parseTaskDate(endDateString));
+                    editTaskDescriptor.setEndDate(ParserUtil.parseEndTaskDate(endDateString));
                 }
             }
 

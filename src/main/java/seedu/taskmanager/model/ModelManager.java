@@ -234,7 +234,7 @@ public class ModelManager extends ComponentManager implements Model {
             // for parsing date
             default:
                 try {
-                    TaskDate date = new TaskDate(DateTimeUtil.parseDateTime(filter));
+                    TaskDate date = DateTimeUtil.parseDateTime(filter);
                     return (task.getStartDate() != null && task.getStartDate().getOnlyDate().equals(date.getOnlyDate()))
                             || (task.getEndDate() != null
                                     && task.getEndDate().getOnlyDate().equals(date.getOnlyDate()));
@@ -255,7 +255,7 @@ public class ModelManager extends ComponentManager implements Model {
             taskType = taskTypeAndDate[0];
 
             try {
-                date = new TaskDate(DateTimeUtil.parseDateTime(taskTypeAndDate[1]));
+                date = DateTimeUtil.parseDateTime(taskTypeAndDate[1]);
             } catch (IllegalValueException ive) {
                 // Deliberately empty as this date will not throw exception
             }
