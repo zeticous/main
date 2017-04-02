@@ -12,6 +12,7 @@ import com.joestelmach.natty.DateGroup;
 import com.joestelmach.natty.Parser;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
+import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.TaskDate;
 
 //@@author A0130277L
@@ -128,8 +129,7 @@ public class DateTimeUtil {
     // Check if explicit time or relative time is present in a given date/time string
     public static boolean isTimePresent(String date) {
         List<DateGroup> parsedDatesList = dateTimeParser.parse(date);
-        boolean isValidArg = isValidArg(parsedDatesList);
-        assert isValidArg = true;
+        assert isValidArg(parsedDatesList);
         DateGroup parsedDate = parsedDatesList.get(FIRST_ELEMENT_INDEX);
         String syntaxTreeString = parsedDate.getSyntaxTree().getChild(FIRST_ELEMENT_INDEX).toStringTree();
         return syntaxTreeString.contains(EXPLICIT_TIME_SYNTAX) || syntaxTreeString.contains(RELATIVE_TIME_SYNTAX)
@@ -166,5 +166,17 @@ public class DateTimeUtil {
         cal.set(Calendar.MINUTE, ENDING_TIME_MINUTE);
         cal.set(Calendar.SECOND, ENDING_TIME_SECOND);
         return cal.getTime();
+    }
+
+    // Check if two tasks are conflicting each other
+    public static boolean isConflicting(Task taskToBeChecked, Task taskToBeComparedWith) {
+        if (taskToBeComparedWith.isFloating() || taskToBeComparedWith.isDone() || taskToBeChecked.isFloating()
+                || taskToBeChecked.isDone()) {
+            return false;
+        } else {
+            Date dateToBeChecked = taskToBeChecked.getEndDate().getTaskDate();
+            Date dateToBeComparedWith = taskToBeChecked.getStartDate().getTaskDate();
+            return dateToBeChecked.after(dateToBeComparedWith);
+        }
     }
 }
