@@ -12,6 +12,7 @@ import com.joestelmach.natty.DateGroup;
 import com.joestelmach.natty.Parser;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
+import seedu.taskmanager.model.task.ReadOnlyTask;
 import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.TaskDate;
 
@@ -169,7 +170,7 @@ public class DateTimeUtil {
     }
 
     // Check if two tasks are conflicting each other
-    public static boolean isConflicting(Task taskToBeChecked, Task taskToBeComparedWith) {
+    public static boolean isConflicting(Task taskToBeChecked, ReadOnlyTask taskToBeComparedWith) {
         if (taskToBeComparedWith.isFloating() || taskToBeComparedWith.isDone() || taskToBeChecked.isFloating()
                 || taskToBeChecked.isDone()) {
             return false;
