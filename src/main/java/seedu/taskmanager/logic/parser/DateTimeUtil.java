@@ -133,8 +133,7 @@ public class DateTimeUtil {
         assert isValidArg(parsedDatesList);
         DateGroup parsedDate = parsedDatesList.get(FIRST_ELEMENT_INDEX);
         String syntaxTreeString = parsedDate.getSyntaxTree().getChild(FIRST_ELEMENT_INDEX).toStringTree();
-        return syntaxTreeString.contains(EXPLICIT_TIME_SYNTAX) || syntaxTreeString.contains(RELATIVE_TIME_SYNTAX)
-                || syntaxTreeString.contains(NOW_SYNTAX);
+        return syntaxTreeString.contains(EXPLICIT_TIME_SYNTAX) || syntaxTreeString.contains(RELATIVE_TIME_SYNTAX);
     }
 
     /**
@@ -172,10 +171,11 @@ public class DateTimeUtil {
 
     // Check if two tasks are conflicting each other
     public static boolean isConflicting(Task taskToBeChecked, ReadOnlyTask taskToBeComparedWith) {
-        if (taskToBeComparedWith.isFloating() || taskToBeComparedWith.isDone() || taskToBeChecked.isFloating()
+        if (!taskToBeComparedWith.isEvent() || taskToBeComparedWith.isDone() || !taskToBeChecked.isEvent()
                 || taskToBeChecked.isDone()) {
             return false;
-        } else {
+        }
+        else {
             Date startDateToBeChecked = taskToBeChecked.getStartDate().getTaskDate();
             Date endDateToBeChecked = taskToBeChecked.getEndDate().getTaskDate();
             Date startDateToBeComparedWith = taskToBeComparedWith.getStartDate().getTaskDate();

@@ -74,7 +74,6 @@ public class AddCommand extends Command {
         StringBuilder conflictingTasksStringBuilder = new StringBuilder(EMPTY_STRING);
 
         for (ReadOnlyTask task : model.getTaskManager().getTaskList()) {
-            System.out.println(task.getAsText());
             if (DateTimeUtil.isConflicting(toAdd, task)) {
                 conflictingTasksStringBuilder.append(task.getAsText());
                 conflictingTasksStringBuilder.append(NEWLINE_STRING);
