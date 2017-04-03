@@ -16,6 +16,7 @@ import seedu.taskmanager.model.task.Name;
 import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.TaskDate;
 import seedu.taskmanager.model.task.UniqueTaskList;
+import seedu.taskmanager.model.task.ReadOnlyTask;
 
 /**
  * Adds a task to the task manager.
@@ -23,6 +24,7 @@ import seedu.taskmanager.model.task.UniqueTaskList;
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
+    public static final String EMPTY_STRING = "";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to PotaTodo. "
             + "Parameters: NAME [s/START_DATE_TIME] [e/END_DATE_TIME] [t/TAG]...\n" + "Example: " + COMMAND_WORD
@@ -30,6 +32,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
+
+    public static final String TASK_CONFLICT_FORMAT = "\nTask %1$s: %2$s";
 
     private final Task toAdd;
 
@@ -61,6 +65,24 @@ public class AddCommand extends Command {
     }
 
     // @@author
+
+    // @@author A0130277L
+    // Check with all existing tasks for conflicts
+    // @Returns a string with all conflicting tasks
+    public String allConflictingTasks(Task toAdd) {
+        StringBuilder conflictingTasksStringBuilder = new StringBuilder(EMPTY_STRING);
+
+        int count = 1;
+        for (ReadOnlyTask task : model.getTaskManager().getTaskList()) {
+            if(DateTimeUtil.isConflicting(toAdd, task)) {
+                conflictingTasksStringBuilder.append(String.format(TASK_CONFLICT_FORMAT, count, task.getAsText()));
+                count++;
+            }
+        }
+        return conflictingTasksStringBuilder.toString();
+    }
+    // @@author
+
     @Override
     public CommandResult execute() throws CommandException {
         assert model != null;
