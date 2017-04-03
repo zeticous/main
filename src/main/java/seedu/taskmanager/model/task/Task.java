@@ -181,18 +181,18 @@ public class Task implements ReadOnlyTask {
     public void setDueSoonStatus() {
         Date notificationDate = NotificationUtil.getNotificationDate();
 
-        if (this.startDate.isPresent()) {
-//            if (getStartDate().getTaskDate().before(notificationDate)) {
+        if (this.hasStartDate()) {
+            if (getStartDate().getTaskDate().before(notificationDate)) {
                 this.isDueSoonStatus = true;
                 return;
-//            }
+            }
         }
 
-        if (this.endDate.isPresent()) {
-//            if (getEndDate().getTaskDate().before(notificationDate)) {
+        if (this.hasEndDate()) {
+            if (getEndDate().getTaskDate().before(notificationDate)) {
                 this.isDueSoonStatus = true;
                 return;
-//            }
+            }
         }
 
         this.isDueSoonStatus = false;
