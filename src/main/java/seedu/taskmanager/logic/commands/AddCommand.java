@@ -25,15 +25,17 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
     public static final String EMPTY_STRING = "";
+    public static final String NEWLINE_STRING = "\n";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to PotaTodo. "
             + "Parameters: NAME [s/START_DATE_TIME] [e/END_DATE_TIME] [t/TAG]...\n" + "Example: " + COMMAND_WORD
             + " Meeting s/ 1 May 2017 6pm e/ 1 May 2017 7pm t/important";
+    public static final String MESSAGE_CONFLICT = "*** The task added is in conflict with the following tasks: ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
 
-    public static final String TASK_CONFLICT_FORMAT = "\nTask %1$s: %2$s";
+    public static final String TASK_CONFLICT_FORMAT = "%1$s: %2$s";
 
     private final Task toAdd;
 
@@ -72,11 +74,10 @@ public class AddCommand extends Command {
     public String allConflictingTasks(Task toAdd) {
         StringBuilder conflictingTasksStringBuilder = new StringBuilder(EMPTY_STRING);
 
-        int count = 1;
         for (ReadOnlyTask task : model.getTaskManager().getTaskList()) {
+            System.out.println(task.getAsText());
             if(DateTimeUtil.isConflicting(toAdd, task)) {
-                conflictingTasksStringBuilder.append(String.format(TASK_CONFLICT_FORMAT, count, task.getAsText()));
-                count++;
+                conflictingTasksStringBuilder.append(task.getAsText());
             }
         }
         return conflictingTasksStringBuilder.toString();
@@ -87,8 +88,17 @@ public class AddCommand extends Command {
     public CommandResult execute() throws CommandException {
         assert model != null;
         try {
+            if (allConflictingTasks(toAdd).isEmpty()) {
             model.addTask(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+            }
+            else {
+                String allConflictingTasksString = allConflictingTasks(toAdd);
+                model.addTask(toAdd);
+                String feedback = String.format(MESSAGE_SUCCESS, toAdd);
+                feedback += NEWLINE_STRING + MESSAGE_CONFLICT + allConflictingTasksString ;
+                return new CommandResult(feedback);
+            }
         } catch (UniqueTaskList.DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }

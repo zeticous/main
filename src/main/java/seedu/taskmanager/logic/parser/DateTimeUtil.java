@@ -176,7 +176,7 @@ public class DateTimeUtil {
             return false;
         } else {
             Date dateToBeChecked = taskToBeChecked.getEndDate().getTaskDate();
-            Date dateToBeComparedWith = taskToBeChecked.getStartDate().getTaskDate();
+            Date dateToBeComparedWith = taskToBeComparedWith.getStartDate().getTaskDate();
             return dateToBeChecked.after(dateToBeComparedWith);
         }
     }
