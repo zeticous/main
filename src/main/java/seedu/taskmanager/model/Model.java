@@ -70,7 +70,7 @@ public interface Model {
     // @@author
 
     /**
-     * Sets a visual notifier to indicate the tasks that are expiring.
+     * Sets a visual notification for tasks expiring within the stipulated time.
      */
     void setNotification(String duration);
 }
