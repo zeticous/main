@@ -81,7 +81,6 @@ public class AddCommand extends Command {
         }
         return conflictingTasksStringBuilder.toString();
     }
-    // @@author
 
     @Override
     public CommandResult execute() throws CommandException {
@@ -103,6 +102,7 @@ public class AddCommand extends Command {
         }
 
     }
+    // @@author
 
     // @@author A0140417R
     @Override
