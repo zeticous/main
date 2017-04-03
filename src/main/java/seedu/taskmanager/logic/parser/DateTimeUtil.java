@@ -139,6 +139,7 @@ public class DateTimeUtil {
 
     /**
      * Checks if a particular string is a valid time format
+     *
      * @param date
      * @return true if string is parseable to date, false otherwise
      */
@@ -180,7 +181,8 @@ public class DateTimeUtil {
             Date startDateToBeComparedWith = taskToBeComparedWith.getStartDate().getTaskDate();
             Date endDateToBeComparedWith = taskToBeComparedWith.getEndDate().getTaskDate();
 
-            return !startDateToBeChecked.after(endDateToBeComparedWith) && !startDateToBeComparedWith.after(endDateToBeChecked);
+            return !startDateToBeChecked.after(endDateToBeComparedWith)
+                    && !startDateToBeComparedWith.after(endDateToBeChecked);
         }
     }
 }

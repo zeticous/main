@@ -13,10 +13,10 @@ import seedu.taskmanager.logic.parser.DateTimeUtil;
 import seedu.taskmanager.model.tag.Tag;
 import seedu.taskmanager.model.tag.UniqueTagList;
 import seedu.taskmanager.model.task.Name;
+import seedu.taskmanager.model.task.ReadOnlyTask;
 import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.TaskDate;
 import seedu.taskmanager.model.task.UniqueTaskList;
-import seedu.taskmanager.model.task.ReadOnlyTask;
 
 /**
  * Adds a task to the task manager.
@@ -39,6 +39,7 @@ public class AddCommand extends Command {
 
     /**
      * Creates an AddCommand using raw values.
+     *
      * @throws IllegalValueException
      *             if any of the raw values are invalid
      */
@@ -74,7 +75,7 @@ public class AddCommand extends Command {
 
         for (ReadOnlyTask task : model.getTaskManager().getTaskList()) {
             System.out.println(task.getAsText());
-            if(DateTimeUtil.isConflicting(toAdd, task)) {
+            if (DateTimeUtil.isConflicting(toAdd, task)) {
                 conflictingTasksStringBuilder.append(task.getAsText());
                 conflictingTasksStringBuilder.append(NEWLINE_STRING);
             }
@@ -87,14 +88,13 @@ public class AddCommand extends Command {
         assert model != null;
         try {
             if (allConflictingTasks(toAdd).isEmpty()) {
-            model.addTask(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-            }
-            else {
+                model.addTask(toAdd);
+                return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+            } else {
                 String allConflictingTasksString = allConflictingTasks(toAdd);
                 model.addTask(toAdd);
                 String feedback = String.format(MESSAGE_SUCCESS, toAdd);
-                feedback += NEWLINE_STRING + MESSAGE_CONFLICT + NEWLINE_STRING + allConflictingTasksString ;
+                feedback += NEWLINE_STRING + MESSAGE_CONFLICT + NEWLINE_STRING + allConflictingTasksString;
                 return new CommandResult(feedback);
             }
         } catch (UniqueTaskList.DuplicateTaskException e) {
