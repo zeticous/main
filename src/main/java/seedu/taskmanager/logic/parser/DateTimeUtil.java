@@ -175,9 +175,12 @@ public class DateTimeUtil {
                 || taskToBeChecked.isDone()) {
             return false;
         } else {
-            Date dateToBeChecked = taskToBeChecked.getEndDate().getTaskDate();
-            Date dateToBeComparedWith = taskToBeComparedWith.getStartDate().getTaskDate();
-            return dateToBeChecked.after(dateToBeComparedWith);
+            Date startDateToBeChecked = taskToBeChecked.getStartDate().getTaskDate();
+            Date endDateToBeChecked = taskToBeChecked.getEndDate().getTaskDate();
+            Date startDateToBeComparedWith = taskToBeComparedWith.getStartDate().getTaskDate();
+            Date endDateToBeComparedWith = taskToBeComparedWith.getEndDate().getTaskDate();
+
+            return !startDateToBeChecked.after(endDateToBeComparedWith) && !startDateToBeComparedWith.after(endDateToBeChecked);
         }
     }
 }

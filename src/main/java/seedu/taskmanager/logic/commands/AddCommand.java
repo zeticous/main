@@ -30,12 +30,10 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to PotaTodo. "
             + "Parameters: NAME [s/START_DATE_TIME] [e/END_DATE_TIME] [t/TAG]...\n" + "Example: " + COMMAND_WORD
             + " Meeting s/ 1 May 2017 6pm e/ 1 May 2017 7pm t/important";
-    public static final String MESSAGE_CONFLICT = "*** The task added is in conflict with the following tasks: ";
+    public static final String MESSAGE_CONFLICT = "*** The task added is in conflict with the following tasks *** ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
-
-    public static final String TASK_CONFLICT_FORMAT = "%1$s: %2$s";
 
     private final Task toAdd;
 
@@ -78,6 +76,7 @@ public class AddCommand extends Command {
             System.out.println(task.getAsText());
             if(DateTimeUtil.isConflicting(toAdd, task)) {
                 conflictingTasksStringBuilder.append(task.getAsText());
+                conflictingTasksStringBuilder.append(NEWLINE_STRING);
             }
         }
         return conflictingTasksStringBuilder.toString();
@@ -96,7 +95,7 @@ public class AddCommand extends Command {
                 String allConflictingTasksString = allConflictingTasks(toAdd);
                 model.addTask(toAdd);
                 String feedback = String.format(MESSAGE_SUCCESS, toAdd);
-                feedback += NEWLINE_STRING + MESSAGE_CONFLICT + allConflictingTasksString ;
+                feedback += NEWLINE_STRING + MESSAGE_CONFLICT + NEWLINE_STRING + allConflictingTasksString ;
                 return new CommandResult(feedback);
             }
         } catch (UniqueTaskList.DuplicateTaskException e) {
