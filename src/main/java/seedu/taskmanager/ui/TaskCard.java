@@ -3,6 +3,7 @@ package seedu.taskmanager.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -33,6 +34,8 @@ public class TaskCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label taskType;
+    @FXML
+    private ImageView notificationIcon;
 
     @FXML
     private FlowPane tags;
@@ -44,6 +47,7 @@ public class TaskCard extends UiPart<Region> {
 
     private void initialise(ReadOnlyTask task, int displayedIndex) {
         name.setText(task.getName().fullName);
+        notificationIcon.setVisible(true);
         taskSelector(task);
         doneSelector(task);
         id.setText(displayedIndex + ". ");
