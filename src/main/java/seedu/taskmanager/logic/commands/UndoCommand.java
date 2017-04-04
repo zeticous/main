@@ -3,7 +3,7 @@ package seedu.taskmanager.logic.commands;
 
 import seedu.taskmanager.logic.commands.exceptions.CommandException;
 
-//@@author A0140417R
+// @@author A0140417R
 public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";

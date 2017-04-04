@@ -3,6 +3,11 @@ package seedu.taskmanager.logic.commands;
 import seedu.taskmanager.logic.commands.exceptions.CommandException;
 
 // @@author A0140538J
+/**
+ * Sets a preferred duration where PotaTodo will remind the user of expiring tasks within the
+ * stipulated duration.
+ * User preference is saved upon changing the settings.
+ */
 public class SetNotificationCommand extends Command {
 
     public static final String COMMAND_WORD = "set";

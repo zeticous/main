@@ -11,6 +11,7 @@ import seedu.taskmanager.logic.commands.MarkCommand;
 import seedu.taskmanager.model.TaskManager;
 import seedu.taskmanager.model.task.Task;
 
+// @@author A0140538J
 public class LogicMarkCommandTest extends LogicManagerTest {
 
     @Test
