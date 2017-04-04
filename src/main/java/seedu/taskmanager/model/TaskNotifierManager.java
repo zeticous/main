@@ -9,16 +9,20 @@ public class TaskNotifierManager implements TaskNotifier {
 
     private static final String DEFAULT_NOTIFICATION = "3 days";
 
-    public static String taskNotifier = DEFAULT_NOTIFICATION;
+    public UserPrefs userprefs;
+
+    public static String notificationSetting = DEFAULT_NOTIFICATION;
     public static Date dateHelper;
 
-    public TaskNotifierManager() {
-        setNotification(taskNotifier);
+    public TaskNotifierManager(UserPrefs userprefs) {
+        this.userprefs = userprefs;
+        setNotification(userprefs.getNotificationSetting());
     }
 
     @Override
     public void setNotification(String duration) {
-        taskNotifier = duration;
+        notificationSetting = duration;
+        userprefs.setNotificationSettings(duration);
 
         try {
             dateHelper = setDateHelper();
@@ -27,7 +31,7 @@ public class TaskNotifierManager implements TaskNotifier {
     }
 
     private Date setDateHelper() throws IllegalValueException {
-        return DateTimeUtil.parseDateTime(taskNotifier).getTaskDate();
+        return DateTimeUtil.parseDateTime(notificationSetting).getTaskDate();
     }
 
 }
