@@ -21,13 +21,13 @@ public interface ReadOnlyTask {
 
     boolean hasEndDate();
 
-    boolean isDone();
-
     boolean isFloating();
 
     boolean isDeadline();
 
     boolean isEvent();
+
+    boolean isDone();
 
     boolean isDueSoon();
 
@@ -49,6 +49,7 @@ public interface ReadOnlyTask {
                 );
     }
 
+    // @@author A0140538J
     /**
      * Formats the task as text, showing all contact details.
      */
@@ -56,11 +57,11 @@ public interface ReadOnlyTask {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName()).append(NEW_LINE_INDICATOR);
 
-        if (getStartDate() != null) {
+        if (hasStartDate()) {
             builder.append("Start: ").append(getStartDate()).append(NEW_LINE_INDICATOR);
         }
 
-        if (getEndDate() != null) {
+        if (hasEndDate()) {
             builder.append("End: ").append(getEndDate()).append(NEW_LINE_INDICATOR);
         }
 

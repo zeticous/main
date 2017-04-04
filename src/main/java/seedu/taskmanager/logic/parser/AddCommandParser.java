@@ -52,7 +52,7 @@ public class AddCommandParser {
 
     private String getNameFromArgsTokenizer(ArgumentTokenizer argsTokenizer) throws IllegalValueException {
         String name = argsTokenizer.getPreamble().get();
-        if (name == EMPTY_STRING) {
+        if (name.equals(EMPTY_STRING)) {
             throw new IllegalValueException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 

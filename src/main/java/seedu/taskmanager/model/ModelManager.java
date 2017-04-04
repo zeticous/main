@@ -244,10 +244,11 @@ public class ModelManager extends ComponentManager implements Model {
             // for parsing date
             default:
                 try {
-                    TaskDate date = DateTimeUtil.parseDateTime(filter);
-                    return (task.getStartDate() != null && task.getStartDate().getOnlyDate().equals(date.getOnlyDate()))
+                    String date = DateTimeUtil.getOnlyDateStringFromDate(DateTimeUtil.parseDateTime(filter).getTaskDate());
+                    return (task.getStartDate() != null
+                            && DateTimeUtil.getOnlyDateStringFromDate(task.getStartDate().getTaskDate()).equals(date)
                             || (task.getEndDate() != null
-                                    && task.getEndDate().getOnlyDate().equals(date.getOnlyDate()));
+                            && DateTimeUtil.getOnlyDateStringFromDate(task.getEndDate().getTaskDate()).equals(date)));
 
                 } catch (IllegalValueException ive) {
                     // Deliberately empty as filter will not throw exception
@@ -274,9 +275,11 @@ public class ModelManager extends ComponentManager implements Model {
         @Override
         public boolean run(ReadOnlyTask task) {
 
+            String dateString = DateTimeUtil.getOnlyDateStringFromDate(date.getTaskDate());
             boolean dateFilter = (task.getStartDate() != null
-                    && task.getStartDate().getOnlyDate().equals(date.getOnlyDate()))
-                    || (task.getEndDate() != null && task.getEndDate().getOnlyDate().equals(date.getOnlyDate()));
+                    && DateTimeUtil.getOnlyDateStringFromDate(task.getStartDate().getTaskDate()).equals(dateString))
+                    || (task.getEndDate() != null
+                    && DateTimeUtil.getOnlyDateStringFromDate(task.getEndDate().getTaskDate()).equals(dateString));
 
             switch (taskType) {
             case "floating":

@@ -67,9 +67,26 @@ public class Task implements ReadOnlyTask {
     }
 
     // @@author A0140417R
+    public void setStartDate(TaskDate taskDate) {
+        this.startDate = Optional.ofNullable(taskDate);
+    }
+
     @Override
     public TaskDate getStartDate() {
         return startDate.orElse(null);
+    }
+
+    public void removeStartDate() {
+        this.startDate = Optional.empty();
+    }
+
+    @Override
+    public boolean hasStartDate() {
+        return startDate.isPresent();
+    }
+
+    public void setEndDate(TaskDate taskDate) {
+        this.endDate = Optional.ofNullable(taskDate);
     }
 
     @Override
@@ -77,25 +94,8 @@ public class Task implements ReadOnlyTask {
         return endDate.orElse(null);
     }
 
-    public void setStartDate(TaskDate taskDate) {
-        this.startDate = Optional.ofNullable(taskDate);
-    }
-
-    public void setEndDate(TaskDate taskDate) {
-        this.endDate = Optional.ofNullable(taskDate);
-    }
-
-    public void removeStartDate() {
-        this.startDate = Optional.empty();
-    }
-
     public void removeEndDate() {
         this.endDate = Optional.empty();
-    }
-
-    @Override
-    public boolean hasStartDate() {
-        return startDate.isPresent();
     }
 
     @Override
@@ -122,7 +122,42 @@ public class Task implements ReadOnlyTask {
         return isFloating() || isDeadline()
                 || (isEvent() && startDate.get().getTaskDate().before(endDate.get().getTaskDate()));
     }
-    // @@author
+
+    // @@author A0140538J
+    public void setDoneStatus(boolean status) {
+        this.isDoneStatus = status;
+    }
+
+    @Override
+    public boolean isDone() {
+        return isDoneStatus;
+    }
+
+    public void setDueSoonStatus() {
+        Date notificationDate = NotificationUtil.getNotificationDate();
+
+        if (this.hasStartDate()) {
+            if (getStartDate().getTaskDate().before(notificationDate)) {
+                this.isDueSoonStatus = true;
+                return;
+            }
+        }
+
+        if (this.hasEndDate()) {
+            if (getEndDate().getTaskDate().before(notificationDate)) {
+                this.isDueSoonStatus = true;
+                return;
+            }
+        }
+
+        this.isDueSoonStatus = false;
+    }
+
+    @Override
+    public boolean isDueSoon() {
+        return isDueSoonStatus;
+    }
+    //@@author
 
     @Override
     public UniqueTagList getTags() {
@@ -166,41 +201,6 @@ public class Task implements ReadOnlyTask {
     @Override
     public String toString() {
         return getAsText();
-    }
-
-    // @@author A0140538J
-    @Override
-    public boolean isDone() {
-        return isDoneStatus;
-    }
-
-    public void setDoneStatus(boolean status) {
-        this.isDoneStatus = status;
-    }
-
-    public void setDueSoonStatus() {
-        Date notificationDate = NotificationUtil.getNotificationDate();
-
-        if (this.hasStartDate()) {
-            if (getStartDate().getTaskDate().before(notificationDate)) {
-                this.isDueSoonStatus = true;
-                return;
-            }
-        }
-
-        if (this.hasEndDate()) {
-            if (getEndDate().getTaskDate().before(notificationDate)) {
-                this.isDueSoonStatus = true;
-                return;
-            }
-        }
-
-        this.isDueSoonStatus = false;
-    }
-
-    @Override
-    public boolean isDueSoon() {
-        return isDueSoonStatus;
     }
 
 }
