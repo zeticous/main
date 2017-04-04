@@ -8,20 +8,28 @@ import seedu.taskmanager.logic.commands.IncorrectCommand;
 import seedu.taskmanager.logic.commands.SetNotificationCommand;
 import seedu.taskmanager.model.task.TaskDate;
 
+// @@author A0140538J
 public class SetNotificationCommandParser {
 
+    public static final String EMPTY_STRING = "";
     public static final String CURRENT_TIME = "now";
 
     public Command parse(String arg) {
 
         assert arg != null;
 
+        String modifiedArg = arg.trim();
+
+        if (modifiedArg.equals(EMPTY_STRING)) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetNotificationCommand.MESSAGE_USAGE));
+        }
+
         TaskDate currentDate;
         TaskDate date;
 
         try {
             currentDate = DateTimeUtil.parseDateTime(CURRENT_TIME);
-            date = DateTimeUtil.parseDateTime(arg);
+            date = DateTimeUtil.parseDateTime(modifiedArg);
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
@@ -30,7 +38,7 @@ public class SetNotificationCommandParser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetNotificationCommand.MESSAGE_USAGE));
         }
 
-        return new SetNotificationCommand(arg.trim());
+        return new SetNotificationCommand(modifiedArg);
     }
 
 }

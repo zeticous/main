@@ -2,6 +2,7 @@ package seedu.taskmanager.logic.commands;
 
 import seedu.taskmanager.logic.commands.exceptions.CommandException;
 
+// @@author A0140538J
 public class SetNotificationCommand extends Command {
 
     public static final String COMMAND_WORD = "set";
@@ -10,7 +11,8 @@ public class SetNotificationCommand extends Command {
             + "New set duration: %1$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a visual notification for tasks expiring within the stipulated time.\n"
-    + "Example: " + COMMAND_WORD + " 1 week";
+    + "Example: " + COMMAND_WORD + " 1 week\n"
+    + "This means you will be reminded 1 week in advance for expiring tasks.";
 
     public String duration;
 
