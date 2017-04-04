@@ -9,11 +9,18 @@ import seedu.taskmanager.logic.commands.SetNotificationCommand;
 import seedu.taskmanager.model.task.TaskDate;
 
 // @@author A0140538J
+/**
+ * Parses input arguments and creates a new SetNotificationCommand object
+ */
 public class SetNotificationCommandParser {
 
     public static final String EMPTY_STRING = "";
     public static final String CURRENT_TIME = "now";
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the SetNotificationCommand
+     * and returns a SetNotificationCommand object for execution.
+     */
     public Command parse(String arg) {
 
         assert arg != null;

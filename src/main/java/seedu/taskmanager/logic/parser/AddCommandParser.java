@@ -17,19 +17,20 @@ import seedu.taskmanager.logic.commands.AddCommand;
 import seedu.taskmanager.logic.commands.Command;
 import seedu.taskmanager.logic.commands.IncorrectCommand;
 
+// @@author A0140417R
 /**
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser {
-    // @@author A0140417R
+
     public static final String EMPTY_STRING = "";
 
     public static final String NO_START_DATE = "Start date not found";
     public static final String NO_END_DATE = "End date not found";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand and returns an AddCommand object
-     * for execution.
+     * Parses the given {@code String} of arguments in the context of the AddCommand and returns
+     * an AddCommand object for execution.
      */
     public Command parse(String args) {
         ArgumentTokenizer argsTokenizer =

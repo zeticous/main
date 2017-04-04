@@ -15,12 +15,10 @@ import seedu.taskmanager.commons.exceptions.IllegalValueException;
 import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.TaskDate;
 
-//@@author A0130277L
-
+// @@author A0130277L
 /**
  * Natty date parser that parses a command with date and time and return a Date object
  */
-
 public class DateTimeUtil {
 
     public static final String INVALID_DATE_FORMAT = "Date format is not accepted by PotaTodo";
