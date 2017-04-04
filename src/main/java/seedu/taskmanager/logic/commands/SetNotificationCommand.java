@@ -5,7 +5,9 @@ import seedu.taskmanager.logic.commands.exceptions.CommandException;
 public class SetNotificationCommand extends Command {
 
     public static final String COMMAND_WORD = "set";
-    public static final String MESSAGE_SUCCESS = "New notification time has been set.";
+    public static final String MESSAGE_SUCCESS = "New notification time has been set.\n"
+            + "Please refresh PotaTodo to apply the changes.\n"
+            + "New set duration: %1$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a visual notification for tasks expiring within the stipulated time.\n"
     + "Example: " + COMMAND_WORD + " 1 week";
@@ -19,7 +21,7 @@ public class SetNotificationCommand extends Command {
     @Override
     public CommandResult execute() throws CommandException {
         model.setNotification(duration);
-        return new CommandResult(MESSAGE_SUCCESS + " (" + duration + ")");
+        return new CommandResult(String.format(MESSAGE_SUCCESS, duration));
     }
 
     @Override
