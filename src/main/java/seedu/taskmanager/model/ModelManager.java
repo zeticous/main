@@ -57,19 +57,6 @@ public class ModelManager extends ComponentManager implements Model {
         this(new TaskManager(), new UserPrefs());
     }
 
-    // @@author A0140538J
-    @Override
-    public void setNotification(String duration) {
-        taskNotifier.setNotification(duration);
-    }
-
-    // @@author A0140417R
-    @Override
-    public void saveState(String commandString) {
-        stateManager.addState(new TaskManagerState(taskManager, commandString));
-    }
-    // @@author
-
     @Override
     public void resetData(ReadOnlyTaskManager newData) {
         taskManager.resetData(newData);
@@ -80,13 +67,6 @@ public class ModelManager extends ComponentManager implements Model {
     public ReadOnlyTaskManager getTaskManager() {
         return taskManager;
     }
-
-    // @@author A0140417R
-    @Override
-    public void changeFilePath(String newPath) {
-        raise(new FilePathChangedEvent(newPath));
-    }
-    // @@author
 
     /** Raises an event to indicate the model has changed */
     private void indicateTaskManagerChanged() {
@@ -127,6 +107,22 @@ public class ModelManager extends ComponentManager implements Model {
     public void loadNextState() throws IndexOutOfBoundsException {
         taskManager.resetData(stateManager.getNextState().getTaskManager());
         indicateTaskManagerChanged();
+    }
+
+    @Override
+    public void saveState(String commandString) {
+        stateManager.addState(new TaskManagerState(taskManager, commandString));
+    }
+
+    @Override
+    public void changeFilePath(String newPath) {
+        raise(new FilePathChangedEvent(newPath));
+    }
+
+    // @@author A0140538J
+    @Override
+    public void setNotification(String duration) {
+        taskNotifier.setNotification(duration);
     }
     // @@author
 
@@ -241,7 +237,7 @@ public class ModelManager extends ComponentManager implements Model {
                 return task.isDone();
             case "undone":
                 return !task.isDone();
-            // for parsing date
+            // For parsing date
             default:
                 try {
                     String date = DateTimeUtil.getOnlyDateStringFromDate(DateTimeUtil.parseDateTime(filter).getTaskDate());
@@ -289,7 +285,6 @@ public class ModelManager extends ComponentManager implements Model {
             case "event":
                 return task.isEvent() && dateFilter;
             default:
-                // will never reach this step
                 return false;
             }
         }
