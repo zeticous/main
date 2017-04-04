@@ -47,8 +47,6 @@ public class DateTimeUtil {
     public static final String DATE_STRING_FORMAT = "dd MMMMM yyyy, hh:mm aaa";
     public static final String ONLY_DATE_STRING_FORMAT = "dd MMMM yyy";
 
-    public DateTimeUtil() {
-    };
 
     private static Parser dateTimeParser = new Parser(TimeZone.getDefault());
 
@@ -66,7 +64,7 @@ public class DateTimeUtil {
 
     // Specialized date/time parser for startDate string with only date element
     // Set time of the returned date object as the starting time of the day
-    // i.e. 00:00:00 am
+    // i.e. 00:00:00
     public static TaskDate parseStartDateTime(String startDate) throws IllegalValueException {
         List<DateGroup> parsedStartDatesList = dateTimeParser.parse(startDate);
 
@@ -86,7 +84,7 @@ public class DateTimeUtil {
 
     // Specialized date/time parser for endDate string with only date element
     // Set time of the returned date object as the ending time of the day
-    // i.e. 11:59:59 pm
+    // i.e. 23:59:59
     public static TaskDate parseEndDateTime(String endDate) throws IllegalValueException {
         List<DateGroup> parsedEndDatesList = dateTimeParser.parse(endDate);
 
@@ -105,7 +103,7 @@ public class DateTimeUtil {
     }
 
     // toString method for date objects
-    // @return only returns both date element and time element
+    // @returns both date element and time element
     public static String getStringFromDate(Date date) {
         DateFormat dateFormat = new SimpleDateFormat(DATE_STRING_FORMAT);
         return dateFormat.format(date);
