@@ -186,8 +186,8 @@ The `Parser` class parses given command string into its respective `Command` obj
 
 The `Command` class receives parsed argument from `Parser` class. Afterwards, it generates `CommandResult`  based on the input after execution by `Logic` class. The abstract `Command` class is inherited by multiple sub-classes which are specific `Command` types, each able to generate a corresponding `CommandResult`. The `Logic` class will execute the specific `Command` and modify the data in `Model` component.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")`
- API call.<br>
+Given below is two Sequence Diagrams for interactions within the `Logic` component for the commands `execute("delete 1")` and `execute("add research by tmr")`.
+<br>
 <img src="images/LogicComponentSequenceDiagramDelete.png" width="800"><br>
 _Figure 2.3.2 : Interactions Inside the Logic Component for the `delete 1` Command_
 
