@@ -1,6 +1,6 @@
 # Pota-Todo (Task Manager) - Developer Guide
 
-By : `CS2103JAN2017-T15-B3`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Feb 2017`  &nbsp;&nbsp;&nbsp;&nbsp; Licence: `MIT`
+By : `CS2103JAN2017-T15-B3`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbsp;&nbsp; License: `MIT`
 
 ---
 
@@ -203,8 +203,10 @@ _Figure 2.4.1 : Structure of the Model Component_
 
 The `Model`,
 
+* stores the Task Notifier Manager data. `TaskNotifierManager` stores the current notification settings in which the user will be alerted if there is an expiring task, and also the method to change this setting.
 * stores a `UserPref` object that represents the user's preferences.
-* stores the Task Manager data.
+* stores the Task Manager data. `TaskManager` stores `UniqueTaskList` and `UniqueTagList`  of pota-todo, and also the methods to modify task related data.
+* stores the Task Manager state manager data. `TaskManagerStateManager` stores the different states of `TaskManagerState` upon mutating commands, and also the methods to modify `TaskManagerState` related data
 * exposes a `UnmodifiableObservableList<ReadOnlyTask>` that can be 'observed' e.g. the UI can be bound to this list
   so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
@@ -218,9 +220,9 @@ _Figure 2.5.1 : Structure of the Storage Component_
 
 The `Storage` component,
 
-* can save `UserPref` objects in json format and read it back.
+* can save `UserPref` objects in json format and read it back. `UserPref` consists of `GuiSettings` and notification settings used for `TaskNotifier`.
 * can save the Task Manager data in xml format and read it back.
-* It stores relevant date object as a string which will be parsed by `DateTimeUtil.dateTimeParse`.
+* stores relevant date objects as a string which will be parsed by `DateTimeUtil.dateTimeParse`.
 
 ### 2.6. Common classes
 
