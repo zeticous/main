@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic.parser;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_REPEATED_MARKERS_FOUND;
@@ -21,6 +22,7 @@ import seedu.taskmanager.logic.parser.ArgumentTokenizer.Prefix;
 public class DateMarkerParser {
     private static final String EMPTY_SPACE = "\\s+";
     private static final String WHITE_SPACE = " ";
+    private static DateMarkerMap markerMap = new DateMarkerMap();
 
     /**
      * Replaces the markers with the respective start dates and end date prefixes.
@@ -31,7 +33,6 @@ public class DateMarkerParser {
      */
     public static String replaceMarkersWithPrefix(String argString) throws IllegalValueException {
         assert argString != null;
-        DateMarkerMap markerMap = new DateMarkerMap();
         String[] splittedArgs = argString.split(EMPTY_SPACE);
         StringBuilder builder = new StringBuilder();
 
@@ -39,12 +40,10 @@ public class DateMarkerParser {
         for (String string : splittedArgs) {
             if (markerMap.contains(string)) {
                 /**
-                 * Certain parameters in name might break this feature.
-                 * Example: add project from v0.4 from today to tomorrow
-                 * To be fixed if there is time
+                 * Certain parameters in name might break this feature. Example: add project from v0.4 from today to
+                 * tomorrow. To be fixed if there is time
                  */
-                if (currentIndex != splittedArgs.length
-                        && DateTimeUtil.isValidDateString(splittedArgs[currentIndex + 1])) {
+                if (hasDateStringAfterMarker(splittedArgs,currentIndex)) {
                     Prefix assignedPrefix = markerMap.get(string);
                     if (markerMap.hasRepeatedMarker(assignedPrefix)) {
                         throw new IllegalValueException(MESSAGE_REPEATED_MARKERS_FOUND);
@@ -57,6 +56,20 @@ public class DateMarkerParser {
         }
 
         return builder.toString().trim();
+    }
+    
+    /**
+     * Helper method to check if the argument from the current index to either the next marker or end of argument contains a valid date.
+     * @param splittedArgs
+     * @param currentIndex
+     * @return true if a date string is found, false otherwise.
+     */
+    private static boolean hasDateStringAfterMarker(String[] splittedArgs, int currentIndex){
+        StringBuilder builder = new StringBuilder();
+        for(int i = currentIndex + 1; i < splittedArgs.length && !markerMap.contains(splittedArgs[i]); i++){
+            builder.append(splittedArgs[i] + WHITE_SPACE);
+        }
+        return DateTimeUtil.isValidDateString(builder.toString().trim());
     }
 
     /**

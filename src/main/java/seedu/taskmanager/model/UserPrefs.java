@@ -30,12 +30,12 @@ public class UserPrefs {
     }
 
     public UserPrefs() {
-        this.setGuiSetting(500, 500, 0, 0);
+        this.setGuiSettings(500, 500, 0, 0);
         setNotificationSettings(TaskNotifierManager.notificationSetting);
     }
     // @@author
 
-    public void setGuiSetting(double width, double height, int x, int y) {
+    public void setGuiSettings(double width, double height, int x, int y) {
         guiSettings = new GuiSettings(width, height, x, y);
     }
 

@@ -45,7 +45,6 @@ public class DateTimeUtil {
     public static final String DATE_STRING_FORMAT = "dd MMMMM yyyy, hh:mm aaa";
     public static final String ONLY_DATE_STRING_FORMAT = "dd MMMM yyy";
 
-
     private static Parser dateTimeParser = new Parser(TimeZone.getDefault());
 
     // General date/time parses for string with both date and time elements
@@ -134,7 +133,6 @@ public class DateTimeUtil {
 
     /**
      * Checks if a particular string is a valid time format
-     *
      * @param date
      * @return true if string is parseable to date, false otherwise
      */
@@ -170,8 +168,7 @@ public class DateTimeUtil {
         if (!taskToBeComparedWith.isEvent() || taskToBeComparedWith.isDone() || !taskToBeChecked.isEvent()
                 || taskToBeChecked.isDone()) {
             return false;
-        }
-        else {
+        } else {
             Date startDateToBeChecked = taskToBeChecked.getStartDate().getTaskDate();
             Date endDateToBeChecked = taskToBeChecked.getEndDate().getTaskDate();
             Date startDateToBeComparedWith = taskToBeComparedWith.getStartDate().getTaskDate();

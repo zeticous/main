@@ -157,7 +157,7 @@ public class Task implements ReadOnlyTask {
     public boolean isDueSoon() {
         return isDueSoonStatus;
     }
-    //@@author
+    // @@author
 
     @Override
     public UniqueTagList getTags() {

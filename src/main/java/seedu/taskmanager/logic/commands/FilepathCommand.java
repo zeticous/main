@@ -24,7 +24,6 @@ public class FilepathCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, filePath));
     }
 
-
     @Override
     public boolean mutatesTaskManager() {
         return false;

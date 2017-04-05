@@ -28,6 +28,9 @@ public class TestTask implements ReadOnlyTask {
     public TestTask(TestTask taskToCopy) {
         this.name = taskToCopy.getName();
         this.tags = taskToCopy.getTags();
+        this.startDate = Optional.ofNullable(taskToCopy.getStartDate());
+        this.endDate = Optional.ofNullable(taskToCopy.getEndDate());
+        
     }
 
     public void setName(Name name) {
@@ -107,5 +110,10 @@ public class TestTask implements ReadOnlyTask {
     @Override
     public boolean isEvent() {
         return hasStartDate() && hasEndDate();
+    }
+
+    @Override
+    public boolean isDueSoon() {
+        return false;
     }
 }

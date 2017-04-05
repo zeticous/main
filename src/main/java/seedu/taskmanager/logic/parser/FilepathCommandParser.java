@@ -31,8 +31,8 @@ public class FilepathCommandParser {
     public static final String MESSAGE_EXCEPTION_ERROR = "File path change request failed due to unhandled exceptions";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FilepathCommand
-     * and returns an FilepathCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FilepathCommand and returns an FilepathCommand
+     * object for execution.
      */
     public Command parse(String args) {
         String trimmedArgs = args.trim();

@@ -29,8 +29,8 @@ public class AddCommandParser {
     public static final String NO_END_DATE = "End date not found";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand and returns
-     * an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddCommand and returns an AddCommand object
+     * for execution.
      */
     public Command parse(String args) {
         ArgumentTokenizer argsTokenizer =
