@@ -172,15 +172,18 @@ _Figure 2.3.1 : Structure of the Logic Component_
 **`Logic` Interface**
 
 The `Logic` interface provides logic operations without exposing any implementation information of the `LogicManager` class.
-The method `execute(String commandText)` identifies the command input in the `commandText` string and execute the command accordingly. Additionally, the method `getFilteredTaskList()` retrieves and returns the filtered task list from `model` component. 
+The method `execute(String commandText)` identifies the command input in the command text string and execute the command accordingly. Additionally, the method `getFilteredTaskList()` retrieves and returns the filtered task list from `model` component. 
 
-**LogicManager` Class**
+**`LogicManager` Class**
+
 The `LogicManager` class implements the `Logic` interface, providing implementations to all the functionalities required in the interface. It executes commands passed in from the `UI` component by first parsing the command string with `Parser` class and then executing the returned `Command` object to generate `CommandResult` which will be returned back to `UI` component to be displayed.
 
 **`Parser` Class**
+
 The `Parser` class parses given command string into its respective `Command` object. Simple Natural Language Processing(NLP) is used as parsing mechanism so that simple markers (e.g. from, to, by etc)stored in `CliSnytax` class will be identified and relevant arguments after such markers will be extracted. `Parser` will then call corresponding `Command` class constructor to construct the identified type of command.
 
 **`Command` Class**
+
 The `Command` class receives parsed argument from `Parser` class. Afterwards, it generates `CommandResult`  based on the input after execution by `Logic` class. The abstract `Command` class is inherited by multiple sub-classes which are specific `Command` types, each able to generate a corresponding `CommandResult`. The `Logic` class will execute the specific `Command` and modify the data in `Model` component.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")`
