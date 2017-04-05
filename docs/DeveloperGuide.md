@@ -167,15 +167,32 @@ _Figure 2.3.1 : Structure of the Logic Component_
 
 **API** : [`Logic.java`](../src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `Parser` class to parse the user command.
-2. This results in a `Command` object which is executed by the `LogicManager`.
-3. The command execution can affect the `Model` (e.g. adding a task) and/or raise events.
-4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+`Logic` uses the `Parser` class to parse the user command. This results in a `Command` object which is executed by the `LogicManager`. The command execution can affect the `Model` (e.g. adding a task) and/or raise events. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")`
- API call.<br>
-<img src="images/LogicSequenceDiagram.png" width="800"><br>
-_Figure 2.3.1 : Interactions Inside the Logic Component for the `delete 1` Command_
+**`Logic` Interface**
+
+The `Logic` interface provides logic operations without exposing any implementation information of the `LogicManager` class.
+The method `execute(String commandText)` identifies the command input in the command text string and execute the command accordingly. Additionally, the method `getFilteredTaskList()` retrieves and returns the filtered task list from `model` component. 
+
+**`LogicManager` Class**
+
+The `LogicManager` class implements the `Logic` interface, providing implementations to all the functionalities required in the interface. It executes commands passed in from the `UI` component by first parsing the command string with `Parser` class and then executing the returned `Command` object to generate `CommandResult` which will be returned back to `UI` component to be displayed.
+
+**`Parser` Class**
+
+The `Parser` class parses given command string into its respective `Command` object. Simple Natural Language Processing(NLP) is used as parsing mechanism so that simple markers (e.g. from, to, by etc)stored in `CliSnytax` class will be identified and relevant arguments after such markers will be extracted. `Parser` will then call corresponding `Command` class constructor to construct the identified type of command.
+
+**`Command` Class**
+
+The `Command` class receives parsed argument from `Parser` class. Afterwards, it generates `CommandResult`  based on the input after execution by `Logic` class. The abstract `Command` class is inherited by multiple sub-classes which are specific `Command` types, each able to generate a corresponding `CommandResult`. The `Logic` class will execute the specific `Command` and modify the data in `Model` component.
+
+Given below is two Sequence Diagrams for interactions within the `Logic` component for the commands `execute("delete 1")` and `execute("add research by tmr")`.
+<br>
+<img src="images/LogicComponentSequenceDiagramDelete.png" width="800"><br>
+_Figure 2.3.2 : Interactions Inside the Logic Component for the `delete 1` Command_
+
+<img src="images/LogicComponentSequenceDiagramAdd.png" width="800"><br>
+_Figure 2.3.3 : Interactions Inside the Logic Component for the `add research by tmr` Command_
 
 ### 2.4. Model component
 
