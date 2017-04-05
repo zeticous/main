@@ -12,6 +12,7 @@ import com.joestelmach.natty.DateGroup;
 import com.joestelmach.natty.Parser;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
+import seedu.taskmanager.model.task.ReadOnlyTask;
 import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.TaskDate;
 
@@ -46,8 +47,6 @@ public class DateTimeUtil {
     public static final String DATE_STRING_FORMAT = "dd MMMMM yyyy, hh:mm aaa";
     public static final String ONLY_DATE_STRING_FORMAT = "dd MMMM yyy";
 
-    public DateTimeUtil() {
-    };
 
     private static Parser dateTimeParser = new Parser(TimeZone.getDefault());
 
@@ -65,7 +64,7 @@ public class DateTimeUtil {
 
     // Specialized date/time parser for startDate string with only date element
     // Set time of the returned date object as the starting time of the day
-    // i.e. 00:00:00 am
+    // i.e. 00:00:00
     public static TaskDate parseStartDateTime(String startDate) throws IllegalValueException {
         List<DateGroup> parsedStartDatesList = dateTimeParser.parse(startDate);
 
@@ -85,7 +84,7 @@ public class DateTimeUtil {
 
     // Specialized date/time parser for endDate string with only date element
     // Set time of the returned date object as the ending time of the day
-    // i.e. 11:59:59 pm
+    // i.e. 23:59:59
     public static TaskDate parseEndDateTime(String endDate) throws IllegalValueException {
         List<DateGroup> parsedEndDatesList = dateTimeParser.parse(endDate);
 
@@ -104,7 +103,7 @@ public class DateTimeUtil {
     }
 
     // toString method for date objects
-    // @return only returns both date element and time element
+    // @returns both date element and time element
     public static String getStringFromDate(Date date) {
         DateFormat dateFormat = new SimpleDateFormat(DATE_STRING_FORMAT);
         return dateFormat.format(date);
@@ -132,12 +131,12 @@ public class DateTimeUtil {
         assert isValidArg(parsedDatesList);
         DateGroup parsedDate = parsedDatesList.get(FIRST_ELEMENT_INDEX);
         String syntaxTreeString = parsedDate.getSyntaxTree().getChild(FIRST_ELEMENT_INDEX).toStringTree();
-        return syntaxTreeString.contains(EXPLICIT_TIME_SYNTAX) || syntaxTreeString.contains(RELATIVE_TIME_SYNTAX)
-                || syntaxTreeString.contains(NOW_SYNTAX);
+        return syntaxTreeString.contains(EXPLICIT_TIME_SYNTAX) || syntaxTreeString.contains(RELATIVE_TIME_SYNTAX);
     }
 
     /**
      * Checks if a particular string is a valid time format
+     *
      * @param date
      * @return true if string is parseable to date, false otherwise
      */
@@ -169,14 +168,19 @@ public class DateTimeUtil {
     }
 
     // Check if two tasks are conflicting each other
-    public static boolean isConflicting(Task taskToBeChecked, Task taskToBeComparedWith) {
-        if (taskToBeComparedWith.isFloating() || taskToBeComparedWith.isDone() || taskToBeChecked.isFloating()
+    public static boolean isConflicting(Task taskToBeChecked, ReadOnlyTask taskToBeComparedWith) {
+        if (!taskToBeComparedWith.isEvent() || taskToBeComparedWith.isDone() || !taskToBeChecked.isEvent()
                 || taskToBeChecked.isDone()) {
             return false;
-        } else {
-            Date dateToBeChecked = taskToBeChecked.getEndDate().getTaskDate();
-            Date dateToBeComparedWith = taskToBeChecked.getStartDate().getTaskDate();
-            return dateToBeChecked.after(dateToBeComparedWith);
+        }
+        else {
+            Date startDateToBeChecked = taskToBeChecked.getStartDate().getTaskDate();
+            Date endDateToBeChecked = taskToBeChecked.getEndDate().getTaskDate();
+            Date startDateToBeComparedWith = taskToBeComparedWith.getStartDate().getTaskDate();
+            Date endDateToBeComparedWith = taskToBeComparedWith.getEndDate().getTaskDate();
+
+            return !startDateToBeChecked.after(endDateToBeComparedWith)
+                    && !startDateToBeComparedWith.after(endDateToBeChecked);
         }
     }
 }
