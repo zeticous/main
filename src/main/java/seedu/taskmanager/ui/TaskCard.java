@@ -34,9 +34,10 @@ public class TaskCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label taskType;
+    // @@author A0140538J
     @FXML
     private ImageView notificationIcon;
-
+    // @@author A0140417R
     @FXML
     private FlowPane tags;
 
@@ -47,7 +48,6 @@ public class TaskCard extends UiPart<Region> {
 
     private void initialise(ReadOnlyTask task, int displayedIndex) {
         name.setText(task.getName().fullName);
-        notificationIcon.setVisible(true);
         taskSelector(task);
         doneSelector(task);
         id.setText(displayedIndex + ". ");
@@ -87,13 +87,21 @@ public class TaskCard extends UiPart<Region> {
             startDate.setText("Start: " + task.getStartDate().toString());
             endDate.setText("End: " + task.getEndDate().toString());
             taskType.setText("Event");
+
         } else {
             deleteLabel(startDate);
             deleteLabel(endDate);
             taskType.setText("Error");
         }
+
+        // @@author A0140538J
+        if (!task.isDueSoon()) {
+            notificationIcon.setVisible(false);
+        }
+
     }
 
+    // @@author A0140417R
     private void deleteLabel(Label label) {
         labelContainer.getChildren().remove(label);
     }

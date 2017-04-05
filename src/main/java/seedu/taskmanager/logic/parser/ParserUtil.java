@@ -79,7 +79,6 @@ public class ParserUtil {
         assert date != null;
         return date.isPresent() ? Optional.of(DateTimeUtil.parseDateTime(date.get())) : Optional.empty();
     }
-    // @@author
 
     // @@author A0130277L
     // TaskDate parser for start dates only

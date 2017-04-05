@@ -9,6 +9,8 @@ import seedu.taskmanager.model.tag.UniqueTagList;
  */
 public interface ReadOnlyTask {
 
+    public static final String NEW_LINE_INDICATOR = "\n";
+
     Name getName();
 
     TaskDate getStartDate();
@@ -19,13 +21,15 @@ public interface ReadOnlyTask {
 
     boolean hasEndDate();
 
-    boolean isDone();
-
     boolean isFloating();
 
     boolean isDeadline();
 
     boolean isEvent();
+
+    boolean isDone();
+
+    boolean isDueSoon();
 
     /**
      * The returned TagList is a deep copy of the internal TagList, changes on the returned list will not affect the
@@ -45,22 +49,23 @@ public interface ReadOnlyTask {
                 );
     }
 
+    // @@author A0140538J
     /**
      * Formats the task as text, showing all contact details.
      */
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName());
+        builder.append(getName()).append(NEW_LINE_INDICATOR);
 
-        if (getStartDate() != null) {
-            builder.append(" Start: ").append(getStartDate());
+        if (hasStartDate()) {
+            builder.append("Start: ").append(getStartDate()).append(NEW_LINE_INDICATOR);
         }
 
-        if (getEndDate() != null) {
-            builder.append(" End: ").append(getEndDate());
+        if (hasEndDate()) {
+            builder.append("End: ").append(getEndDate()).append(NEW_LINE_INDICATOR);
         }
 
-        builder.append(" Tags: ");
+        builder.append("Tags: ");
         getTags().forEach(builder::append);
 
         return builder.toString();
