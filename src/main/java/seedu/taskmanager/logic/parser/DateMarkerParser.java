@@ -22,7 +22,7 @@ import seedu.taskmanager.logic.parser.ArgumentTokenizer.Prefix;
 public class DateMarkerParser {
     private static final String EMPTY_SPACE = "\\s+";
     private static final String WHITE_SPACE = " ";
-    private static DateMarkerMap markerMap = new DateMarkerMap();
+    private static DateMarkerMap markerMap;
 
     /**
      * Replaces the markers with the respective start dates and end date prefixes.
@@ -32,6 +32,7 @@ public class DateMarkerParser {
      *         when markers from the same group is detected
      */
     public static String replaceMarkersWithPrefix(String argString) throws IllegalValueException {
+        markerMap = new DateMarkerMap();
         assert argString != null;
         String[] splittedArgs = argString.split(EMPTY_SPACE);
         StringBuilder builder = new StringBuilder();

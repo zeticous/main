@@ -90,7 +90,7 @@ public class EditCommand extends Command {
 
         Name updatedName = editTaskDescriptor.getName().orElseGet(taskToEdit::getName);
         UniqueTagList updatedTags = editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
-
+        Boolean doneStatus = taskToEdit.isDone();
         TaskDate updatedStartDate = null;
         TaskDate updatedEndDate = null;
 
@@ -102,7 +102,7 @@ public class EditCommand extends Command {
             updatedEndDate = editTaskDescriptor.getEndDate().orElseGet(taskToEdit::getEndDate);
         }
 
-        Task createdTask = new Task(updatedName, updatedStartDate, updatedEndDate, updatedTags);
+        Task createdTask = new Task(updatedName, updatedStartDate, updatedEndDate, updatedTags, doneStatus);
 
         // If the created task is an event, the startDate should be before the
         // endDate
@@ -117,7 +117,7 @@ public class EditCommand extends Command {
             throw new IllegalValueException(MESSAGE_INVALID_EDITTED_TASK);
         }
 
-        return new Task(updatedName, updatedStartDate, updatedEndDate, updatedTags);
+        return new Task(updatedName, updatedStartDate, updatedEndDate, updatedTags, doneStatus);
     }
 
     /**
@@ -130,7 +130,7 @@ public class EditCommand extends Command {
         private Optional<TaskDate> startDate = Optional.empty();
         private Optional<TaskDate> endDate = Optional.empty();
         private Optional<UniqueTagList> tags = Optional.empty();
-
+        
         private boolean startDateRemovedFlag = false;
         private boolean endDateRemovedFlag = false;
 
@@ -172,6 +172,7 @@ public class EditCommand extends Command {
         public Optional<TaskDate> getStartDate() {
             return startDate;
         }
+        
 
         public void setStartDateRemovedFlag() {
             startDateRemovedFlag = true;
