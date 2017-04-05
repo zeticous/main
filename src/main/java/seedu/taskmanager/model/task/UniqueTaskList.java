@@ -38,7 +38,7 @@ public class UniqueTaskList implements Iterable<Task> {
         if (contains(toAdd)) {
             throw new DuplicateTaskException();
         }
-        internalList.add(toAdd);
+        internalList.add(0, toAdd);
     }
 
     /**
@@ -65,7 +65,8 @@ public class UniqueTaskList implements Iterable<Task> {
         // class.
         // Then, TaskCard should then bind its text labels to those observable
         // properties.
-        internalList.set(index, taskToUpdate);
+        internalList.remove(index);
+        internalList.add(0, taskToUpdate);
     }
 
     /**

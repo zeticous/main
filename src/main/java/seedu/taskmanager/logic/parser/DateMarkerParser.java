@@ -39,6 +39,11 @@ public class DateMarkerParser {
         int currentIndex = 0;
         for (String string : splittedArgs) {
             if (markerMap.contains(string)) {
+                /**
+                 * Certain parameters in name might break this feature.
+                 * Example: add project from v0.4 from today to tomorrow
+                 * To be fixed if there is time
+                 */
                 if (currentIndex != splittedArgs.length
                         && DateTimeUtil.isValidDateString(splittedArgs[currentIndex + 1])) {
                     Prefix assignedPrefix = markerMap.get(string);

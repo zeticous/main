@@ -39,6 +39,7 @@ public class EditCommandParser {
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
 
         try {
+            args = DateMarkerParser.replaceMarkersWithPrefix(args);
             argsTokenizer.tokenize(args);
 
             List<Optional<String>> preambleFields = ParserUtil.splitPreamble(argsTokenizer.getPreamble().orElse(""), 2);
