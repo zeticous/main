@@ -21,8 +21,6 @@ public interface Model {
     /** Returns the TaskManager */
     ReadOnlyTaskManager getTaskManager();
 
-    void changeFilePath(String newPath);
-
     /** Deletes the given task. */
     void deleteTask(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
 
@@ -37,6 +35,22 @@ public interface Model {
      *             if {@code filteredTaskListIndex} < 0 or >= the size of the filtered list.
      */
     void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask) throws UniqueTaskList.DuplicateTaskException;
+
+    // @@author A0140417R
+    void loadPreviousState() throws ArrayIndexOutOfBoundsException;
+
+    void loadNextState() throws ArrayIndexOutOfBoundsException;
+
+    void saveState(String commandString);
+
+    void changeFilePath(String newPath);
+
+    // @@author A0140538J
+    /**
+     * Sets a visual notification for tasks expiring within the stipulated time.
+     */
+    void setNotification(String duration);
+    // @@author
 
     /**
      * Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>}
@@ -61,11 +75,4 @@ public interface Model {
      */
     void updateFilteredTaskListByTaskTypeAndDate(String[] taskTypeAndDate);
 
-    // @@author A0140417R
-    void loadPreviousState() throws ArrayIndexOutOfBoundsException;
-
-    void loadNextState() throws ArrayIndexOutOfBoundsException;
-
-    void saveState(String commandString);
-    // @@author
 }

@@ -12,6 +12,10 @@ public class UserPrefs {
 
     public GuiSettings guiSettings;
 
+    // @@author A0140538J
+    public String notificationSetting;
+    // @@author
+
     public GuiSettings getGuiSettings() {
         return guiSettings == null ? new GuiSettings() : guiSettings;
     }
@@ -20,13 +24,26 @@ public class UserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public UserPrefs() {
-        this.setGuiSettings(500, 500, 0, 0);
+    // @@author A0140538J
+    public String getNotificationSetting() {
+        return notificationSetting;
     }
 
-    public void setGuiSettings(double width, double height, int x, int y) {
+    public UserPrefs() {
+        this.setGuiSetting(500, 500, 0, 0);
+        setNotificationSettings(TaskNotifierManager.notificationSetting);
+    }
+    // @@author
+
+    public void setGuiSetting(double width, double height, int x, int y) {
         guiSettings = new GuiSettings(width, height, x, y);
     }
+
+    // @@author A0140538J
+    public void setNotificationSettings(String newSetting) {
+        this.notificationSetting = newSetting;
+    }
+    // @@author
 
     @Override
     public boolean equals(Object other) {

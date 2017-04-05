@@ -14,7 +14,7 @@ import seedu.taskmanager.model.task.Name;
 import seedu.taskmanager.model.task.ReadOnlyTask;
 import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.TaskDate;
-
+// @@author A0140538J
 /**
  * JAXB-friendly version of the Task.
  */
@@ -39,7 +39,6 @@ public class XmlAdaptedTask {
     public XmlAdaptedTask() {
     }
 
-    // @@author A0140538J
     /**
      * Converts a given Task into this class for JAXB use.
      * @param source

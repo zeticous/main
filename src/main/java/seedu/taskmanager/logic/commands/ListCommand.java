@@ -1,6 +1,7 @@
 
 package seedu.taskmanager.logic.commands;
 
+// @@author A0140538J
 /**
  * Lists all, task type, date or done status in the task manager to the user.
  */
@@ -30,7 +31,6 @@ public class ListCommand extends Command {
         this.filters = filters;
     }
 
-    // @@author A0140538J
     @Override
     public CommandResult execute() {
         assert model != null;
@@ -47,7 +47,6 @@ public class ListCommand extends Command {
         model.updateFilteredTaskListByTaskTypeAndDate(filters);
         return new CommandResult(MESSAGE_SUCCESS + " (" + filters[0] + ", " + filters[1] + ")");
     }
-    // @@author
 
     @Override
     public boolean mutatesTaskManager() {

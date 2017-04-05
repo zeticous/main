@@ -1,4 +1,3 @@
-//@@author A0140538J
 
 package seedu.taskmanager.logic.commands;
 
@@ -9,6 +8,10 @@ import seedu.taskmanager.model.task.ReadOnlyTask;
 import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.UniqueTaskList;
 
+// @@author A0140538J
+/**
+ * Marks a task done or undone.
+ */
 public class MarkCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
