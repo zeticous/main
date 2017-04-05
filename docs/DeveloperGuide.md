@@ -189,10 +189,10 @@ The `Command` class receives parsed argument from `Parser` class. Afterwards, it
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")`
  API call.<br>
 <img src="images/LogicComponentSequenceDiagramDelete.png" width="800"><br>
-_Figure 2.3.1 : Interactions Inside the Logic Component for the `delete 1` Command_
+_Figure 2.3.2 : Interactions Inside the Logic Component for the `delete 1` Command_
 
 <img src="images/LogicComponentSequenceDiagramAdd.png" width="800"><br>
-_Figure 2.3.2 : Interactions Inside the Logic Component for the `add research by tmr` Command_
+_Figure 2.3.3 : Interactions Inside the Logic Component for the `add research by tmr` Command_
 
 ### 2.4. Model component
 
