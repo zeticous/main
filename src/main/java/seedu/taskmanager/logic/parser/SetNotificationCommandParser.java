@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic.parser;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -18,8 +19,8 @@ public class SetNotificationCommandParser {
     public static final String CURRENT_TIME = "now";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the SetNotificationCommand
-     * and returns a SetNotificationCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the SetNotificationCommand and returns a
+     * SetNotificationCommand object for execution.
      */
     public Command parse(String arg) {
 
@@ -28,7 +29,8 @@ public class SetNotificationCommandParser {
         String modifiedArg = arg.trim();
 
         if (modifiedArg.equals(EMPTY_STRING)) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetNotificationCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetNotificationCommand.MESSAGE_USAGE));
         }
 
         TaskDate currentDate;
@@ -42,7 +44,8 @@ public class SetNotificationCommandParser {
         }
 
         if (date.getTaskDate().before(currentDate.getTaskDate())) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetNotificationCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetNotificationCommand.MESSAGE_USAGE));
         }
 
         return new SetNotificationCommand(modifiedArg);

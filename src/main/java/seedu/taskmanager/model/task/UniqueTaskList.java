@@ -31,22 +31,22 @@ public class UniqueTaskList implements Iterable<Task> {
     /**
      * Adds a task to the list.
      * @throws DuplicateTaskException
-     *             if the task to add is a duplicate of an existing task in the list.
+     *         if the task to add is a duplicate of an existing task in the list.
      */
     public void add(Task toAdd) throws DuplicateTaskException {
         assert toAdd != null;
         if (contains(toAdd)) {
             throw new DuplicateTaskException();
         }
-        internalList.add(toAdd);
+        internalList.add(0, toAdd);
     }
 
     /**
      * Updates the task in the list at position {@code index} with {@code editedTask}.
      * @throws DuplicateTaskException
-     *             if updating the task's details causes the task to be equivalent to another existing task in the list.
+     *         if updating the task's details causes the task to be equivalent to another existing task in the list.
      * @throws IndexOutOfBoundsException
-     *             if {@code index} < 0 or >= the size of the list.
+     *         if {@code index} < 0 or >= the size of the list.
      */
     public void updateTask(int index, ReadOnlyTask editedTask) throws DuplicateTaskException {
         assert editedTask != null;
@@ -65,13 +65,14 @@ public class UniqueTaskList implements Iterable<Task> {
         // class.
         // Then, TaskCard should then bind its text labels to those observable
         // properties.
-        internalList.set(index, taskToUpdate);
+        internalList.remove(index);
+        internalList.add(0, taskToUpdate);
     }
 
     /**
      * Removes the equivalent task from the list.
      * @throws TaskNotFoundException
-     *             if no such task could be found in the list.
+     *         if no such task could be found in the list.
      */
     public boolean remove(ReadOnlyTask toRemove) throws TaskNotFoundException {
         assert toRemove != null;

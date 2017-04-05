@@ -28,8 +28,8 @@ public class EditCommandParser {
 
     // @@author A0140538J
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand and returns
-     * an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditCommand and returns an EditCommand object
+     * for execution.
      */
     public Command parse(String args) {
 
@@ -39,6 +39,7 @@ public class EditCommandParser {
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
 
         try {
+            args = DateMarkerParser.replaceMarkersWithPrefix(args);
             argsTokenizer.tokenize(args);
 
             List<Optional<String>> preambleFields = ParserUtil.splitPreamble(argsTokenizer.getPreamble().orElse(""), 2);

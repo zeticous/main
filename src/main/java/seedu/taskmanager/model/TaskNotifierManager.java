@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.model;
 
 import java.util.Date;
@@ -27,7 +28,8 @@ public class TaskNotifierManager implements TaskNotifier {
 
         try {
             dateHelper = setDateHelper();
-        } catch (IllegalValueException ive) {}
+        } catch (IllegalValueException ive) {
+        }
 
     }
 
