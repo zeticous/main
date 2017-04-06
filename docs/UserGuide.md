@@ -45,7 +45,7 @@ By : `Team POTATO`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbs
 
 **Format:** `help`
 
-> Help is also shown if you enter an incorrect command e.g. `abcd` <br>
+> Help is shown if you enter an incorrect command e.g. `abcd` <br>
 
 ### 2.2. Creating a task: `add`
 
@@ -57,17 +57,18 @@ The date expression can be in standard language. <br>
 **For example:** <br>
 
 * Formal dates:          [02/28/1979] <br>
-* Relaxed dates:         [ oct 1st  ]<br>
-* Relative dates: [the day before next thursday] <br>
-* Date alternatives:     [ next wed ]<br>
+* Relaxed dates:         [oct 1st]<br>
+* Relative dates:        [next week] <br>
+* Dates not accepted:    [next wed 9pm]<br>
 
 **Accepted Start Markers :** `'from', 's/'` <br>
 **Accepted End Markers :** `'at', 'to', 'by', 'e/'` <br>
-**Aceepted Tag Markers :** `t/` <br>
+**Accepted Tag Markers :** `t/` <br>
 
 **Note:** <br>
-> * `Time for a task will only be shown if it is specifically specified in the command itself. Otherwise, not time will be shown. For example, 12pm, 1400, 2.30pm.` <br>
-> * `The start date specified must also be before the end date.` <br>
+> * Time for a task will only be shown if it is specified in the command itself. Otherwise, time will not be shown. For example, 12pm, 1400, 2.30pm. <br>
+> * The start date specified must also be before the end date. <br>
+> * The tag should be one word long only i.e. there should be no spaces in a specific tag. For example, tags such as 'very urgent' will nto be accepted as the tag is not one word. However, there can be more than one tag. <br>
 
 **Event format:** <br>
 `add <TASK_NAME> [<START_DATE_MARKER> <DATE_START_TIME>] [<END_DATE_MARKER> <DATE_END_TIME>] [t/ TAG_NAME]...`<br>
@@ -94,14 +95,14 @@ This will add a deadline named 'report submission' with [DATE_DUE_TIME] as the f
 This command will simply add a floating task named 'confess to love'. <br>
 
 **Note:** <br>
-> `The command to add a task will not be accepted if it only specifies the start attributes in a task. To understand more, please refer to FAQ section in the end.` <br>
+> The command to add a task will not be accepted if it only specifies the start attributes in a task. To understand more, please refer to the FAQ section in the end. <br>
      
 
 ### 2.3. Listing tasks : `list`
 
 Shows a list of tasks which can include all tasks, only events, only deadlines or only floating tasks. The tasks can also be further filtered given a specified date. Several examples are given below for further clarification. <br>
 
-**Format:** 'list <  done / undone / floating / event / deadline > [DATE]'  <br>
+**Format:** `list  [done / undone / floating / event / deadline] [DATE]`  <br>
 
 **Example:** <br>
 > list <br>
@@ -126,7 +127,9 @@ This command will simply display all the tasks that have been marked as undone.<
 
 
 **Note:**
-> When listing tasks with an event type parameter and a date, only the event type tasks which have a start date or event date corresponding to the date in command will be displayed. When listing tasks with a deadline type parameter and a date, only the deadline type tasks which have a due date corresponding to the date in command will be displayed. <br>
+> * When listing tasks with an event type parameter and a date, only the event type tasks which have a start date or event date corresponding to the date in command will be displayed. <br>
+> * When listing tasks with a deadline type parameter and a date, only the deadline type tasks which have a due date corresponding to the date in command will be displayed. <br>
+> * When listing done or undone tasks, [DATE] paramter will not be accepted. Therefore, [done/undone] cannot work along with [DATE]. <br>
 
 
 ### 2.4. Updating a task : `edit`
@@ -151,7 +154,7 @@ This command will edit the task at index number 3 with a new name, new start dat
 
 This command will edit the task at index number 4 with new name, new end date and time. At least one of the [PARAMETERS] must be executed. <br>
                
-**Floating task format:** `edit <index> <NEW_TASK_NAME>` <br>
+**Floating task format:** `edit <index> [NEW_TASK_NAME] [t/ TAG_NAME]` <br>
 
 **Example:** <br>
 > edit 5 edited_floating_task <br>
@@ -159,20 +162,25 @@ This command will edit the task at index number 4 with new name, new end date an
 This command will simply edit the task at index number 5 with new name. <br>
 
 ### **Changing a task type** <br>
-It is also possible too change a task type using the edit command. To remove a start type and end date, replace the date parameter with the command 'remove'. Editing a dealdine with an addtional start date will create an event with the new start date and the orginal due date as end date. Editing an event with start date and end date removed will result in the event to turn into a floating task.  <br>
+It is also possible to change a task type using the edit command. To remove a start type and end date, replace the date parameter with the command 'remove'. Editing a dealdine with an addtional start date will create an event with the new start date and the orginal due date as end date. Editing an event with start date and end date removed will result in the event to turn into a floating task.  <br>
+
+**Format:**  <br>
+`edit <index> [NEW_TASK_NAME] [<START_MARKER> <DATE_START_TIME/remove>] [<END_DATE_MARKER> <DATE_END_TIME/remove>] [t/ TAG_NAME]`<br>
 
 **Example:** <br>
 > edit 5 project evaluation s/25th April <br>
 
-This command will update the task 'project evaluation' which was a deadline task with end date only and make it an event task with start date as '25th April' and the end date as the old deadline date itself. At least one of the [PARAMETERS] must be executed. <br>
+This command will update the task 'project evaluation' which was a deadline task with end date only and make it an event task with start date as '25th April' and the end date as the old deadline date itself. <br>
 
-> edit 4 exercise regularly remove <br>
+> edit 4 exercise regularly s/remove <br>
 
-This command will edit the task 'exercise regularly' by removing the dates added previously with this task. Thus, making it a floating task from an event type task. At least one of the [PARAMETERS] must be executed. <br>
+This command will edit the task 'exercise regularly' by removing the dates added previously with this task. Thus, making it a floating task from an event type task. <br>
 
 **Note:**<br>
-> * `If a task only has the start attributes (after the edit command), it will not be accepted by pota-todo. To understand more, please refer to the FAQ section in the end.` <br>
-> * `The start date specified must be before the end date.`<br>
+> * In order to remove the dates, we have to follow the format 's/remove' and/or 'e/remove'. Any other format will not work with 'remove'. <br>
+> * If a task only has the start attributes (after the edit command), it will not be accepted by pota-todo. To understand more, please refer to the FAQ section in the end. <br>
+> * The start date specified must be before the end date. <br>
+> * The tag should be one word long only i.e. there should be no spaces in a specific tag. For example, tags such as 'very urgent' will nto be accepted as the tag is not one word. However, there can be more than one tag. <br>
 
 ### 2.5. Searching for all tasks containing a name : `find`
 
@@ -230,7 +238,7 @@ This command will dislay a green colour next to the task at index number 4 indic
 Undo the previous command executed. There is no limit to the number of undo actions that the task manager can execute. <br>
 
 **Note:** <br>
-> The undo command can be used only by the {add,mark,edit,clear} commands. <br>
+> The undo command can only undo {add,mark,edit,clear} commands. <br>
 
 **Format:** `undo` <br>
 
@@ -245,7 +253,7 @@ The first command will add the floating task 'meeting with professor'. The secon
 Execute the command undone by the previous undo command. Redo will basically undo the previous 'undo' command. Redo can be executed as many times as the 'undo' command execute right before the start of 'redo' command. However, there is no limit to the number of redo actions that the task manager can execute since there is no limit to the number of undo actions.<br>
 
 **Note:** <br>
-> The redo command can be used only by the {add,mark,edit,clear} commands. <br>
+> The redo command can only redo the undo of {add,mark,edit,clear} commands. <br>
 
 **Format:** `redo` <br>
 
@@ -270,13 +278,14 @@ This command will display a clock icon on the top right of the tasks which are e
 
 **Note:** <br>
 > There is no limit to the time period. It can be 3 days or 1 week or 4 months or 123 years. <br>
+> The set command only accepts relative dates. <br>
 
 
 ### 2.11. Changing the Filepath : `filepath`
 
 Changes the save file directory. <br>
 
-**Format:** `filepath [FILE_DIRECTORY]` <br>
+**Format:** `filepath <FILE_DIRECTORY>` <br>
 
 **Example:** <br>
 > filepath potato.xml <br>
@@ -295,8 +304,8 @@ Exits the program.<br>
 
 
 ### 2.13. Saving the data
-Task manager data are saved in the hard disk automatically after any command that changes the data.<br>
-There is no need to save manually. <br>
+Task manager data are saved in the hard disk automatically after any mutating command, {add,mark,edit,clear}, which changes the data.<br>
+Therefore, there is no need to save manually. <br>
 
 
 ## 3. FAQ
@@ -310,56 +319,77 @@ There is no need to save manually. <br>
 > * Deadlines: End Date Only
 > * Floating: No dates 
 <br>
-
 As there are no valid task types with only a start date attribute, it is not accepted. <br>
 
+**Q:** Why is that after I edit a task, which falls within the notification period, the notification icon does not appear at the top right of that task. How can I overcome this?
+**A:** In order for the notification icon to appear on the top right of an edited task, the task manager has to be restarted i.e. close and open again.
 
 ## 4. Command Summary
 
-* **Create an event** : `add <TASK_NAME> [<s/>DATE_START_TIME] [<e/>DATE_END_TIME]` <br>
-  e.g. `add birthday party s/1/1/2088 1200 e/1/1/2088 1230`
+* **Create an event** : <br>
+  `add <TASK_NAME> [<START_DATE_MARKER> <DATE_START_TIME>] [<END_DATE_MARKER> <DATE_END_TIME>] [t/ TAG_NAME]...` <br>
+   e.g. add birthday party s/1/1/2088 1200 e/1/1/2088 1230
  
-* **Create a deadline** : `add <TASK_NAME> [<e/>DATE_DUE_TIME]` <br>
-  e.g. `add homework e/1/1/2088 1200`
+* **Create a deadline** : <br>
+  `add <TASK_NAME> [END_DATE_MARKER] [DATE_DUE_TIME] [t/ TAG_NAME]...` <br>
+   e.g. add homework e/1/1/2088 1200
   
-* **Create a floating task** : `add <TASK_NAME>` <br>
-  e.g. `add stay_healthy`
+* **Create a floating task** : <br>
+   `add <TASK_NAME> [t/ TAG_NAME]...` <br>
+    e.g. add stay_healthy 
   
-* **Edit Event format** : `edit  <index> [NEW_TASK_NAME] [<s/>NEW_DATE_NEW_START_TIME] [<e/>NEW_DATE_NEW_END_TIME]` <br>
-            e.g. `edit 3 edited_event s/01/01/2088 1200 e/01/01/2088 1230`
+* **Edit Event format** : <br>
+   `edit <index> [TASK_NAME] [<START_MARKER> <DATE_START_TIME>] [<END_DATE_MARKER> <DATE_END_TIME>] [t/ TAG_NAME]` <br>
+    e.g. edit 3 edited_event s/01/01/2088 1200 e/01/01/2088 1230
             
-* **Edit Deadline format** : `edit <index> [NEW_TASK_NAME] [<e/>NEW_DATE_NEW_DUE_TIME]` <br>
-               e.g. `edit 4 edited_deadline e/01/01/2088 1200`
+* **Edit Deadline format** : <br>
+   `edit <index> [TASK_NAME] [<END_DATE_MARKER> <DATE_END_TIME>] [t/ TAG_NAME]` <br>
+    e.g. edit 4 edited_deadline e/01/01/2088 1200
                
-* **Edit Floating task format** : `edit <index> [NEW_TASK_NAME]` <br>
-                   e.g. `edit 5 edited_floating_task`
-                   
-* **Delete** : `delete <INDEX>` <br>
-   e.g. `delete 1`
+* **Edit Floating task format** : <br>
+   `edit <index> [NEW_TASK_NAME] [t/ TAG_NAME] ` <br>
+    e.g. edit 5 edited_floating_task
 
-* **Search** : `find <NAME> ` <br>
-  e.g. `find meeting` `find NUS` 
-
-* **List** : `list` <br>
-  e.g. `list`
-
-* **Help** : `help` <br>
-  e.g. `help`
-
-* **Mark Tasks as Done/Undone** : `mark <INDEX> <done/undone>` <br>
-   e.g. `mark 2 done` `mark 5 undone`
-
-* **Undo a command** : `undo` <br>
-   e.g. `undo`
-
-* **Redo a command** : `redo` <br>
-   e.g. `redo`
-
-* **Setting notification period** : `set` <br>
-   e.g. `set 4 days`
+* **Changing a task type** : <br>
+`edit <index> [NEW_TASK_NAME] [<START_MARKER> <DATE_START_TIME/remove>] [<END_DATE_MARKER> <DATE_END_TIME/remove>] [t/ TAG_NAME]`<br>
+   e.g. edit 5 project evaluation s/remove
    
-* **Changing the filepath** : `filepath [FILE_DIRECTORY]` <br>
-   e.g. `filepath tomato.xml`
+* **Delete** : <br>
+   `delete <INDEX>` <br>
+   e.g. delete 1
+
+* **Search** : <br>
+   `find <NAME> ` <br>
+   e.g. find meeting, find NUS
+
+* **List** : <br>
+   `list  [done / undone / floating / event / deadline] [DATE]` <br>
+    e.g. list
+
+* **Help** : <br>
+   `help` <br>
+    e.g. help
+
+* **Mark Tasks as Done/Undone** : <br>
+   `mark <INDEX> <done/undone>` <br>
+   e.g. mark 2 done, mark 5 undone
+
+* **Undo a command** : <br>
+   `undo` <br>
+   e.g. undo
+
+* **Redo a command** : <br>
+   `redo` <br>
+   e.g. redo
+
+* **Setting notification period** : <br>
+   `set <TIME_PERIOD>` <br>
+   e.g. set 4 days
    
-* **Exit** : `exit` <br>
-   e.g. `exit`
+* **Changing the filepath** : <br>
+   `filepath <FILE_DIRECTORY>` <br>
+   e.g. filepath tomato.xml
+   
+* **Exit** : <br>
+   `exit` <br>
+   e.g. exit
