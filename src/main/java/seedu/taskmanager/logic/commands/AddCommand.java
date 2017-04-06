@@ -30,7 +30,9 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to PotaTodo. "
             + "Parameters: NAME [s/START_DATE_TIME] [e/END_DATE_TIME] [t/TAG]...\n" + "Example: " + COMMAND_WORD
             + " Meeting s/ 1 May 2017 6pm e/ 1 May 2017 7pm t/important";
-    public static final String MESSAGE_CONFLICT = "*** The task added is in conflict with the following tasks *** ";
+
+    public static final String MESSAGE_CONFLICT = 
+            "*** The task added is in conflict with the following tasks *** ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
