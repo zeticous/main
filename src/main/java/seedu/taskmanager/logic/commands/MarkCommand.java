@@ -1,4 +1,3 @@
-//@@author A0140538J
 
 package seedu.taskmanager.logic.commands;
 
@@ -9,6 +8,10 @@ import seedu.taskmanager.model.task.ReadOnlyTask;
 import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.UniqueTaskList;
 
+// @@author A0140538J
+/**
+ * Marks a task done or undone.
+ */
 public class MarkCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
@@ -20,6 +23,9 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Marked Task: %1$s";
     public static final String MESSAGE_ALREADY_DONE = "This task is already marked as done.";
     public static final String MESSAGE_ALREADY_UNDONE = "This task is already marked as undone.";
+
+    // Used for unexpected exceptions that needs re-implementation
+    public static final String MESSAGE_GENERIC_ERROR = "MarkCommand Error";
 
     public static final String DONE_STRING = "done";
     public static final String UNDONE_STRING = "undone";
@@ -58,7 +64,7 @@ public class MarkCommand extends Command {
             Task markedTask = createMarkedTask(toBeMarked);
             model.updateTask(targetIndex, markedTask);
         } catch (UniqueTaskList.DuplicateTaskException dpe) {
-            throw new CommandException("lol");
+            throw new CommandException(MESSAGE_GENERIC_ERROR);
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toBeMarked));

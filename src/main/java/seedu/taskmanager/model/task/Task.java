@@ -1,11 +1,16 @@
 
 package seedu.taskmanager.model.task;
 
+import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
 import seedu.taskmanager.commons.util.CollectionUtil;
+import seedu.taskmanager.commons.util.NotificationUtil;
+import seedu.taskmanager.logic.parser.DateTimeUtil;
+//import seedu.taskmanager.model.TaskNotifier;
+import seedu.taskmanager.model.TaskNotifierManager;
 import seedu.taskmanager.model.tag.UniqueTagList;
 
 /**
@@ -14,25 +19,14 @@ import seedu.taskmanager.model.tag.UniqueTagList;
 public class Task implements ReadOnlyTask {
 
     private Name name;
+    // @@author A0140417R
     private Optional<TaskDate> startDate, endDate;
     private UniqueTagList tags;
     private boolean isDoneStatus;
+    private boolean isDueSoonStatus;
 
-    /**
-     * Every field must be present and not null.
-     */
-    // @@author A0140538J
-    public Task(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags) {
-        assert !CollectionUtil.isAnyNull(name, tags);
-        this.name = name;
-        this.startDate = Optional.ofNullable(startDate);
-        this.endDate = Optional.ofNullable(endDate);
-        this.tags = new UniqueTagList(tags); // protect internal tags from
-                                             // changes in the arg list
-        this.isDoneStatus = false;
-    }
-
-    public Task(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags, boolean status) {
+    public Task(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags, boolean status,
+            boolean dueSoonStatus) {
         assert !CollectionUtil.isAnyNull(name, tags);
         this.name = name;
         this.startDate = Optional.ofNullable(startDate);
@@ -40,42 +34,33 @@ public class Task implements ReadOnlyTask {
         this.tags = new UniqueTagList(tags); // protect internal tags from
                                              // changes in the arg list
         this.isDoneStatus = status;
-    }
-    // @@author
-
-    public Task(Name name, UniqueTagList tags) throws IllegalValueException {
-        this.name = name;
-        this.startDate = Optional.empty();
-        this.endDate = Optional.empty();
-        this.tags = new UniqueTagList(tags); // protect internal tags from
-                                             // changes in the arg list
-        this.isDoneStatus = false;
+        this.isDueSoonStatus = dueSoonStatus;
     }
 
-    /**
-     * Creates task based on optional startDate and endDate
-     *
-     * @param name
-     * @param startDate
-     * @param endDate
-     * @param tags
-     * @throws IllegalValueException
-     */
-    public Task(Name name, Optional<TaskDate> startDate, Optional<TaskDate> endDate, UniqueTagList tags)
-            throws IllegalValueException {
-        this(name, startDate.orElse(null), endDate.orElse(null), tags);
-        this.isDoneStatus = false;
+    public Task(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags, boolean status) {
+        this(name, startDate, endDate, tags, status, false);
+        setDueSoonStatus();
+    }
+
+    // @@author A0140538J
+    public Task(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags) {
+        this(name, startDate, endDate, tags, false);
+    }
+
+    public Task(Name name, UniqueTagList tags) {
+        this(name, null, null, tags, false);
+    }
+
+    public Task(Name name, Optional<TaskDate> startDate, Optional<TaskDate> endDate, UniqueTagList tags) {
+        this(name, startDate.orElse(null), endDate.orElse(null), tags, false);
     }
 
     /**
      * Creates a copy of the given ReadOnlyTask.
      */
     public Task(ReadOnlyTask source) {
-        this.name = source.getName();
-        this.startDate = Optional.ofNullable(source.getStartDate());
-        this.endDate = Optional.ofNullable(source.getEndDate());
-        this.tags = source.getTags();
-        this.isDoneStatus = source.isDone();
+        this(source.getName(), source.getStartDate(), source.getEndDate(), source.getTags(), source.isDone(),
+                source.isDueSoon());
     }
 
     public void setName(Name name) {
@@ -88,9 +73,27 @@ public class Task implements ReadOnlyTask {
         return name;
     }
 
+    // @@author A0140417R
+    public void setStartDate(TaskDate taskDate) {
+        this.startDate = Optional.ofNullable(taskDate);
+    }
+
     @Override
     public TaskDate getStartDate() {
         return startDate.orElse(null);
+    }
+
+    public void removeStartDate() {
+        this.startDate = Optional.empty();
+    }
+
+    @Override
+    public boolean hasStartDate() {
+        return startDate.isPresent();
+    }
+
+    public void setEndDate(TaskDate taskDate) {
+        this.endDate = Optional.ofNullable(taskDate);
     }
 
     @Override
@@ -98,25 +101,8 @@ public class Task implements ReadOnlyTask {
         return endDate.orElse(null);
     }
 
-    public void setStartDate(TaskDate taskDate) {
-        this.startDate = Optional.ofNullable(taskDate);
-    }
-
-    public void setEndDate(TaskDate taskDate) {
-        this.endDate = Optional.ofNullable(taskDate);
-    }
-
-    public void removeStartDate() {
-        this.startDate = Optional.empty();
-    }
-
     public void removeEndDate() {
         this.endDate = Optional.empty();
-    }
-
-    @Override
-    public boolean hasStartDate() {
-        return startDate.isPresent();
     }
 
     @Override
@@ -142,6 +128,50 @@ public class Task implements ReadOnlyTask {
     public boolean isValidTask() {
         return isFloating() || isDeadline()
                 || (isEvent() && startDate.get().getTaskDate().before(endDate.get().getTaskDate()));
+    }
+
+    // @@author A0140538J
+    public void setDoneStatus(boolean status) {
+        this.isDoneStatus = status;
+    }
+
+    @Override
+    public boolean isDone() {
+        return isDoneStatus;
+    }
+
+    public void setDueSoonStatus() {
+        // TODO to be fixed later
+        Date notificationDate = NotificationUtil.getNotificationDate();
+        if (notificationDate == null) {
+            try {
+                notificationDate = DateTimeUtil.parseDateTime(TaskNotifierManager.DEFAULT_NOTIFICATION).getTaskDate();
+            } catch (IllegalValueException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        if (this.hasStartDate()) {
+            if (getStartDate().getTaskDate().before(notificationDate)) {
+                this.isDueSoonStatus = true;
+                return;
+            }
+        }
+
+        if (this.hasEndDate()) {
+            if (getEndDate().getTaskDate().before(notificationDate)) {
+                this.isDueSoonStatus = true;
+                return;
+            }
+        }
+
+        this.isDueSoonStatus = false;
+    }
+
+    @Override
+    public boolean isDueSoon() {
+        return isDueSoonStatus;
     }
     // @@author
 
@@ -187,16 +217,6 @@ public class Task implements ReadOnlyTask {
     @Override
     public String toString() {
         return getAsText();
-    }
-
-    // @@author A0140538J
-    @Override
-    public boolean isDone() {
-        return isDoneStatus;
-    }
-
-    public void setDoneStatus(boolean status) {
-        this.isDoneStatus = status;
     }
 
 }

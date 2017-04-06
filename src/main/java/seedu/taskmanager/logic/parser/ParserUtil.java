@@ -55,7 +55,6 @@ public class ParserUtil {
 
     /**
      * Splits a preamble string into ordered fields.
-     *
      * @return A list of size {@code numFields} where the ith element is the ith field value if specified in the input,
      *         {@code Optional.empty()} otherwise.
      */
@@ -78,7 +77,20 @@ public class ParserUtil {
      */
     public static Optional<TaskDate> parseTaskDate(Optional<String> date) throws IllegalValueException {
         assert date != null;
-        return date.isPresent() ? Optional.of(new TaskDate(DateTimeUtil.parseDateTime(date.get()))) : Optional.empty();
+        return date.isPresent() ? Optional.of(DateTimeUtil.parseDateTime(date.get())) : Optional.empty();
+    }
+
+    // @@author A0130277L
+    // TaskDate parser for start dates only
+    public static Optional<TaskDate> parseStartTaskDate(Optional<String> date) throws IllegalValueException {
+        assert date != null;
+        return date.isPresent() ? Optional.of(DateTimeUtil.parseStartDateTime(date.get())) : Optional.empty();
+    }
+
+    // TaskDate parser for end dates only
+    public static Optional<TaskDate> parseEndTaskDate(Optional<String> date) throws IllegalValueException {
+        assert date != null;
+        return date.isPresent() ? Optional.of(DateTimeUtil.parseEndDateTime(date.get())) : Optional.empty();
     }
     // @@author
 

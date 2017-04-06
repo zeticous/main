@@ -1,8 +1,7 @@
-//@@author A0140538J
+// @@author A0130277L
 
 package seedu.taskmanager.model.task;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import seedu.taskmanager.logic.parser.DateTimeUtil;
@@ -14,30 +13,33 @@ import seedu.taskmanager.logic.parser.DateTimeUtil;
 public class TaskDate {
 
     private final Date taskDate;
+    private final boolean hasTime;
 
-    public TaskDate(Date date) {
+    public TaskDate(Date date, boolean hasTime) {
         assert date != null;
         this.taskDate = date;
+        this.hasTime = hasTime;
+    }
+
+    public boolean hasTime() {
+        return hasTime;
     }
 
     public Date getTaskDate() {
         return taskDate;
     }
 
-    public String getOnlyDate() {
-        Calendar c = Calendar.getInstance();
-        c.setTime(taskDate);
-
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        int month = c.get(Calendar.MONTH);
-        int year = c.get(Calendar.YEAR);
-
-        return Integer.toString(day) + Integer.toString(month) + Integer.toString(year);
-    }
-
+    // toString method for taskDate
+    // @return date with no time element if there is no explicit time
     @Override
     public String toString() {
-        return DateTimeUtil.getStringFromDate(taskDate);
+        String toBeDisplayed;
+        if (hasTime == false) {
+            toBeDisplayed = DateTimeUtil.getOnlyDateStringFromDate(taskDate);
+        } else {
+            toBeDisplayed = DateTimeUtil.getStringFromDate(taskDate);
+        }
+        return toBeDisplayed;
     }
 
     @Override
@@ -46,7 +48,7 @@ public class TaskDate {
         return other == this // short circuit if same object
                 || (other instanceof TaskDate // instanceof handles nulls
                         && this.taskDate.equals(((TaskDate) other).taskDate)); // state
-                                                                               // check
+        // check
     }
 
     @Override

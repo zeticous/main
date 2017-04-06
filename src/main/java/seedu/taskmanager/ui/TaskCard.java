@@ -3,6 +3,7 @@ package seedu.taskmanager.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -33,7 +34,10 @@ public class TaskCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label taskType;
-
+    // @@author A0140538J
+    @FXML
+    private ImageView notificationIcon;
+    // @@author A0140417R
     @FXML
     private FlowPane tags;
 
@@ -66,7 +70,6 @@ public class TaskCard extends UiPart<Region> {
 
     /**
      * Prints the task in correct format.
-     *
      * @param task
      */
     private void taskSelector(ReadOnlyTask task) {
@@ -84,13 +87,21 @@ public class TaskCard extends UiPart<Region> {
             startDate.setText("Start: " + task.getStartDate().toString());
             endDate.setText("End: " + task.getEndDate().toString());
             taskType.setText("Event");
+
         } else {
             deleteLabel(startDate);
             deleteLabel(endDate);
             taskType.setText("Error");
         }
+
+        // @@author A0140538J
+        if (!task.isDueSoon()) {
+            notificationIcon.setVisible(false);
+        }
+
     }
 
+    // @@author A0140417R
     private void deleteLabel(Label label) {
         labelContainer.getChildren().remove(label);
     }

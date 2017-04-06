@@ -1,26 +1,26 @@
-//@@author A0140538J
 
 package seedu.taskmanager.logic.parser;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.taskmanager.commons.exceptions.IllegalValueException;
 import seedu.taskmanager.logic.commands.Command;
 import seedu.taskmanager.logic.commands.IncorrectCommand;
 import seedu.taskmanager.logic.commands.ListCommand;
 
+// @@author A0140538J
+/**
+ * Parses input arguments and creates a new ListCommand object
+ */
 public class ListCommandParser {
 
     /**
      * Parses the given argument in the context of the ListCommand and returns an ListCommand object for execution.
-     *
-     * @throws IllegalValueException
      */
     public Command parse(String arg) {
 
         String modifiedArg = arg.trim();
 
-        ListArguments argumentChecker = new ListArguments(modifiedArg);
+        ListArgumentsUtil argumentChecker = new ListArgumentsUtil(modifiedArg);
         if (!argumentChecker.acceptedWords.contains(modifiedArg) && argumentChecker.isDate == false) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
@@ -29,12 +29,12 @@ public class ListCommandParser {
             return new ListCommand(modifiedArg);
         }
 
-        if (modifiedArg.contains(ListArguments.FLOATING_TASK_STRING)) {
-            return new ListCommand(formatArgs(modifiedArg, ListArguments.FLOATING_TASK_STRING));
-        } else if (modifiedArg.contains(ListArguments.DEADLINE_STRING)) {
-            return new ListCommand(formatArgs(modifiedArg, ListArguments.DEADLINE_STRING));
-        } else if (modifiedArg.contains(ListArguments.EVENT_STRING)) {
-            return new ListCommand(formatArgs(modifiedArg, ListArguments.EVENT_STRING));
+        if (modifiedArg.contains(ListArgumentsUtil.FLOATING_TASK_STRING)) {
+            return new IncorrectCommand(ListCommand.MESSAGE_FLOATING_NO_DATE);
+        } else if (modifiedArg.contains(ListArgumentsUtil.DEADLINE_STRING)) {
+            return new ListCommand(formatArgs(modifiedArg, ListArgumentsUtil.DEADLINE_STRING));
+        } else if (modifiedArg.contains(ListArgumentsUtil.EVENT_STRING)) {
+            return new ListCommand(formatArgs(modifiedArg, ListArgumentsUtil.EVENT_STRING));
         }
 
         return new ListCommand(modifiedArg);

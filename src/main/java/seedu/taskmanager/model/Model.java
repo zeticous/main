@@ -21,8 +21,6 @@ public interface Model {
     /** Returns the TaskManager */
     ReadOnlyTaskManager getTaskManager();
 
-    void changeFilePath(String newPath);
-
     /** Deletes the given task. */
     void deleteTask(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
 
@@ -31,13 +29,28 @@ public interface Model {
 
     /**
      * Updates the task located at {@code filteredTaskListIndex} with {@code editedTask}.
-     *
      * @throws DuplicateTaskException
      *         if updating the task's details causes the task to be equivalent to another existing task in the list.
      * @throws IndexOutOfBoundsException
      *         if {@code filteredTaskListIndex} < 0 or >= the size of the filtered list.
      */
     void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask) throws UniqueTaskList.DuplicateTaskException;
+
+    // @@author A0140417R
+    void loadPreviousState() throws ArrayIndexOutOfBoundsException;
+
+    void loadNextState() throws ArrayIndexOutOfBoundsException;
+
+    void saveState(String commandString);
+
+    void changeFilePath(String newPath);
+
+    // @@author A0140538J
+    /**
+     * Sets a visual notification for tasks expiring within the stipulated time.
+     */
+    void setNotification(String duration);
+    // @@author
 
     /**
      * Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>}
@@ -55,18 +68,11 @@ public interface Model {
     /**
      * Updates the filter of the filtered task list to filter by the given task type or date
      */
-    void updateFilteredTaskListByTaskTypeOrDate(String taskType);
+    void updateFilteredTaskListByOneFilter(String taskType);
 
     /**
      * Updates the filter of the filtered task list to filter by the given task type and date
      */
     void updateFilteredTaskListByTaskTypeAndDate(String[] taskTypeAndDate);
 
-    // @@author A0140417R
-    void loadPreviousState() throws ArrayIndexOutOfBoundsException;
-
-    void loadNextState() throws ArrayIndexOutOfBoundsException;
-
-    void saveState(String commandString);
-    // @@author
 }

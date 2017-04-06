@@ -42,7 +42,6 @@ public class TaskListPanelHandle extends GuiHandle {
 
     /**
      * Returns true if the list is showing the task details correctly and in correct order.
-     *
      * @param tasks
      *        A list of task in the correct order.
      */
@@ -52,7 +51,6 @@ public class TaskListPanelHandle extends GuiHandle {
 
     /**
      * Returns true if the list is showing the task details correctly and in correct order.
-     *
      * @param startPosition
      *        The starting position of the sub list.
      * @param tasks
@@ -106,7 +104,7 @@ public class TaskListPanelHandle extends GuiHandle {
     }
 
     public TaskCardHandle navigateToTask(String name) {
-        guiRobot.sleep(500); // Allow a bit of time for the list to be updated
+        guiRobot.sleep(3000); // Allow a bit of time for the list to be updated
         final Optional<ReadOnlyTask> task =
                 getListView().getItems().stream().filter(p -> p.getName().fullName.equals(name)).findAny();
         if (!task.isPresent()) {

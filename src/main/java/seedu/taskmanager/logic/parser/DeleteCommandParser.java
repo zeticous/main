@@ -15,7 +15,7 @@ import seedu.taskmanager.logic.commands.IncorrectCommand;
 public class DeleteCommandParser {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand and returns an DeleteCommand
+     * Parses the given {@code String} of arguments in the context of the DeleteCommand and returns a DeleteCommand
      * object for execution.
      */
     public Command parse(String args) {

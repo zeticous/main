@@ -21,6 +21,7 @@ import seedu.taskmanager.logic.commands.IncorrectCommand;
 import seedu.taskmanager.logic.commands.ListCommand;
 import seedu.taskmanager.logic.commands.MarkCommand;
 import seedu.taskmanager.logic.commands.RedoCommand;
+import seedu.taskmanager.logic.commands.SetNotificationCommand;
 import seedu.taskmanager.logic.commands.UndoCommand;
 
 /**
@@ -35,7 +36,6 @@ public class Parser {
 
     /**
      * Parses user input into command for execution.
-     *
      * @param userInput
      *        full user input string
      * @return the command based on the user input
@@ -76,7 +76,7 @@ public class Parser {
             return new HelpCommand();
 
         case FilepathCommand.COMMAND_WORD:
-            return new FilepathCommand(arguments);
+            return new FilepathCommandParser().parse(arguments);
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
@@ -86,6 +86,9 @@ public class Parser {
 
         case MarkCommand.COMMAND_WORD:
             return new MarkCommandParser().parse(arguments);
+
+        case SetNotificationCommand.COMMAND_WORD:
+            return new SetNotificationCommandParser().parse(arguments);
 
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);

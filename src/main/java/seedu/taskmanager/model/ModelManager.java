@@ -29,6 +29,7 @@ public class ModelManager extends ComponentManager implements Model {
     private static final String STRING_INITIAL = "Initial";
 
     private final TaskManager taskManager;
+    private final TaskNotifier taskNotifier;
     private final FilteredList<ReadOnlyTask> filteredTasks;
     private final TaskManagerStateManager stateManager;
 
@@ -41,6 +42,9 @@ public class ModelManager extends ComponentManager implements Model {
 
         logger.fine("Initializing with task manager: " + taskManager + " and user prefs " + userPrefs);
 
+        // @@author A0140538J
+        this.taskNotifier = new TaskNotifierManager(userPrefs);
+        // @@author
         this.taskManager = new TaskManager(taskManager);
         filteredTasks = new FilteredList<>(this.taskManager.getTaskList());
         TaskManagerState initState = new TaskManagerState(taskManager, STRING_INITIAL);
@@ -53,13 +57,6 @@ public class ModelManager extends ComponentManager implements Model {
         this(new TaskManager(), new UserPrefs());
     }
 
-    // @@author A0140417R
-    @Override
-    public void saveState(String commandString) {
-        stateManager.addState(new TaskManagerState(taskManager, commandString));
-    }
-    // @@author
-
     @Override
     public void resetData(ReadOnlyTaskManager newData) {
         taskManager.resetData(newData);
@@ -70,13 +67,6 @@ public class ModelManager extends ComponentManager implements Model {
     public ReadOnlyTaskManager getTaskManager() {
         return taskManager;
     }
-
-    // @@author A0140417R
-    @Override
-    public void changeFilePath(String newPath) {
-        raise(new FilePathChangedEvent(newPath));
-    }
-    // @@author
 
     /** Raises an event to indicate the model has changed */
     private void indicateTaskManagerChanged() {
@@ -118,6 +108,22 @@ public class ModelManager extends ComponentManager implements Model {
         taskManager.resetData(stateManager.getNextState().getTaskManager());
         indicateTaskManagerChanged();
     }
+
+    @Override
+    public void saveState(String commandString) {
+        stateManager.addState(new TaskManagerState(taskManager, commandString));
+    }
+
+    @Override
+    public void changeFilePath(String newPath) {
+        raise(new FilePathChangedEvent(newPath));
+    }
+
+    // @@author A0140538J
+    @Override
+    public void setNotification(String duration) {
+        taskNotifier.setNotification(duration);
+    }
     // @@author
 
     // =========== Filtered Task List Accessors
@@ -140,8 +146,8 @@ public class ModelManager extends ComponentManager implements Model {
 
     // @@author A0140538J
     @Override
-    public void updateFilteredTaskListByTaskTypeOrDate(String taskType) {
-        updateFilteredTaskList(new PredicateExpression(new TypeQualifier(taskType)));
+    public void updateFilteredTaskListByOneFilter(String filter) {
+        updateFilteredTaskList(new PredicateExpression(new OneFilterQualifier(filter)));
     }
 
     @Override
@@ -211,32 +217,38 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     // @@author A0140538J
-    private class TypeQualifier implements Qualifier {
-        private String taskType;
+    private class OneFilterQualifier implements Qualifier {
+        private String filter;
 
-        TypeQualifier(String taskType) {
-            this.taskType = taskType;
+        OneFilterQualifier(String filter) {
+            this.filter = filter;
         }
 
         @Override
         public boolean run(ReadOnlyTask task) {
-            switch (taskType) {
+            switch (filter) {
             case "floating":
                 return task.isFloating();
             case "deadline":
                 return task.isDeadline();
             case "event":
                 return task.isEvent();
-            // for parsing date
+            case "done":
+                return task.isDone();
+            case "undone":
+                return !task.isDone();
+            // For parsing date
             default:
                 try {
-                    TaskDate date = new TaskDate(DateTimeUtil.parseDateTime(taskType));
-                    return (task.getStartDate() != null && task.getStartDate().getOnlyDate().equals(date.getOnlyDate()))
-                            || (task.getEndDate() != null
-                                    && task.getEndDate().getOnlyDate().equals(date.getOnlyDate()));
+                    String date =
+                            DateTimeUtil.getOnlyDateStringFromDate(DateTimeUtil.parseDateTime(filter).getTaskDate());
+                    return (task.getStartDate() != null
+                            && DateTimeUtil.getOnlyDateStringFromDate(task.getStartDate().getTaskDate()).equals(date)
+                            || (task.getEndDate() != null && DateTimeUtil
+                                    .getOnlyDateStringFromDate(task.getEndDate().getTaskDate()).equals(date)));
 
                 } catch (IllegalValueException ive) {
-                    // Deliberately empty as taskType will not throw exception
+                    // Deliberately empty as filter will not throw exception
                     return false;
                 }
             }
@@ -251,7 +263,7 @@ public class ModelManager extends ComponentManager implements Model {
             taskType = taskTypeAndDate[0];
 
             try {
-                date = new TaskDate(DateTimeUtil.parseDateTime(taskTypeAndDate[1]));
+                date = DateTimeUtil.parseDateTime(taskTypeAndDate[1]);
             } catch (IllegalValueException ive) {
                 // Deliberately empty as this date will not throw exception
             }
@@ -260,9 +272,11 @@ public class ModelManager extends ComponentManager implements Model {
         @Override
         public boolean run(ReadOnlyTask task) {
 
+            String dateString = DateTimeUtil.getOnlyDateStringFromDate(date.getTaskDate());
             boolean dateFilter = (task.getStartDate() != null
-                    && task.getStartDate().getOnlyDate().equals(date.getOnlyDate()))
-                    || (task.getEndDate() != null && task.getEndDate().getOnlyDate().equals(date.getOnlyDate()));
+                    && DateTimeUtil.getOnlyDateStringFromDate(task.getStartDate().getTaskDate()).equals(dateString))
+                    || (task.getEndDate() != null && DateTimeUtil
+                            .getOnlyDateStringFromDate(task.getEndDate().getTaskDate()).equals(dateString));
 
             switch (taskType) {
             case "floating":
@@ -272,7 +286,6 @@ public class ModelManager extends ComponentManager implements Model {
             case "event":
                 return task.isEvent() && dateFilter;
             default:
-                // will never reach this step
                 return false;
             }
         }

@@ -41,7 +41,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
     public void execute_edit_duplicatedName() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
-        Task task1 = helper.meeting();
+        Task task1 = helper.confession();
         Task task2 = helper.homework();
 
         // setup starting state
@@ -106,6 +106,21 @@ public class LogicEditCommandTest extends LogicManagerTest {
     }
 
     @Test
+    public void execute_edit_invalidDemotion() throws Exception {
+        // setup expectations
+        TestDataHelper helper = new TestDataHelper();
+        Task task = helper.meeting();
+
+        // setup starting state
+        model.addTask(task); // task already in internal task manager
+
+        // execute command and verify result
+        String expectedMessage = EditCommand.MESSAGE_INVALID_EDITTED_TASK;
+        String invalidCommand = "edit 1 e/remove";
+        assertCommandFailure(invalidCommand, expectedMessage);
+    }
+
+    @Test
     public void execute_edit_validName() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         Task task1 = helper.generateTaskWithName("potato");
@@ -114,7 +129,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
 
         List<Task> sampleTasks = helper.generateTaskList(task1, task2);
         TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
-        List<Task> expectedList = helper.generateTaskList(task1, editedTask2);
+        List<Task> expectedList = helper.generateTaskList(editedTask2, task1);
         helper.addToModel(model, sampleTasks);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_SUCCESS, editedTask2);
@@ -153,33 +168,55 @@ public class LogicEditCommandTest extends LogicManagerTest {
         String validCommand = "edit 1 e/17 july 2017 1:34pm";
         assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
     }
-    // @@author
 
-    // @Test
-    // public void execute_edit_validAll() throws Exception {
-    // TestDataHelper helper = new TestDataHelper();
-    // Task task = helper.generateTaskWithName("kantang");
-    // Task editedTask = helper.generateTaskWithAll("potato", "next hour", "1/2/2023 4.56pm");
-    //
-    // List<Task> sampleTasks = helper.generateTaskList(task);
-    // TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
-    // List<Task> expectedList = helper.generateTaskList(editedTask);
-    // helper.addToModel(model, sampleTasks);
-    //
-    // String expectedMessage = String.format(EditCommand.MESSAGE_SUCCESS, editedTask);
-    // String validCommand = "edit 1 potato s/next hour e/1/2/2023 4.56pm";
-    // assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
-    // }
+    // @@author A0130277L
+    @Test
+    public void execute_edit_validAll() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        Task task = helper.generateTaskWithName("kantang");
+        Task editedTask = helper.generateTaskWithAll("potato", "next hour", "1/2/2023 4.56pm");
 
-    // @Test
-    // public void execute_edit_invalidDemotion() throws Exception {
-    // TestDataHelper helper = new TestDataHelper();
-    // Task task = helper.generateTaskWithAll("meeting1","now", "1/2/2020 3pm");
-    //
-    // model.addTask(task);
-    //
-    // String invalidDemotionCommand = "edit 1 e/remove";
-    // String expectedMessage = EditCommand.MESSAGE_INVALID_EDITTED_TASK;
-    // assertCommandSuccess(invalidDemotionCommand, expectedMessage, );
-    // }
+        List<Task> sampleTasks = helper.generateTaskList(task);
+        TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
+        List<Task> expectedList = helper.generateTaskList(editedTask);
+        helper.addToModel(model, sampleTasks);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_SUCCESS, editedTask);
+        String validCommand = "edit 1 potato from next hour to 1/2/2023 4.56pm";
+        assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
+    }
+
+    // @@author A0140538J
+    @Test
+    public void execute_edit_validRemoveStartDate() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        Task task = helper.generateTaskWithAll("potato", "17 july 2016", "17 july 2017 1:34pm");
+        Task editedTask = helper.generateTaskWithDueDate("potato", "17 july 2017 1:34pm");
+
+        List<Task> sampleTasks = helper.generateTaskList(task);
+        TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
+        List<Task> expectedList = helper.generateTaskList(editedTask);
+        helper.addToModel(model, sampleTasks);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_SUCCESS, editedTask);
+        String validCommand = "edit 1 s/remove";
+        assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
+    }
+
+    @Test
+    public void execute_edit_validRemoveStartAndEndDate() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        Task task = helper.generateTaskWithAll("potato", "17 july 2016", "17 july 2017 1:34pm");
+        Task editedTask = helper.generateTaskWithName("potato");
+
+        List<Task> sampleTasks = helper.generateTaskList(task);
+        TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
+        List<Task> expectedList = helper.generateTaskList(editedTask);
+        helper.addToModel(model, sampleTasks);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_SUCCESS, editedTask);
+        String validCommand = "edit 1 s/remove e/remove";
+        assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
+    }
+
 }

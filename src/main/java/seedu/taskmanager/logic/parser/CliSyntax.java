@@ -17,6 +17,16 @@ public class CliSyntax {
     public static final Prefix PREFIX_ENDDATE = new Prefix("e/");
     public static final Prefix PREFIX_DEADLINE = new Prefix("b/");
 
+    /* Accepted words for date and time */
+    public static final String[] ACCEPTED_START_DATE_MARKER = {
+        "from"
+    };
+    public static final String[] ACCEPTED_END_DATE_MARKER = {
+        "to",
+        "by",
+        "at"
+    };
+
     /* Patterns definitions */
     public static final Pattern KEYWORDS_ARGS_FORMAT = Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one
                                                                                                           // or

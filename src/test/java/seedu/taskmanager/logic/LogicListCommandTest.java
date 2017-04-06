@@ -12,13 +12,20 @@ import seedu.taskmanager.model.TaskManager;
 import seedu.taskmanager.model.task.ReadOnlyTask;
 import seedu.taskmanager.model.task.Task;
 
+// @@author A0140538J
 public class LogicListCommandTest extends LogicManagerTest {
 
-    // @@author A0140538J
     @Test
     public void execute_list_invalidTaskType() throws Exception {
         String invalidCommand = "list asdf";
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE);
+        assertCommandFailure(invalidCommand, expectedMessage);
+    }
+
+    @Test
+    public void execute_list_floatAndDate() throws Exception {
+        String invalidCommand = "list floating 1 jan 2017";
+        String expectedMessage = ListCommand.MESSAGE_FLOATING_NO_DATE;
         assertCommandFailure(invalidCommand, expectedMessage);
     }
 
@@ -94,65 +101,115 @@ public class LogicListCommandTest extends LogicManagerTest {
         String validCommand = "list event";
         assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
     }
-    // @@author
 
-    // @Test
-    // public void execute_list_date() throws Exception {
-    // TestDataHelper helper = new TestDataHelper();
-    // Task float1 = helper.generateTaskWithName("potato");
-    // Task deadline1 = helper.generateTaskWithDueDate("orange", "1 jan");
-    // Task deadline2 = helper.generateTaskWithDueDate("qwerty", "31 aug");
-    // Task event1 = helper.generateTaskWithAll("poiuy", "1 jan", "31 jan");
-    // Task event2 = helper.generateTaskWithAll("esmond", "15 june 2017 12pm", "19 july 2017 1am");
-    //
-    // List<Task> sampleTasks = helper.generateTaskList(float1, deadline1, deadline2, event1, event2);
-    // TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
-    // List<Task> expectedList = helper.generateTaskList(deadline1, event1);
-    // helper.addToModel(model, sampleTasks);
-    //
-    // String expectedMessage = ListCommand.MESSAGE_SUCCESS + " (1 jan)";
-    // String validCommand = "list 1 jan";
-    // assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
-    // }
+    @Test
+    public void execute_list_date() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        Task float1 = helper.generateTaskWithName("potato");
+        Task deadline1 = helper.generateTaskWithDueDate("orange", "1 jan");
+        Task deadline2 = helper.generateTaskWithDueDate("qwerty", "31 aug");
+        Task event1 = helper.generateTaskWithAll("poiuy", "1 jan", "31 jan");
+        Task event2 = helper.generateTaskWithAll("esmond", "15 june 2017 12pm", "19 july 2017 1am");
 
-    // @Test
-    // public void execute_list_deadlineAndDate() throws Exception {
-    // TestDataHelper helper = new TestDataHelper();
-    // Task float1 = helper.generateTaskWithName("potato");
-    // Task deadline1 = helper.generateTaskWithDueDate("orange", "19 july 2017");
-    // Task deadline2 = helper.generateTaskWithDueDate("qwerty", "19 july");
-    // Task deadline3 = helper.generateTaskWithDueDate("zxc", "19 nov");
-    // Task event1 = helper.generateTaskWithAll("poiuy", "1 jan", "31 jan");
-    // Task event2 = helper.generateTaskWithAll("esmond", "15 june 2017 12pm", "19 july 2017 1am");
-    //
-    // List<Task> sampleTasks = helper.generateTaskList(float1, deadline1, deadline2, deadline3, event1, event2);
-    // TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
-    // List<Task> expectedList = helper.generateTaskList(deadline1, deadline2);
-    // helper.addToModel(model, sampleTasks);
-    //
-    // String expectedMessage = ListCommand.MESSAGE_SUCCESS + " (deadline, 19 july)";
-    // String validCommand = "list deadline 19 july";
-    // assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
-    // }
+        List<Task> sampleTasks = helper.generateTaskList(float1, deadline1, deadline2, event1, event2);
+        TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
+        List<Task> expectedList = helper.generateTaskList(deadline1, event1);
+        helper.addToModel(model, sampleTasks);
 
-    // @Test
-    // public void execute_list_dateAndEvent() throws Exception {
-    // TestDataHelper helper = new TestDataHelper();
-    // Task float1 = helper.generateTaskWithName("potato");
-    // Task deadline1 = helper.generateTaskWithDueDate("orange", "19 july 2017");
-    // Task deadline2 = helper.generateTaskWithDueDate("qwerty", "19 july");
-    // Task deadline3 = helper.generateTaskWithDueDate("zxc", "19 nov");
-    // Task event1 = helper.generateTaskWithAll("poiuy", "1 jan", "31 jan");
-    // Task event2 = helper.generateTaskWithAll("esmond", "15 june 2017 12pm", "19 july 2017 1am");
-    //
-    // List<Task> sampleTasks = helper.generateTaskList(float1, deadline1, deadline2, deadline3, event1, event2);
-    // TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
-    // List<Task> expectedList = helper.generateTaskList(event2);
-    // helper.addToModel(model, sampleTasks);
-    //
-    // String expectedMessage = ListCommand.MESSAGE_SUCCESS + " (event, 19 july)";
-    // String validCommand = "list 19 july event";
-    // assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
-    // }
+        String expectedMessage = ListCommand.MESSAGE_SUCCESS + " (1 jan)";
+        String validCommand = "list 1 jan";
+        assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
+    }
+
+    @Test
+    public void execute_list_deadlineAndDate() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        Task float1 = helper.generateTaskWithName("potato");
+        Task deadline1 = helper.generateTaskWithDueDate("orange", "19 july 2017");
+        Task deadline2 = helper.generateTaskWithDueDate("qwerty", "19 july");
+        Task deadline3 = helper.generateTaskWithDueDate("zxc", "19 nov");
+        Task event1 = helper.generateTaskWithAll("poiuy", "1 jan", "31 jan");
+        Task event2 = helper.generateTaskWithAll("esmond", "15 june 2017 12pm", "19 july 2017 1am");
+
+        List<Task> sampleTasks = helper.generateTaskList(float1, deadline1, deadline2, deadline3, event1, event2);
+        TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
+        List<Task> expectedList = helper.generateTaskList(deadline1, deadline2);
+        helper.addToModel(model, sampleTasks);
+
+        String expectedMessage = ListCommand.MESSAGE_SUCCESS + " (deadline, 19 july)";
+        String validCommand = "list deadline 19 july";
+        assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
+    }
+
+    @Test
+    public void execute_list_dateAndEvent() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        Task float1 = helper.generateTaskWithName("potato");
+        Task deadline1 = helper.generateTaskWithDueDate("orange", "19 july 2017");
+        Task deadline2 = helper.generateTaskWithDueDate("qwerty", "19 july");
+        Task deadline3 = helper.generateTaskWithDueDate("zxc", "19 nov");
+        Task event1 = helper.generateTaskWithAll("poiuy", "1 jan", "31 jan");
+        Task event2 = helper.generateTaskWithAll("esmond", "15 june 2017 12pm", "19 july 2017 1am");
+
+        List<Task> sampleTasks = helper.generateTaskList(float1, deadline1, deadline2, deadline3, event1, event2);
+        TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
+        List<Task> expectedList = helper.generateTaskList(event2);
+        helper.addToModel(model, sampleTasks);
+
+        String expectedMessage = ListCommand.MESSAGE_SUCCESS + " (event, 19 july)";
+        String validCommand = "list 19 july event";
+        assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
+    }
+
+    @Test
+    public void execute_list_done() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        Task float1 = helper.generateTaskWithName("potato");
+        Task deadline1 = helper.generateTaskWithDueDate("orange", "19 july 2017");
+        Task deadline2 = helper.generateTaskWithDueDate("qwerty", "19 july");
+        Task deadline3 = helper.generateTaskWithDueDate("zxc", "19 nov");
+        Task event1 = helper.generateTaskWithAll("poiuy", "1 jan", "31 jan");
+        Task event2 = helper.generateTaskWithAll("esmond", "15 june 2017 12pm", "19 july 2017 1am");
+
+        Task doneFloat1 = helper.generateTaskWithName("potato");
+        float1.setDoneStatus(true);
+        Task doneDeadline3 = helper.generateTaskWithDueDate("zxc", "19 nov");
+        deadline3.setDoneStatus(true);
+        Task doneEvent1 = helper.generateTaskWithAll("poiuy", "1 jan", "31 jan");
+        event1.setDoneStatus(true);
+
+        List<Task> sampleTasks = helper.generateTaskList(float1, deadline1, deadline2, deadline3, event1, event2);
+        TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
+        List<Task> expectedList = helper.generateTaskList(doneFloat1, doneDeadline3, doneEvent1);
+        helper.addToModel(model, sampleTasks);
+
+        String expectedMessage = ListCommand.MESSAGE_SUCCESS + " (done)";
+        String validCommand = "list done";
+        assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
+    }
+
+    @Test
+    public void execute_list_undone() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        Task float1 = helper.generateTaskWithName("potato");
+        Task deadline1 = helper.generateTaskWithDueDate("orange", "19 july 2017");
+        Task deadline2 = helper.generateTaskWithDueDate("qwerty", "19 july");
+        Task deadline3 = helper.generateTaskWithDueDate("zxc", "19 nov");
+        Task event1 = helper.generateTaskWithAll("poiuy", "1 jan", "31 jan");
+        Task event2 = helper.generateTaskWithAll("esmond", "15 june 2017 12pm", "19 july 2017 1am");
+
+        float1.setDoneStatus(true);
+        deadline3.setDoneStatus(true);
+        event1.setDoneStatus(true);
+
+        List<Task> sampleTasks = helper.generateTaskList(float1, deadline1, deadline2, deadline3, event1, event2);
+        TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
+        List<Task> expectedList = helper.generateTaskList(deadline1, deadline2, event2);
+        helper.addToModel(model, sampleTasks);
+
+        String expectedMessage = ListCommand.MESSAGE_SUCCESS + " (undone)";
+        String validCommand = "list undone";
+        assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
+    }
 
 }
