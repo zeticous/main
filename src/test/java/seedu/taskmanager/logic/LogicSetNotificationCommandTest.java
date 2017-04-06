@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -41,7 +42,6 @@ public class LogicSetNotificationCommandTest extends LogicManagerTest {
 
         List<Task> expectedList = helper.generateTaskList();
         TaskManager expectedTM = helper.generateTaskManager(expectedList);
-
 
         String expectedMessage = String.format(SetNotificationCommand.MESSAGE_SUCCESS, "1 day");
         String validCommand = "set 1 day";

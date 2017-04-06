@@ -3,6 +3,7 @@ package seedu.taskmanager.testutil;
 
 import java.util.Optional;
 
+import seedu.taskmanager.logic.parser.DateTimeUtil;
 import seedu.taskmanager.model.tag.UniqueTagList;
 import seedu.taskmanager.model.task.Name;
 import seedu.taskmanager.model.task.ReadOnlyTask;
@@ -14,9 +15,11 @@ import seedu.taskmanager.model.task.TaskDate;
 public class TestTask implements ReadOnlyTask {
 
     private Name name;
-    private Optional<TaskDate> startDate;
-    private Optional<TaskDate> endDate;
+    private Optional<TaskDate> startDate = Optional.empty();
+    private Optional<TaskDate> endDate = Optional.empty();
     private UniqueTagList tags;
+    private boolean isDone;
+    private boolean isDueSoon;
 
     public TestTask() {
         tags = new UniqueTagList();
@@ -30,7 +33,8 @@ public class TestTask implements ReadOnlyTask {
         this.tags = taskToCopy.getTags();
         this.startDate = Optional.ofNullable(taskToCopy.getStartDate());
         this.endDate = Optional.ofNullable(taskToCopy.getEndDate());
-        
+        this.isDone = false;
+        this.isDueSoon = false;
     }
 
     public void setName(Name name) {
@@ -42,11 +46,11 @@ public class TestTask implements ReadOnlyTask {
     }
 
     public void setStartDate(TaskDate startDate) {
-        this.startDate = Optional.of(startDate);
+        this.startDate = Optional.ofNullable(startDate);
     }
 
     public void setEndDate(TaskDate endDate) {
-        this.endDate = Optional.of(endDate);
+        this.endDate = Optional.ofNullable(endDate);
     }
 
     @Override
@@ -77,14 +81,20 @@ public class TestTask implements ReadOnlyTask {
     public String getAddCommand() {
         StringBuilder sb = new StringBuilder();
         sb.append("add " + this.getName().fullName + " ");
+        if (hasStartDate()) {
+            sb.append("from " + DateTimeUtil.getStringFromDate(this.getStartDate().getTaskDate()) + " ");
+        }
+
+        if (hasEndDate()) {
+            sb.append("to " + DateTimeUtil.getStringFromDate(this.getEndDate().getTaskDate()) + " ");
+        }
         this.getTags().asObservableList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }
 
     @Override
     public boolean isDone() {
-        // TODO Auto-generated method stub
-        return false;
+        return this.isDone;
     }
 
     @Override
@@ -114,6 +124,6 @@ public class TestTask implements ReadOnlyTask {
 
     @Override
     public boolean isDueSoon() {
-        return false;
+        return this.isDueSoon;
     }
 }

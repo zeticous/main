@@ -77,6 +77,8 @@ By : `CS2103JAN2017-T15-B3`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&
 
 ### 2.1. Architecture
 
+**Author: Neo Wei Jie, Esmond**
+
 <img src="images/Architecture.png" width="600"><br>
 _Figure 2.1.1 : Architecture Diagram_
 
@@ -145,7 +147,7 @@ _Figure 2.2.1 : Structure of the UI Component_
 **API** : [`Ui.java`](../src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`,
-`StatusBarFooter`, `BrowserPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
  that are in the `src/main/resources/view` folder.<br>
@@ -158,7 +160,10 @@ The `UI` component,
 * Binds itself to some data in the `Model` so that the UI can auto-update when data in the `Model` change.
 * Responds to events raised from various parts of the App and updates the UI accordingly.
 
-For the TaskCard, an additional `TaskCardStyle` class is used to colour code the card. It will be red if the task is undone, and green if the task is completed.
+<img src="images/sampleTaskCard.png" width="800"><br>
+_Figure 2.2.2 : Sample Task Card_
+
+For `TaskCard`, an additional `TaskCardStyle` class is used to colour code the card. It will be red if the task is undone, and green if the task is completed. `TaskCard` will also show a clock icon if it is within a user-configurable time-frame.
 
 ### 2.3. Logic component
 
