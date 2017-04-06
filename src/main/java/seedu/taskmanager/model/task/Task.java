@@ -41,14 +41,17 @@ public class Task implements ReadOnlyTask {
     // @@author A0140538J
     public Task(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags) {
         this(name, startDate, endDate, tags, false);
+        setDueSoonStatus();
     }
 
     public Task(Name name, UniqueTagList tags) {
         this(name, null, null, tags, false);
+        setDueSoonStatus();
     }
 
     public Task(Name name, Optional<TaskDate> startDate, Optional<TaskDate> endDate, UniqueTagList tags) {
         this(name, startDate.orElse(null), endDate.orElse(null), tags, false);
+        setDueSoonStatus();
     }
 
     /**
@@ -138,6 +141,11 @@ public class Task implements ReadOnlyTask {
 
     public void setDueSoonStatus() {
         Date notificationDate = NotificationUtil.getNotificationDate();
+
+        if (notificationDate == null) {
+            this.isDueSoonStatus = false;
+            return;
+        }
 
         if (this.hasStartDate()) {
             if (getStartDate().getTaskDate().before(notificationDate)) {
