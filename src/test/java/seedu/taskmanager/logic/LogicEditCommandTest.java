@@ -8,11 +8,9 @@ import java.util.List;
 import org.junit.Test;
 
 import seedu.taskmanager.commons.core.Messages;
-import seedu.taskmanager.commons.core.UnmodifiableObservableList;
 import seedu.taskmanager.logic.commands.EditCommand;
 import seedu.taskmanager.logic.parser.DateTimeUtil;
 import seedu.taskmanager.model.TaskManager;
-import seedu.taskmanager.model.task.ReadOnlyTask;
 import seedu.taskmanager.model.task.Task;
 
 public class LogicEditCommandTest extends LogicManagerTest {

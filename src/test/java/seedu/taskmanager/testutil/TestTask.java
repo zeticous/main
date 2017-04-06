@@ -94,8 +94,7 @@ public class TestTask implements ReadOnlyTask {
 
     @Override
     public boolean isDone() {
-        // TODO Auto-generated method stub
-        return false;
+        return this.isDone;
     }
 
     @Override
@@ -125,6 +124,6 @@ public class TestTask implements ReadOnlyTask {
 
     @Override
     public boolean isDueSoon() {
-        return false;
+        return this.isDueSoon;
     }
 }
