@@ -57,14 +57,14 @@ public interface ReadOnlyTask {
      */
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName()).append(NEW_LINE_INDICATOR);
+        builder.append("Task: ").append(getName()).append(" | ");
 
         if (hasStartDate()) {
-            builder.append("Start: ").append(getStartDate()).append(NEW_LINE_INDICATOR);
+            builder.append("Start: ").append(getStartDate()).append(" | ");
         }
 
         if (hasEndDate()) {
-            builder.append("End: ").append(getEndDate()).append(NEW_LINE_INDICATOR);
+            builder.append("End: ").append(getEndDate()).append(" | ");
         }
 
         builder.append("Tags: ");

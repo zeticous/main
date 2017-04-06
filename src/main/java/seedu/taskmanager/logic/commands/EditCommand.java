@@ -30,7 +30,7 @@ public class EditCommand extends Command {
                     + "Parameters: INDEX (must be a positive integer) [NAME] [s/START_DATE] [e/END_DATE] [t/TAG]...\n"
                     + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Edited Task: %1$s";
+    public static final String MESSAGE_SUCCESS = "Edited %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager.";
     public static final String MESSAGE_START_AFTER_END = "The start date provided is after end date.";

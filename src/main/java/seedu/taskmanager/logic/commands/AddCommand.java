@@ -29,12 +29,13 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to PotaTodo. "
             + "Parameters: NAME [s/START_DATE_TIME] [e/END_DATE_TIME] [t/TAG]...\n" + "Example: " + COMMAND_WORD
-            + " Meeting s/ 1 May 2017 6pm e/ 1 May 2017 7pm t/important";
+            + " Meeting s/ 1 May 2017 6pm e/ 1 May 2017 7pm t/important";<<<<<<< v0.4.3
 
     public static final String MESSAGE_CONFLICT = 
             "*** The task added is in conflict with the following tasks *** ";
 
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
+
+    public static final String MESSAGE_SUCCESS = "New task added!";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
 
     private final Task toAdd;
@@ -89,11 +90,11 @@ public class AddCommand extends Command {
         try {
             if (allConflictingTasks(toAdd).isEmpty()) {
                 model.addTask(toAdd);
-                return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+                return new CommandResult(MESSAGE_SUCCESS);
             } else {
                 String allConflictingTasksString = allConflictingTasks(toAdd);
                 model.addTask(toAdd);
-                String feedback = String.format(MESSAGE_SUCCESS, toAdd);
+                String feedback = MESSAGE_SUCCESS;
                 feedback += NEWLINE_STRING + MESSAGE_CONFLICT + NEWLINE_STRING + allConflictingTasksString;
                 return new CommandResult(feedback);
             }
