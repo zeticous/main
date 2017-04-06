@@ -128,7 +128,8 @@ public class DateTimeUtil {
         assert isValidArg(parsedDatesList);
         DateGroup parsedDate = parsedDatesList.get(FIRST_ELEMENT_INDEX);
         String syntaxTreeString = parsedDate.getSyntaxTree().getChild(FIRST_ELEMENT_INDEX).toStringTree();
-        return syntaxTreeString.contains(EXPLICIT_TIME_SYNTAX) || syntaxTreeString.contains(RELATIVE_TIME_SYNTAX);
+        return syntaxTreeString.contains(EXPLICIT_TIME_SYNTAX) || syntaxTreeString.contains(RELATIVE_TIME_SYNTAX)
+                || syntaxTreeString.contains(NOW_SYNTAX);
     }
 
     /**

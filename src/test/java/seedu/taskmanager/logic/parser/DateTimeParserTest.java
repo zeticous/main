@@ -2,6 +2,10 @@
 package seedu.taskmanager.logic.parser;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+import seedu.taskmanager.logic.parser.DateTimeUtil;
+import seedu.taskmanager.model.task.TaskDate;
 
 import org.junit.Test;
 
@@ -38,16 +42,35 @@ public class DateTimeParserTest {
 
     @Test
     public void test_TimePresent() throws IllegalValueException {
-        String toBeParsed = "1/1/2017 2pm";
-        boolean isTimePresent = DateTimeUtil.isTimePresent(toBeParsed);
-        assertEquals(isTimePresent, true);
+        assertEquals(DateTimeUtil.isTimePresent("1/1/2017 2pm"), true);
+        assertEquals(DateTimeUtil.isTimePresent("next monday 2pm"), true);
+        assertEquals(DateTimeUtil.isTimePresent("next hour"), true);
+        assertEquals(DateTimeUtil.isTimePresent("now"), true);
     }
 
     @Test
     public void test_TimeNotPresent() throws IllegalValueException {
-        String toBeParsed = "1/1/2017";
-        boolean isTimePresent = DateTimeUtil.isTimePresent(toBeParsed);
-        assertEquals(isTimePresent, false);
+        assertEquals(DateTimeUtil.isTimePresent("1/1/2017"), false);
+        assertEquals(DateTimeUtil.isTimePresent("wednesday"), false);
+        assertEquals(DateTimeUtil.isTimePresent("valentines day"), false);
+        assertEquals(DateTimeUtil.isTimePresent("next week"), false);
+    }
+
+    @Test
+    public void parseDate_differentDateFormats_parsedSuccessfully() throws IllegalValueException {
+        TaskDate datetime = DateTimeUtil.parseDateTime("1/1/2020 1pm");
+        try {
+            assertEquals(datetime, DateTimeUtil.parseDateTime("01-01-2020 1300"));
+            assertEquals(datetime, DateTimeUtil.parseDateTime("1 Jan 2020 1300"));
+            assertEquals(datetime, DateTimeUtil.parseDateTime("1300 01-01-2020"));
+            assertEquals(datetime, DateTimeUtil.parseDateTime("1/1/2020 1300"));
+            assertEquals(datetime, DateTimeUtil.parseDateTime("1 Jan 2020 1pm"));
+            assertEquals(datetime, DateTimeUtil.parseDateTime("first Jan 2020 1pm"));
+            assertEquals(datetime, DateTimeUtil.parseDateTime("first day 2020 1300"));
+            assertEquals(datetime, DateTimeUtil.parseDateTime("first day 2020 1300"));
+        } catch (IllegalValueException e) {
+            fail("Unparsable");
+        }
     }
 
 }
