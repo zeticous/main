@@ -100,7 +100,6 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Wrapper class containing a list of previously entered commands and index. Helps to cycle through the commands
      * when up and down is pressed.
-     * 
      * @author zeticous
      */
     private class PreviousCommandList {
