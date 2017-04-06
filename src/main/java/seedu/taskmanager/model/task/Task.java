@@ -9,7 +9,7 @@ import seedu.taskmanager.commons.exceptions.IllegalValueException;
 import seedu.taskmanager.commons.util.CollectionUtil;
 import seedu.taskmanager.commons.util.NotificationUtil;
 import seedu.taskmanager.logic.parser.DateTimeUtil;
-import seedu.taskmanager.model.TaskNotifier;
+//import seedu.taskmanager.model.TaskNotifier;
 import seedu.taskmanager.model.TaskNotifierManager;
 import seedu.taskmanager.model.tag.UniqueTagList;
 
