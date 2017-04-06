@@ -5,8 +5,12 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 
+import seedu.taskmanager.commons.exceptions.IllegalValueException;
 import seedu.taskmanager.commons.util.CollectionUtil;
 import seedu.taskmanager.commons.util.NotificationUtil;
+import seedu.taskmanager.logic.parser.DateTimeUtil;
+import seedu.taskmanager.model.TaskNotifier;
+import seedu.taskmanager.model.TaskNotifierManager;
 import seedu.taskmanager.model.tag.UniqueTagList;
 
 /**
@@ -137,7 +141,16 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setDueSoonStatus() {
+        // TODO to be fixed later
         Date notificationDate = NotificationUtil.getNotificationDate();
+        if (notificationDate == null) {
+            try {
+                notificationDate = DateTimeUtil.parseDateTime(TaskNotifierManager.DEFAULT_NOTIFICATION).getTaskDate();
+            } catch (IllegalValueException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
 
         if (this.hasStartDate()) {
             if (getStartDate().getTaskDate().before(notificationDate)) {

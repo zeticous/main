@@ -15,9 +15,7 @@ public class DateTimeParserTest {
     @Test
     public void parse_startDate_withNoExplicitTime() throws IllegalValueException {
         String toBeParsed = "1/1/2019";
-        String expected = "Tue Jan 01 00:00:00 SGT 2019";
-        assertEquals(DateTimeUtil.parseStartDateTime(toBeParsed).getTaskDate().toString(), expected);
-        expected = "01 January 2019";
+        String expected = "01 January 2019";
         assertEquals(DateTimeUtil.parseStartDateTime(toBeParsed).toString(), expected);
     }
 
@@ -27,9 +25,7 @@ public class DateTimeParserTest {
     @Test
     public void parse_endDate_withNoExplicitTime() throws IllegalValueException {
         String toBeParsed = "1/1/2019";
-        String expected = "Tue Jan 01 23:59:59 SGT 2019";
-        assertEquals(DateTimeUtil.parseEndDateTime(toBeParsed).getTaskDate().toString(), expected);
-        expected = "01 January 2019";
+        String expected = "01 January 2019";
         assertEquals(DateTimeUtil.parseEndDateTime(toBeParsed).toString(), expected);
     }
 
