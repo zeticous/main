@@ -3,6 +3,7 @@ package seedu.taskmanager.model;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -38,12 +39,12 @@ public class TaskManagerTest {
         taskManager.resetData(null);
     }
 
-    // @Test
-    // public void resetData_withValidReadOnlyTaskManager_replacesData() {
-    // TaskManager newData = new TypicalTestTasks().getTypicalTaskManager();
-    // taskManager.resetData(newData);
-    // assertEquals(newData, taskManager);
-    // }
+    @Test
+    public void resetData_withValidReadOnlyTaskManager_replacesData() {
+        TaskManager newData = new TypicalTestTasks().getTypicalTaskManager();
+        taskManager.resetData(newData);
+        assertEquals(newData, taskManager);
+    }
 
     @Test
     public void resetData_withDuplicateTasks_throwsAssertionError() {
@@ -57,18 +58,18 @@ public class TaskManagerTest {
         taskManager.resetData(newData);
     }
 
-    // @Test
-    // public void resetData_withDuplicateTags_throwsAssertionError() {
-    // TaskManager typicalTaskManager = new TypicalTestTasks().getTypicalTaskManager();
-    // List<ReadOnlyTask> newTasks = typicalTaskManager.getTaskList();
-    // List<Tag> newTags = new ArrayList<>(typicalTaskManager.getTagList());
-    // // Repeat the first tag twice
-    // newTags.add(newTags.get(0));
-    // TaskManagerStub newData = new TaskManagerStub(newTasks, newTags);
-    //
-    // thrown.expect(AssertionError.class);
-    // taskManager.resetData(newData);
-    // }
+    @Test
+    public void resetData_withDuplicateTags_throwsAssertionError() {
+        TaskManager typicalTaskManager = new TypicalTestTasks().getTypicalTaskManager();
+        List<ReadOnlyTask> newTasks = typicalTaskManager.getTaskList();
+        List<Tag> newTags = new ArrayList<>(typicalTaskManager.getTagList());
+        // Repeat the first tag twice
+        newTags.add(newTags.get(0));
+        TaskManagerStub newData = new TaskManagerStub(newTasks, newTags);
+
+        thrown.expect(AssertionError.class);
+        taskManager.resetData(newData);
+    }
 
     /**
      * A stub ReadOnlyTaskManager whose tasks and tags lists can violate interface constraints.
