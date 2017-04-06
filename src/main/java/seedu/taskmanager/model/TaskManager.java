@@ -84,7 +84,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         syncMasterTagListWith(p);
         tasks.add(p);
     }
-    
+
     /**
      * Updates the task in the list at position {@code index} with {@code editedReadOnlyTask}. {@code TaskManager}'s tag
      * list will be updated with the tags of {@code editedReadOnlyTask}.

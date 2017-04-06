@@ -142,8 +142,8 @@ public class LogicManagerTest {
             assertEquals(expectedMessage, e.getMessage());
         }
 
-//        // Confirm the ui display elements should contain the right data
-//        assertEquals(expectedShownList, model.getTaskManager().getTaskList());
+        // // Confirm the ui display elements should contain the right data
+        // assertEquals(expectedShownList, model.getTaskManager().getTaskList());
 
         // Confirm the state of data (saved and in-memory) is as expected
         assertEquals(expectedTaskManager, model.getTaskManager());
@@ -219,7 +219,7 @@ public class LogicManagerTest {
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
             return new Task(name, tags);
         }
-        
+
         Task confession() throws Exception {
             Name name = new Name("Confess love");
             Tag tag1 = new Tag("tag1");
@@ -227,6 +227,7 @@ public class LogicManagerTest {
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
             return new Task(name, tags);
         }
+
         /**
          * Generates a valid task using the given seed. Running this function with the same parameter values guarantees
          * the returned task will have the same state. Each unique seed will generate a unique Task object.

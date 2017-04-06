@@ -21,7 +21,8 @@ public class Task implements ReadOnlyTask {
     private boolean isDoneStatus;
     private boolean isDueSoonStatus;
 
-    public Task(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags, boolean status, boolean dueSoonStatus) {
+    public Task(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags, boolean status,
+            boolean dueSoonStatus) {
         assert !CollectionUtil.isAnyNull(name, tags);
         this.name = name;
         this.startDate = Optional.ofNullable(startDate);
@@ -31,9 +32,9 @@ public class Task implements ReadOnlyTask {
         this.isDoneStatus = status;
         this.isDueSoonStatus = dueSoonStatus;
     }
-    
+
     public Task(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags, boolean status) {
-        this(name,startDate,endDate,tags,status,false);
+        this(name, startDate, endDate, tags, status, false);
         setDueSoonStatus();
     }
 
@@ -54,7 +55,8 @@ public class Task implements ReadOnlyTask {
      * Creates a copy of the given ReadOnlyTask.
      */
     public Task(ReadOnlyTask source) {
-        this(source.getName(), source.getStartDate(), source.getEndDate(), source.getTags(), source.isDone(), source.isDueSoon());
+        this(source.getName(), source.getStartDate(), source.getEndDate(), source.getTags(), source.isDone(),
+                source.isDueSoon());
     }
 
     public void setName(Name name) {

@@ -130,7 +130,7 @@ public class EditCommand extends Command {
         private Optional<TaskDate> startDate = Optional.empty();
         private Optional<TaskDate> endDate = Optional.empty();
         private Optional<UniqueTagList> tags = Optional.empty();
-        
+
         private boolean startDateRemovedFlag = false;
         private boolean endDateRemovedFlag = false;
 
@@ -172,7 +172,6 @@ public class EditCommand extends Command {
         public Optional<TaskDate> getStartDate() {
             return startDate;
         }
-        
 
         public void setStartDateRemovedFlag() {
             startDateRemovedFlag = true;

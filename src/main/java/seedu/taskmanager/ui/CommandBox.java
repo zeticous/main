@@ -122,8 +122,8 @@ public class CommandBox extends UiPart<Region> {
             try {
                 return commandList.get(index++);
             } catch (IndexOutOfBoundsException e) {
-                //Index is beyond the last element, set index to the last element of the list.
-                index = commandList.size()-1;
+                // Index is beyond the last element, set index to the last element of the list.
+                index = commandList.size() - 1;
                 return getPreviousCommand();
             }
         }
@@ -132,7 +132,7 @@ public class CommandBox extends UiPart<Region> {
             try {
                 return commandList.get(index--);
             } catch (IndexOutOfBoundsException e) {
-                //Index is below 0, set index to 0 and return the first command in the list.
+                // Index is below 0, set index to 0 and return the first command in the list.
                 index = 0;
                 return getNextCommand();
             }

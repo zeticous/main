@@ -13,47 +13,46 @@ package guitests;
 
 public class AddCommandTest extends TaskManagerGuiTest {
 
-//     @Test
-//     public void add() {
-//     TestTask[] currentList = td.getTypicalTasks();
-//     
-//     // add 3 tasks
-//     addToCurrentList(td.event3,currentList);
-//     addToCurrentList(td.ddl3,currentList);
-//     addToCurrentList(td.flt3,currentList);
-//     
-//     // add duplicate task
-//     commandBox.runCommand(td.event2.getAddCommand());
-//     assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
-//     assertTrue(taskListPanel.isListMatching(currentList));
-//    
-//     
-//     // add to empty list
-//     commandBox.runCommand("clear");
-//     assertAddSuccess(td.event1);
-//    
-//     // invalid command
-//     commandBox.runCommand("adds meeting");
-//     assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
-//     }
-//     
-//     private void addToCurrentList(TestTask task, TestTask[] currentList){
-//         assertAddSuccess(task, currentList);
-//         currentList = TestUtil.addTasksToList(currentList, task);
-//        
-//     }
-//
-//    private void assertAddSuccess(TestTask taskToAdd, TestTask... currentList) {
-//        commandBox.runCommand(taskToAdd.getAddCommand());
-//
-//        // confirm the new card contains the right data
-//        TaskCardHandle addedCard = taskListPanel.navigateToTask(taskToAdd.getName().fullName);
-//        assertMatching(taskToAdd, addedCard);
-//
-//        // confirm the list now contains all previous tasks plus the new task
-//        TestTask[] expectedList = TestUtil.addTasksToList(currentList, taskToAdd);
-//        assertTrue(taskListPanel.isListMatching(expectedList));
-//    }
+    // @Test
+    // public void add() {
+    // TestTask[] currentList = td.getTypicalTasks();
+    //
+    // // add 3 tasks
+    // addToCurrentList(td.event3,currentList);
+    // addToCurrentList(td.ddl3,currentList);
+    // addToCurrentList(td.flt3,currentList);
+    //
+    // // add duplicate task
+    // commandBox.runCommand(td.event2.getAddCommand());
+    // assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
+    // assertTrue(taskListPanel.isListMatching(currentList));
+    //
+    //
+    // // add to empty list
+    // commandBox.runCommand("clear");
+    // assertAddSuccess(td.event1);
+    //
+    // // invalid command
+    // commandBox.runCommand("adds meeting");
+    // assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
+    // }
+    //
+    // private void addToCurrentList(TestTask task, TestTask[] currentList){
+    // assertAddSuccess(task, currentList);
+    // currentList = TestUtil.addTasksToList(currentList, task);
+    //
+    // }
+    //
+    // private void assertAddSuccess(TestTask taskToAdd, TestTask... currentList) {
+    // commandBox.runCommand(taskToAdd.getAddCommand());
+    //
+    // // confirm the new card contains the right data
+    // TaskCardHandle addedCard = taskListPanel.navigateToTask(taskToAdd.getName().fullName);
+    // assertMatching(taskToAdd, addedCard);
+    //
+    // // confirm the list now contains all previous tasks plus the new task
+    // TestTask[] expectedList = TestUtil.addTasksToList(currentList, taskToAdd);
+    // assertTrue(taskListPanel.isListMatching(expectedList));
+    // }
 
 }
-

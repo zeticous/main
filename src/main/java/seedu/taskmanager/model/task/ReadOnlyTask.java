@@ -48,8 +48,7 @@ public interface ReadOnlyTask {
                         && other.getName().equals(this.getName())
                         && (Optional.ofNullable(other.getStartDate())).equals(Optional.ofNullable(this.getStartDate()))
                         && (Optional.ofNullable(other.getEndDate())).equals(Optional.ofNullable(this.getEndDate()))
-                        && other.getTags().equals(this.getTags())
-                );
+                        && other.getTags().equals(this.getTags()));
     }
 
     // @@author A0140538J

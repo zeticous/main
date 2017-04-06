@@ -35,11 +35,12 @@ public class SampleDataUtil {
     public static final String FLT2_NAME = "Smile more";
 
     public static Task[] getSampleTasks() {
-        
+
         try {
             return new Task[] {
                 new Task(new Name(EVENT1_NAME), DateTimeUtil.parseStartDateTime(EVENT1_START_DATE_STRING),
-                        DateTimeUtil.parseEndDateTime(EVENT1_END_DATE_STRING), new UniqueTagList("important"), false, false),
+                        DateTimeUtil.parseEndDateTime(EVENT1_END_DATE_STRING), new UniqueTagList("important"), false,
+                        false),
                 new Task(new Name(DDL1_NAME), null, DateTimeUtil.parseEndDateTime(DDL1_DUE_TIME_STRING),
                         new UniqueTagList(), false, false),
                 new Task(new Name(FLT1_NAME), null, null, new UniqueTagList(), false, false),

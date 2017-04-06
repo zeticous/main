@@ -72,7 +72,6 @@ public class ModelManager extends ComponentManager implements Model {
     private void indicateTaskManagerChanged() {
         raise(new TaskManagerChangedEvent(taskManager));
     }
-    
 
     @Override
     public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {

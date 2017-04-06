@@ -3,7 +3,6 @@ package seedu.taskmanager.ui;
 
 import java.util.logging.Logger;
 
-
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -34,24 +33,24 @@ public class TaskListPanel extends UiPart<Region> {
         addToPlaceholder(taskListPlaceholder);
         setUpListener();
     }
-    
-    //@@author A0140417R
+
+    // @@author A0140417R
     /**
      * This method sets up a changeListener, and auto-scrolls the ListView to the added/updated item when reqiored.
      */
-    private void setUpListener(){
+    private void setUpListener() {
         taskListView.getItems().addListener(new ListChangeListener<ReadOnlyTask>() {
             @Override
             public void onChanged(javafx.collections.ListChangeListener.Change<? extends ReadOnlyTask> c) {
-                while(c.next()){
-                    if(c.wasAdded()){
+                while (c.next()) {
+                    if (c.wasAdded()) {
                         scrollTo(c.getFrom());
                     }
                 }
             }
         });
     }
-    //@@author
+    // @@author
 
     private void setConnections(ObservableList<ReadOnlyTask> taskList) {
         taskListView.setItems(taskList);

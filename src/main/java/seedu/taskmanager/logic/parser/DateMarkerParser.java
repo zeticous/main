@@ -44,7 +44,7 @@ public class DateMarkerParser {
                  * Certain parameters in name might break this feature. Example: add project from v0.4 from today to
                  * tomorrow. To be fixed if there is time
                  */
-                if (hasDateStringAfterMarker(splittedArgs,currentIndex)) {
+                if (hasDateStringAfterMarker(splittedArgs, currentIndex)) {
                     Prefix assignedPrefix = markerMap.get(string);
                     if (markerMap.hasRepeatedMarker(assignedPrefix)) {
                         throw new IllegalValueException(MESSAGE_REPEATED_MARKERS_FOUND);
@@ -58,16 +58,17 @@ public class DateMarkerParser {
 
         return builder.toString().trim();
     }
-    
+
     /**
-     * Helper method to check if the argument from the current index to either the next marker or end of argument contains a valid date.
+     * Helper method to check if the argument from the current index to either the next marker or end of argument
+     * contains a valid date.
      * @param splittedArgs
      * @param currentIndex
      * @return true if a date string is found, false otherwise.
      */
-    private static boolean hasDateStringAfterMarker(String[] splittedArgs, int currentIndex){
+    private static boolean hasDateStringAfterMarker(String[] splittedArgs, int currentIndex) {
         StringBuilder builder = new StringBuilder();
-        for(int i = currentIndex + 1; i < splittedArgs.length && !markerMap.contains(splittedArgs[i]); i++){
+        for (int i = currentIndex + 1; i < splittedArgs.length && !markerMap.contains(splittedArgs[i]); i++) {
             builder.append(splittedArgs[i] + WHITE_SPACE);
         }
         return DateTimeUtil.isValidDateString(builder.toString().trim());
