@@ -1,3 +1,4 @@
+
 package seedu.taskmanager.logic;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -11,6 +12,7 @@ import seedu.taskmanager.logic.commands.MarkCommand;
 import seedu.taskmanager.model.TaskManager;
 import seedu.taskmanager.model.task.Task;
 
+// @@author A0140538J
 public class LogicMarkCommandTest extends LogicManagerTest {
 
     @Test
@@ -97,7 +99,7 @@ public class LogicMarkCommandTest extends LogicManagerTest {
 
         List<Task> sampleTasks = helper.generateTaskList(task1, task2);
         TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
-        List<Task> expectedList = helper.generateTaskList(task1, doneTask2);
+        List<Task> expectedList = helper.generateTaskList(doneTask2, task1);
         helper.addToModel(model, sampleTasks);
 
         String expectedMessage = String.format(MarkCommand.MESSAGE_SUCCESS, task2);

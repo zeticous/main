@@ -1,6 +1,6 @@
 # Pota-Todo (Task Manager) - Developer Guide
 
-By : `CS2103JAN2017-T15-B3`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Feb 2017`  &nbsp;&nbsp;&nbsp;&nbsp; Licence: `MIT`
+By : `CS2103JAN2017-T15-B3`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Mar 2017`  &nbsp;&nbsp;&nbsp;&nbsp; License: `MIT`
 
 ---
 
@@ -77,6 +77,8 @@ By : `CS2103JAN2017-T15-B3`  &nbsp;&nbsp;&nbsp;&nbsp; Since: `Feb 2017`  &nbsp;&
 
 ### 2.1. Architecture
 
+**Author: Neo Wei Jie, Esmond**
+
 <img src="images/Architecture.png" width="600"><br>
 _Figure 2.1.1 : Architecture Diagram_
 
@@ -145,7 +147,7 @@ _Figure 2.2.1 : Structure of the UI Component_
 **API** : [`Ui.java`](../src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`,
-`StatusBarFooter`, `BrowserPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
  that are in the `src/main/resources/view` folder.<br>
@@ -158,7 +160,10 @@ The `UI` component,
 * Binds itself to some data in the `Model` so that the UI can auto-update when data in the `Model` change.
 * Responds to events raised from various parts of the App and updates the UI accordingly.
 
-For the TaskCard, an additional `TaskCardStyle` class is used to colour code the card. It will be red if the task is undone, and green if the task is completed.
+<img src="images/sampleTaskCard.png" width="800"><br>
+_Figure 2.2.2 : Sample Task Card_
+
+For `TaskCard`, an additional `TaskCardStyle` class is used to colour code the card. It will be red if the task is undone, and green if the task is completed. `TaskCard` will also show a clock icon if it is within a user-configurable time-frame.
 
 ### 2.3. Logic component
 
@@ -167,15 +172,32 @@ _Figure 2.3.1 : Structure of the Logic Component_
 
 **API** : [`Logic.java`](../src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `Parser` class to parse the user command.
-2. This results in a `Command` object which is executed by the `LogicManager`.
-3. The command execution can affect the `Model` (e.g. adding a task) and/or raise events.
-4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+`Logic` uses the `Parser` class to parse the user command. This results in a `Command` object which is executed by the `LogicManager`. The command execution can affect the `Model` (e.g. adding a task) and/or raise events. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")`
- API call.<br>
-<img src="images/LogicSequenceDiagram.png" width="800"><br>
-_Figure 2.3.1 : Interactions Inside the Logic Component for the `delete 1` Command_
+**`Logic` Interface**
+
+The `Logic` interface provides logic operations without exposing any implementation information of the `LogicManager` class.
+The method `execute(String commandText)` identifies the command input in the command text string and execute the command accordingly. Additionally, the method `getFilteredTaskList()` retrieves and returns the filtered task list from `model` component. 
+
+**`LogicManager` Class**
+
+The `LogicManager` class implements the `Logic` interface, providing implementations to all the functionalities required in the interface. It executes commands passed in from the `UI` component by first parsing the command string with `Parser` class and then executing the returned `Command` object to generate `CommandResult` which will be returned back to `UI` component to be displayed.
+
+**`Parser` Class**
+
+The `Parser` class parses given command string into its respective `Command` object. Simple Natural Language Processing(NLP) is used as parsing mechanism so that simple markers (e.g. from, to, by etc)stored in `CliSnytax` class will be identified and relevant arguments after such markers will be extracted. `Parser` will then call corresponding `Command` class constructor to construct the identified type of command.
+
+**`Command` Class**
+
+The `Command` class receives parsed argument from `Parser` class. Afterwards, it generates `CommandResult`  based on the input after execution by `Logic` class. The abstract `Command` class is inherited by multiple sub-classes which are specific `Command` types, each able to generate a corresponding `CommandResult`. The `Logic` class will execute the specific `Command` and modify the data in `Model` component.
+
+Given below is two Sequence Diagrams for interactions within the `Logic` component for the commands `execute("delete 1")` and `execute("add research by tmr")`.
+<br>
+<img src="images/LogicComponentSequenceDiagramDelete.png" width="800"><br>
+_Figure 2.3.2 : Interactions Inside the Logic Component for the `delete 1` Command_
+
+<img src="images/LogicComponentSequenceDiagramAdd.png" width="800"><br>
+_Figure 2.3.3 : Interactions Inside the Logic Component for the `add research by tmr` Command_
 
 ### 2.4. Model component
 
@@ -186,8 +208,10 @@ _Figure 2.4.1 : Structure of the Model Component_
 
 The `Model`,
 
+* stores the Task Notifier Manager data. `TaskNotifierManager` stores the current notification settings in which the user will be alerted if there is an expiring task, and also the method to change this setting.
 * stores a `UserPref` object that represents the user's preferences.
-* stores the Task Manager data.
+* stores the Task Manager data. `TaskManager` stores `UniqueTaskList` and `UniqueTagList`  of pota-todo, and also the methods to modify task related data.
+* stores the Task Manager state manager data. `TaskManagerStateManager` stores the different states of `TaskManagerState` upon mutating commands, and also the methods to modify `TaskManagerState` related data
 * exposes a `UnmodifiableObservableList<ReadOnlyTask>` that can be 'observed' e.g. the UI can be bound to this list
   so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
@@ -201,9 +225,9 @@ _Figure 2.5.1 : Structure of the Storage Component_
 
 The `Storage` component,
 
-* can save `UserPref` objects in json format and read it back.
+* can save `UserPref` objects in json format and read it back. `UserPref` consists of `GuiSettings` and notification settings used for `TaskNotifier`.
 * can save the Task Manager data in xml format and read it back.
-* It stores relevant date object as a string which will be parsed by `DateTimeUtil.dateTimeParse`.
+* stores relevant date objects as a string which will be parsed by `DateTimeUtil.dateTimeParse`.
 
 ### 2.6. Common classes
 
@@ -349,38 +373,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (un
 
 Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
-`* * *` | new user | have a help function | know how to use the program
-`* * *` | user | create deadlines | remind myself when this task have to be done
-`* * *` | user | create events | know of upcoming events
-`* * *` | user | create floating tasks | constantly remind myself to do things
-`* * *` | user | list all tasks | know what is happening
-`* * *` | user | list all deadlines | know which tasks are up on particular dates
-`* * *` | user | list all events | know what events are happening
-`* * *` | user | list all floating events | know what floating events are happening
-`* * *` | user | update an existing task | change a task
-`* * *` | user | update date of an existing task | change the the date in case of a change
-`* * *` | user | update task types | accurately reflect changes in the task
-`* * *` | user | delete a task | strike off a task that is over or cancelled
-`* * *` | user | undo a latest command | make amendments to my latest command
-`* * *` | user | search a task by date | find the corresponding tasks
-`* * *` | user | search a task by name | find the corresponding tasks
-`* * *` | user | change the save file directory | save in different files
-`* *` | user | exit the program | quit
-`* *` | user | clear all tasks | remove all tasks in one go
-`* *` | user | re-do the last undone command | undo my undo command
-`* *` | user | search a task by event name | find a particular event
-`* *` | user | search a floating task by name | find a particular floating task
-`* *` | user | set a reminder for an existing task | be aware of deadlines
-`* *` | user | add a recurring event | avoid having to add the same task repetitively
-`* *` | user | view all tasks today in a summarized format | quickly know my agenda
-`*` | user | switch between year/month/day view | navigate and plan my agendas
-`*` | user | export a PDF file of the task manager | have a copy of my tasks
-`*` | user | tag a location to an existing task | know where the task is at
-`*` | user | create a task with a location | know where the task is at
-`*` | user | search by location | know which tasks is held at this location
-`*` | user | update the location of a task | change the place in case the location changes
-`*` | user | write in a natural speech | use the program without any prior knowledge
-`*` | user | sync to Google calendar | use the program any time at any location
+`* * *` | new user | have a help function | familiarize myself with all the commands and learn how to use the task manager
+`* * *` | user | create deadlines | have a visual reminder and know when a particular task should be done and plan my schedule accordingly
+`* * *` | user | create events | know about upcoming events and plan my schedule accordingly
+`* * *` | user | create floating tasks | constantly remind myself to do things that I may, otherwise, not give attention to
+`* * *` | user | list all tasks | have a clear visualization of all the things to be done and prioritze accordingly
+`* * *` | user | list all deadlines | know which tasks need to be finished before a particular date/time
+`* * *` | user | list all events | know which events are happening when and plan accordingly
+`* * *` | user | list all floating events | know which floating events exist and plan accordingly
+`* * *` | user | update an existing task | change the name and/or start date and/or end date etc. of an event whose parameters may change with time.
+`* * *` | user | update date of an existing task | change the date in case of a change
+`* * *` | user | update task types | accurately reflect changes in the task type. For example, an event type task may become a deadline type task if it gets a due date in which case it is important for this change to be reflected in the task manager
+`* * *` | user | delete a task | remove a task from the task manager if it has been cancelled or is not important/required anymore
+`* * *` | user | undo a latest command | not execute my latest (previous) command in case I made a mistake or it is not required anymore
+`* * *` | user | search a task by date | find the corresponding tasks to know/get a visual of the tasks on a certain date. For example, I may have forgotten what the actual task is that is due on a date
+`* * *` | user | search a task by name | find the corresponding tasks. For example, I may have forgotten the details of task whose name I remember
+`* * *` | user | change the save file directory | save in different files which is important security/memory allocation
+`* *` | user | exit the program | quit the task manager as may not need it all the time
+`* *` | user | clear all tasks | remove all tasks in one go if it is needed as removing them one by one may take significant time 
+`* *` | user | re-do the last undone command | undo my undo command as I may have made a mistake undoing the latest undo command
+`* *` | user | search an event task by name | find a particular event task only as deadline and floating tasks may not be required
+`* *` | user | search a deadline task by name | find a particular deadline task only as event and floating tasks may not be required
+`* *` | user | search a floating task by name | find a particular floating task only as deadline and event tasks may not be required
+`* *` | user | add a recurring event | avoid having to add the same task repetitively; with its parameters automatically updated
+`* *` | user | view all tasks today | quickly know my agenda for today in order to plan my day 
+`*` | user | tag location to a task | know where the task is at if needed as I may need the task manager to remember this detail
+`*` | user | search by location | know which task/tasks is/are held at that location
+`*` | user | update location of a task | change the place in case the location of task changes
+
 
 ## Appendix B : Use Cases
 

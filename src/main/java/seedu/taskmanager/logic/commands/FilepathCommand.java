@@ -1,7 +1,7 @@
 
 package seedu.taskmanager.logic.commands;
 
-//@@author A0140417R
+// @@author A0140417R
 /**
  * Changes the file path to the indicated directory
  */
@@ -23,7 +23,6 @@ public class FilepathCommand extends Command {
         model.changeFilePath(filePath);
         return new CommandResult(String.format(MESSAGE_SUCCESS, filePath));
     }
-
 
     @Override
     public boolean mutatesTaskManager() {

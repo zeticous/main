@@ -1,4 +1,3 @@
-//@@author A0140538J
 
 package seedu.taskmanager.logic.parser;
 
@@ -11,10 +10,14 @@ import seedu.taskmanager.logic.commands.Command;
 import seedu.taskmanager.logic.commands.IncorrectCommand;
 import seedu.taskmanager.logic.commands.MarkCommand;
 
+// @@author A0140538J
+/**
+ * Parses input arguments and creates a new MarkCommand object
+ */
 public class MarkCommandParser {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the MarkCommand and returns an MarkCommand object
+     * Parses the given {@code String} of arguments in the context of the MarkCommand and returns a MarkCommand object
      * for execution.
      */
     public Command parse(String args) {

@@ -19,7 +19,7 @@ import seedu.taskmanager.logic.commands.IncorrectCommand;
 public class FindCommandParser {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand and returns an FindCommand object
+     * Parses the given {@code String} of arguments in the context of the FindCommand and returns a FindCommand object
      * for execution.
      */
     public Command parse(String args) {

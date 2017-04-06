@@ -17,11 +17,12 @@ import seedu.taskmanager.logic.commands.AddCommand;
 import seedu.taskmanager.logic.commands.Command;
 import seedu.taskmanager.logic.commands.IncorrectCommand;
 
+// @@author A0140417R
 /**
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser {
-    // @@author A0140417R
+
     public static final String EMPTY_STRING = "";
 
     public static final String NO_START_DATE = "Start date not found";
@@ -52,7 +53,7 @@ public class AddCommandParser {
 
     private String getNameFromArgsTokenizer(ArgumentTokenizer argsTokenizer) throws IllegalValueException {
         String name = argsTokenizer.getPreamble().get();
-        if (name == EMPTY_STRING) {
+        if (name.equals(EMPTY_STRING)) {
             throw new IllegalValueException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 

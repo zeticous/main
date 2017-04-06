@@ -11,11 +11,11 @@ import seedu.taskmanager.logic.commands.Command;
 import seedu.taskmanager.logic.commands.FilepathCommand;
 import seedu.taskmanager.logic.commands.IncorrectCommand;
 
+// @@author A0140417R
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new FilepathCommand object
  */
 public class FilepathCommandParser {
-    // @@author A0140417R
 
     public static final String FILE_EXTENSION = ".xml";
 
@@ -31,7 +31,7 @@ public class FilepathCommandParser {
     public static final String MESSAGE_EXCEPTION_ERROR = "File path change request failed due to unhandled exceptions";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FilepathCommand and returns an AddCommand
+     * Parses the given {@code String} of arguments in the context of the FilepathCommand and returns an FilepathCommand
      * object for execution.
      */
     public Command parse(String args) {
