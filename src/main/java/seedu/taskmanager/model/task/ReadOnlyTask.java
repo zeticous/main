@@ -1,6 +1,8 @@
 
 package seedu.taskmanager.model.task;
 
+import java.util.Optional;
+
 import seedu.taskmanager.model.tag.UniqueTagList;
 
 /**
@@ -43,9 +45,10 @@ public interface ReadOnlyTask {
     default boolean isSameStateAs(ReadOnlyTask other) {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
-                        && other.getName().equals(this.getName()) // state
-                                                                  // checks here
-                                                                  // onwards
+                        && other.getName().equals(this.getName())
+                        && (Optional.ofNullable(other.getStartDate())).equals(Optional.ofNullable(this.getStartDate()))
+                        && (Optional.ofNullable(other.getEndDate())).equals(Optional.ofNullable(this.getEndDate()))
+                        && other.getTags().equals(this.getTags())
                 );
     }
 

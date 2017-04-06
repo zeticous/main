@@ -8,9 +8,11 @@ import java.util.List;
 import org.junit.Test;
 
 import seedu.taskmanager.commons.core.Messages;
+import seedu.taskmanager.commons.core.UnmodifiableObservableList;
 import seedu.taskmanager.logic.commands.EditCommand;
 import seedu.taskmanager.logic.parser.DateTimeUtil;
 import seedu.taskmanager.model.TaskManager;
+import seedu.taskmanager.model.task.ReadOnlyTask;
 import seedu.taskmanager.model.task.Task;
 
 public class LogicEditCommandTest extends LogicManagerTest {
@@ -41,7 +43,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
     public void execute_edit_duplicatedName() throws Exception {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
-        Task task1 = helper.meeting();
+        Task task1 = helper.confession();
         Task task2 = helper.homework();
 
         // setup starting state
@@ -129,7 +131,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
 
         List<Task> sampleTasks = helper.generateTaskList(task1, task2);
         TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
-        List<Task> expectedList = helper.generateTaskList(task1, editedTask2);
+        List<Task> expectedList = helper.generateTaskList(editedTask2, task1);
         helper.addToModel(model, sampleTasks);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_SUCCESS, editedTask2);
@@ -182,7 +184,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
         helper.addToModel(model, sampleTasks);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_SUCCESS, editedTask);
-        String validCommand = "edit 1 potato s/next hour e/1/2/2023 4.56pm";
+        String validCommand = "edit 1 potato from next hour to 1/2/2023 4.56pm";
         assertCommandSuccess(validCommand, expectedMessage, expectedTM, expectedList);
     }
 

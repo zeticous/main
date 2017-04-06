@@ -98,7 +98,7 @@ public class LogicMarkCommandTest extends LogicManagerTest {
 
         List<Task> sampleTasks = helper.generateTaskList(task1, task2);
         TaskManager expectedTM = helper.generateTaskManager(sampleTasks);
-        List<Task> expectedList = helper.generateTaskList(task1, doneTask2);
+        List<Task> expectedList = helper.generateTaskList(doneTask2, task1);
         helper.addToModel(model, sampleTasks);
 
         String expectedMessage = String.format(MarkCommand.MESSAGE_SUCCESS, task2);
