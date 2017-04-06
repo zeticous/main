@@ -8,20 +8,20 @@ import org.junit.Test;
 
 public class NameTest {
 
+    // @@author A0130277L
+
     @Test
     public void isValidName() {
         // invalid name
-        assertFalse(Name.isValidName("")); // empty string
-        // assertFalse(Name.isValidName(" ")); // spaces only; not a good test
-        // as white spaces will be removed
+        assertFalse(Name.isValidName(""));
 
         // valid name
-        assertTrue(Name.isValidName("peter jack")); // alphabets only
-        assertTrue(Name.isValidName("12345")); // numbers only
-        assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric
-                                                       // characters
-        assertTrue(Name.isValidName("Capital Tan")); // with capital letters
-        assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long
-                                                                        // names
+        assertTrue(Name.isValidName("meeting"));
+        assertTrue(Name.isValidName("meeting with Jon"));
+        assertTrue(Name.isValidName("meeting with 2 people"));
+        assertTrue(Name.isValidName("to task #3"));
+        assertTrue(Name.isValidName("write entry named 'test cases' "));
+        assertTrue(Name.isValidName("12345!@#${}"));
+        assertTrue(Name.isValidName("                            meeting   "));
     }
 }
