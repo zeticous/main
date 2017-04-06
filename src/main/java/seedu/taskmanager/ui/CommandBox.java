@@ -1,11 +1,15 @@
 
 package seedu.taskmanager.ui;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import seedu.taskmanager.commons.core.LogsCenter;
@@ -18,6 +22,7 @@ import seedu.taskmanager.logic.commands.exceptions.CommandException;
 public class CommandBox extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(CommandBox.class);
     private static final String FXML = "CommandBox.fxml";
+    private static PreviousCommandList prevCommandList;
     public static final String ERROR_STYLE_CLASS = "error";
 
     private final Logic logic;
@@ -28,7 +33,9 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(AnchorPane commandBoxPlaceholder, Logic logic) {
         super(FXML);
         this.logic = logic;
+        prevCommandList = new PreviousCommandList();
         addToPlaceholder(commandBoxPlaceholder);
+        setUpListener();
     }
 
     private void addToPlaceholder(AnchorPane placeHolderPane) {
@@ -38,11 +45,31 @@ public class CommandBox extends UiPart<Region> {
         FxViewUtil.applyAnchorBoundaryParameters(commandTextField, 0.0, 0.0, 0.0, 0.0);
     }
 
+    // @@author A0140417R
+    /**
+     * Sets up listener for up and down key, cycle through previous commands regardless of validity.
+     */
+    private void setUpListener() {
+        commandTextField.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode().equals(KeyCode.UP)) {
+                    commandTextField.setText(prevCommandList.getPreviousCommand());
+                }
+
+                else if (event.getCode().equals(KeyCode.DOWN)) {
+                    commandTextField.setText(prevCommandList.getNextCommand());
+                }
+            }
+        });
+    }
+    // @@author A0140417R
+
     @FXML
     private void handleCommandInputChanged() {
         try {
+            prevCommandList.addCommandToList(commandTextField.getText());
             CommandResult commandResult = logic.execute(commandTextField.getText());
-
             // process result of the command
             setStyleToIndicateCommandSuccess();
             commandTextField.setText("");
@@ -69,6 +96,47 @@ public class CommandBox extends UiPart<Region> {
      */
     private void setStyleToIndicateCommandFailure() {
         commandTextField.getStyleClass().add(ERROR_STYLE_CLASS);
+    }
+
+    // @@author A0140417R
+    /**
+     * Wrapper class containing a list of previously entered commands and index. Helps to cycle through the commands
+     * when up and down is pressed.
+     * @author zeticous
+     */
+    private class PreviousCommandList {
+        private int index;
+        private ArrayList<String> commandList;
+
+        public PreviousCommandList() {
+            commandList = new ArrayList<String>();
+            index = 0;
+        }
+
+        public void addCommandToList(String validCommand) {
+            commandList.add(0, validCommand);
+            index = 0;
+        }
+
+        public String getPreviousCommand() {
+            try {
+                return commandList.get(index++);
+            } catch (IndexOutOfBoundsException e) {
+                //Index is beyond the last element, set index to the last element of the list.
+                index = commandList.size()-1;
+                return getPreviousCommand();
+            }
+        }
+
+        public String getNextCommand() {
+            try {
+                return commandList.get(index--);
+            } catch (IndexOutOfBoundsException e) {
+                //Index is below 0, set index to 0 and return the first command in the list.
+                index = 0;
+                return getNextCommand();
+            }
+        }
     }
 
 }
