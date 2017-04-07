@@ -12,7 +12,7 @@ import seedu.taskmanager.model.task.UniqueTaskList;
  */
 public class TypicalTestTasks {
 
-    public TestTask event1, event2, event3, ddl1, ddl2, ddl3, flt1, flt2, flt3;
+    public TestTask event1, event2, event3, ddl1, ddl2, ddl3, flt1, flt2, flt3, eventConflicting;
 
     // Sample events
     public String EVENT1_NAME = "Meeting with principal";
@@ -40,6 +40,9 @@ public class TypicalTestTasks {
     public String FLT2_NAME = "Stay as the strongest human";
     public String FLT3_NAME = "Sleep before 11 everyday";
 
+    // Sample conflicting event
+    public String CONFLICT_EVENT_NAME = "Conflicting Event";
+
     public TypicalTestTasks() {
         try {
             event1 = new TaskBuilder().withName(EVENT1_NAME)
@@ -65,6 +68,11 @@ public class TypicalTestTasks {
             ddl3 = new TaskBuilder().withName(DDL3_NAME)
                     .withEndDate(DateTimeUtil.parseEndDateTime(DDL3_DUE_TIME_STRING)).build();
             flt3 = new TaskBuilder().withName(FLT3_NAME).withTags("hard").withTags("daunting").build();
+
+            // Event conflicting with event 1 for manual input
+            eventConflicting = new TaskBuilder().withName(CONFLICT_EVENT_NAME)
+                    .withStartDate(DateTimeUtil.parseStartDateTime(EVENT1_START_DATE_STRING))
+                    .withEndDate(DateTimeUtil.parseEndDateTime(EVENT1_END_DATE_STRING)).build();
 
         } catch (IllegalValueException e) {
             e.printStackTrace();
