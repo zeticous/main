@@ -55,9 +55,7 @@ public class CommandBox extends UiPart<Region> {
             public void handle(KeyEvent event) {
                 if (event.getCode().equals(KeyCode.UP)) {
                     commandTextField.setText(prevCommandList.getPreviousCommand());
-                }
-
-                else if (event.getCode().equals(KeyCode.DOWN)) {
+                } else if (event.getCode().equals(KeyCode.DOWN)) {
                     commandTextField.setText(prevCommandList.getNextCommand());
                 }
             }
