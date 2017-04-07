@@ -58,7 +58,7 @@ public class AddCommandTest extends TaskManagerGuiTest {
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
 
         // invalid date-time format
-        commandBox.runCommand("add invalide time format from 1-1-2020 to @#$");
+        commandBox.runCommand("add invalide time format s/ 1-1-2020 e/ @#$");
         assertResultMessage(DateTimeUtil.INVALID_DATE_FORMAT);
 
         // end date before start date
