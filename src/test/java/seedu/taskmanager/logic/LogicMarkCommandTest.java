@@ -69,7 +69,7 @@ public class LogicMarkCommandTest extends LogicManagerTest {
 
         // execute command and verify result
         String expectedMessage = MarkCommand.MESSAGE_ALREADY_UNDONE;
-        String invalidCommand = "mark 1 undone";
+        String invalidCommand = "mark 1 uNdoNe";
         assertCommandFailure(invalidCommand, expectedMessage);
     }
 
@@ -85,7 +85,7 @@ public class LogicMarkCommandTest extends LogicManagerTest {
 
         // execute command and verify result
         String expectedMessage = MarkCommand.MESSAGE_ALREADY_DONE;
-        String invalidCommand = "mark 1 done";
+        String invalidCommand = "mark 1 DonE";
         assertCommandFailure(invalidCommand, expectedMessage);
     }
 
