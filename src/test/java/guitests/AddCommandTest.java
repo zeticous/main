@@ -8,9 +8,9 @@ import org.junit.Test;
 import guitests.guihandles.TaskCardHandle;
 import seedu.taskmanager.commons.core.Messages;
 import seedu.taskmanager.logic.commands.AddCommand;
+import seedu.taskmanager.logic.parser.DateTimeUtil;
 import seedu.taskmanager.testutil.TestTask;
 import seedu.taskmanager.testutil.TestUtil;
-import seedu.taskmanager.logic.commands.AddCommand;
 
 public class AddCommandTest extends TaskManagerGuiTest {
 
@@ -46,17 +46,27 @@ public class AddCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("clear");
         assertAddSuccess(td.event1);
 
+        // add conflicting event which is in conflict with event1
+        commandBox.runCommand(td.eventConflicting.getAddCommand());
+        String expectedResultMessage = AddCommand.MESSAGE_SUCCESS + AddCommand.NEWLINE_STRING
+                + AddCommand.MESSAGE_CONFLICT + AddCommand.NEWLINE_STRING + td.event1.getAsText()
+                + AddCommand.NEWLINE_STRING;
+        assertResultMessage(expectedResultMessage);
+
         // invalid command
         commandBox.runCommand("adds meeting");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
 
-        // add conflicting event which is in conflict with event1
-        commandBox.runCommand(td.eventConflicting.getAddCommand());
-        String expectedResultMessage = AddCommand.MESSAGE_SUCCESS + AddCommand.NEWLINE_STRING
-                + AddCommand.MESSAGE_CONFLICT + AddCommand.NEWLINE_STRING
-                + td.event1.getAsText() + AddCommand.NEWLINE_STRING;
-        assertResultMessage(expectedResultMessage);
+        // invalid date-time format
+        commandBox.runCommand("add invalide time format from 1-1-2020 to @#$");
+        assertResultMessage(DateTimeUtil.INVALID_DATE_FORMAT);
+
+        // end date before start date
+        commandBox.runCommand("add end before start from 1/1/2019 to 1/1/2018");
+        assertResultMessage(Messages.MESSAGE_START_AFTER_END);
+
     }
+    // @@author
 
     private void assertAddSuccess(TestTask taskToAdd, TestTask... currentList) {
         commandBox.runCommand(taskToAdd.getAddCommand());
