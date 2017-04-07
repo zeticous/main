@@ -92,12 +92,12 @@ public class TypicalTestTasks {
 
     public TestTask[] getTypicalTasks() {
         return new TestTask[] {
-                event1,
-                event2,
-                ddl1,
-                ddl2,
-                flt1,
-                flt2
+            event1,
+            event2,
+            ddl1,
+            ddl2,
+            flt1,
+            flt2
         };
     }
 

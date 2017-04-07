@@ -21,7 +21,6 @@ public class Name {
 
     /**
      * Validates given name.
-     * 
      * @throws IllegalValueException
      *             if given task string is invalid.
      */

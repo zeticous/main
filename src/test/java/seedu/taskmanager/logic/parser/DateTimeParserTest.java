@@ -5,12 +5,11 @@ package seedu.taskmanager.logic.parser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import seedu.taskmanager.logic.parser.DateTimeUtil;
-import seedu.taskmanager.model.task.TaskDate;
-
 import org.junit.Test;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
+
+import seedu.taskmanager.model.task.TaskDate;
 
 public class DateTimeParserTest {
 
