@@ -134,6 +134,7 @@ public class DateTimeUtil {
 
     /**
      * Checks if a particular string is a valid time format
+     * 
      * @param date
      * @return true if string is parseable to date, false otherwise
      */
@@ -145,22 +146,21 @@ public class DateTimeUtil {
     // Set time of the returned Date object as the starting time of the day
     // i.e. 00:00:00
     private static Date setStartDateTime(Date date) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        cal.set(Calendar.HOUR_OF_DAY, STARTING_TIME_HOUR);
-        cal.set(Calendar.MINUTE, STARTING_TIME_MINUTE);
-        cal.set(Calendar.SECOND, STARTING_TIME_SECOND);
-        return cal.getTime();
+        return setPredefinedTime(date, STARTING_TIME_HOUR, STARTING_TIME_MINUTE, STARTING_TIME_SECOND);
     }
 
     // Set time of the returned Date object as the ending time of the day
     // i.e. 23:59:59
     private static Date setEndDateTime(Date date) {
+        return setPredefinedTime(date, ENDING_TIME_HOUR, ENDING_TIME_MINUTE, ENDING_TIME_SECOND);
+    }
+
+    private static Date setPredefinedTime(Date date, int hour, int minute, int second) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        cal.set(Calendar.HOUR_OF_DAY, ENDING_TIME_HOUR);
-        cal.set(Calendar.MINUTE, ENDING_TIME_MINUTE);
-        cal.set(Calendar.SECOND, ENDING_TIME_SECOND);
+        cal.set(Calendar.HOUR_OF_DAY, hour);
+        cal.set(Calendar.MINUTE, minute);
+        cal.set(Calendar.SECOND, second);
         return cal.getTime();
     }
 
