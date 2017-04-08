@@ -79,6 +79,30 @@ public class CommandBoxTest extends TaskManagerGuiTest {
         commandBox.nextCommand();
         assertEquals(ANOTHER_COMMAND_THAT_SUCCEEDS,commandBox.getCommandInput());
     }
+
+    @Test
+    public void commandBox_previousCommand_exceedingIndex() {
+        commandBox.runCommand(COMMAND_THAT_SUCCEEDS);
+        commandBox.runCommand(ANOTHER_COMMAND_THAT_SUCCEEDS);
+        commandBox.prevousCommand();
+        commandBox.prevousCommand();
+        commandBox.prevousCommand();
+        assertEquals(COMMAND_THAT_SUCCEEDS,commandBox.getCommandInput());
+        commandBox.prevousCommand();
+        assertEquals(COMMAND_THAT_SUCCEEDS,commandBox.getCommandInput());
+    }
+
+    @Test
+    public void commandBox_nextCommand_exceedingIndex() {
+        commandBox.runCommand(COMMAND_THAT_SUCCEEDS);
+        commandBox.runCommand(ANOTHER_COMMAND_THAT_SUCCEEDS);
+        commandBox.prevousCommand();
+        commandBox.prevousCommand();
+        commandBox.nextCommand();
+        commandBox.nextCommand();
+        commandBox.nextCommand();
+        assertEquals(ANOTHER_COMMAND_THAT_SUCCEEDS,commandBox.getCommandInput());
+    }
     // @@author
 
 }
