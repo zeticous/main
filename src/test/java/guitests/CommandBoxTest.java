@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import javafx.scene.input.KeyCode;
 import seedu.taskmanager.ui.CommandBox;
 
 public class CommandBoxTest extends TaskManagerGuiTest {
 
     private static final String COMMAND_THAT_SUCCEEDS = "mark 3 done";
+    private static final String ANOTHER_COMMAND_THAT_SUCCEEDS = "add valid name s/today e/next week";
     private static final String COMMAND_THAT_FAILS = "invalid command";
 
     private ArrayList<String> defaultStyleOfCommandBox;
@@ -56,5 +58,27 @@ public class CommandBoxTest extends TaskManagerGuiTest {
         assertEquals("", commandBox.getCommandInput());
         assertEquals(defaultStyleOfCommandBox, commandBox.getStyleClass());
     }
+
+    // @@author A0130277L
+    @Test
+    public void commandBox_previousCommand() {
+        commandBox.runCommand(COMMAND_THAT_SUCCEEDS);
+        commandBox.runCommand(ANOTHER_COMMAND_THAT_SUCCEEDS);
+        commandBox.prevousCommand();
+        assertEquals(ANOTHER_COMMAND_THAT_SUCCEEDS,commandBox.getCommandInput());
+        commandBox.prevousCommand();
+        assertEquals(COMMAND_THAT_SUCCEEDS,commandBox.getCommandInput());
+    }
+
+    @Test
+    public void commandBox_nextCommand() {
+        commandBox.runCommand(COMMAND_THAT_SUCCEEDS);
+        commandBox.runCommand(ANOTHER_COMMAND_THAT_SUCCEEDS);
+        commandBox.prevousCommand();
+        commandBox.prevousCommand();
+        commandBox.nextCommand();
+        assertEquals(ANOTHER_COMMAND_THAT_SUCCEEDS,commandBox.getCommandInput());
+    }
+    // @@author
 
 }
