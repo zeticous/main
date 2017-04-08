@@ -2,6 +2,7 @@
 package guitests;
 
 import static org.junit.Assert.assertTrue;
+import static seedu.taskmanager.commons.core.Messages.MESSAGE_DUPLICATE_TASK;
 
 import org.junit.Test;
 
@@ -99,7 +100,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
     public void edit_duplicateTask_failure() {
         commandBox.runCommand(
                 "edit 3 Meeting with principal from 26 March 2017 10pm to" + " 26 March 2017 11pm t/important");
-        assertResultMessage(EditCommand.MESSAGE_DUPLICATE_TASK);
+        assertResultMessage(MESSAGE_DUPLICATE_TASK);
     }
 
     /**

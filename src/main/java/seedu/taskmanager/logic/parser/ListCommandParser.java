@@ -2,6 +2,9 @@
 package seedu.taskmanager.logic.parser;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.taskmanager.commons.util.CommonStringUtil.DEADLINE_STRING;
+import static seedu.taskmanager.commons.util.CommonStringUtil.EVENT_STRING;
+import static seedu.taskmanager.commons.util.CommonStringUtil.FLOATING_TASK_STRING;
 
 import seedu.taskmanager.logic.commands.Command;
 import seedu.taskmanager.logic.commands.IncorrectCommand;
@@ -29,18 +32,23 @@ public class ListCommandParser {
             return new ListCommand(modifiedArg);
         }
 
-        if (modifiedArg.contains(ListArgumentsUtil.FLOATING_TASK_STRING)) {
+        if (modifiedArg.contains(FLOATING_TASK_STRING)) {
             return new IncorrectCommand(ListCommand.MESSAGE_FLOATING_NO_DATE);
-        } else if (modifiedArg.contains(ListArgumentsUtil.DEADLINE_STRING)) {
-            return new ListCommand(formatArgs(modifiedArg, ListArgumentsUtil.DEADLINE_STRING));
-        } else if (modifiedArg.contains(ListArgumentsUtil.EVENT_STRING)) {
-            return new ListCommand(formatArgs(modifiedArg, ListArgumentsUtil.EVENT_STRING));
+        } else if (modifiedArg.contains(DEADLINE_STRING)) {
+            return new ListCommand(formatArgs(modifiedArg, DEADLINE_STRING));
+        } else if (modifiedArg.contains(EVENT_STRING)) {
+            return new ListCommand(formatArgs(modifiedArg, EVENT_STRING));
         }
 
         return new ListCommand(modifiedArg);
 
     }
 
+    /**
+     * Formats a String of arguments into two different filters.
+     * First filter is the taskType string , second filter is the date string.
+     * Stores it in an array to be sent for filtering.
+     */
     private String[] formatArgs(String twoArgs, String taskType) {
         String[] formattedArgs = new String[2];
         String[] helper = twoArgs.split(taskType);
