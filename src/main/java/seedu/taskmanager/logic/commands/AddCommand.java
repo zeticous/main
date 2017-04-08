@@ -1,14 +1,16 @@
 
 package seedu.taskmanager.logic.commands;
 
-import static seedu.taskmanager.logic.parser.AddCommandParser.NO_END_DATE;
-import static seedu.taskmanager.logic.parser.AddCommandParser.NO_START_DATE;
+import static seedu.taskmanager.commons.core.Messages.MESSAGE_DUPLICATE_TASK;
+import static seedu.taskmanager.commons.util.CommonStringUtil.EMPTY_STRING;
+import static seedu.taskmanager.commons.util.CommonStringUtil.NEW_LINE_STRING;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.taskmanager.commons.exceptions.IllegalValueException;
 import seedu.taskmanager.logic.commands.exceptions.CommandException;
+import seedu.taskmanager.logic.parser.AddCommandParser;
 import seedu.taskmanager.logic.parser.DateTimeUtil;
 import seedu.taskmanager.model.tag.Tag;
 import seedu.taskmanager.model.tag.UniqueTagList;
@@ -24,8 +26,6 @@ import seedu.taskmanager.model.task.UniqueTaskList;
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
-    public static final String EMPTY_STRING = "";
-    public static final String NEWLINE_STRING = "\n";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to PotaTodo. "
             + "Parameters: NAME [s/START_DATE_TIME] [e/END_DATE_TIME] [t/TAG]...\n" + "Example: " + COMMAND_WORD
@@ -34,7 +34,6 @@ public class AddCommand extends Command {
     public static final String MESSAGE_CONFLICT = "**The task added is in conflict with the following tasks**";
 
     public static final String MESSAGE_SUCCESS = "New task added!";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
 
     private final Task toAdd;
 
@@ -51,11 +50,11 @@ public class AddCommand extends Command {
         TaskDate startDate = null;
         TaskDate endDate = null;
 
-        if (startDateString != NO_START_DATE) {
+        if (startDateString != AddCommandParser.NO_START_DATE) {
             startDate = DateTimeUtil.parseStartDateTime(startDateString);
         }
 
-        if (endDateString != NO_END_DATE) {
+        if (endDateString != AddCommandParser.NO_END_DATE) {
             endDate = DateTimeUtil.parseEndDateTime(endDateString);
         }
 
@@ -76,7 +75,7 @@ public class AddCommand extends Command {
         for (ReadOnlyTask task : model.getTaskManager().getTaskList()) {
             if (DateTimeUtil.isConflicting(toAdd, task)) {
                 conflictingTasksStringBuilder.append(task.getAsText());
-                conflictingTasksStringBuilder.append(NEWLINE_STRING);
+                conflictingTasksStringBuilder.append(NEW_LINE_STRING);
             }
         }
         return conflictingTasksStringBuilder.toString();
@@ -93,7 +92,7 @@ public class AddCommand extends Command {
                 String allConflictingTasksString = allConflictingTasks(toAdd);
                 model.addTask(toAdd);
                 String feedback = MESSAGE_SUCCESS;
-                feedback += NEWLINE_STRING + MESSAGE_CONFLICT + NEWLINE_STRING + allConflictingTasksString;
+                feedback += NEW_LINE_STRING + MESSAGE_CONFLICT + NEW_LINE_STRING + allConflictingTasksString;
                 return new CommandResult(feedback);
             }
         } catch (UniqueTaskList.DuplicateTaskException e) {

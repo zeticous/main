@@ -2,6 +2,8 @@
 package guitests;
 
 import static org.junit.Assert.assertTrue;
+import static seedu.taskmanager.commons.core.Messages.MESSAGE_DUPLICATE_TASK;
+import static seedu.taskmanager.commons.util.CommonStringUtil.NEW_LINE_STRING;
 
 import org.junit.Test;
 
@@ -39,7 +41,7 @@ public class AddCommandTest extends TaskManagerGuiTest {
 
         // add duplicate task
         commandBox.runCommand(td.event2.getAddCommand());
-        assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
+        assertResultMessage(MESSAGE_DUPLICATE_TASK);
         assertTrue(taskListPanel.isListMatching(currentList));
 
         // add to empty list
@@ -48,9 +50,9 @@ public class AddCommandTest extends TaskManagerGuiTest {
 
         // add conflicting event which is in conflict with event1
         commandBox.runCommand(td.eventConflicting.getAddCommand());
-        String expectedResultMessage = AddCommand.MESSAGE_SUCCESS + AddCommand.NEWLINE_STRING
-                + AddCommand.MESSAGE_CONFLICT + AddCommand.NEWLINE_STRING + td.event1.getAsText()
-                + AddCommand.NEWLINE_STRING;
+        String expectedResultMessage = AddCommand.MESSAGE_SUCCESS + NEW_LINE_STRING
+                + AddCommand.MESSAGE_CONFLICT + NEW_LINE_STRING + td.event1.getAsText()
+                + NEW_LINE_STRING;
         assertResultMessage(expectedResultMessage);
 
         // invalid command

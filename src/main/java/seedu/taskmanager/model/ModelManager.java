@@ -1,6 +1,12 @@
 
 package seedu.taskmanager.model;
 
+import static seedu.taskmanager.commons.util.CommonStringUtil.DEADLINE_STRING;
+import static seedu.taskmanager.commons.util.CommonStringUtil.DONE_STRING;
+import static seedu.taskmanager.commons.util.CommonStringUtil.EVENT_STRING;
+import static seedu.taskmanager.commons.util.CommonStringUtil.FLOATING_TASK_STRING;
+import static seedu.taskmanager.commons.util.CommonStringUtil.UNDONE_STRING;
+
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -227,15 +233,15 @@ public class ModelManager extends ComponentManager implements Model {
         @Override
         public boolean run(ReadOnlyTask task) {
             switch (filter) {
-            case "floating":
+            case FLOATING_TASK_STRING:
                 return task.isFloating();
-            case "deadline":
+            case DEADLINE_STRING:
                 return task.isDeadline();
-            case "event":
+            case EVENT_STRING:
                 return task.isEvent();
-            case "done":
+            case DONE_STRING:
                 return task.isDone();
-            case "undone":
+            case UNDONE_STRING:
                 return !task.isDone();
             // For parsing date
             default:
@@ -279,11 +285,11 @@ public class ModelManager extends ComponentManager implements Model {
                             .getOnlyDateStringFromDate(task.getEndDate().getTaskDate()).equals(dateString));
 
             switch (taskType) {
-            case "floating":
+            case FLOATING_TASK_STRING:
                 return task.isFloating() && dateFilter;
-            case "deadline":
+            case DEADLINE_STRING:
                 return task.isDeadline() && dateFilter;
-            case "event":
+            case EVENT_STRING:
                 return task.isEvent() && dateFilter;
             default:
                 return false;

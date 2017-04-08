@@ -1,6 +1,9 @@
 
 package seedu.taskmanager.logic.commands;
 
+import static seedu.taskmanager.commons.core.Messages.MESSAGE_DUPLICATE_TASK;
+import static seedu.taskmanager.commons.core.Messages.MESSAGE_START_AFTER_END;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +35,6 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Edited %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager.";
-    public static final String MESSAGE_START_AFTER_END = "The start date provided is after end date.";
     public static final String MESSAGE_INVALID_EDITTED_TASK =
             "The editted task is not in the right format." + " Please check the type of your task to edit accordingly.";
 

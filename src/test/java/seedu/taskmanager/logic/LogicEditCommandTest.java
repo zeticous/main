@@ -1,6 +1,7 @@
 
 package seedu.taskmanager.logic;
 
+import static seedu.taskmanager.commons.core.Messages.MESSAGE_DUPLICATE_TASK;
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.List;
@@ -50,7 +51,7 @@ public class LogicEditCommandTest extends LogicManagerTest {
 
         // execute command and verify result
         String invalidCommand = "edit 1 CS Homework";
-        String expectedMessage = EditCommand.MESSAGE_DUPLICATE_TASK;
+        String expectedMessage = MESSAGE_DUPLICATE_TASK;
         assertCommandFailure(invalidCommand, expectedMessage);
     }
 

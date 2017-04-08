@@ -2,6 +2,7 @@
 package seedu.taskmanager.logic.parser;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_REPEATED_MARKERS_FOUND;
+import static seedu.taskmanager.commons.util.CommonStringUtil.REMOVE_STRING;
 import static seedu.taskmanager.logic.parser.CliSyntax.ACCEPTED_END_DATE_MARKER;
 import static seedu.taskmanager.logic.parser.CliSyntax.ACCEPTED_START_DATE_MARKER;
 import static seedu.taskmanager.logic.parser.CliSyntax.PREFIX_ENDDATE;
@@ -17,21 +18,22 @@ import seedu.taskmanager.logic.parser.ArgumentTokenizer.Prefix;
  * Markers are words that indicates that the following argument is a date. e.g some name <from> [some date] <to>
  * [another date] In this case, from and to are markers and will be replaced with the relevant prefixes. Accepted start
  * date markers and end date markers can be found at {@code CliSyntax.class}
+ *
  * @author zeticous
  */
 public class DateMarkerParser {
     private static final String EMPTY_SPACE = "\\s+";
     private static final String WHITE_SPACE = " ";
-    private static final String REMOVE_STRING = "remove";
-    
+
     private static DateMarkerMap markerMap;
 
     /**
      * Replaces the markers with the respective start dates and end date prefixes.
+     *
      * @param argString
      * @return String with markers replaced with prefixes
      * @throws IllegalValueException
-     *         when markers from the same group is detected
+     *             when markers from the same group is detected
      */
     public static String replaceMarkersWithPrefix(String argString) throws IllegalValueException {
         markerMap = new DateMarkerMap();
@@ -73,7 +75,6 @@ public class DateMarkerParser {
         for (int i = currentIndex + 1; i < splittedArgs.length && !markerMap.contains(splittedArgs[i]); i++) {
             builder.append(splittedArgs[i] + WHITE_SPACE);
         }
-        
         String testString = builder.toString().trim();
         return DateTimeUtil.isValidDateString(testString) || REMOVE_STRING.equals(testString);
     }
@@ -81,6 +82,7 @@ public class DateMarkerParser {
     /**
      * Wrapper class to store 2 hashmaps. One with the marker string and its respective prefix. One with the prefix and
      * its respective amount of appearance.
+     *
      * @author zeticous
      */
     public static class DateMarkerMap {
@@ -107,6 +109,7 @@ public class DateMarkerParser {
 
         /**
          * Checks if a particular string is a marker.
+         *
          * @param argument
          * @return true if it is a marker
          */
@@ -116,6 +119,7 @@ public class DateMarkerParser {
 
         /**
          * Get the prefix assigned to the argument
+         *
          * @param argument
          * @return prefix respective to the argument, null if argument is not marker
          */

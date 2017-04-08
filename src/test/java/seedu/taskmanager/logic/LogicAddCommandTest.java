@@ -1,6 +1,7 @@
 
 package seedu.taskmanager.logic;
 
+import static seedu.taskmanager.commons.core.Messages.MESSAGE_DUPLICATE_TASK;
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_START_AFTER_END;
 
@@ -77,7 +78,7 @@ public class LogicAddCommandTest extends LogicManagerTest {
         model.addTask(toBeAdded); // task already in internal task manager
 
         // execute command and verify result
-        assertCommandFailure(helper.generateAddCommand(toBeAdded), AddCommand.MESSAGE_DUPLICATE_TASK);
+        assertCommandFailure(helper.generateAddCommand(toBeAdded), MESSAGE_DUPLICATE_TASK);
 
     }
 }
