@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import javafx.scene.input.KeyCode;
 import seedu.taskmanager.ui.CommandBox;
 
 public class CommandBoxTest extends TaskManagerGuiTest {
@@ -65,9 +64,9 @@ public class CommandBoxTest extends TaskManagerGuiTest {
         commandBox.runCommand(COMMAND_THAT_SUCCEEDS);
         commandBox.runCommand(ANOTHER_COMMAND_THAT_SUCCEEDS);
         commandBox.prevousCommand();
-        assertEquals(ANOTHER_COMMAND_THAT_SUCCEEDS,commandBox.getCommandInput());
+        assertEquals(ANOTHER_COMMAND_THAT_SUCCEEDS, commandBox.getCommandInput());
         commandBox.prevousCommand();
-        assertEquals(COMMAND_THAT_SUCCEEDS,commandBox.getCommandInput());
+        assertEquals(COMMAND_THAT_SUCCEEDS, commandBox.getCommandInput());
     }
 
     @Test
@@ -77,7 +76,7 @@ public class CommandBoxTest extends TaskManagerGuiTest {
         commandBox.prevousCommand();
         commandBox.prevousCommand();
         commandBox.nextCommand();
-        assertEquals(ANOTHER_COMMAND_THAT_SUCCEEDS,commandBox.getCommandInput());
+        assertEquals(ANOTHER_COMMAND_THAT_SUCCEEDS, commandBox.getCommandInput());
     }
 
     @Test
@@ -87,9 +86,9 @@ public class CommandBoxTest extends TaskManagerGuiTest {
         commandBox.prevousCommand();
         commandBox.prevousCommand();
         commandBox.prevousCommand();
-        assertEquals(COMMAND_THAT_SUCCEEDS,commandBox.getCommandInput());
+        assertEquals(COMMAND_THAT_SUCCEEDS, commandBox.getCommandInput());
         commandBox.prevousCommand();
-        assertEquals(COMMAND_THAT_SUCCEEDS,commandBox.getCommandInput());
+        assertEquals(COMMAND_THAT_SUCCEEDS, commandBox.getCommandInput());
     }
 
     @Test
@@ -101,7 +100,7 @@ public class CommandBoxTest extends TaskManagerGuiTest {
         commandBox.nextCommand();
         commandBox.nextCommand();
         commandBox.nextCommand();
-        assertEquals(ANOTHER_COMMAND_THAT_SUCCEEDS,commandBox.getCommandInput());
+        assertEquals(ANOTHER_COMMAND_THAT_SUCCEEDS, commandBox.getCommandInput());
     }
     // @@author
 
