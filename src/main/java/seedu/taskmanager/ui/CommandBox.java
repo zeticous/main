@@ -106,7 +106,7 @@ public class CommandBox extends UiPart<Region> {
     // @@author A0140417R
     /**
      * Wrapper class containing a list of previously entered commands and index. Helps to cycle through the commands
-     * when up and down is pressed.
+     * when up and down is pressed. Uses a circular-list implementation of arraylist.
      * @author zeticous
      */
     private class PreviousCommandList {
@@ -127,9 +127,10 @@ public class CommandBox extends UiPart<Region> {
             try {
                 return commandList.get(index++);
             } catch (IndexOutOfBoundsException e) {
-                // Index is beyond the last element, set index to the last element of the list.
-                index = commandList.size() - 1;
+                // Index is beyond the last element, set index to the first element of the list.
+                index = 0;
                 return getPreviousCommand();
+                
             }
         }
 
@@ -137,8 +138,8 @@ public class CommandBox extends UiPart<Region> {
             try {
                 return commandList.get(index--);
             } catch (IndexOutOfBoundsException e) {
-                // Index is below 0, set index to 0 and return the first command in the list.
-                index = 0;
+                // Index is below 0, set index to 0 and return the last element in the list.
+                index = commandList.size() - 1;
                 return getNextCommand();
             }
         }
