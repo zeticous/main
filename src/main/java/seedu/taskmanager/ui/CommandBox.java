@@ -4,6 +4,7 @@ package seedu.taskmanager.ui;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.SplitPane;
@@ -54,9 +55,15 @@ public class CommandBox extends UiPart<Region> {
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode().equals(KeyCode.UP)) {
-                    commandTextField.setText(prevCommandList.getPreviousCommand());
-                } else if (event.getCode().equals(KeyCode.DOWN)) {
-                    commandTextField.setText(prevCommandList.getNextCommand());
+                    Platform.runLater(() -> {
+                        commandTextField.setText(prevCommandList.getPreviousCommand());
+                    });
+                }
+
+                else if (event.getCode().equals(KeyCode.DOWN)) {
+                    Platform.runLater(() -> {
+                        commandTextField.setText(prevCommandList.getNextCommand());
+                    });
                 }
             }
         });
@@ -99,7 +106,7 @@ public class CommandBox extends UiPart<Region> {
     // @@author A0140417R
     /**
      * Wrapper class containing a list of previously entered commands and index. Helps to cycle through the commands
-     * when up and down is pressed.
+     * when up and down is pressed. The first element of the list is always a blank string.
      * @author zeticous
      */
     private class PreviousCommandList {
@@ -108,31 +115,35 @@ public class CommandBox extends UiPart<Region> {
 
         public PreviousCommandList() {
             commandList = new ArrayList<String>();
+            commandList.add("");
             index = 0;
         }
 
         public void addCommandToList(String validCommand) {
-            commandList.add(0, validCommand);
+            commandList.add(1, validCommand);
             index = 0;
         }
 
         public String getPreviousCommand() {
             try {
-                return commandList.get(index++);
+                String prevCommand = commandList.get(index+1);
+                index++;
+                return prevCommand;
             } catch (IndexOutOfBoundsException e) {
-                // Index is beyond the last element, set index to the last element of the list.
-                index = commandList.size() - 1;
-                return getPreviousCommand();
+                // Index is at the last element.
+                return commandList.get(index);
+
             }
         }
 
         public String getNextCommand() {
             try {
-                return commandList.get(index--);
+                String nextCommand = commandList.get(index-1);
+                index--;
+                return nextCommand;
             } catch (IndexOutOfBoundsException e) {
-                // Index is below 0, set index to 0 and return the first command in the list.
-                index = 0;
-                return getNextCommand();
+                // Index is at the first element.
+                return commandList.get(index);
             }
         }
     }
