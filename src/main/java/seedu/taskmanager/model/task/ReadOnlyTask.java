@@ -47,8 +47,7 @@ public interface ReadOnlyTask {
                 || (other != null // this is first to avoid NPE below
                         && other.getName().equals(this.getName())
                         && (Optional.ofNullable(other.getStartDate())).equals(Optional.ofNullable(this.getStartDate()))
-                        && (Optional.ofNullable(other.getEndDate())).equals(Optional.ofNullable(this.getEndDate()))
-                        && other.getTags().equals(this.getTags()));
+                        && (Optional.ofNullable(other.getEndDate())).equals(Optional.ofNullable(this.getEndDate())));
     }
 
     // @@author A0140538J

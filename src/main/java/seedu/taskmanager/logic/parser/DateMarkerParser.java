@@ -66,7 +66,6 @@ public class DateMarkerParser {
     /**
      * Helper method to check if the argument from the current index to either the next marker or end of argument
      * contains a valid date or "remove" string.
-     *
      * @param splittedArgs
      * @param currentIndex
      * @return true if a date string is found, false otherwise.
@@ -76,7 +75,6 @@ public class DateMarkerParser {
         for (int i = currentIndex + 1; i < splittedArgs.length && !markerMap.contains(splittedArgs[i]); i++) {
             builder.append(splittedArgs[i] + WHITE_SPACE);
         }
-
         String testString = builder.toString().trim();
         return DateTimeUtil.isValidDateString(testString) || REMOVE_STRING.equals(testString);
     }

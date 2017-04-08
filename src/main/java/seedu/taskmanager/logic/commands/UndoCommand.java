@@ -20,7 +20,7 @@ public class UndoCommand extends Command {
         try {
             model.loadPreviousState();
         } catch (IndexOutOfBoundsException e) {
-            return new CommandResult(MESSAGE_NO_PREVIOUS_STATE);
+            throw new CommandException(MESSAGE_NO_PREVIOUS_STATE);
         }
 
         return new CommandResult(MESSAGE_SUCCESS);
