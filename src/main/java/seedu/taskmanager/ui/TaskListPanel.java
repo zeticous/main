@@ -36,7 +36,7 @@ public class TaskListPanel extends UiPart<Region> {
 
     // @@author A0140417R
     /**
-     * This method sets up a changeListener, and auto-scrolls the ListView to the added/updated item when reqiored.
+     * This method sets up a changeListener, and auto-scrolls the ListView to the added/updated item when required.
      */
     private void setUpListener() {
         taskListView.getItems().addListener(new ListChangeListener<ReadOnlyTask>() {

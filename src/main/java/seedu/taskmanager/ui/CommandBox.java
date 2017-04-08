@@ -4,6 +4,7 @@ package seedu.taskmanager.ui;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.SplitPane;
@@ -54,11 +55,15 @@ public class CommandBox extends UiPart<Region> {
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode().equals(KeyCode.UP)) {
-                    commandTextField.setText(prevCommandList.getPreviousCommand());
+                    Platform.runLater(() -> {
+                        commandTextField.setText(prevCommandList.getPreviousCommand());
+                    });
                 }
 
                 else if (event.getCode().equals(KeyCode.DOWN)) {
-                    commandTextField.setText(prevCommandList.getNextCommand());
+                    Platform.runLater(() -> {
+                        commandTextField.setText(prevCommandList.getNextCommand());
+                    });
                 }
             }
         });
