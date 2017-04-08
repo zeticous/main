@@ -40,6 +40,14 @@ public class CommandBoxHandle extends GuiHandle {
         guiRobot.sleep(200); // Give time for the command to take effect
     }
 
+    public void prevousCommand() {
+        pressUp();
+    }
+
+    public void nextCommand() {
+        pressDown();
+    }
+
     public HelpWindowHandle runHelpCommand() {
         enterCommand("help");
         pressEnter();

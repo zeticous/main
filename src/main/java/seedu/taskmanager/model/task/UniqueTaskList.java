@@ -42,19 +42,6 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Adds a task to the front of the list.
-     * @throws DuplicateTaskException
-     *             if the task to add is a duplicate of an existing task in the list.
-     */
-    public void addToFront(Task toAdd) throws DuplicateTaskException {
-        assert toAdd != null;
-        if (contains(toAdd)) {
-            throw new DuplicateTaskException();
-        }
-        internalList.add(0, toAdd);
-    }
-
-    /**
      * Updates the task in the list at position {@code index} with {@code editedTask}.
      * @throws DuplicateTaskException
      *             if updating the task's details causes the task to be equivalent to another existing task in the list.
@@ -81,12 +68,6 @@ public class UniqueTaskList implements Iterable<Task> {
         // internalList.remove(index);
         // internalList.add(0, taskToUpdate);
         internalList.set(index, taskToUpdate);
-    }
-
-    public void taskToFront(int index) {
-        Task taskUpdated = internalList.get(index);
-        internalList.remove(index);
-        internalList.add(0, taskUpdated);
     }
 
     /**
@@ -155,10 +136,6 @@ public class UniqueTaskList implements Iterable<Task> {
      * task in the list.
      */
     public static class TaskNotFoundException extends Exception {
-
-        /**
-         *
-         */
         private static final long serialVersionUID = 3500678284364510933L;
     }
 
