@@ -19,12 +19,12 @@ public class FilepathCommandParser {
 
     public static final String FILE_EXTENSION = ".xml";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Changes the filepath. " + "Parameter: FILEPATH"
-            + "Parameter should be a valid file path, ending in .xml."
-            + "Examples: potatodo.xml, data\\awesomeness.xml, C:\\data\\taskmanager.xml";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Changes the filepath. " + "Parameter: FILEPATH" + "\n"
+            + "Parameter should be a valid file path, ending with .xml" + "\n"
+            + "Examples: file path potatodo.xml; filepath C:\\data\\taskmanager.xml";
 
     public static final String MESSAGE_MISSING_EXTENSION =
-            "Invalid file path. Please check if your filepath ends with " + FILE_EXTENSION + ".";
+            "Invalid file path. Please check if your filepath ends with " + FILE_EXTENSION + "\n";
     public static final String MESSAGE_CANNOT_WRITE =
             "Unable to write to file. Please check that the filepath is valid, "
                     + " and that you have permission to write to the folder.";
