@@ -5,12 +5,8 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 
-import seedu.taskmanager.commons.exceptions.IllegalValueException;
 import seedu.taskmanager.commons.util.CollectionUtil;
 import seedu.taskmanager.commons.util.NotificationUtil;
-import seedu.taskmanager.logic.parser.DateTimeUtil;
-//import seedu.taskmanager.model.TaskNotifier;
-import seedu.taskmanager.model.TaskNotifierManager;
 import seedu.taskmanager.model.tag.UniqueTagList;
 
 /**
@@ -35,6 +31,7 @@ public class Task implements ReadOnlyTask {
                                              // changes in the arg list
         this.isDoneStatus = status;
         this.isDueSoonStatus = dueSoonStatus;
+        setDueSoonStatus();
     }
 
     public Task(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags, boolean status) {
@@ -45,14 +42,17 @@ public class Task implements ReadOnlyTask {
     // @@author A0140538J
     public Task(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags) {
         this(name, startDate, endDate, tags, false);
+        setDueSoonStatus();
     }
 
     public Task(Name name, UniqueTagList tags) {
         this(name, null, null, tags, false);
+        setDueSoonStatus();
     }
 
     public Task(Name name, Optional<TaskDate> startDate, Optional<TaskDate> endDate, UniqueTagList tags) {
         this(name, startDate.orElse(null), endDate.orElse(null), tags, false);
+        setDueSoonStatus();
     }
 
     /**
@@ -141,15 +141,15 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setDueSoonStatus() {
-        // TODO to be fixed later
         Date notificationDate = NotificationUtil.getNotificationDate();
+        if (isDoneStatus) {
+            this.isDueSoonStatus = false;
+            return;
+        }
+
         if (notificationDate == null) {
-            try {
-                notificationDate = DateTimeUtil.parseDateTime(TaskNotifierManager.DEFAULT_NOTIFICATION).getTaskDate();
-            } catch (IllegalValueException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            this.isDueSoonStatus = false;
+            return;
         }
 
         if (this.hasStartDate()) {

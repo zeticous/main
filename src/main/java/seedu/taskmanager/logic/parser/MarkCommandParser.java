@@ -37,11 +37,11 @@ public class MarkCommandParser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
         }
 
-        if (!preambleFields.get(1).get().equals(MarkCommand.DONE_STRING)
-                && !preambleFields.get(1).get().equals(MarkCommand.UNDONE_STRING)) {
+        if (!preambleFields.get(1).get().toLowerCase().equals(MarkCommand.DONE_STRING)
+                && !preambleFields.get(1).get().toLowerCase().equals(MarkCommand.UNDONE_STRING)) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
         }
 
-        return new MarkCommand(index.get(), preambleFields.get(1).get());
+        return new MarkCommand(index.get(), preambleFields.get(1).get().toLowerCase());
     }
 }

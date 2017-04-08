@@ -51,9 +51,4 @@ public class TaskDate {
         // check
     }
 
-    @Override
-    public int hashCode() {
-        return taskDate.hashCode();
-    }
-
 }
