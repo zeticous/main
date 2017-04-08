@@ -40,7 +40,7 @@ public class CommandBoxHandle extends GuiHandle {
         guiRobot.sleep(200); // Give time for the command to take effect
     }
 
-    public void prevousCommand() {
+    public void previousCommand() {
         pressUp();
     }
 

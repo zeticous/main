@@ -63,9 +63,9 @@ public class CommandBoxTest extends TaskManagerGuiTest {
     public void commandBox_previousCommand() {
         commandBox.runCommand(COMMAND_THAT_SUCCEEDS);
         commandBox.runCommand(ANOTHER_COMMAND_THAT_SUCCEEDS);
-        commandBox.prevousCommand();
+        commandBox.previousCommand();
         assertEquals(ANOTHER_COMMAND_THAT_SUCCEEDS, commandBox.getCommandInput());
-        commandBox.prevousCommand();
+        commandBox.previousCommand();
         assertEquals(COMMAND_THAT_SUCCEEDS, commandBox.getCommandInput());
     }
 
@@ -73,8 +73,8 @@ public class CommandBoxTest extends TaskManagerGuiTest {
     public void commandBox_nextCommand() {
         commandBox.runCommand(COMMAND_THAT_SUCCEEDS);
         commandBox.runCommand(ANOTHER_COMMAND_THAT_SUCCEEDS);
-        commandBox.prevousCommand();
-        commandBox.prevousCommand();
+        commandBox.previousCommand();
+        commandBox.previousCommand();
         commandBox.nextCommand();
         assertEquals(ANOTHER_COMMAND_THAT_SUCCEEDS, commandBox.getCommandInput());
     }
@@ -83,11 +83,11 @@ public class CommandBoxTest extends TaskManagerGuiTest {
     public void commandBox_previousCommand_exceedingIndex() {
         commandBox.runCommand(COMMAND_THAT_SUCCEEDS);
         commandBox.runCommand(ANOTHER_COMMAND_THAT_SUCCEEDS);
-        commandBox.prevousCommand();
-        commandBox.prevousCommand();
-        commandBox.prevousCommand();
+        commandBox.previousCommand();
+        commandBox.previousCommand();
+        commandBox.previousCommand();
         assertEquals(COMMAND_THAT_SUCCEEDS, commandBox.getCommandInput());
-        commandBox.prevousCommand();
+        commandBox.previousCommand();
         assertEquals(COMMAND_THAT_SUCCEEDS, commandBox.getCommandInput());
     }
 
@@ -95,8 +95,8 @@ public class CommandBoxTest extends TaskManagerGuiTest {
     public void commandBox_nextCommand_exceedingIndex() {
         commandBox.runCommand(COMMAND_THAT_SUCCEEDS);
         commandBox.runCommand(ANOTHER_COMMAND_THAT_SUCCEEDS);
-        commandBox.prevousCommand();
-        commandBox.prevousCommand();
+        commandBox.previousCommand();
+        commandBox.previousCommand();
         commandBox.nextCommand();
         commandBox.nextCommand();
         commandBox.nextCommand();

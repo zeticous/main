@@ -106,7 +106,7 @@ public class CommandBox extends UiPart<Region> {
     // @@author A0140417R
     /**
      * Wrapper class containing a list of previously entered commands and index. Helps to cycle through the commands
-     * when up and down is pressed. Uses a circular-list implementation of arraylist.
+     * when up and down is pressed. The first element of the list is always a blank string.
      * @author zeticous
      */
     private class PreviousCommandList {
@@ -115,32 +115,35 @@ public class CommandBox extends UiPart<Region> {
 
         public PreviousCommandList() {
             commandList = new ArrayList<String>();
+            commandList.add("");
             index = 0;
         }
 
         public void addCommandToList(String validCommand) {
-            commandList.add(0, validCommand);
+            commandList.add(1, validCommand);
             index = 0;
         }
 
         public String getPreviousCommand() {
             try {
-                return commandList.get(index++);
+                String prevCommand = commandList.get(index+1);
+                index++;
+                return prevCommand;
             } catch (IndexOutOfBoundsException e) {
-                // Index is beyond the last element, set index to the first element of the list.
-                index = 0;
-                return getPreviousCommand();
-                
+                // Index is at the last element.
+                return commandList.get(index);
+
             }
         }
 
         public String getNextCommand() {
             try {
-                return commandList.get(index--);
+                String nextCommand = commandList.get(index-1);
+                index--;
+                return nextCommand;
             } catch (IndexOutOfBoundsException e) {
-                // Index is below 0, set index to 0 and return the last element in the list.
-                index = commandList.size() - 1;
-                return getNextCommand();
+                // Index is at the first element.
+                return commandList.get(index);
             }
         }
     }
