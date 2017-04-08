@@ -31,6 +31,7 @@ public class Task implements ReadOnlyTask {
                                              // changes in the arg list
         this.isDoneStatus = status;
         this.isDueSoonStatus = dueSoonStatus;
+        setDueSoonStatus();
     }
 
     public Task(Name name, TaskDate startDate, TaskDate endDate, UniqueTagList tags, boolean status) {
@@ -141,6 +142,10 @@ public class Task implements ReadOnlyTask {
 
     public void setDueSoonStatus() {
         Date notificationDate = NotificationUtil.getNotificationDate();
+        if (isDoneStatus) {
+            this.isDueSoonStatus = false;
+            return;
+        }
 
         if (notificationDate == null) {
             this.isDueSoonStatus = false;
