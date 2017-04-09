@@ -74,19 +74,19 @@ The date expression can be in standard language. <br>
 `add <TASK_NAME> [<START_DATE_MARKER> <DATE_START_TIME>] [<END_DATE_MARKER> <DATE_END_TIME>] [t/ TAG_NAME]...`<br>
 
 **Example:** <br>
-> add meeting with Boss from 25th April 1pm to 25th April 5pm t/important t/urgent  <br> 
+> add meeting with Boss from 25th April 1pm to 25th April 5pm t/important t/urgent  <br>
 
 This will add an event named 'meeting with Boss' with start date and time as 25th April 1pm and end date and time as 25th April 5pm with two tags 'important' and 'urgent'. <br>
-              
-              
+
+
 **Deadline format:** `add <TASK_NAME> [END_DATE_MARKER] [DATE_DUE_TIME] [t/ TAG_NAME]...`<br>
 
 **Example:** <br>
 > add report submission by next wed  <br>
 
 This will add a deadline named 'report submission' with [DATE_DUE_TIME] as the following wednesday without time. <br>
-               
-               
+
+
 **Floating task format:** `add <TASK_NAME> [t/ TAG_NAME]...` <br>
 
 **Example:** <br>
@@ -96,7 +96,7 @@ This command will simply add a floating task named 'confess to love'. <br>
 
 **Note:** <br>
 > The command to add a task will not be accepted if it only specifies the start attributes in a task. To understand more, please refer to the FAQ section in the end. <br>
-     
+
 
 ### 2.3. Listing tasks : `list`
 
@@ -145,15 +145,15 @@ In case the tags are editted, all the previous tags will be removed and will be 
 > edit 3 edited_event from 7th May 12pm to 9th May 5pm <br>
 
 This command will edit the task at index number 3 with a new name, new start date and time, new end date and time. At least one of the [PARAMETERS] must be executed. <br>
-    
-            
+
+
 **Deadline format:** `edit <index> [TASK_NAME] [<END_DATE_MARKER> <DATE_END_TIME>] [t/ TAG_NAME]` <br>
 
 **Example:** <br>
 > edit 4 edited_deadline e/03/05/2017 8pm <br>
 
 This command will edit the task at index number 4 with new name, new end date and time. At least one of the [PARAMETERS] must be executed. <br>
-               
+
 **Floating task format:** `edit <index> [NEW_TASK_NAME] [t/ TAG_NAME]` <br>
 
 **Example:** <br>
@@ -181,6 +181,7 @@ This command will edit the task 'exercise regularly' by removing the dates added
 > * If a task only has the start attributes (after the edit command), it will not be accepted by pota-todo. To understand more, please refer to the FAQ section in the end. <br>
 > * The start date specified must be before the end date. <br>
 > * The tag should be one word long only i.e. there should be no spaces in a specific tag. For example, tags such as 'very urgent' will nto be accepted as the tag is not one word. However, there can be more than one tag. <br>
+> * A tag cannot be removed. It only can be replaced. <br>
 
 ### 2.5. Searching for all tasks containing a name : `find`
 
@@ -191,11 +192,11 @@ Searches for the tasks containing the input name. An example has been given belo
 **Example:** <br>
 > find event <br>
 
-This command will simply return the tasks with the name 'event' in them. <br> 
+This command will simply return the tasks with the name 'event' in them. <br>
 
 **Note:**  <br>
 > To find a task by date, use the `list` command. <br> <br>
-     
+
 
 > * The search is not case sensitive. e.g `meeting` will match `Meeting`
 > * The order of the keywords does not matter. e.g. `team meeting` will match `meeting team`
@@ -317,7 +318,7 @@ Therefore, there is no need to save manually. <br>
 **A:** This is due to how pota-todo deals with categorisation of task. <br>
 > * Events: Start Date and End Date
 > * Deadlines: End Date Only
-> * Floating: No dates 
+> * Floating: No dates
 <br>
 As there are no valid task types with only a start date attribute, it is not accepted. <br>
 
@@ -329,23 +330,23 @@ As there are no valid task types with only a start date attribute, it is not acc
 * **Create an event** : <br>
   `add <TASK_NAME> [<START_DATE_MARKER> <DATE_START_TIME>] [<END_DATE_MARKER> <DATE_END_TIME>] [t/ TAG_NAME]...` <br>
    e.g. add birthday party s/1/1/2088 1200 e/1/1/2088 1230
- 
+
 * **Create a deadline** : <br>
   `add <TASK_NAME> [END_DATE_MARKER] [DATE_DUE_TIME] [t/ TAG_NAME]...` <br>
    e.g. add homework e/1/1/2088 1200
-  
+
 * **Create a floating task** : <br>
    `add <TASK_NAME> [t/ TAG_NAME]...` <br>
-    e.g. add stay_healthy 
-  
+    e.g. add stay_healthy
+
 * **Edit Event format** : <br>
    `edit <index> [TASK_NAME] [<START_MARKER> <DATE_START_TIME>] [<END_DATE_MARKER> <DATE_END_TIME>] [t/ TAG_NAME]` <br>
     e.g. edit 3 edited_event s/01/01/2088 1200 e/01/01/2088 1230
-            
+
 * **Edit Deadline format** : <br>
    `edit <index> [TASK_NAME] [<END_DATE_MARKER> <DATE_END_TIME>] [t/ TAG_NAME]` <br>
     e.g. edit 4 edited_deadline e/01/01/2088 1200
-               
+
 * **Edit Floating task format** : <br>
    `edit <index> [NEW_TASK_NAME] [t/ TAG_NAME] ` <br>
     e.g. edit 5 edited_floating_task
@@ -353,7 +354,7 @@ As there are no valid task types with only a start date attribute, it is not acc
 * **Changing a task type** : <br>
 `edit <index> [NEW_TASK_NAME] [<START_MARKER> <DATE_START_TIME/remove>] [<END_DATE_MARKER> <DATE_END_TIME/remove>] [t/ TAG_NAME]`<br>
    e.g. edit 5 project evaluation s/remove
-   
+
 * **Delete** : <br>
    `delete <INDEX>` <br>
    e.g. delete 1
@@ -385,11 +386,11 @@ As there are no valid task types with only a start date attribute, it is not acc
 * **Setting notification period** : <br>
    `set <TIME_PERIOD>` <br>
    e.g. set 4 days
-   
+
 * **Changing the filepath** : <br>
    `filepath <FILE_DIRECTORY>` <br>
    e.g. filepath tomato.xml
-   
+
 * **Exit** : <br>
    `exit` <br>
    e.g. exit
