@@ -25,25 +25,25 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Edits the details of the task identified " + "by the index number as shown in the list. "
-                    + "Existing values will be overwritten by the input values.\n"
-                    + "Parameters: INDEX (must be a positive integer) [NAME] [s/START_DATE] [e/END_DATE] [t/TAG]...\n"
-                    + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
+            + "by the index number as shown in the list. "
+            + "Existing values will be overwritten by the input values.\n"
+            + "Parameters: INDEX (must be a positive integer) [NAME] [s/START_DATE] [e/END_DATE] [t/TAG]...\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Edited %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_INVALID_EDITTED_TASK =
-            "The editted task is not in the right format." + " Please check the type of your task to edit accordingly.";
+    public static final String MESSAGE_INVALID_EDITTED_TASK = "The editted task is not in the right format."
+            + " Please check the type of your task to edit accordingly.";
 
     private final int filteredTaskListIndex;
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
      * @param filteredTaskListIndex
-     *        the index of the task in the filtered task list to edit
+     *            the index of the task in the filtered task list to edit
      * @param editTaskDescriptor
-     *        details to edit the task with
+     *            details to edit the task with
      */
     public EditCommand(int filteredTaskListIndex, EditTaskDescriptor editTaskDescriptor) {
         assert filteredTaskListIndex > 0;
@@ -105,10 +105,9 @@ public class EditCommand extends Command {
 
         // If the created task is an event, the startDate should be before the
         // endDate
-        if (createdTask.isEvent()) {
-            if (!createdTask.getStartDate().getTaskDate().before(createdTask.getEndDate().getTaskDate())) {
-                throw new IllegalValueException(MESSAGE_START_AFTER_END);
-            }
+        if (createdTask.isEvent()
+                && !createdTask.getStartDate().getTaskDate().before(createdTask.getEndDate().getTaskDate())) {
+            throw new IllegalValueException(MESSAGE_START_AFTER_END);
         }
 
         // Checks if a task is in a valid time structure.
