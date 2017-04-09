@@ -117,9 +117,8 @@ public class DateTimeUtil {
     private static boolean isValidArg(List<DateGroup> parsedDatesList) {
         if (parsedDatesList != null && !parsedDatesList.isEmpty()) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     // Check if explicit time or relative time is present in a given date/time string

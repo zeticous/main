@@ -105,6 +105,7 @@ public class LogicManagerTest {
     /**
      * Executes the command, confirms that a CommandException is not thrown and that the result message is correct. Also
      * confirms that both the 'task manager' and the 'last shown list' are as specified.
+     *
      * @see #assertCommandBehavior(boolean, String, String, ReadOnlyTaskManager, List)
      */
     protected void assertCommandSuccess(String inputCommand, String expectedMessage,
@@ -115,6 +116,7 @@ public class LogicManagerTest {
     /**
      * Executes the command, confirms that a CommandException is thrown and that the result message is correct. Both the
      * 'task manager' and the 'last shown list' are verified to be unchanged.
+     *
      * @see #assertCommandBehavior(boolean, String, String, ReadOnlyTaskManager, List)
      */
     protected void assertCommandFailure(String inputCommand, String expectedMessage) {
@@ -159,8 +161,9 @@ public class LogicManagerTest {
     /**
      * Confirms the 'invalid argument index number behaviour' for the given command targeting a single task in the shown
      * list, using visible index.
+     *
      * @param commandWord
-     *        to test assuming it targets a single task in the last shown list based on visible index.
+     *            to test assuming it targets a single task in the last shown list based on visible index.
      */
     protected void assertIncorrectIndexFormatBehaviorForCommand(String commandWord, String expectedMessage)
             throws Exception {
@@ -180,8 +183,9 @@ public class LogicManagerTest {
     /**
      * Confirms the 'invalid argument index number behaviour' for the given command targeting a single task in the shown
      * list, using visible index.
+     *
      * @param commandWord
-     *        to test assuming it targets a single task in the last shown list based on visible index.
+     *            to test assuming it targets a single task in the last shown list based on visible index.
      */
     protected void assertIndexNotFoundBehaviorForCommand(String commandWord) throws Exception {
         String expectedMessage = MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
@@ -202,7 +206,7 @@ public class LogicManagerTest {
      */
     class TestDataHelper {
 
-        Task meeting() throws Exception {
+        protected Task meeting() throws Exception {
             Name name = new Name("Company Meeting");
             TaskDate startDate = DateTimeUtil.parseStartDateTime("1/1/2018 6pm");
             TaskDate endDate = DateTimeUtil.parseEndDateTime("1/1/2019 7pm");
@@ -212,7 +216,7 @@ public class LogicManagerTest {
             return new Task(name, startDate, endDate, tags);
         }
 
-        Task homework() throws Exception {
+        protected Task homework() throws Exception {
             Name name = new Name("CS Homework");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("longertag2");
@@ -220,7 +224,7 @@ public class LogicManagerTest {
             return new Task(name, tags);
         }
 
-        Task confession() throws Exception {
+        protected Task confession() throws Exception {
             Name name = new Name("Confess love");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("longertag2");
@@ -231,16 +235,17 @@ public class LogicManagerTest {
         /**
          * Generates a valid task using the given seed. Running this function with the same parameter values guarantees
          * the returned task will have the same state. Each unique seed will generate a unique Task object.
+         *
          * @param seed
-         *        used to generate the task data field values
+         *            used to generate the task data field values
          */
-        Task generateTask(int seed) throws Exception {
+        protected Task generateTask(int seed) throws Exception {
             return new Task(new Name("Task " + seed),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1))));
         }
 
         /** Generates the correct add command based on the task given */
-        String generateAddCommand(Task p) {
+        protected String generateAddCommand(Task p) {
             StringBuffer cmd = new StringBuffer();
 
             cmd.append("add ");
@@ -263,7 +268,7 @@ public class LogicManagerTest {
         /**
          * Generates an TaskManager with auto-generated tasks.
          */
-        TaskManager generateTaskManager(int numGenerated) throws Exception {
+        protected TaskManager generateTaskManager(int numGenerated) throws Exception {
             TaskManager taskManager = new TaskManager();
             addToTaskManager(taskManager, numGenerated);
             return taskManager;
@@ -272,7 +277,7 @@ public class LogicManagerTest {
         /**
          * Generates an TaskManager based on the list of Tasks given.
          */
-        TaskManager generateTaskManager(List<Task> tasks) throws Exception {
+        protected TaskManager generateTaskManager(List<Task> tasks) throws Exception {
             TaskManager taskManager = new TaskManager();
             addToTaskManager(taskManager, tasks);
             return taskManager;
@@ -280,17 +285,18 @@ public class LogicManagerTest {
 
         /**
          * Adds auto-generated Task objects to the given TaskManager
+         *
          * @param taskManager
-         *        The TaskManager to which the Tasks will be added
+         *            The TaskManager to which the Tasks will be added
          */
-        void addToTaskManager(TaskManager taskManager, int numGenerated) throws Exception {
+        protected void addToTaskManager(TaskManager taskManager, int numGenerated) throws Exception {
             addToTaskManager(taskManager, generateTaskList(numGenerated));
         }
 
         /**
          * Adds the given list of Tasks to the given TaskManager
          */
-        void addToTaskManager(TaskManager taskManager, List<Task> tasksToAdd) throws Exception {
+        protected void addToTaskManager(TaskManager taskManager, List<Task> tasksToAdd) throws Exception {
             for (Task p : tasksToAdd) {
                 taskManager.addTask(p);
             }
@@ -298,17 +304,18 @@ public class LogicManagerTest {
 
         /**
          * Adds auto-generated Task objects to the given model
+         *
          * @param model
-         *        The model to which the Tasks will be added
+         *            The model to which the Tasks will be added
          */
-        void addToModel(Model model, int numGenerated) throws Exception {
+        protected void addToModel(Model model, int numGenerated) throws Exception {
             addToModel(model, generateTaskList(numGenerated));
         }
 
         /**
          * Adds the given list of Tasks to the given model
          */
-        void addToModel(Model model, List<Task> tasksToAdd) throws Exception {
+        protected void addToModel(Model model, List<Task> tasksToAdd) throws Exception {
             for (Task p : tasksToAdd) {
                 model.addTask(p);
             }
@@ -317,7 +324,7 @@ public class LogicManagerTest {
         /**
          * Generates a list of Tasks based on the flags.
          */
-        List<Task> generateTaskList(int numGenerated) throws Exception {
+        protected List<Task> generateTaskList(int numGenerated) throws Exception {
             List<Task> tasks = new ArrayList<>();
             for (int i = 1; i <= numGenerated; i++) {
                 tasks.add(generateTask(i));
@@ -325,21 +332,21 @@ public class LogicManagerTest {
             return tasks;
         }
 
-        List<Task> generateTaskList(Task... tasks) {
+        protected List<Task> generateTaskList(Task... tasks) {
             return Arrays.asList(tasks);
         }
 
         /**
          * Generates a Task object with given name. Other fields will have some dummy values.
          */
-        Task generateTaskWithName(String name) throws Exception {
+        protected Task generateTaskWithName(String name) throws Exception {
             return new Task(new Name(name), new UniqueTagList(new Tag("tag")));
         }
 
         /**
          * Generates a Task object with given name and due date.
          */
-        Task generateTaskWithDueDate(String name, String dueDate) throws Exception {
+        protected Task generateTaskWithDueDate(String name, String dueDate) throws Exception {
             return new Task(new Name(name), null, DateTimeUtil.parseEndDateTime(dueDate),
                     new UniqueTagList(new Tag("tag")));
         }
@@ -347,7 +354,7 @@ public class LogicManagerTest {
         /**
          * Generates a Task object with given name, start and end dates.
          */
-        Task generateTaskWithAll(String name, String startDate, String endDate) throws Exception {
+        protected Task generateTaskWithAll(String name, String startDate, String endDate) throws Exception {
             return new Task(new Name(name), DateTimeUtil.parseStartDateTime(startDate),
                     DateTimeUtil.parseEndDateTime(endDate), new UniqueTagList(new Tag("tag")));
 
