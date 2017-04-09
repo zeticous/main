@@ -56,9 +56,10 @@ public class UniqueTaskList implements Iterable<Task> {
         assert editedTask != null;
 
         Task taskToUpdate = internalList.get(index);
-        if (taskToUpdate.isDone() == editedTask.isDone() && !taskToUpdate.equals(editedTask)
-                && internalList.contains(editedTask)) {
-            throw new DuplicateTaskException();
+        if (taskToUpdate.isDone() == editedTask.isDone()) {
+            if (!taskToUpdate.equals(editedTask) && internalList.contains(editedTask)) {
+                throw new DuplicateTaskException();
+            }
         }
 
         taskToUpdate.resetData(editedTask);
