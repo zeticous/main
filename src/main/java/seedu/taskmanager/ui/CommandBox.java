@@ -126,7 +126,7 @@ public class CommandBox extends UiPart<Region> {
 
         public String getPreviousCommand() {
             try {
-                String prevCommand = commandList.get(index+1);
+                String prevCommand = commandList.get(index + 1);
                 index++;
                 return prevCommand;
             } catch (IndexOutOfBoundsException e) {
@@ -138,7 +138,7 @@ public class CommandBox extends UiPart<Region> {
 
         public String getNextCommand() {
             try {
-                String nextCommand = commandList.get(index-1);
+                String nextCommand = commandList.get(index - 1);
                 index--;
                 return nextCommand;
             } catch (IndexOutOfBoundsException e) {

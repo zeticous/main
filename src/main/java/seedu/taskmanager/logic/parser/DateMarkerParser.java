@@ -23,7 +23,7 @@ public class DateMarkerParser {
     private static final String EMPTY_SPACE = "\\s+";
     private static final String WHITE_SPACE = " ";
     private static final String REMOVE_STRING = "remove";
-    
+
     private static DateMarkerMap markerMap;
 
     /**
@@ -73,7 +73,7 @@ public class DateMarkerParser {
         for (int i = currentIndex + 1; i < splittedArgs.length && !markerMap.contains(splittedArgs[i]); i++) {
             builder.append(splittedArgs[i] + WHITE_SPACE);
         }
-        
+
         String testString = builder.toString().trim();
         return DateTimeUtil.isValidDateString(testString) || REMOVE_STRING.equals(testString);
     }

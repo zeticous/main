@@ -74,14 +74,14 @@ public class TestUtil {
         try {
             // CHECKSTYLE.OFF: LineLength
             return new Task[] { new Task(new Name("Event 1"), new UniqueTagList()),
-                    new Task(new Name("Event 2"), new UniqueTagList()),
-                    new Task(new Name("Event 3"), new UniqueTagList()),
-                    new Task(new Name("Evnet 4"), new UniqueTagList()),
-                    new Task(new Name("Evnet 5"), new UniqueTagList()),
-                    new Task(new Name("Evnet 6"), new UniqueTagList()),
-                    new Task(new Name("Evnet 7"), new UniqueTagList()),
-                    new Task(new Name("Evnet 8"), new UniqueTagList()),
-                    new Task(new Name("Evnet 9"), new UniqueTagList()), };
+                new Task(new Name("Event 2"), new UniqueTagList()),
+                new Task(new Name("Event 3"), new UniqueTagList()),
+                new Task(new Name("Evnet 4"), new UniqueTagList()),
+                new Task(new Name("Evnet 5"), new UniqueTagList()),
+                new Task(new Name("Evnet 6"), new UniqueTagList()),
+                new Task(new Name("Evnet 7"), new UniqueTagList()),
+                new Task(new Name("Evnet 8"), new UniqueTagList()),
+                new Task(new Name("Evnet 9"), new UniqueTagList()), };
             // CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {
             assert false;
