@@ -1,3 +1,4 @@
+// @@author A0130277L
 
 package seedu.taskmanager.logic.parser;
 
@@ -16,7 +17,6 @@ import seedu.taskmanager.model.task.ReadOnlyTask;
 import seedu.taskmanager.model.task.Task;
 import seedu.taskmanager.model.task.TaskDate;
 
-// @@author A0130277L
 /**
  * Natty date parser that parses a command with date and time and return a Date object
  */
