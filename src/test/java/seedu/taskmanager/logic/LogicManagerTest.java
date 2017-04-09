@@ -57,8 +57,8 @@ public class LogicManagerTest {
     protected int targetedJumpIndex;
 
     @Subscribe
-    private void handleLocalModelChangedEvent(TaskManagerChangedEvent abce) {
-        latestSavedTaskManager = new TaskManager(abce.data);
+    private void handleLocalModelChangedEvent(TaskManagerChangedEvent tmce) {
+        latestSavedTaskManager = new TaskManager(tmce.data);
     }
 
     @Subscribe
