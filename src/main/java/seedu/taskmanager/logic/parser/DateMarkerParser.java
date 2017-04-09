@@ -86,8 +86,8 @@ public class DateMarkerParser {
      * @author zeticous
      */
     public static class DateMarkerMap {
-        final HashMap<String, Prefix> markerMap;
-        final HashMap<Prefix, Integer> markerCountMap;
+        public final HashMap<String, Prefix> markerMap;
+        public final HashMap<Prefix, Integer> markerCountMap;
 
         /**
          * Creates the wrapper class with the hashmaps assigned

@@ -152,18 +152,14 @@ public class Task implements ReadOnlyTask {
             return;
         }
 
-        if (this.hasStartDate()) {
-            if (getStartDate().getTaskDate().before(notificationDate)) {
-                this.isDueSoonStatus = true;
-                return;
-            }
+        if (this.hasStartDate() && getStartDate().getTaskDate().before(notificationDate)) {
+            this.isDueSoonStatus = true;
+            return;
         }
 
-        if (this.hasEndDate()) {
-            if (getEndDate().getTaskDate().before(notificationDate)) {
-                this.isDueSoonStatus = true;
-                return;
-            }
+        if (this.hasEndDate() && getEndDate().getTaskDate().before(notificationDate)) {
+            this.isDueSoonStatus = true;
+            return;
         }
 
         this.isDueSoonStatus = false;

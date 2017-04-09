@@ -24,7 +24,7 @@ public class ListCommandParser {
         String modifiedArg = arg.trim();
 
         ListArgumentsUtil argumentChecker = new ListArgumentsUtil(modifiedArg);
-        if (!argumentChecker.acceptedWords.contains(modifiedArg) && argumentChecker.isDate == false) {
+        if (!argumentChecker.acceptedWords.contains(modifiedArg) && !argumentChecker.isDate) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 

@@ -34,7 +34,7 @@ public class TaskDate {
     @Override
     public String toString() {
         String toBeDisplayed;
-        if (hasTime == false) {
+        if (!hasTime) {
             toBeDisplayed = DateTimeUtil.getOnlyDateStringFromDate(taskDate);
         } else {
             toBeDisplayed = DateTimeUtil.getStringFromDate(taskDate);

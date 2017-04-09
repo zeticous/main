@@ -179,7 +179,7 @@ public class ArgumentTokenizer {
      * A prefix that marks the beginning of an argument. e.g. '/t' in 'add James /t friend'
      */
     public static class Prefix {
-        final String prefix;
+        public final String prefix;
 
         public Prefix(String prefix) {
             this.prefix = prefix;
@@ -215,16 +215,16 @@ public class ArgumentTokenizer {
         private int startPosition;
         private final Prefix prefix;
 
-        PrefixPosition(Prefix prefix, int startPosition) {
+        public PrefixPosition(Prefix prefix, int startPosition) {
             this.prefix = prefix;
             this.startPosition = startPosition;
         }
 
-        int getStartPosition() {
+        public int getStartPosition() {
             return this.startPosition;
         }
 
-        Prefix getPrefix() {
+        public Prefix getPrefix() {
             return this.prefix;
         }
     }
