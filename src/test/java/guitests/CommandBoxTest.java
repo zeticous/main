@@ -17,6 +17,9 @@ public class CommandBoxTest extends TaskManagerGuiTest {
     private static final String ANOTHER_COMMAND_THAT_SUCCEEDS = "add valid name s/today e/next week";
     private static final String COMMAND_THAT_FAILS = "invalid command";
 
+    private static final String FIRST_INDEXT_COMMAND_STRING = "";
+
+
     private ArrayList<String> defaultStyleOfCommandBox;
     private ArrayList<String> errorStyleOfCommandBox;
 
@@ -100,7 +103,7 @@ public class CommandBoxTest extends TaskManagerGuiTest {
         commandBox.nextCommand();
         commandBox.nextCommand();
         commandBox.nextCommand();
-        assertEquals(ANOTHER_COMMAND_THAT_SUCCEEDS, commandBox.getCommandInput());
+        assertEquals(FIRST_INDEXT_COMMAND_STRING, commandBox.getCommandInput());
     }
     // @@author
 
