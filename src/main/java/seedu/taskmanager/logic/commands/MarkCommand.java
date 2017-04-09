@@ -1,6 +1,9 @@
 
 package seedu.taskmanager.logic.commands;
 
+import static seedu.taskmanager.commons.util.CommonStringUtil.DONE_STRING;
+import static seedu.taskmanager.commons.util.CommonStringUtil.UNDONE_STRING;
+
 import seedu.taskmanager.commons.core.Messages;
 import seedu.taskmanager.commons.core.UnmodifiableObservableList;
 import seedu.taskmanager.logic.commands.exceptions.CommandException;
@@ -26,9 +29,6 @@ public class MarkCommand extends Command {
 
     // Used for unexpected exceptions that needs re-implementation
     public static final String MESSAGE_GENERIC_ERROR = "MarkCommand Error";
-
-    public static final String DONE_STRING = "done";
-    public static final String UNDONE_STRING = "undone";
 
     public final int targetIndex;
     public final String newMarkStatus;

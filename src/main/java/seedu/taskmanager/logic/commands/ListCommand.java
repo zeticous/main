@@ -1,6 +1,8 @@
 
 package seedu.taskmanager.logic.commands;
 
+import static seedu.taskmanager.commons.util.CommonStringUtil.EMPTY_STRING;
+
 // @@author A0140538J
 /**
  * Lists all, task type, date or done status in the task manager to the user.
@@ -16,8 +18,6 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
     public static final String MESSAGE_NOT_LISTED = "Invalid input" + MESSAGE_USAGE;
     public static final String MESSAGE_FLOATING_NO_DATE = "A floating task has no dates";
-
-    private static final String EMPTY_STRING = "";
 
     private String filter = null;
     private String[] filters;

@@ -58,9 +58,7 @@ public class CommandBox extends UiPart<Region> {
                     Platform.runLater(() -> {
                         commandTextField.setText(prevCommandList.getPreviousCommand());
                     });
-                }
-
-                else if (event.getCode().equals(KeyCode.DOWN)) {
+                } else if (event.getCode().equals(KeyCode.DOWN)) {
                     Platform.runLater(() -> {
                         commandTextField.setText(prevCommandList.getNextCommand());
                     });

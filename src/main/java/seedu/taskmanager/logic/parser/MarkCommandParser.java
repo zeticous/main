@@ -2,6 +2,8 @@
 package seedu.taskmanager.logic.parser;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.taskmanager.commons.util.CommonStringUtil.DONE_STRING;
+import static seedu.taskmanager.commons.util.CommonStringUtil.UNDONE_STRING;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,8 +39,8 @@ public class MarkCommandParser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
         }
 
-        if (!preambleFields.get(1).get().toLowerCase().equals(MarkCommand.DONE_STRING)
-                && !preambleFields.get(1).get().toLowerCase().equals(MarkCommand.UNDONE_STRING)) {
+        if (!preambleFields.get(1).get().toLowerCase().equals(DONE_STRING)
+                && !preambleFields.get(1).get().toLowerCase().equals(UNDONE_STRING)) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
         }
 

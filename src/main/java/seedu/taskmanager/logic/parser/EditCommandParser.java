@@ -2,6 +2,7 @@
 package seedu.taskmanager.logic.parser;
 
 import static seedu.taskmanager.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.taskmanager.commons.util.CommonStringUtil.REMOVE_STRING;
 import static seedu.taskmanager.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.taskmanager.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import static seedu.taskmanager.logic.parser.CliSyntax.PREFIX_TAG;
@@ -22,9 +23,6 @@ import seedu.taskmanager.model.tag.UniqueTagList;
  * Parses input arguments and creates a new EditCommand object
  */
 public class EditCommandParser {
-
-    public static final String EMPTY_STRING = "";
-    public static final String REMOVE_STRING = "remove";
 
     // @@author A0140538J
     /**

@@ -17,7 +17,7 @@ import seedu.taskmanager.logic.commands.IncorrectCommand;
  */
 public class FilepathCommandParser {
 
-    public static final String FILE_EXTENSION = ".xml";
+    private static final String FILE_EXTENSION = ".xml";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Changes the filepath. " + "Parameter: FILEPATH" + "\n"
             + "Parameter should be a valid file path, ending with .xml" + "\n"
