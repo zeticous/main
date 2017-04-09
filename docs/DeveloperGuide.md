@@ -141,6 +141,8 @@ The sections below give more details of each component.
 
 ### 2.2. UI component
 
+**Author: Neo Wei Jie, Esmond**
+
 <img src="images/UiClassDiagram.png" width="800"><br>
 _Figure 2.2.1 : Structure of the UI Component_
 
@@ -166,6 +168,8 @@ _Figure 2.2.2 : Sample Task Card_
 For `TaskCard`, an additional `TaskCardStyle` class is used to colour code the card. It will be red if the task is undone, and green if the task is completed. `TaskCard` will also show a clock icon if it is within a user-configurable time-frame.
 
 ### 2.3. Logic component
+
+**Author: Liu Peng**
 
 <img src="images/LogicClassDiagram.png" width="800"><br>
 _Figure 2.3.1 : Structure of the Logic Component_
@@ -200,6 +204,8 @@ _Figure 2.3.2 : Interactions Inside the Logic Component for the `delete 1` Comma
 _Figure 2.3.3 : Interactions Inside the Logic Component for the `add research by tmr` Command_
 
 ### 2.4. Model component
+
+**Author: Kenny Ng Jian Liang**
 
 <img src="images/ModelClassDiagram.png" width="800"><br>
 _Figure 2.4.1 : Structure of the Model Component_
