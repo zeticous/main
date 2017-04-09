@@ -69,20 +69,19 @@ public class TestUtil {
                 String.format("Expected %s to be thrown, but nothing was thrown.", expected.getName()));
     }
 
+    // @@author A0130277L
     private static Task[] getSampleTaskData() {
         try {
             // CHECKSTYLE.OFF: LineLength
-            return new Task[] {
-                new Task(new Name("Ali Muster"), new UniqueTagList()),
-                new Task(new Name("Boris Mueller"), new UniqueTagList()),
-                new Task(new Name("Carl Kurz"), new UniqueTagList()),
-                new Task(new Name("Daniel Meier"), new UniqueTagList()),
-                new Task(new Name("Elle Meyer"), new UniqueTagList()),
-                new Task(new Name("Fiona Kunz"), new UniqueTagList()),
-                new Task(new Name("George Best"), new UniqueTagList()),
-                new Task(new Name("Hoon Meier"), new UniqueTagList()),
-                new Task(new Name("Ida Mueller"), new UniqueTagList())
-            };
+            return new Task[] { new Task(new Name("Event 1"), new UniqueTagList()),
+                    new Task(new Name("Event 2"), new UniqueTagList()),
+                    new Task(new Name("Event 3"), new UniqueTagList()),
+                    new Task(new Name("Evnet 4"), new UniqueTagList()),
+                    new Task(new Name("Evnet 5"), new UniqueTagList()),
+                    new Task(new Name("Evnet 6"), new UniqueTagList()),
+                    new Task(new Name("Evnet 7"), new UniqueTagList()),
+                    new Task(new Name("Evnet 8"), new UniqueTagList()),
+                    new Task(new Name("Evnet 9"), new UniqueTagList()), };
             // CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {
             assert false;
@@ -93,16 +92,14 @@ public class TestUtil {
 
     private static Tag[] getSampleTagData() {
         try {
-            return new Tag[] {
-                new Tag("relatives"),
-                new Tag("friends")
-            };
+            return new Tag[] { new Tag("important"), new Tag("urgent") };
         } catch (IllegalValueException e) {
             assert false;
             return null;
             // not possible
         }
     }
+    // @@author
 
     public static List<Task> generateSampleTaskData() {
         return Arrays.asList(SAMPLE_TASK_DATA);
@@ -110,6 +107,7 @@ public class TestUtil {
 
     /**
      * Appends the file name to the sandbox folder path. Creates the sandbox folder if it doesn't exist.
+     *
      * @param fileName
      * @return
      */
@@ -227,6 +225,7 @@ public class TestUtil {
 
     /**
      * Gets mid point of a node relative to the screen.
+     *
      * @param node
      * @return
      */
@@ -238,6 +237,7 @@ public class TestUtil {
 
     /**
      * Gets mid point of a node relative to its scene.
+     *
      * @param node
      * @return
      */
@@ -249,6 +249,7 @@ public class TestUtil {
 
     /**
      * Gets the bound of the node relative to the parent scene.
+     *
      * @param node
      * @return
      */
@@ -274,10 +275,11 @@ public class TestUtil {
 
     /**
      * Removes a subset from the list of tasks.
+     *
      * @param tasks
-     *        The list of tasks
+     *            The list of tasks
      * @param tasksToRemove
-     *        The subset of tasks.
+     *            The subset of tasks.
      * @return The modified tasks after removal of the subset from tasks.
      */
     public static TestTask[] removeTasksFromList(final TestTask[] tasks, TestTask... tasksToRemove) {
@@ -288,10 +290,11 @@ public class TestUtil {
 
     /**
      * Returns a copy of the list with the task at specified index removed.
+     *
      * @param list
-     *        original list to copy from
+     *            original list to copy from
      * @param targetIndexInOneIndexedFormat
-     *        e.g. index 1 if the first element is to be removed
+     *            e.g. index 1 if the first element is to be removed
      */
     public static TestTask[] removeTaskFromList(final TestTask[] list, int targetIndexInOneIndexedFormat) {
         return removeTasksFromList(list, list[targetIndexInOneIndexedFormat - 1]);
@@ -299,12 +302,13 @@ public class TestUtil {
 
     /**
      * Replaces tasks[i] with a task.
+     *
      * @param tasks
-     *        The array of tasks.
+     *            The array of tasks.
      * @param task
-     *        The replacement task
+     *            The replacement task
      * @param index
-     *        The index of the task to be replaced.
+     *            The index of the task to be replaced.
      * @return
      */
     public static TestTask[] replaceTaskFromList(TestTask[] tasks, TestTask task, int index) {
@@ -314,10 +318,11 @@ public class TestUtil {
 
     /**
      * Appends tasks to the array of tasks.
+     *
      * @param tasks
-     *        A array of tasks.
+     *            A array of tasks.
      * @param tasksToAdd
-     *        The tasks that are to be appended behind the original array.
+     *            The tasks that are to be appended behind the original array.
      * @return The modified array of tasks.
      */
     public static TestTask[] addTasksToList(final TestTask[] tasks, TestTask... tasksToAdd) {
