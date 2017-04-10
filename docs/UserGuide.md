@@ -177,7 +177,6 @@ This command will update the task 'project evaluation' which was a deadline task
 This command will edit the task 'exercise regularly' by removing the dates added previously with this task. Thus, making it a floating task from an event type task. <br>
 
 **Note:**<br>
-> * In order to remove the dates, we have to follow the format 's/remove' and/or 'e/remove'. Any other format will not work with 'remove'. <br>
 > * If a task only has the start attributes (after the edit command), it will not be accepted by pota-todo. To understand more, please refer to the FAQ section in the end. <br>
 > * The start date specified must be before the end date. <br>
 > * The tag should be one word long only i.e. there should be no spaces in a specific tag. For example, tags such as 'very urgent' will nto be accepted as the tag is not one word. However, there can be more than one tag. <br>
