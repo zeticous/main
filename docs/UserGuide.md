@@ -321,8 +321,8 @@ Therefore, there is no need to save manually. <br>
 <br>
 As there are no valid task types with only a start date attribute, it is not accepted. <br>
 
-**Q:** Why is that after I edit a task, which falls within the notification period, the notification icon does not appear at the top right of that task. How can I overcome this?
-**A:** In order for the notification icon to appear on the top right of an edited task, the task manager has to be restarted i.e. close and open again.
+**Q:** Why is that after I edit a task, which falls within the notification period, the notification icon does not appear at the top right of that task. How can I overcome this?<br>
+**A:** In order for the notification icon to appear on the top right of an edited task, the task manager has to be restarted i.e. close and open again.<br>
 
 ## 4. Command Summary
 
